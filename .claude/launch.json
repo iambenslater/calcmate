@@ -1,0 +1,12 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "calcmate-dev",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["server.js"],
+      "port": 3000,
+      "cwd": "/Users/benslater/Library/CloudStorage/GoogleDrive-ben@benslater.me/My Drive/bOS/Root/Projects/CalcMate"
+    }
+  ]
+}

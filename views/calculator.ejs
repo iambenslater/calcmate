@@ -1,0 +1,177 @@
+<%- include('partials/head') %>
+<% if (calc.faq && calc.faq.length) { %>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    <% calc.faq.forEach((f, i) => { %>
+    {
+      "@type": "Question",
+      "name": "<%- f.q.replace(/"/g, '\\"') %>",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "<%- f.a.replace(/"/g, '\\"') %>"
+      }
+    }<%= i < calc.faq.length - 1 ? ',' : '' %>
+    <% }) %>
+  ]
+}
+</script>
+<% } %>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "<%= calc.title %>",
+  "description": "<%= calc.description %>",
+  "url": "<%= siteUrl %>/<%= calc.category %>/<%= calc.slug %>",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "All",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "AUD" }
+}
+</script>
+<%- include('partials/header') %>
+
+<main class="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-6">
+  <%- include('partials/breadcrumbs', { category: calc.category, categoryName, calc }) %>
+
+  <div class="lg:flex gap-8">
+    <!-- Main content -->
+    <div class="flex-1 min-w-0">
+      <h1 class="text-3xl font-bold text-navy mb-2"><%= calc.title %></h1>
+      <p class="text-gray-600 mb-6"><%= calc.description %></p>
+
+      <!-- Calculator widget -->
+      <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mb-8" id="calculator-widget">
+        <div id="calc-inputs">
+          <% if (calc.inputs && calc.inputs.length) { %>
+            <% calc.inputs.forEach(input => { %>
+              <div class="mb-4">
+                <label for="input-<%= input.id %>" class="block text-sm font-medium text-gray-700 mb-1"><%= input.label %></label>
+                <% if (input.type === 'select') { %>
+                  <select id="input-<%= input.id %>" class="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gold focus:border-gold transition">
+                    <% (input.options || []).forEach(opt => { %>
+                      <option value="<%= opt.value %>" <%= opt.default ? 'selected' : '' %>><%= opt.label %></option>
+                    <% }) %>
+                  </select>
+                <% } else if (input.type === 'radio') { %>
+                  <div class="flex flex-wrap gap-3">
+                    <% (input.options || []).forEach(opt => { %>
+                      <label class="flex items-center gap-2 cursor-pointer">
+                        <input type="radio" name="input-<%= input.id %>" value="<%= opt.value %>" <%= opt.default ? 'checked' : '' %> class="text-gold focus:ring-gold">
+                        <span class="text-sm"><%= opt.label %></span>
+                      </label>
+                    <% }) %>
+                  </div>
+                <% } else if (input.type === 'checkbox') { %>
+                  <label class="flex items-center gap-2 cursor-pointer">
+                    <input type="checkbox" id="input-<%= input.id %>" <%= input.default ? 'checked' : '' %> class="rounded text-gold focus:ring-gold">
+                    <span class="text-sm"><%= input.checkLabel || '' %></span>
+                  </label>
+                <% } else if (input.type === 'date') { %>
+                  <input type="date" id="input-<%= input.id %>" value="<%= input.default || '' %>" class="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gold focus:border-gold transition">
+                <% } else { %>
+                  <div class="relative">
+                    <% if (input.prefix) { %><span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm"><%= input.prefix %></span><% } %>
+                    <input type="<%= input.type || 'number' %>" id="input-<%= input.id %>"
+                      value="<%= typeof input.default !== 'undefined' ? input.default : '' %>"
+                      placeholder="<%= input.placeholder || '' %>"
+                      <% if (typeof input.min !== 'undefined') { %>min="<%= input.min %>"<% } %>
+                      <% if (typeof input.max !== 'undefined') { %>max="<%= input.max %>"<% } %>
+                      <% if (input.step) { %>step="<%= input.step %>"<% } %>
+                      class="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gold focus:border-gold transition <%= input.prefix ? 'pl-8' : '' %>"
+                    >
+                    <% if (input.suffix) { %><span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm"><%= input.suffix %></span><% } %>
+                  </div>
+                <% } %>
+                <% if (input.help) { %><p class="text-xs text-gray-400 mt-1"><%= input.help %></p><% } %>
+              </div>
+            <% }) %>
+          <% } else { %>
+            <p class="text-gray-500 text-sm italic">Calculator inputs loading...</p>
+          <% } %>
+        </div>
+
+        <button id="calc-btn" onclick="calculate()" class="w-full sm:w-auto mt-2 px-8 py-3 bg-gold text-navy font-bold rounded-lg hover:bg-yellow-400 transition shadow-sm text-lg">
+          Calculate
+        </button>
+
+        <!-- Results -->
+        <div id="calc-results" class="mt-6 hidden">
+          <div class="border-t border-gray-100 pt-6">
+            <h2 class="text-lg font-bold text-navy mb-3">Results</h2>
+            <div id="results-content" class="space-y-3"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- How it works -->
+      <% if (calc.howItWorks) { %>
+        <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mb-8">
+          <h2 class="text-xl font-bold text-navy mb-3">How It Works</h2>
+          <div class="prose prose-sm max-w-none text-gray-600"><%- calc.howItWorks %></div>
+        </div>
+      <% } %>
+
+      <!-- FAQ -->
+      <% if (calc.faq && calc.faq.length) { %>
+        <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mb-8">
+          <h2 class="text-xl font-bold text-navy mb-4">Frequently Asked Questions</h2>
+          <div class="space-y-4">
+            <% calc.faq.forEach(f => { %>
+              <details class="group">
+                <summary class="cursor-pointer font-medium text-navy hover:text-gold transition flex items-center justify-between">
+                  <span><%= f.q %></span>
+                  <svg class="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                </summary>
+                <p class="mt-2 text-gray-600 text-sm leading-relaxed pl-0"><%= f.a %></p>
+              </details>
+            <% }) %>
+          </div>
+        </div>
+      <% } %>
+
+      <!-- Related calculators -->
+      <% if (related && related.length) { %>
+        <div class="mb-8">
+          <h2 class="text-xl font-bold text-navy mb-4">Related Calculators</h2>
+          <div class="grid sm:grid-cols-2 gap-3">
+            <% related.forEach(r => { %>
+              <a href="/<%= r.category %>/<%= r.slug %>" class="group bg-white rounded-lg p-4 shadow-sm hover:shadow-md border border-gray-100 hover:border-gold/50 transition">
+                <h3 class="font-medium text-navy group-hover:text-gold transition text-sm"><%= r.title %></h3>
+                <p class="text-xs text-gray-500 mt-1"><%= r.description %></p>
+              </a>
+            <% }) %>
+          </div>
+        </div>
+      <% } %>
+    </div>
+
+    <!-- Sidebar -->
+    <aside class="w-full lg:w-64 mt-8 lg:mt-0 shrink-0">
+      <!-- Category nav -->
+      <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-4 sticky top-20 mb-4">
+        <h3 class="font-semibold text-navy mb-3 text-sm uppercase tracking-wider"><%= categoryIcon %> <%= categoryName %></h3>
+        <nav class="space-y-1">
+          <% (calcsByCategory[calc.category] || []).forEach(c => { %>
+            <a href="/<%= c.category %>/<%= c.slug %>" class="block px-3 py-1.5 rounded-lg text-xs transition <%= c.slug === calc.slug ? 'bg-gold-light text-navy font-medium' : 'hover:bg-gray-50 text-gray-600' %>">
+              <%= c.title %>
+            </a>
+          <% }) %>
+        </nav>
+      </div>
+
+      <!-- Ad placeholder -->
+      <div class="bg-gray-100 rounded-xl p-4 text-center text-gray-400 text-xs min-h-[250px] flex items-center justify-center border border-dashed border-gray-300">
+        Ad Space<br>(300x250)
+      </div>
+    </aside>
+  </div>
+</main>
+
+<%- include('partials/footer') %>
+
+<!-- Load calculator-specific JS -->
+<script src="/js/calculators/<%= calc.slug %>.js"></script>
+<%- include('partials/tail') %>

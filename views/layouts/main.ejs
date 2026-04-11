@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <meta name="description" content="<%= typeof metaDescription !== 'undefined' ? metaDescription : 'Free Australian calculators for tax, mortgage, health, and more.' %>">
+  <link rel="canonical" href="<%= siteUrl %><%= currentPath === '/' ? '' : currentPath %>">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="<%= title %>">
+  <meta property="og:description" content="<%= typeof metaDescription !== 'undefined' ? metaDescription : '' %>">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="<%= siteUrl %><%= currentPath %>">
+  <meta property="og:site_name" content="CalcMate Australia">
+  <meta name="twitter:card" content="summary">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: '#00205B',
+            gold: '#FFB800',
+            'gold-light': '#FFF3D0'
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="/css/style.css">
+  <%- typeof schemaMarkup !== 'undefined' ? schemaMarkup : '' %>
+</head>
+<body class="bg-gray-50 font-sans text-gray-800 min-h-screen flex flex-col">
+  <%- include('../partials/header') %>
+  <main class="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-6">
+    <%- body %>
+  </main>
+  <%- include('../partials/footer') %>
+  <script src="/js/search.js"></script>
+</body>
+</html>

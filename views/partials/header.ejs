@@ -1,0 +1,77 @@
+<header class="bg-navy text-white shadow-lg sticky top-0 z-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <!-- Logo -->
+      <a href="/" class="flex items-center gap-2 text-xl font-bold hover:text-gold transition-colors">
+        <span class="text-gold text-2xl">⚡</span>
+        <span>Calc<span class="text-gold">Mate</span></span>
+      </a>
+
+      <!-- Search (desktop) -->
+      <div class="hidden md:block flex-1 max-w-lg mx-8 relative">
+        <input
+          type="search"
+          id="search-input"
+          placeholder="Search 100+ calculators..."
+          class="w-full px-4 py-2 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-gold focus:bg-white/20 transition"
+          autocomplete="off"
+        >
+        <div id="search-results" class="absolute top-full left-0 right-0 mt-1 bg-white rounded-lg shadow-xl text-gray-800 hidden max-h-96 overflow-y-auto z-50"></div>
+      </div>
+
+      <!-- Nav links (desktop) -->
+      <nav class="hidden md:flex items-center gap-1">
+        <div class="relative group">
+          <button class="px-3 py-2 rounded-lg hover:bg-white/10 transition text-sm font-medium flex items-center gap-1">
+            Categories
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="absolute right-0 top-full mt-1 w-64 bg-white rounded-lg shadow-xl text-gray-800 hidden group-hover:block z-50">
+            <div class="py-2">
+              <% Object.entries(categoryMeta).forEach(([key, meta]) => { %>
+                <a href="/<%= key %>" class="block px-4 py-2 hover:bg-gray-50 transition text-sm">
+                  <span class="mr-2"><%= meta.icon %></span><%= meta.name %>
+                  <span class="text-gray-400 ml-1">(<%= (calcsByCategory[key] || []).length %>)</span>
+                </a>
+              <% }) %>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Mobile menu button -->
+      <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg hover:bg-white/10 transition">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+
+    <!-- Mobile search -->
+    <div class="md:hidden pb-3 relative">
+      <input
+        type="search"
+        id="search-input-mobile"
+        placeholder="Search calculators..."
+        class="w-full px-4 py-2 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-gold transition text-sm"
+        autocomplete="off"
+      >
+      <div id="search-results-mobile" class="absolute top-full left-0 right-0 mt-1 bg-white rounded-lg shadow-xl text-gray-800 hidden max-h-64 overflow-y-auto z-50"></div>
+    </div>
+  </div>
+
+  <!-- Mobile nav -->
+  <div id="mobile-menu" class="hidden md:hidden bg-navy border-t border-white/10">
+    <div class="px-4 py-3 space-y-1 max-h-64 overflow-y-auto">
+      <% Object.entries(categoryMeta).forEach(([key, meta]) => { %>
+        <a href="/<%= key %>" class="block px-3 py-2 rounded-lg hover:bg-white/10 transition text-sm">
+          <span class="mr-2"><%= meta.icon %></span><%= meta.name %>
+        </a>
+      <% }) %>
+    </div>
+  </div>
+</header>
+
+<script>
+  document.getElementById('mobile-menu-btn').addEventListener('click', () => {
+    document.getElementById('mobile-menu').classList.toggle('hidden');
+  });
+</script>

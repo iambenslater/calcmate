@@ -1,0 +1,27 @@
+/* CalcMate custom styles — minimal, Tailwind handles most */
+
+/* Result row styling */
+.result-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #f3f4f6;
+}
+.result-row:last-child { border-bottom: none; }
+.result-label { color: #6b7280; font-size: 0.875rem; }
+.result-value { font-weight: 600; color: #00205B; font-size: 1.125rem; }
+.result-value.highlight { color: #FFB800; font-size: 1.5rem; }
+
+/* Calculator input groups */
+.calc-group { margin-bottom: 1rem; }
+
+/* Smooth FAQ toggle */
+details summary { list-style: none; }
+details summary::-webkit-details-marker { display: none; }
+
+/* Print styles */
+@media print {
+  header, footer, aside, .ad-slot, #search-input, #search-input-mobile { display: none !important; }
+  main { padding: 0 !important; }
+}

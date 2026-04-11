@@ -1,0 +1,19 @@
+{
+  "name": "calcmate",
+  "version": "1.0.0",
+  "description": "CalcMate — Your Aussie Calculation Mate. 100+ free Australian calculators.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "dependencies": {
+    "compression": "^1.7.4",
+    "ejs": "^3.1.10",
+    "express": "^4.21.0",
+    "helmet": "^7.1.0"
+  }
+}

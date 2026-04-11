@@ -1,0 +1,72 @@
+<%- include('partials/head') %>
+<%- include('partials/header') %>
+
+<main class="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-6">
+
+  <!-- Hero -->
+  <section class="text-center py-12 md:py-16">
+    <h1 class="text-4xl md:text-5xl font-bold text-navy mb-4">Your Aussie Calculation <span class="text-gold">Mate</span></h1>
+    <p class="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">100+ free online calculators built for Australians. Tax, mortgage, health, business — all with current rates and state-specific data.</p>
+    <div class="max-w-xl mx-auto relative">
+      <input type="search" id="hero-search" placeholder="What do you need to calculate?" class="w-full px-6 py-4 rounded-xl border-2 border-gray-200 text-lg focus:outline-none focus:border-gold focus:ring-2 focus:ring-gold/20 shadow-sm transition" autocomplete="off">
+      <div id="hero-search-results" class="absolute top-full left-0 right-0 mt-2 bg-white rounded-xl shadow-xl hidden max-h-80 overflow-y-auto z-50 border border-gray-100"></div>
+    </div>
+    <p class="text-sm text-gray-400 mt-3">Try: "take home pay", "stamp duty", "BMI", "mortgage"</p>
+  </section>
+
+  <!-- Categories -->
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold text-navy mb-6">Browse by Category</h2>
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+      <% Object.entries(categoryMeta).forEach(([key, meta]) => { %>
+        <% const count = (calcsByCategory[key] || []).length; %>
+        <a href="/<%= key %>" class="group bg-white rounded-xl p-4 shadow-sm hover:shadow-md border border-gray-100 hover:border-gold/50 transition text-center">
+          <div class="text-3xl mb-2"><%= meta.icon %></div>
+          <h3 class="font-semibold text-sm text-navy group-hover:text-gold transition"><%= meta.name %></h3>
+          <p class="text-xs text-gray-400 mt-1"><%= count %> calculators</p>
+        </a>
+      <% }) %>
+    </div>
+  </section>
+
+  <!-- Popular -->
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold text-navy mb-6">Most Popular</h2>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <% popular.forEach(c => { %>
+        <% const catMeta = categoryMeta[c.category] || {}; %>
+        <a href="/<%= c.category %>/<%= c.slug %>" class="group bg-white rounded-xl p-5 shadow-sm hover:shadow-md border border-gray-100 hover:border-gold/50 transition">
+          <div class="flex items-start gap-3">
+            <span class="text-2xl"><%= catMeta.icon || '' %></span>
+            <div>
+              <h3 class="font-semibold text-navy group-hover:text-gold transition"><%= c.title %></h3>
+              <p class="text-sm text-gray-500 mt-1"><%= c.description %></p>
+            </div>
+          </div>
+        </a>
+      <% }) %>
+    </div>
+  </section>
+
+  <!-- All calculators for SEO -->
+  <section class="mb-8">
+    <h2 class="text-2xl font-bold text-navy mb-6">All Calculators</h2>
+    <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+      <% Object.entries(categoryMeta).forEach(([key, meta]) => { %>
+        <% const calcs = calcsByCategory[key] || []; %>
+        <div class="mb-6 last:mb-0">
+          <h3 class="font-semibold text-navy mb-2"><%= meta.icon %> <%= meta.name %></h3>
+          <div class="flex flex-wrap gap-2">
+            <% calcs.forEach(c => { %>
+              <a href="/<%= c.category %>/<%= c.slug %>" class="text-sm px-3 py-1 rounded-full bg-gray-50 hover:bg-gold-light hover:text-navy transition border border-gray-200 hover:border-gold/50"><%= c.title %></a>
+            <% }) %>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+  </section>
+
+</main>
+
+<%- include('partials/footer') %>
+<%- include('partials/tail') %>

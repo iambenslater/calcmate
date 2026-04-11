@@ -1,0 +1,4 @@
+node_modules/
+.env
+data/calculators-part1.json
+data/calculators-part2.json
