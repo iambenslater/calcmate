@@ -1,5 +1,5 @@
 function calculate() {
-  const fenceLength = parseFloat(document.getElementById('input-fenceLength').value) || 0;
+  const fenceLength = parseFloat(document.getElementById('input-totalLength').value) || 0;
   const fenceHeight = parseFloat(document.getElementById('input-fenceHeight').value) || 1.8;
   const postSpacing = parseFloat(document.getElementById('input-postSpacing').value) || 2.7;
   const material = document.getElementById('input-material').value;

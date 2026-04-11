@@ -1,7 +1,7 @@
 function calculate() {
   const diameter = parseFloat(document.getElementById('input-diameter').value) || 0;
-  const numPizzas = parseInt(document.getElementById('input-numPizzas').value) || 1;
-  const numPeople = parseInt(document.getElementById('input-numPeople').value) || 1;
+  const numPizzas = parseInt(document.getElementById('input-pizzas').value) || 1;
+  const numPeople = parseInt(document.getElementById('input-people').value) || 1;
   const slicesPerPizza = parseInt(document.getElementById('input-slicesPerPizza').value) || 8;
 
   const radius = diameter / 2;

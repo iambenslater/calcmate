@@ -1,5 +1,6 @@
 function calculate() {
-  const inputTime = document.getElementById('input-inputTime').value;
+  const inputTime = document.getElementById('input-time').value;
+  const inputDate = document.getElementById('input-date').value;
   const sourceTimezone = document.getElementById('input-sourceTimezone').value;
   const targetTimezone = document.getElementById('input-targetTimezone').value;
 

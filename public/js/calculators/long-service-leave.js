@@ -1,8 +1,8 @@
 function calculate() {
   const state = document.getElementById('input-state').value;
-  const yearsOfService = parseFloat(document.getElementById('input-yearsOfService').value) || 0;
+  const yearsOfService = parseFloat(document.getElementById('input-yearsService').value) || 0;
   const hoursPerWeek = parseFloat(document.getElementById('input-hoursPerWeek').value) || 38;
-  const weeklyPayRate = parseFloat(document.getElementById('input-weeklyPayRate').value) || 0;
+  const weeklyPayRate = parseFloat(document.getElementById('input-payRate').value) || 0;
 
   if (!state || yearsOfService <= 0 || weeklyPayRate <= 0) {
     alert('Please fill in all fields.');

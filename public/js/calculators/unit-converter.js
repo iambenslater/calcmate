@@ -1,6 +1,6 @@
 function calculate() {
   const category = document.getElementById('input-category').value;
-  const inputValue = parseFloat(document.getElementById('input-inputValue').value);
+  const inputValue = parseFloat(document.getElementById('input-value').value);
   const fromUnit = document.getElementById('input-fromUnit').value;
   const toUnit = document.getElementById('input-toUnit').value;
 

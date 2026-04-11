@@ -4,7 +4,7 @@ function calculate() {
   const interestRate = parseFloat(document.getElementById('input-interestRate').value) || 0;
   const weeklyRent = parseFloat(document.getElementById('input-weeklyRent').value) || 0;
   const annualExpenses = parseFloat(document.getElementById('input-annualExpenses').value) || 0;
-  const marginalTaxRateStr = document.getElementById('input-marginalTaxRate').value;
+  const marginalTaxRateStr = document.getElementById('input-marginalRate').value;
   const marginalTaxRate = parseFloat(marginalTaxRateStr) / 100;
 
   const annualRent = weeklyRent * 52;

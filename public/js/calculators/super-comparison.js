@@ -1,9 +1,9 @@
 function calculate() {
-  const balance = parseFloat(document.getElementById('input-balance').value) || 0;
-  const f1Fees = (parseFloat(document.getElementById('input-fund1Fees').value) || 0) / 100;
+  const balance = parseFloat(document.getElementById('input-currentBalance').value) || 0;
+  const f1Fees = (parseFloat(document.getElementById('input-fund1Fee').value) || 0) / 100;
   const f1Return = (parseFloat(document.getElementById('input-fund1Return').value) || 0) / 100;
   const f1Insurance = parseFloat(document.getElementById('input-fund1Insurance').value) || 0;
-  const f2Fees = (parseFloat(document.getElementById('input-fund2Fees').value) || 0) / 100;
+  const f2Fees = (parseFloat(document.getElementById('input-fund2Fee').value) || 0) / 100;
   const f2Return = (parseFloat(document.getElementById('input-fund2Return').value) || 0) / 100;
   const f2Insurance = parseFloat(document.getElementById('input-fund2Insurance').value) || 0;
 

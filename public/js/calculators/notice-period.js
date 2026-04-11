@@ -1,5 +1,5 @@
 function calculate() {
-  const yearsOfService = parseFloat(document.getElementById('input-yearsOfService').value) || 0;
+  const yearsOfService = parseFloat(document.getElementById('input-yearsService').value) || 0;
   const over45 = document.getElementById('input-over45')?.checked || false;
   const weeklyPay = parseFloat(document.getElementById('input-weeklyPay').value) || 0;
 

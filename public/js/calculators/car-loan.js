@@ -2,7 +2,7 @@ function calculate() {
   const loanAmount = parseFloat(document.getElementById('input-loanAmount').value) || 0;
   const interestRate = parseFloat(document.getElementById('input-interestRate').value) || 0;
   const loanTerm = parseFloat(document.getElementById('input-loanTerm').value) || 0;
-  const balloonPayment = parseFloat(document.getElementById('input-balloonPayment').value) || 0;
+  const balloonPayment = parseFloat(document.getElementById('input-balloon').value) || 0;
 
   if (loanAmount <= 0 || interestRate <= 0 || loanTerm <= 0) {
     alert('Please enter valid loan details.');

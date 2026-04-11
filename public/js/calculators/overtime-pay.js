@@ -1,8 +1,8 @@
 function calculate() {
-  const base = parseFloat(document.getElementById('input-baseHourlyRate').value) || 0;
-  const hours15 = parseFloat(document.getElementById('input-overtimeHours15').value) || 0;
-  const hours20 = parseFloat(document.getElementById('input-overtimeHours20').value) || 0;
-  const phHours = parseFloat(document.getElementById('input-publicHolidayHours').value) || 0;
+  const base = parseFloat(document.getElementById('input-baseRate').value) || 0;
+  const hours15 = parseFloat(document.getElementById('input-otHours150').value) || 0;
+  const hours20 = parseFloat(document.getElementById('input-otHours200').value) || 0;
+  const phHours = parseFloat(document.getElementById('input-pubHolHours').value) || 0;
 
   const pay15 = base * 1.5 * hours15;
   const pay20 = base * 2.0 * hours20;

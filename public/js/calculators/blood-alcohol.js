@@ -2,9 +2,9 @@ function calculate() {
   const genderRadios = document.getElementsByName('input-gender');
   let gender = 'male';
   for (const r of genderRadios) { if (r.checked) gender = r.value; }
-  const bodyWeight = parseFloat(document.getElementById('input-bodyWeight').value) || 0;
-  const standardDrinks = parseFloat(document.getElementById('input-standardDrinks').value) || 0;
-  const drinkingHours = parseFloat(document.getElementById('input-drinkingHours').value) || 0;
+  const bodyWeight = parseFloat(document.getElementById('input-weight').value) || 0;
+  const standardDrinks = parseFloat(document.getElementById('input-drinks').value) || 0;
+  const drinkingHours = parseFloat(document.getElementById('input-hours').value) || 0;
 
   if (bodyWeight <= 0) {
     document.getElementById('calc-results').classList.remove('hidden');

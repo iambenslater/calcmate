@@ -1,9 +1,9 @@
 function calculate() {
-  const householdSize = parseInt(document.getElementById('input-householdSize').value) || 1;
+  const householdSize = parseInt(document.getElementById('input-people').value) || 1;
   const showerMinutes = parseFloat(document.getElementById('input-showerMinutes').value) || 0;
   const showersPerDay = parseFloat(document.getElementById('input-showersPerDay').value) || 0;
-  const washingLoads = parseFloat(document.getElementById('input-washingLoads').value) || 0;
-  const waterPrice = parseFloat(document.getElementById('input-waterPrice').value) || 0;
+  const washingLoads = parseFloat(document.getElementById('input-washesPerWeek').value) || 0;
+  const waterPrice = parseFloat(document.getElementById('input-waterRate').value) || 0;
 
   // Water usage per activity (litres)
   const showerLitresPerMin = 9; // standard showerhead

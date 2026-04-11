@@ -1,7 +1,7 @@
 function calculate() {
   const state = document.getElementById('input-state').value;
-  const householdSize = document.getElementById('input-householdSize').value;
-  const tariffRate = parseFloat(document.getElementById('input-tariffRate').value) || 0;
+  const householdSize = document.getElementById('input-household').value;
+  const tariffRate = parseFloat(document.getElementById('input-tariff').value) || 0;
 
   // Average daily usage (kWh) by household size - indicative Australian averages
   const usageBySize = { '1': 8, '2': 14, '3': 18, '4': 22, '5+': 28 };

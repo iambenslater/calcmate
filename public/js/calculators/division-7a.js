@@ -2,8 +2,7 @@ function calculate() {
   const loanAmount = parseFloat(document.getElementById('input-loanAmount').value) || 0;
   const benchmarkRate = (parseFloat(document.getElementById('input-benchmarkRate').value) || 8.27) / 100;
   const loanTerm = parseInt(document.getElementById('input-loanTerm').value) || 7;
-  const securedEl = document.getElementById('input-secured');
-  const secured = securedEl ? securedEl.checked : false;
+  const yearOfLoan = parseInt(document.getElementById('input-yearOfLoan').value) || 1;
 
   // Division 7A minimum yearly repayment formula (annuity)
   // PMT = PV * r / (1 - (1+r)^-n)
@@ -33,7 +32,7 @@ function calculate() {
   document.getElementById('results-content').innerHTML = `
     <div class="result-row"><span class="result-label">Loan Amount</span><span class="result-value">${fmt(loanAmount)}</span></div>
     <div class="result-row"><span class="result-label">Benchmark Rate</span><span class="result-value">${(benchmarkRate * 100).toFixed(2)}%</span></div>
-    <div class="result-row"><span class="result-label">Loan Term</span><span class="result-value">${n} years (${secured ? 'Secured' : 'Unsecured'})</span></div>
+    <div class="result-row"><span class="result-label">Loan Term</span><span class="result-value">${n} years (Year ${yearOfLoan} of loan)</span></div>
     <hr style="border-color:var(--border);margin:12px 0">
     <div class="result-row highlight"><span class="result-label">Minimum Yearly Repayment</span><span class="result-value">${fmt(minRepayment)}</span></div>
     <div class="result-row"><span class="result-label">Total Repayments</span><span class="result-value">${fmt(totalRepayments)}</span></div>

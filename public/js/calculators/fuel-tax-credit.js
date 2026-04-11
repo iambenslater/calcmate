@@ -1,7 +1,7 @@
 function calculate() {
-  const litres = parseFloat(document.getElementById('input-litresUsed').value) || 0;
+  const litres = parseFloat(document.getElementById('input-litres').value) || 0;
   const fuelType = document.getElementById('input-fuelType').value;
-  const activityType = document.getElementById('input-activityType').value;
+  const activityType = document.getElementById('input-activity').value;
 
   // Simplified fuel tax credit rates (cents per litre) — 2024-25 indicative
   const rates = {

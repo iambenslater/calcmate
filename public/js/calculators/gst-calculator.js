@@ -1,7 +1,7 @@
 function calculate() {
   const amount = parseFloat(document.getElementById('input-amount').value) || 0;
-  const mode = document.querySelector('input[name="input-mode"]:checked')?.value ||
-               document.getElementById('input-mode')?.value || 'add';
+  const mode = document.querySelector('input[name="input-direction"]:checked')?.value ||
+               document.getElementById('input-direction')?.value || 'add';
 
   if (amount <= 0) { alert('Please enter a valid amount.'); return; }
 

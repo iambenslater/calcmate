@@ -1,9 +1,9 @@
 function calculate() {
   const principal = parseFloat(document.getElementById('input-principal').value) || 0;
-  const annualRate = (parseFloat(document.getElementById('input-annualRate').value) || 0) / 100;
-  const frequency = document.getElementById('input-compoundFrequency').value;
+  const annualRate = (parseFloat(document.getElementById('input-rate').value) || 0) / 100;
+  const frequency = document.getElementById('input-compounding').value;
   const years = parseFloat(document.getElementById('input-years').value) || 0;
-  const monthlyContribution = parseFloat(document.getElementById('input-monthlyContribution').value) || 0;
+  const monthlyContribution = parseFloat(document.getElementById('input-contribution').value) || 0;
 
   const freqMap = { 'daily': 365, 'monthly': 12, 'quarterly': 4, 'annually': 1 };
   const n = freqMap[frequency] || 12;

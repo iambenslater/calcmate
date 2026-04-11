@@ -1,7 +1,7 @@
 function calculate() {
   const mode = document.getElementById('input-mode').value;
-  const valueA = parseFloat(document.getElementById('input-valueA').value);
-  const valueB = parseFloat(document.getElementById('input-valueB').value);
+  const valueA = parseFloat(document.getElementById('input-valueX').value);
+  const valueB = parseFloat(document.getElementById('input-valueY').value);
 
   if (isNaN(valueA) || isNaN(valueB)) {
     alert('Please enter valid numbers.');

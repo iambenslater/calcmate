@@ -1,7 +1,7 @@
 function calculate() {
   const systemSize = parseFloat(document.getElementById('input-systemSize').value) || 0;
   const state = document.getElementById('input-state').value;
-  const tariffRate = parseFloat(document.getElementById('input-tariffRate').value) || 0;
+  const tariffRate = parseFloat(document.getElementById('input-usageTariff').value) || 0;
   const feedInTariff = parseFloat(document.getElementById('input-feedInTariff').value) || 0;
 
   // Average peak sun hours by state

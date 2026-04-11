@@ -1,8 +1,8 @@
 function calculate() {
   const startBalance = parseFloat(document.getElementById('input-balance').value) || 0;
-  const annualRate = (parseFloat(document.getElementById('input-annualRate').value) || 0) / 100;
-  const minPayPct = (parseFloat(document.getElementById('input-minimumPaymentPercent').value) || 2) / 100;
-  const extraPayment = parseFloat(document.getElementById('input-extraMonthlyPayment').value) || 0;
+  const annualRate = (parseFloat(document.getElementById('input-rate').value) || 0) / 100;
+  const minPayPct = (parseFloat(document.getElementById('input-minPayment').value) || 2) / 100;
+  const extraPayment = parseFloat(document.getElementById('input-extraPayment').value) || 0;
 
   const monthlyRate = annualRate / 12;
   let balance = startBalance;

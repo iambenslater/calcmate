@@ -1,13 +1,13 @@
 function calculate() {
-  const inputValue = parseFloat(document.getElementById('input-inputValue').value);
-  const unitType = document.getElementById('input-unitType').value;
-  const direction = document.querySelector('input[name="input-direction"]:checked')?.value ||
-                    document.getElementById('input-direction')?.value || 'metric-to-imperial';
+  const inputValue = parseFloat(document.getElementById('input-value').value);
+  const unitType = document.getElementById('input-category').value;
+  const fromUnit = document.getElementById('input-fromUnit').value;
+  const toUnit = document.getElementById('input-toUnit').value;
 
   if (isNaN(inputValue)) { alert('Please enter a valid number.'); return; }
   if (!unitType) { alert('Please select a unit type.'); return; }
 
-  const toMetric = direction === 'imperial-to-metric';
+  const toMetric = fromUnit ? fromUnit.includes('imperial') || ['in','ft','lb','mi','gal','F'].includes(fromUnit) : false;
   let result, fromLabel, toLabel, formula;
 
   switch (unitType) {

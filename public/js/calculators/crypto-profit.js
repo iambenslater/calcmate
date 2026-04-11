@@ -2,16 +2,16 @@ function calculate() {
   const buyPrice = parseFloat(document.getElementById('input-buyPrice').value) || 0;
   const sellPrice = parseFloat(document.getElementById('input-sellPrice').value) || 0;
   const quantity = parseFloat(document.getElementById('input-quantity').value) || 0;
-  const exchangeFee = parseFloat(document.getElementById('input-exchangeFee').value) || 0;
-  const holdingMonths = parseInt(document.getElementById('input-holdingMonths').value) || 0;
+  const buyFeeRate = parseFloat(document.getElementById('input-buyFee').value) || 0;
+  const sellFeeRate = parseFloat(document.getElementById('input-sellFee').value) || 0;
+  const holdingMonths = parseInt(document.getElementById('input-holdingPeriod').value) || 0;
 
   const totalBuyCost = buyPrice * quantity;
   const totalSellValue = sellPrice * quantity;
 
   // Exchange fees on both buy and sell
-  const feeRate = exchangeFee / 100;
-  const buyFee = totalBuyCost * feeRate;
-  const sellFee = totalSellValue * feeRate;
+  const buyFee = totalBuyCost * (buyFeeRate / 100);
+  const sellFee = totalSellValue * (sellFeeRate / 100);
   const totalFees = buyFee + sellFee;
 
   const grossProfit = totalSellValue - totalBuyCost;
@@ -36,8 +36,8 @@ function calculate() {
   document.getElementById('results-content').innerHTML = `
     <div class="result-row"><span class="result-label">Buy Total</span><span class="result-value">${fmt(totalBuyCost)}</span></div>
     <div class="result-row"><span class="result-label">Sell Total</span><span class="result-value">${fmt(totalSellValue)}</span></div>
-    <div class="result-row"><span class="result-label">Buy Fee (${exchangeFee}%)</span><span class="result-value">-${fmt(buyFee)}</span></div>
-    <div class="result-row"><span class="result-label">Sell Fee (${exchangeFee}%)</span><span class="result-value">-${fmt(sellFee)}</span></div>
+    <div class="result-row"><span class="result-label">Buy Fee (${buyFeeRate}%)</span><span class="result-value">-${fmt(buyFee)}</span></div>
+    <div class="result-row"><span class="result-label">Sell Fee (${sellFeeRate}%)</span><span class="result-value">-${fmt(sellFee)}</span></div>
     <div class="result-row"><span class="result-label">Total Fees</span><span class="result-value">${fmt(totalFees)}</span></div>
     <div class="result-row highlight"><span class="result-label">Net Profit/Loss</span><span class="result-value">${netProfit >= 0 ? '' : '-'}${fmt(Math.abs(netProfit))}</span></div>
     <div class="result-row"><span class="result-label">Return</span><span class="result-value">${percentReturn.toFixed(2)}%</span></div>

@@ -1,6 +1,6 @@
 function calculate() {
-  const yearsOfService = parseFloat(document.getElementById('input-yearsOfService').value) || 0;
-  const baseWeeklyPay = parseFloat(document.getElementById('input-baseWeeklyPay').value) || 0;
+  const yearsOfService = parseFloat(document.getElementById('input-yearsService').value) || 0;
+  const baseWeeklyPay = parseFloat(document.getElementById('input-basePay').value) || 0;
   const hoursPerWeek = parseFloat(document.getElementById('input-hoursPerWeek').value) || 38;
 
   if (yearsOfService <= 0 || baseWeeklyPay <= 0) {

@@ -1,8 +1,8 @@
 function calculate() {
   const bedrooms = document.getElementById('input-bedrooms').value;
-  const floorLevel = document.getElementById('input-floorLevel').value;
-  const needPacking = document.getElementById('input-needPacking').checked;
-  const distanceKm = parseFloat(document.getElementById('input-distanceKm').value) || 0;
+  const floorLevel = document.getElementById('input-floorFrom').value;
+  const needPacking = document.getElementById('input-packing').checked;
+  const distanceKm = parseFloat(document.getElementById('input-distance').value) || 0;
 
   // Base cost by bedrooms (AU metro area estimates)
   const baseCosts = {

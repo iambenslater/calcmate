@@ -1,8 +1,8 @@
 function calculate() {
   const initialInvestment = parseFloat(document.getElementById('input-initialInvestment').value) || 0;
   const dividendYield = parseFloat(document.getElementById('input-dividendYield').value) || 0;
-  const capitalGrowthRate = parseFloat(document.getElementById('input-capitalGrowthRate').value) || 0;
-  const reinvestDividends = document.getElementById('input-reinvestDividends').checked;
+  const capitalGrowthRate = parseFloat(document.getElementById('input-capitalGrowth').value) || 0;
+  const reinvestDividends = document.getElementById('input-drp').checked;
   const years = parseInt(document.getElementById('input-years').value) || 10;
 
   const divRate = dividendYield / 100;

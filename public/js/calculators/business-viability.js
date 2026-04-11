@@ -2,7 +2,7 @@ function calculate() {
   const startupCosts = parseFloat(document.getElementById('input-startupCosts').value) || 0;
   const monthlyRevenue = parseFloat(document.getElementById('input-monthlyRevenue').value) || 0;
   const monthlyExpenses = parseFloat(document.getElementById('input-monthlyExpenses').value) || 0;
-  const growthRate = (parseFloat(document.getElementById('input-monthlyGrowthRate').value) || 0) / 100;
+  const growthRate = (parseFloat(document.getElementById('input-revenueGrowth').value) || 0) / 100;
 
   let cumulative = -startupCosts;
   let breakEvenMonth = null;

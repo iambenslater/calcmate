@@ -1,6 +1,6 @@
 function calculate() {
   const size = parseInt(document.getElementById('input-size').value) || 0;
-  const fromSystem = document.getElementById('input-fromSystem').value;
+  const fromSystem = document.getElementById('input-sizeSystem').value;
 
   // Conversion table: AU, US, UK, EU
   const chart = [

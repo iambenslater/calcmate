@@ -1,12 +1,13 @@
 function calculate() {
-  const dailyCoffees = parseFloat(document.getElementById('input-dailyCoffees').value) || 0;
+  const dailyCoffees = parseFloat(document.getElementById('input-coffeesPerDay').value) || 0;
   const pricePerCoffee = parseFloat(document.getElementById('input-pricePerCoffee').value) || 0;
-  const workDaysPerYear = parseInt(document.getElementById('input-workDaysPerYear').value) || 260;
+  const workDaysPerYear = parseInt(document.getElementById('input-workDaysPerWeek').value) || 5;
+  const workDaysPerYearCalc = workDaysPerYear * 52;
 
   const dailyCost = dailyCoffees * pricePerCoffee;
-  const weeklyCost = dailyCost * 5;
-  const monthlyCost = dailyCost * (workDaysPerYear / 12);
-  const yearlyCost = dailyCost * workDaysPerYear;
+  const weeklyCost = dailyCost * workDaysPerYear;
+  const monthlyCost = dailyCost * (workDaysPerYearCalc / 12);
+  const yearlyCost = dailyCost * workDaysPerYearCalc;
 
   const inflationRate = 0.03; // 3% annual inflation
 
@@ -39,12 +40,12 @@ function calculate() {
   // Comparison: home brew cost
   const homeBrewCost = 0.50; // per cup estimate
   const homeBrewDaily = dailyCoffees * homeBrewCost;
-  const homeBrewYearly = homeBrewDaily * workDaysPerYear;
+  const homeBrewYearly = homeBrewDaily * workDaysPerYearCalc;
   const yearlySavings = yearlyCost - homeBrewYearly;
 
   document.getElementById('calc-results').classList.remove('hidden');
   document.getElementById('results-content').innerHTML = `
-    <p class="result-note">${dailyCoffees} coffee${dailyCoffees > 1 ? 's' : ''}/day at ${fmt(pricePerCoffee)} each, ${workDaysPerYear} days/year</p>
+    <p class="result-note">${dailyCoffees} coffee${dailyCoffees > 1 ? 's' : ''}/day at ${fmt(pricePerCoffee)} each, ${workDaysPerYearCalc} days/year</p>
     <div class="result-row"><span class="result-label">Daily</span><span class="result-value">${fmt(dailyCost)}</span></div>
     <div class="result-row"><span class="result-label">Weekly</span><span class="result-value">${fmt(weeklyCost)}</span></div>
     <div class="result-row"><span class="result-label">Monthly</span><span class="result-value">${fmt(monthlyCost)}</span></div>

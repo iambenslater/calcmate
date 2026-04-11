@@ -1,8 +1,8 @@
 function calculate() {
   const currentAge = parseInt(document.getElementById('input-currentAge').value) || 30;
-  const retirementAge = parseInt(document.getElementById('input-retirementAge').value) || 67;
-  const desiredIncome = parseFloat(document.getElementById('input-desiredAnnualIncome').value) || 0;
-  const currentSuper = parseFloat(document.getElementById('input-currentSuper').value) || 0;
+  const retirementAge = parseInt(document.getElementById('input-retireAge').value) || 67;
+  const desiredIncome = parseFloat(document.getElementById('input-desiredIncome').value) || 0;
+  const currentSuper = parseFloat(document.getElementById('input-superBalance').value) || 0;
   const otherSavings = parseFloat(document.getElementById('input-otherSavings').value) || 0;
 
   const yearsToRetirement = Math.max(0, retirementAge - currentAge);

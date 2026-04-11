@@ -1,5 +1,5 @@
 function calculate() {
-  const salary = parseFloat(document.getElementById('input-salary').value) || 0;
+  const salary = parseFloat(document.getElementById('input-annualSalary').value) || 0;
   const superRate = (parseFloat(document.getElementById('input-superRate').value) || 11.5) / 100;
   const salarySacrifice = parseFloat(document.getElementById('input-salarySacrifice').value) || 0;
 

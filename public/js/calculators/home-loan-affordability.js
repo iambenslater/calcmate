@@ -1,7 +1,7 @@
 function calculate() {
-  const income = parseFloat(document.getElementById('input-householdIncome').value) || 0;
+  const income = parseFloat(document.getElementById('input-grossIncome').value) || 0;
   const expenses = parseFloat(document.getElementById('input-monthlyExpenses').value) || 0;
-  const deposit = parseFloat(document.getElementById('input-depositSaved').value) || 0;
+  const deposit = parseFloat(document.getElementById('input-deposit').value) || 0;
   const rate = (parseFloat(document.getElementById('input-interestRate').value) || 0) / 100;
 
   // Serviceability buffer: banks typically add 3% to current rate

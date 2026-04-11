@@ -1,7 +1,7 @@
 function calculate() {
-  const wattage = parseFloat(document.getElementById('input-wattage').value) || 0;
+  const wattage = parseFloat(document.getElementById('input-watts').value) || 0;
   const hoursPerDay = parseFloat(document.getElementById('input-hoursPerDay').value) || 0;
-  const tariffRate = parseFloat(document.getElementById('input-tariffRate').value) || 0;
+  const tariffRate = parseFloat(document.getElementById('input-tariff').value) || 0;
 
   const kwhPerDay = (wattage * hoursPerDay) / 1000;
   const kwhPerWeek = kwhPerDay * 7;
