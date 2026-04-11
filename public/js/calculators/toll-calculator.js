@@ -1,6 +1,6 @@
 function calculate() {
   const city = document.getElementById('input-city').value;
-  const tollRoad = document.getElementById('input-route').value;
+  const tollRoad = (document.getElementById('input-route').value || '').toUpperCase();
   const vehicleType = document.getElementById('input-vehicleType').value;
   const timeOfDay = document.getElementById('input-timeOfDay').value;
   const tripsPerWeek = parseFloat(document.getElementById('input-tripsPerWeek').value) || 0;

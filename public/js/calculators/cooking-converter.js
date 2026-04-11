@@ -8,12 +8,20 @@ function calculate() {
 
   // All values in millilitres (Australian metric cup = 250ml)
   const toMl = {
-    'cup':   250,
-    'tbsp':  20,     // Australian tablespoon = 20ml
-    'tsp':   5,
-    'ml':    1,
-    'L':     1000,
-    'fl-oz': 29.5735  // US fluid ounce
+    'cup':    250,
+    'cup-au': 250,
+    'cup-us': 236.588,
+    'tbsp':   20,      // Australian tablespoon = 20ml
+    'tbsp-us':14.787,  // US tablespoon = 14.787ml
+    'tsp':    5,
+    'ml':     1,
+    'l':      1000,
+    'L':      1000,
+    'g':      1,       // approximate for water (1g ≈ 1ml)
+    'kg':     1000,
+    'oz':     28.3495, // weight oz (dry)
+    'floz':   29.5735, // US fluid ounce
+    'fl-oz':  29.5735
   };
 
   const fromFactor = toMl[fromUnit];
