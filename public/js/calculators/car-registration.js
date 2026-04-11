@@ -1,7 +1,7 @@
 function calculate() {
   const state = document.getElementById('input-state').value;
   const vehicleType = document.getElementById('input-vehicleType').value;
-  const engineSize = document.getElementById('input-engineSize').value;
+  const engineSize = document.getElementById('input-cylinders').value;
 
   if (!state || !vehicleType || !engineSize) {
     alert('Please select all fields.');

@@ -8,7 +8,7 @@ module.exports = {
     env: {
       NODE_ENV: 'production',
       PORT: 3000,
-      SITE_URL: 'https://calcmate.benslater.me'
+      SITE_URL: 'https://calculatormate.com.au'
     },
     log_date_format: 'YYYY-MM-DD HH:mm:ss Z',
     error_file: '/home/calcmate/logs/error.log',

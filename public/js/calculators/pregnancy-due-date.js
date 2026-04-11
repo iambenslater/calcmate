@@ -1,5 +1,5 @@
 function calculate() {
-  const lmpDateStr = document.getElementById('input-lmpDate').value;
+  const lmpDateStr = document.getElementById('input-date').value;
 
   // Method — radio buttons
   let method = 'lmp';

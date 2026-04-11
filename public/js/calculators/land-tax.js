@@ -5,7 +5,8 @@ function formatCurrency(n) {
 function calculate() {
   const landValue = parseFloat(document.getElementById('input-landValue').value) || 0;
   const state = document.getElementById('input-state').value || 'NSW';
-  const isPrimary = document.getElementById('input-primaryResidence').checked;
+  const primaryEl = document.querySelector('input[name="input-primaryResidence"]:checked');
+  const isPrimary = primaryEl ? primaryEl.value === 'yes' : false;
 
   let landTax = 0;
   let threshold = 0;

@@ -75,10 +75,14 @@ function getFHOG(state, propertyPrice) {
 }
 
 function calculate() {
-  const propertyPrice = parseFloat(document.getElementById('input-propertyPrice').value) || 0;
+  const propertyPrice = parseFloat(document.getElementById('input-purchasePrice').value) || 0;
   const state = document.getElementById('input-state').value || 'QLD';
   const depositPercent = parseFloat(document.getElementById('input-depositPercent').value) || 20;
-  const conveyancingCost = parseFloat(document.getElementById('input-conveyancingCost').value) || 1500;
+  const firstHomeBuyerEl = document.querySelector('input[name="input-firstHomeBuyer"]:checked');
+  const isFirstHomeBuyer = firstHomeBuyerEl ? firstHomeBuyerEl.value === 'yes' : true;
+  const includeMovingEl = document.querySelector('input[name="input-includeMovingCosts"]:checked');
+  const includeMoving = includeMovingEl ? includeMovingEl.value === 'yes' : true;
+  const conveyancingCost = 1500; // default fixed cost
 
   const deposit = propertyPrice * (depositPercent / 100);
   const loanAmount = propertyPrice - deposit;

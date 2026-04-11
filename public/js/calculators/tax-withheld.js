@@ -23,7 +23,8 @@ function calculateAnnualTax(annualIncome, claimTaxFree) {
 function calculate() {
   const grossPay = parseFloat(document.getElementById('input-grossPay').value) || 0;
   const payFrequency = document.getElementById('input-payFrequency').value || 'weekly';
-  const claimTaxFree = document.getElementById('input-claimTaxFree').checked;
+  const claimTaxFreeEl = document.querySelector('input[name="input-claimTaxFreeThreshold"]:checked');
+  const claimTaxFree = claimTaxFreeEl ? claimTaxFreeEl.value === 'yes' : true;
 
   const multipliers = { weekly: 52, fortnightly: 26, monthly: 12, annual: 1 };
   const labels = { weekly: 'Week', fortnightly: 'Fortnight', monthly: 'Month', annual: 'Year' };

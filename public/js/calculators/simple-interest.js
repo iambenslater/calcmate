@@ -1,7 +1,14 @@
 function calculate() {
   const principal = parseFloat(document.getElementById('input-principal').value) || 0;
-  const annualRate = (parseFloat(document.getElementById('input-annualRate').value) || 0) / 100;
-  const years = parseFloat(document.getElementById('input-years').value) || 0;
+  const annualRate = (parseFloat(document.getElementById('input-rate').value) || 0) / 100;
+  const timeValue = parseFloat(document.getElementById('input-time').value) || 0;
+  const timeUnit = document.getElementById('input-timeUnit').value;
+
+  // Convert time to years
+  let years;
+  if (timeUnit === 'months') years = timeValue / 12;
+  else if (timeUnit === 'days') years = timeValue / 365;
+  else years = timeValue;
 
   const interest = principal * annualRate * years;
   const totalAmount = principal + interest;
@@ -11,7 +18,7 @@ function calculate() {
   document.getElementById('results-content').innerHTML = `
     <div class="result-row"><span class="result-label">Principal</span><span class="result-value">${fmt(principal)}</span></div>
     <div class="result-row"><span class="result-label">Annual Rate</span><span class="result-value">${(annualRate * 100).toFixed(2)}%</span></div>
-    <div class="result-row"><span class="result-label">Time Period</span><span class="result-value">${years} year${years !== 1 ? 's' : ''}</span></div>
+    <div class="result-row"><span class="result-label">Time Period</span><span class="result-value">${timeValue} ${timeUnit}</span></div>
     <hr style="border-color:var(--border);margin:12px 0">
     <div class="result-row highlight"><span class="result-label">Total Interest</span><span class="result-value">${fmt(interest)}</span></div>
     <div class="result-row highlight"><span class="result-label">Total Amount (Principal + Interest)</span><span class="result-value">${fmt(totalAmount)}</span></div>

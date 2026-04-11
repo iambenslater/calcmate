@@ -1,7 +1,10 @@
 function calculate() {
   const carValue = parseFloat(document.getElementById('input-carValue').value) || 0;
+  const totalKm = parseFloat(document.getElementById('input-totalKm').value) || 0;
+  const businessKm = parseFloat(document.getElementById('input-businessKm').value) || 0;
   const daysAvailable = parseInt(document.getElementById('input-daysAvailable').value) || 365;
-  const employeeContribution = parseFloat(document.getElementById('input-employeeContribution').value) || 0;
+  const employeeContribution = parseFloat(document.getElementById('input-employeeContrib').value) || 0;
+  const method = document.getElementById('input-method').value;
 
   // Statutory method: flat 20% statutory fraction
   const statutoryFraction = 0.20;

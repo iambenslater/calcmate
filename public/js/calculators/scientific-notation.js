@@ -1,5 +1,5 @@
 function calculate() {
-  const raw = document.getElementById('input-inputNumber').value.trim();
+  const raw = document.getElementById('input-number').value.trim();
   if (!raw) return;
 
   let number;

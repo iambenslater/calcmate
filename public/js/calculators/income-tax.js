@@ -4,7 +4,7 @@ function formatCurrency(n) {
 
 function calculate() {
   const taxableIncome = parseFloat(document.getElementById('input-taxableIncome').value) || 0;
-  const residency = document.getElementById('input-residencyStatus').value || 'resident';
+  const residency = document.getElementById('input-residency').value || 'resident';
   const fy = document.getElementById('input-financialYear').value || '2025-26';
 
   let tax = 0;

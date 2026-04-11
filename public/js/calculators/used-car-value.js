@@ -1,13 +1,23 @@
 function calculate() {
-  const purchasePrice = parseFloat(document.getElementById('input-purchasePrice').value) || 0;
-  const yearManufactured = parseInt(document.getElementById('input-yearManufactured').value) || 0;
+  const make = document.getElementById('input-make').value || '';
+  const model = document.getElementById('input-model').value || '';
+  const yearManufactured = parseInt(document.getElementById('input-year').value) || 0;
   const kilometres = parseFloat(document.getElementById('input-kilometres').value) || 0;
   const condition = document.getElementById('input-condition').value;
+  const transmission = document.getElementById('input-transmission').value || 'automatic';
 
-  if (purchasePrice <= 0 || yearManufactured <= 0) {
-    alert('Please enter valid values.');
+  if (yearManufactured <= 0) {
+    alert('Please enter a valid year.');
     return;
   }
+
+  // Base values by make (rough Australian market estimates)
+  const makeBaseValues = {
+    toyota: 25000, honda: 22000, mazda: 21000, ford: 20000, holden: 18000,
+    hyundai: 19000, kia: 18500, subaru: 22000, volkswagen: 23000, bmw: 35000,
+    mercedes: 40000, audi: 38000, nissan: 19000, mitsubishi: 18000, other: 20000
+  };
+  const purchasePrice = makeBaseValues[make.toLowerCase()] || 20000;
 
   const currentYear = new Date().getFullYear();
   const age = Math.max(0, currentYear - yearManufactured);
@@ -55,8 +65,9 @@ function calculate() {
 
   document.getElementById('calc-results').classList.remove('hidden');
   document.getElementById('results-content').innerHTML = `
+    <div class="result-row"><span class="result-label">Vehicle</span><span class="result-value">${yearManufactured} ${make ? make.charAt(0).toUpperCase() + make.slice(1) : ''} ${model}</span></div>
     <div class="result-row"><span class="result-label">Estimated Current Value</span><span class="result-value">${fmt(estimatedValue)}</span></div>
-    <div class="result-row"><span class="result-label">Original Purchase Price</span><span class="result-value">${fmt(purchasePrice)}</span></div>
+    <div class="result-row"><span class="result-label">Estimated Original Value (new)</span><span class="result-value">${fmt(purchasePrice)}</span></div>
     <div class="result-row"><span class="result-label">Total Depreciation</span><span class="result-value">${fmt(totalDepreciation)}</span></div>
     <div class="result-row"><span class="result-label">Depreciation</span><span class="result-value">${depreciationPercent.toFixed(1)}%</span></div>
     <div class="result-row"><span class="result-label">Vehicle Age</span><span class="result-value">${age} year${age !== 1 ? 's' : ''}</span></div>

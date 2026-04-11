@@ -1,7 +1,10 @@
 function calculate() {
-  const wallLength = parseFloat(document.getElementById('input-wallLength').value) || 0;
-  const wallHeight = parseFloat(document.getElementById('input-wallHeight').value) || 0;
-  const studSpacing = parseInt(document.getElementById('input-studSpacing').value) || 600;
+  const projectType = document.getElementById('input-projectType').value;
+  const wallLength = parseFloat(document.getElementById('input-totalLength').value) || 0;
+  const wallHeight = parseFloat(document.getElementById('input-height').value) || 0;
+  const studSpacing = parseInt(document.getElementById('input-spacing').value) || 600;
+  const wasteFactor = parseFloat(document.getElementById('input-wasteFactor').value) || 10;
+  const pricePerMetre = parseFloat(document.getElementById('input-pricePerMetre').value) || 0;
 
   const spacingM = studSpacing / 1000;
 

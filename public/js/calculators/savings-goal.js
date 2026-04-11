@@ -3,7 +3,7 @@ function formatCurrency(n) {
 }
 
 function calculate() {
-  const targetAmount = parseFloat(document.getElementById('input-targetAmount').value) || 0;
+  const targetAmount = parseFloat(document.getElementById('input-target').value) || 0;
   const currentSavings = parseFloat(document.getElementById('input-currentSavings').value) || 0;
   const monthlyContribution = parseFloat(document.getElementById('input-monthlyContribution').value) || 0;
   const annualRate = parseFloat(document.getElementById('input-annualRate').value) || 0;

@@ -81,8 +81,10 @@ function ntDuty(v) {
 function calculate() {
   const propertyValue = parseFloat(document.getElementById('input-propertyValue').value) || 0;
   const propertyType = document.getElementById('input-propertyType').value || 'existing';
-  const isFirstHome = document.getElementById('input-firstHomeBuyer').checked;
-  const isForeign = document.getElementById('input-foreignBuyer').checked;
+  const firstHomeEl = document.querySelector('input[name="input-firstHomeBuyer"]:checked');
+  const isFirstHome = firstHomeEl ? firstHomeEl.value === 'yes' : false;
+  const foreignEl = document.querySelector('input[name="input-foreignBuyer"]:checked');
+  const isForeign = foreignEl ? foreignEl.value === 'yes' : false;
 
   const foreignSurcharges = {
     NSW: 0.08, VIC: 0.08, QLD: 0.08, SA: 0.07, WA: 0.07, TAS: 0.08, ACT: 0, NT: 0

@@ -1,8 +1,13 @@
 function calculate() {
-  const roofLength = parseFloat(document.getElementById('input-roofLength').value) || 0;
-  const roofWidth = parseFloat(document.getElementById('input-roofWidth').value) || 0;
-  const pitch = parseFloat(document.getElementById('input-pitch').value) || 22.5;
+  const roofArea = parseFloat(document.getElementById('input-roofArea').value) || 0;
+  const pitch = document.getElementById('input-pitch').value;
   const material = document.getElementById('input-material').value;
+  const costPerUnit = parseFloat(document.getElementById('input-costPerUnit').value) || 0;
+  const wasteFactor = parseFloat(document.getElementById('input-wasteFactor').value) || 5;
+
+  const pitchDeg = parseFloat(pitch) || 22.5;
+  const roofLength = Math.sqrt(roofArea); // approximate square root for display
+  const roofWidth = roofLength;
 
   const pitchRad = pitch * Math.PI / 180;
   const pitchFactor = 1 / Math.cos(pitchRad);

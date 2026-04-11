@@ -1,7 +1,7 @@
 function calculate() {
   const balance = parseFloat(document.getElementById('input-currentBalance').value) || 0;
   const currentRate = (parseFloat(document.getElementById('input-currentRate').value) || 0) / 100;
-  const currentTermRemaining = parseInt(document.getElementById('input-currentTermRemaining').value) || 0;
+  const currentTermRemaining = parseInt(document.getElementById('input-currentTerm').value) || 0;
   const newRate = (parseFloat(document.getElementById('input-newRate').value) || 0) / 100;
   const newTerm = parseInt(document.getElementById('input-newTerm').value) || 0;
   const switchingCosts = parseFloat(document.getElementById('input-switchingCosts').value) || 0;

@@ -45,12 +45,12 @@ app.use(helmet({
   contentSecurityPolicy: {
     directives: {
       defaultSrc: ["'self'"],
-      scriptSrc: ["'self'", "'unsafe-inline'", "https://cdn.tailwindcss.com", "https://pagead2.googlesyndication.com"],
+      scriptSrc: ["'self'", "'unsafe-inline'", "https://cdn.tailwindcss.com", "https://pagead2.googlesyndication.com", "https://www.googletagmanager.com", "https://www.google-analytics.com"],
       scriptSrcAttr: ["'unsafe-inline'"],
       styleSrc: ["'self'", "'unsafe-inline'", "https://cdn.tailwindcss.com", "https://fonts.googleapis.com"],
       fontSrc: ["'self'", "https://fonts.gstatic.com"],
-      imgSrc: ["'self'", "data:", "https:"],
-      connectSrc: ["'self'", "https:"]
+      imgSrc: ["'self'", "data:", "https:", "https://www.google-analytics.com", "https://www.googletagmanager.com"],
+      connectSrc: ["'self'", "https:", "https://www.google-analytics.com", "https://analytics.google.com"]
     }
   }
 }));
@@ -64,7 +64,7 @@ app.use((req, res, next) => {
   res.locals.calcsByCategory = calcsByCategory;
   res.locals.categoryMeta = categoryMeta;
   res.locals.currentPath = req.path;
-  res.locals.siteUrl = process.env.SITE_URL || 'https://calcmate.benslater.me';
+  res.locals.siteUrl = process.env.SITE_URL || 'https://calculatormate.com.au';
   next();
 });
 

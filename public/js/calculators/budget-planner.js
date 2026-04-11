@@ -3,16 +3,21 @@ function formatCurrency(n) {
 }
 
 function calculate() {
-  const income = parseFloat(document.getElementById('input-income').value) || 0;
+  const netIncome = parseFloat(document.getElementById('input-netIncome').value) || 0;
+  const otherIncome = parseFloat(document.getElementById('input-otherIncome').value) || 0;
+  const income = netIncome + otherIncome;
   const housing = parseFloat(document.getElementById('input-housing').value) || 0;
   const transport = parseFloat(document.getElementById('input-transport').value) || 0;
-  const food = parseFloat(document.getElementById('input-food').value) || 0;
+  const food = parseFloat(document.getElementById('input-groceries').value) || 0;
   const utilities = parseFloat(document.getElementById('input-utilities').value) || 0;
   const entertainment = parseFloat(document.getElementById('input-entertainment').value) || 0;
-  const savings = parseFloat(document.getElementById('input-savings').value) || 0;
-  const other = parseFloat(document.getElementById('input-other').value) || 0;
+  const insurance = parseFloat(document.getElementById('input-insurance').value) || 0;
+  const subscriptions = parseFloat(document.getElementById('input-subscriptions').value) || 0;
+  const personalCare = parseFloat(document.getElementById('input-personalCare').value) || 0;
+  const savings = 0;
+  const other = parseFloat(document.getElementById('input-otherExpenses').value) || 0;
 
-  const totalExpenses = housing + transport + food + utilities + entertainment + savings + other;
+  const totalExpenses = housing + transport + food + utilities + entertainment + insurance + subscriptions + personalCare + savings + other;
   const remaining = income - totalExpenses;
 
   const categories = [

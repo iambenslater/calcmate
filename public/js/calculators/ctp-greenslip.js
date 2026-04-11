@@ -2,7 +2,7 @@ function calculate() {
   const state = document.getElementById('input-state').value;
   const vehicleType = document.getElementById('input-vehicleType').value;
   const driverAge = parseInt(document.getElementById('input-driverAge').value) || 0;
-  const claimsHistory = document.getElementById('input-claimsHistory').value;
+  const claimsHistory = document.getElementById('input-claimHistory').value;
 
   if (!state || !vehicleType || driverAge <= 0) {
     alert('Please fill in all fields.');

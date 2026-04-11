@@ -12,10 +12,11 @@ function calculateTax(taxableIncome) {
 
 function calculate() {
   const totalIncome = parseFloat(document.getElementById('input-totalIncome').value) || 0;
-  const totalDeductions = parseFloat(document.getElementById('input-totalDeductions').value) || 0;
-  const taxOffsets = parseFloat(document.getElementById('input-taxOffsets').value) || 0;
-  const hasPrivateHealth = document.getElementById('input-privateHealth').checked;
-  const spouseIncome = parseFloat(document.getElementById('input-spouseIncome').value) || 0;
+  const totalDeductions = parseFloat(document.getElementById('input-deductions').value) || 0;
+  const taxOffsets = parseFloat(document.getElementById('input-taxWithheld').value) || 0;
+  const phiEl = document.querySelector('input[name="input-privateHealthInsurance"]:checked');
+  const hasPrivateHealth = phiEl ? phiEl.value === 'yes' : false;
+  const spouseIncome = 0;
 
   const taxableIncome = Math.max(0, totalIncome - totalDeductions);
 

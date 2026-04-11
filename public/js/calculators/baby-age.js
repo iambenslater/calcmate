@@ -1,5 +1,6 @@
 function calculate() {
-  const dobStr = document.getElementById('input-babyDob').value;
+  const dobStr = document.getElementById('input-dob').value;
+  const prematureWeeks = parseFloat(document.getElementById('input-prematureWeeks').value) || 0;
   if (!dobStr) {
     document.getElementById('calc-results').classList.remove('hidden');
     document.getElementById('results-content').innerHTML = '<p>Please enter a date of birth.</p>';

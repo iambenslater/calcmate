@@ -1,8 +1,11 @@
 function calculate() {
   const totalIncome = parseFloat(document.getElementById('input-totalIncome').value) || 0;
-  const incomeType = document.getElementById('input-incomeType').value;
-  const residency = document.getElementById('input-residencyStatus').value;
+  const incomeType = document.getElementById('input-incomeSource').value;
+  const residency = document.getElementById('input-residency').value;
   const age = document.getElementById('input-age').value;
+  const hadTaxWithheld = document.getElementById('input-hadTaxWithheld').value;
+  const hadCapitalGain = document.getElementById('input-hadCapitalGain').value;
+  const hadABN = document.getElementById('input-hadABN').value;
 
   // 2024-25 thresholds
   const thresholds = {

@@ -1,8 +1,6 @@
 function calculate() {
-  const dueDateStr = document.getElementById('input-dueDate').value;
-  const methodRadios = document.querySelectorAll('input[name="input-method"]');
-  let method = 'due-date';
-  methodRadios.forEach(r => { if (r.checked) method = r.value; });
+  const dueDateStr = document.getElementById('input-date').value;
+  const method = document.getElementById('input-calcMethod').value || 'due-date';
 
   if (!dueDateStr) {
     document.getElementById('calc-results').classList.remove('hidden');

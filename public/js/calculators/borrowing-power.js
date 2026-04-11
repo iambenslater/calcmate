@@ -3,11 +3,15 @@ function formatCurrency(n) {
 }
 
 function calculate() {
-  const annualIncome = parseFloat(document.getElementById('input-annualIncome').value) || 0;
+  const grossIncome = parseFloat(document.getElementById('input-grossIncome').value) || 0;
+  const partnerIncome = parseFloat(document.getElementById('input-partnerIncome').value) || 0;
+  const annualIncome = grossIncome + partnerIncome;
   const monthlyExpenses = parseFloat(document.getElementById('input-monthlyExpenses').value) || 0;
-  const existingDebts = parseFloat(document.getElementById('input-existingDebts').value) || 0;
-  const deposit = parseFloat(document.getElementById('input-deposit').value) || 0;
+  const existingDebts = parseFloat(document.getElementById('input-existingLoans').value) || 0;
+  const creditCardLimits = parseFloat(document.getElementById('input-creditCardLimits').value) || 0;
   const dependants = parseInt(document.getElementById('input-dependants').value) || 0;
+  const interestRate = (parseFloat(document.getElementById('input-interestRate').value) || 6.5) / 100;
+  const loanTerm = parseInt(document.getElementById('input-loanTerm').value) || 30;
 
   // After-tax monthly income (rough estimate using average ~25% tax rate)
   const monthlyGross = annualIncome / 12;
@@ -18,15 +22,18 @@ function calculate() {
   const dependantCost = dependants * 400; // ~$400/month per dependant
   const livingExpenses = Math.max(monthlyExpenses, 1500 + dependantCost); // Floor of $1,500 + dependants
 
+  // Credit card limits reduce borrowing capacity (~3% of limit per month)
+  const creditCardMonthly = creditCardLimits * 0.03;
+
   // Net surplus
-  const monthlySurplus = monthlyNet - livingExpenses - existingDebts;
+  const monthlySurplus = monthlyNet - livingExpenses - existingDebts - creditCardMonthly;
 
   // Banks use a serviceability buffer of ~3% above actual rate
   // Assume current rate ~6.5%, assessed at ~9.5%
-  const assessmentRate = 0.095;
-  const loanTerm = 30;
+  const assessmentRate = Math.max(interestRate + 0.03, 0.095);
   const monthlyAssessmentRate = assessmentRate / 12;
   const totalPayments = loanTerm * 12;
+  const deposit = 0; // deposit not in this calculator's inputs
 
   // Maximum loan from monthly surplus: rearrange amortisation formula
   // P = M * [(1+r)^n - 1] / [r(1+r)^n]
@@ -42,8 +49,8 @@ function calculate() {
   const lvr = maxPurchasePrice > 0 ? ((maxLoan / maxPurchasePrice) * 100).toFixed(1) : 0;
   const needsLMI = parseFloat(lvr) > 80;
 
-  // Monthly repayment at a more realistic rate (~6.5%)
-  const realisticRate = 0.065 / 12;
+  // Monthly repayment at the given interest rate
+  const realisticRate = interestRate / 12;
   const monthlyRepayment = maxLoan > 0 ? maxLoan * (realisticRate * Math.pow(1 + realisticRate, totalPayments)) / (Math.pow(1 + realisticRate, totalPayments) - 1) : 0;
 
   document.getElementById('calc-results').classList.remove('hidden');

@@ -4,7 +4,7 @@ function formatCurrency(n) {
 
 function calculate() {
   const hoursPerWeek = parseFloat(document.getElementById('input-hoursPerWeek').value) || 0;
-  const weeksWorked = parseFloat(document.getElementById('input-weeksWorked').value) || 0;
+  const weeksWorked = parseFloat(document.getElementById('input-weeksPerYear').value) || 0;
 
   // Determine method — check which radio is selected
   const methodInputs = document.querySelectorAll('input[name="input-method"]');

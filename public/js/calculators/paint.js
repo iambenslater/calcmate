@@ -1,10 +1,13 @@
 function calculate() {
   const roomLength = parseFloat(document.getElementById('input-roomLength').value) || 0;
   const roomWidth = parseFloat(document.getElementById('input-roomWidth').value) || 0;
-  const roomHeight = parseFloat(document.getElementById('input-roomHeight').value) || 0;
-  const numCoats = parseInt(document.getElementById('input-numCoats').value) || 2;
-  const numDoors = parseInt(document.getElementById('input-numDoors').value) || 0;
-  const numWindows = parseInt(document.getElementById('input-numWindows').value) || 0;
+  const roomHeight = parseFloat(document.getElementById('input-wallHeight').value) || 0;
+  const numCoats = parseInt(document.getElementById('input-coats').value) || 2;
+  const numDoors = parseInt(document.getElementById('input-doors').value) || 0;
+  const numWindows = parseInt(document.getElementById('input-windows').value) || 0;
+  const includeCeiling = document.getElementById('input-includeCeiling').value !== 'no';
+  const coverageRate = parseFloat(document.getElementById('input-coverageRate').value) || 12;
+  const costPerLitre = parseFloat(document.getElementById('input-costPerLitre').value) || 0;
 
   const doorArea = 1.9 * 0.82; // standard AU door
   const windowArea = 1.2 * 1.0; // standard AU window
@@ -13,11 +16,11 @@ function calculate() {
   const ceilingArea = roomLength * roomWidth;
   const deductions = (numDoors * doorArea) + (numWindows * windowArea);
   const netWallArea = Math.max(0, wallArea - deductions);
-  const totalArea = netWallArea + ceilingArea;
+  const totalArea = netWallArea + (includeCeiling ? ceilingArea : 0);
 
-  const coveragePerLitre = 12; // m² per litre
+  const coveragePerLitre = coverageRate; // m² per litre
   const wallLitres = (netWallArea * numCoats) / coveragePerLitre;
-  const ceilingLitres = (ceilingArea * numCoats) / coveragePerLitre;
+  const ceilingLitres = includeCeiling ? (ceilingArea * numCoats) / coveragePerLitre : 0;
   const totalLitres = wallLitres + ceilingLitres;
 
   // Standard tin sizes in AU: 1L, 2L, 4L, 10L, 15L

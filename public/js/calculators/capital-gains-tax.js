@@ -1,13 +1,16 @@
 function calculate() {
   const purchasePrice = parseFloat(document.getElementById('input-purchasePrice').value) || 0;
   const salePrice = parseFloat(document.getElementById('input-salePrice').value) || 0;
-  const holdingMonths = parseInt(document.getElementById('input-holdingMonths').value) || 0;
-  const marginalRateStr = document.getElementById('input-marginalTaxRate').value;
+  const sellingCosts = parseFloat(document.getElementById('input-sellingCosts').value) || 0;
+  const holdingPeriod = document.getElementById('input-holdingPeriod').value;
+  const assetType = document.getElementById('input-assetType').value;
+  const marginalRateStr = document.getElementById('input-taxBracket').value;
 
   const marginalRate = parseFloat(marginalRateStr) / 100 || 0;
-  const capitalGain = salePrice - purchasePrice;
+  const adjustedSalePrice = salePrice - sellingCosts;
+  const capitalGain = adjustedSalePrice - purchasePrice;
   const isLoss = capitalGain < 0;
-  const eligible50Discount = holdingMonths >= 12 && !isLoss;
+  const eligible50Discount = holdingPeriod === 'more-than-12-months' && !isLoss;
   const discountedGain = eligible50Discount ? capitalGain * 0.5 : capitalGain;
   const taxPayable = isLoss ? 0 : discountedGain * marginalRate;
   const netProfit = capitalGain - taxPayable;
@@ -17,7 +20,7 @@ function calculate() {
   document.getElementById('results-content').innerHTML = `
     <div class="result-row"><span class="result-label">Purchase Price</span><span class="result-value">${fmt(purchasePrice)}</span></div>
     <div class="result-row"><span class="result-label">Sale Price</span><span class="result-value">${fmt(salePrice)}</span></div>
-    <div class="result-row"><span class="result-label">Holding Period</span><span class="result-value">${holdingMonths} months</span></div>
+    <div class="result-row"><span class="result-label">Selling Costs</span><span class="result-value">${fmt(sellingCosts)}</span></div>
     <div class="result-row"><span class="result-label">Capital Gain</span><span class="result-value">${fmt(capitalGain)}</span></div>
     <hr style="border-color:var(--border);margin:12px 0">
     <div class="result-row"><span class="result-label">50% CGT Discount</span><span class="result-value">${eligible50Discount ? 'Yes (held 12+ months)' : 'No'}</span></div>

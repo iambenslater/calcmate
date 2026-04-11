@@ -1,5 +1,5 @@
 function calculate() {
-  const dobStr = document.getElementById('input-childDob').value;
+  const dobStr = document.getElementById('input-childDOB').value;
   const state = document.getElementById('input-state').value;
 
   if (!dobStr) {

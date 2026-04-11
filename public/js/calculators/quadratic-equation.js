@@ -1,7 +1,7 @@
 function calculate() {
-  const a = parseFloat(document.getElementById('input-coeffA').value) || 0;
-  const b = parseFloat(document.getElementById('input-coeffB').value) || 0;
-  const c = parseFloat(document.getElementById('input-coeffC').value) || 0;
+  const a = parseFloat(document.getElementById('input-a').value) || 0;
+  const b = parseFloat(document.getElementById('input-b').value) || 0;
+  const c = parseFloat(document.getElementById('input-c').value) || 0;
 
   if (a === 0) {
     document.getElementById('calc-results').classList.remove('hidden');

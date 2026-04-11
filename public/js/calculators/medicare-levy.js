@@ -6,7 +6,8 @@ function calculate() {
   const taxableIncome = parseFloat(document.getElementById('input-taxableIncome').value) || 0;
   const familyStatus = document.getElementById('input-familyStatus').value || 'single';
   const dependants = parseInt(document.getElementById('input-dependants').value) || 0;
-  const hasPrivateHealth = document.getElementById('input-privateHealth').checked;
+  const privateHealthEl = document.querySelector('input[name="input-privateHealth"]:checked');
+  const hasPrivateHealth = privateHealthEl ? privateHealthEl.value === 'yes' : false;
 
   // Medicare levy 2%
   // Reduction threshold for singles: $26,000 phase-in to $32,500

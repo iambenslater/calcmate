@@ -1,9 +1,8 @@
 function calculate() {
-  const pA = parseFloat(document.getElementById('input-probabilityA').value) || 0;
-  const pB = parseFloat(document.getElementById('input-probabilityB').value) || 0;
-  const relRadios = document.getElementsByName('input-relationship');
-  let relationship = 'independent';
-  for (const r of relRadios) { if (r.checked) relationship = r.value; }
+  const pA = parseFloat(document.getElementById('input-probA').value) || 0;
+  const pB = parseFloat(document.getElementById('input-probB').value) || 0;
+  const relationship = document.getElementById('input-relationship').value || 'independent';
+  const probBgivenA = parseFloat(document.getElementById('input-probBgivenA').value) || 0;
 
   const pADec = pA / 100;
   const pBDec = pB / 100;

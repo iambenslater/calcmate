@@ -5,8 +5,10 @@ function formatCurrency(n) {
 function calculate() {
   const propertyValue = parseFloat(document.getElementById('input-propertyValue').value) || 0;
   const propertyType = document.getElementById('input-propertyType').value || 'existing';
-  const isFirstHome = document.getElementById('input-firstHomeBuyer').checked;
-  const isForeign = document.getElementById('input-foreignBuyer').checked;
+  const firstHomeEl = document.querySelector('input[name="input-firstHomeBuyer"]:checked');
+  const isFirstHome = firstHomeEl ? firstHomeEl.value === 'yes' : false;
+  const foreignEl = document.querySelector('input[name="input-foreignBuyer"]:checked');
+  const isForeign = foreignEl ? foreignEl.value === 'yes' : false;
 
   // VIC Transfer Duty brackets (2025)
   function vicDuty(value) {

@@ -1,7 +1,8 @@
 function calculate() {
-  const confidenceStr = document.getElementById('input-confidenceLevel').value;
+  const confidenceStr = document.getElementById('input-confidence').value;
   const marginOfError = (parseFloat(document.getElementById('input-marginOfError').value) || 5) / 100;
-  const population = parseFloat(document.getElementById('input-populationSize').value) || 0;
+  const population = parseFloat(document.getElementById('input-population').value) || 0;
+  const proportion = parseFloat(document.getElementById('input-proportion').value) || 50;
 
   // Z-scores for confidence levels
   const zScores = { '90%': 1.645, '95%': 1.96, '99%': 2.576 };
