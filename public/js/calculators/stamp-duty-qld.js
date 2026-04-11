@@ -21,28 +21,31 @@ function calculate() {
 
   let duty = qldDuty(propertyValue);
 
-  // QLD First Home Concession
-  // Concession for homes up to $700,000 (home concession rate)
-  // First home buyers: concession of up to $17,350 for homes up to $550,000
-  // Phasing out between $550,001 and $700,000
+  // QLD First Home Concession (updated thresholds from 9 June 2024)
+  // Established homes: full concession ≤$700,000; phases out to $800,000
+  // New homes (from 1 May 2025): full transfer duty concession with NO price cap
   let fhbDiscount = 0;
   let fhbNote = '';
   if (isFirstHome) {
-    if (propertyValue <= 550000) {
+    if (propertyType === 'new') {
+      // No price cap for new homes (from 1 May 2025)
+      const concessionalDuty = qldHomeConcessionDuty(propertyValue);
+      fhbDiscount = Math.max(0, duty - concessionalDuty);
+      fhbNote = 'Full first home concession applies to new homes (no price cap from 1 May 2025).';
+    } else if (propertyValue <= 700000) {
       // Full concession — reduced rate applies
       const concessionalDuty = qldHomeConcessionDuty(propertyValue);
-      fhbDiscount = duty - concessionalDuty;
-      if (fhbDiscount < 0) fhbDiscount = 0;
-      fhbNote = 'Full first home concession applies (properties up to $550,000).';
-    } else if (propertyValue <= 700000) {
+      fhbDiscount = Math.max(0, duty - concessionalDuty);
+      fhbNote = 'Full first home concession applies (established homes up to $700,000).';
+    } else if (propertyValue <= 800000) {
       const fullConcession = duty - qldHomeConcessionDuty(propertyValue);
-      const phaseOut = (propertyValue - 550000) / 150000;
+      const phaseOut = (propertyValue - 700000) / 100000;
       fhbDiscount = Math.max(0, fullConcession * (1 - phaseOut));
-      fhbNote = 'Partial first home concession applies ($550,001–$700,000).';
+      fhbNote = 'Partial first home concession applies (established homes $700,001–$800,000).';
     }
   } else {
-    // Home concession rate (owner-occupied, not first home)
-    if (propertyValue <= 550000 && propertyType !== 'vacant') {
+    // Home concession rate (owner-occupied, not first home) — applies ≤$700k
+    if (propertyValue <= 700000 && propertyType !== 'vacant') {
       const concessionalDuty = qldHomeConcessionDuty(propertyValue);
       if (concessionalDuty < duty) {
         fhbDiscount = duty - concessionalDuty;

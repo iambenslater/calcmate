@@ -28,17 +28,19 @@ function calculate() {
         break;
 
       case 'VIC':
-        // VIC: General threshold reduced to $50,000 from 1 Jan 2024 (SRO current rates)
+        // VIC: General threshold $50,000 from 1 Jan 2024 (SRO current rates)
+        // Rates: $50k–$100k: $500 flat; $100k–$300k: $975 flat; $300k+: $975 + 0.1% surcharge on total
+        // Plus standard rates: $50k–$100k 0.2%, $100k–$300k 0.375%, higher tiers up to 2.25%
         threshold = 50000;
         if (landValue <= threshold) { landTax = 0; }
-        else if (landValue <= 100000) { landTax = 500 + (landValue - 50000) * 0.001; }
-        else if (landValue <= 300000) { landTax = 550 + (landValue - 100000) * 0.0016; }
-        else if (landValue <= 600000) { landTax = 870 + (landValue - 300000) * 0.002; }
-        else if (landValue <= 1000000) { landTax = 1470 + (landValue - 600000) * 0.005; }
-        else if (landValue <= 1800000) { landTax = 3470 + (landValue - 1000000) * 0.008; }
-        else if (landValue <= 3000000) { landTax = 9870 + (landValue - 1800000) * 0.013; }
-        else { landTax = 25470 + (landValue - 3000000) * 0.023; }
-        notes = 'VIC threshold: $50,000 (reduced from $300,000 from 1 Jan 2024). Rates range from 0.1% to 2.3%.';
+        else if (landValue <= 100000) { landTax = 500 + (landValue - 50000) * 0.002; }
+        else if (landValue <= 300000) { landTax = 975 + (landValue - 100000) * 0.00375; }
+        else if (landValue <= 600000) { landTax = 1725 + (landValue - 300000) * 0.0065; }
+        else if (landValue <= 1000000) { landTax = 3675 + (landValue - 600000) * 0.009; }
+        else if (landValue <= 1800000) { landTax = 7275 + (landValue - 1000000) * 0.013; }
+        else if (landValue <= 3000000) { landTax = 17675 + (landValue - 1800000) * 0.017; }
+        else { landTax = 38075 + (landValue - 3000000) * 0.0225; }
+        notes = 'VIC threshold: $50,000 (lowered from $300,000 in Jan 2024). Standard rates + COVID debt surcharge (2024–2033). Rates 0.2%–2.25%.';
         break;
 
       case 'QLD':
