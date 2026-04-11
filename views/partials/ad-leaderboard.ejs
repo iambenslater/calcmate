@@ -2,33 +2,143 @@
 const affiliateTag = 'benslater-22';
 const baseUrl = 'https://www.amazon.com.au/s';
 
-// Contextual leaderboard ads mapped to calculator affiliate context
-const leaderboardAds = {
-  budgeting: { query: 'budget planner 2026', headline: 'Get Your Budget Sorted', cta: 'Shop Budget Planners', bg: 'from-amber-500 to-orange-500' },
-  'tax-software': { query: 'tax return organiser', headline: 'Tax Time Made Easy', cta: 'Shop Tax Essentials', bg: 'from-blue-600 to-indigo-600' },
-  'health-insurance': { query: 'health monitor smart watch', headline: 'Take Charge of Your Health', cta: 'Shop Health Tech', bg: 'from-emerald-500 to-teal-500' },
-  'office-furniture': { query: 'ergonomic desk chair', headline: 'Upgrade Your Home Office', cta: 'Shop Office Furniture', bg: 'from-gray-700 to-gray-900' },
-  education: { query: 'scientific calculator', headline: 'Tools for Smarter Study', cta: 'Shop Study Essentials', bg: 'from-purple-500 to-indigo-500' },
-  'finance-books': { query: 'barefoot investor', headline: 'Build Your Financial Future', cta: 'Shop Finance Books', bg: 'from-green-600 to-emerald-600' },
-  savings: { query: 'savings challenge book', headline: 'Start Your Savings Journey', cta: 'Shop Savings Tools', bg: 'from-amber-500 to-yellow-500' },
-  'home-tools': { query: 'laser tape measure', headline: 'Measure Up for Your New Home', cta: 'Shop Home Tools', bg: 'from-orange-500 to-red-500' },
-  fitness: { query: 'fitness tracker smart watch', headline: 'Track Your Fitness Goals', cta: 'Shop Fitness Tech', bg: 'from-cyan-500 to-blue-500' },
-  baby: { query: 'baby essentials newborn kit', headline: 'Prepare for Your New Arrival', cta: 'Shop Baby Essentials', bg: 'from-pink-400 to-rose-400' },
-  general: { query: 'calculator large display', headline: 'Tools That Make Life Easier', cta: 'Shop on Amazon', bg: 'from-navy to-blue-800' },
-  'car-accessories': { query: 'dash cam 4k australia', headline: 'Protect Yourself on the Road', cta: 'Shop Dash Cams', bg: 'from-gray-800 to-gray-900' },
-  travel: { query: 'travel accessories kit', headline: 'Travel Smarter', cta: 'Shop Travel Gear', bg: 'from-sky-500 to-blue-500' },
-  'office-supplies': { query: 'desk organiser set', headline: 'Organise Your Workspace', cta: 'Shop Office Supplies', bg: 'from-slate-600 to-slate-800' },
-  kitchen: { query: 'digital kitchen scale', headline: 'Precision in Every Recipe', cta: 'Shop Kitchen Scales', bg: 'from-amber-600 to-orange-600' },
-  'business-books': { query: 'small business australia book', headline: 'Grow Your Business', cta: 'Shop Business Books', bg: 'from-navy to-indigo-800' },
-  'home-appliances': { query: 'smart power meter plug', headline: 'Cut Your Energy Bills', cta: 'Shop Smart Home', bg: 'from-green-500 to-emerald-500' },
-  'trade-tools': { query: 'tradie tool set professional', headline: 'Professional Gear for Tradies', cta: 'Shop Trade Tools', bg: 'from-yellow-600 to-amber-700' },
-  health: { query: 'personal breathalyser', headline: 'Know Before You Go', cta: 'Shop Breathalysers', bg: 'from-red-500 to-rose-600' },
-  pet: { query: 'dog toys interactive', headline: 'Spoil Your Best Mate', cta: 'Shop Pet Supplies', bg: 'from-orange-400 to-amber-500' },
-  fashion: { query: 'body tape measure sewing', headline: 'Get the Perfect Fit', cta: 'Shop Measuring Tools', bg: 'from-pink-500 to-purple-500' }
+// Multiple ads per context — the template picks one based on a counter
+if (typeof locals._adCounter === 'undefined') locals._adCounter = 0;
+const adIndex = locals._adCounter++;
+
+// Each context has 4+ ad variations so each slot shows something different
+const allAds = {
+  budgeting: [
+    { query: 'budget planner 2026', headline: 'Get Your Budget Sorted', cta: 'Shop Budget Planners', bg: 'from-amber-500 to-orange-500' },
+    { query: 'financial calculator casio', headline: 'Crunch the Numbers', cta: 'Shop Calculators', bg: 'from-blue-600 to-indigo-600' },
+    { query: 'money management book australia', headline: 'Master Your Money', cta: 'Shop Finance Books', bg: 'from-green-600 to-emerald-600' },
+    { query: 'savings jar money box', headline: 'Start Saving Today', cta: 'Shop Savings Tools', bg: 'from-purple-500 to-indigo-500' }
+  ],
+  'tax-software': [
+    { query: 'tax return organiser', headline: 'Tax Time Made Easy', cta: 'Shop Tax Essentials', bg: 'from-blue-600 to-indigo-600' },
+    { query: 'receipt scanner document', headline: 'Never Lose a Receipt', cta: 'Shop Scanners', bg: 'from-slate-600 to-slate-800' },
+    { query: 'desk calculator large display', headline: 'Professional Calculators', cta: 'Shop Desk Calcs', bg: 'from-gray-700 to-gray-900' },
+    { query: 'tax deduction guide australia', headline: 'Maximise Your Deductions', cta: 'Shop Tax Guides', bg: 'from-emerald-500 to-teal-600' }
+  ],
+  'health-insurance': [
+    { query: 'health monitor smart watch', headline: 'Take Charge of Your Health', cta: 'Shop Health Tech', bg: 'from-emerald-500 to-teal-500' },
+    { query: 'blood pressure monitor home', headline: 'Monitor at Home', cta: 'Shop BP Monitors', bg: 'from-red-500 to-rose-500' },
+    { query: 'vitamin supplement pack', headline: 'Stay Healthy', cta: 'Shop Supplements', bg: 'from-green-500 to-emerald-500' },
+    { query: 'first aid kit home', headline: 'Be Prepared', cta: 'Shop First Aid', bg: 'from-blue-500 to-cyan-500' }
+  ],
+  'office-furniture': [
+    { query: 'ergonomic desk chair', headline: 'Upgrade Your Home Office', cta: 'Shop Office Chairs', bg: 'from-gray-700 to-gray-900' },
+    { query: 'standing desk electric', headline: 'Stand Up for Health', cta: 'Shop Standing Desks', bg: 'from-blue-600 to-indigo-700' },
+    { query: 'monitor arm dual', headline: 'Perfect Your Setup', cta: 'Shop Monitor Arms', bg: 'from-slate-600 to-slate-800' },
+    { query: 'desk lamp led', headline: 'Light Up Your Work', cta: 'Shop Desk Lamps', bg: 'from-amber-500 to-orange-500' }
+  ],
+  education: [
+    { query: 'scientific calculator', headline: 'Tools for Smarter Study', cta: 'Shop Study Essentials', bg: 'from-purple-500 to-indigo-500' },
+    { query: 'whiteboard marker set', headline: 'Visualise the Problem', cta: 'Shop Whiteboards', bg: 'from-blue-500 to-cyan-500' },
+    { query: 'stationery set premium', headline: 'Level Up Your Stationery', cta: 'Shop Stationery', bg: 'from-pink-500 to-rose-500' },
+    { query: 'textbook stand holder', headline: 'Study Comfortably', cta: 'Shop Study Gear', bg: 'from-amber-500 to-yellow-500' }
+  ],
+  'finance-books': [
+    { query: 'barefoot investor', headline: 'Build Your Financial Future', cta: 'Shop Finance Books', bg: 'from-green-600 to-emerald-600' },
+    { query: 'investing for beginners australia', headline: 'Start Investing Today', cta: 'Shop Investing Books', bg: 'from-blue-600 to-indigo-600' },
+    { query: 'property investment book australia', headline: 'Property Investing 101', cta: 'Shop Property Books', bg: 'from-orange-500 to-red-500' },
+    { query: 'financial freedom retire early', headline: 'Plan Your Freedom', cta: 'Shop FIRE Books', bg: 'from-amber-500 to-orange-500' }
+  ],
+  savings: [
+    { query: 'savings challenge book', headline: 'Start Your Savings Journey', cta: 'Shop Savings Tools', bg: 'from-amber-500 to-yellow-500' },
+    { query: 'money box adult', headline: 'Old School Saving', cta: 'Shop Money Boxes', bg: 'from-green-500 to-emerald-500' },
+    { query: 'budget envelopes cash', headline: 'Cash Envelope Method', cta: 'Shop Budget Envelopes', bg: 'from-purple-500 to-pink-500' },
+    { query: 'financial planner notebook', headline: 'Plan Every Dollar', cta: 'Shop Planners', bg: 'from-blue-500 to-indigo-500' }
+  ],
+  'home-tools': [
+    { query: 'laser tape measure', headline: 'Measure Up for Your New Home', cta: 'Shop Laser Measures', bg: 'from-orange-500 to-red-500' },
+    { query: 'first home buyer book australia', headline: 'First Home Buyer Guide', cta: 'Shop Property Books', bg: 'from-blue-600 to-indigo-600' },
+    { query: 'tool set home starter', headline: 'Essential Home Tools', cta: 'Shop Tool Sets', bg: 'from-gray-700 to-gray-900' },
+    { query: 'security camera home wifi', headline: 'Protect Your Investment', cta: 'Shop Security Cameras', bg: 'from-slate-600 to-slate-800' }
+  ],
+  fitness: [
+    { query: 'fitness tracker smart watch', headline: 'Track Your Fitness Goals', cta: 'Shop Fitness Trackers', bg: 'from-cyan-500 to-blue-500' },
+    { query: 'body composition scale', headline: 'Know Your Numbers', cta: 'Shop Smart Scales', bg: 'from-green-500 to-teal-500' },
+    { query: 'resistance bands set', headline: 'Train Anywhere', cta: 'Shop Resistance Bands', bg: 'from-orange-500 to-red-500' },
+    { query: 'yoga mat premium', headline: 'Find Your Zen', cta: 'Shop Yoga Mats', bg: 'from-purple-500 to-pink-500' }
+  ],
+  baby: [
+    { query: 'baby essentials newborn kit', headline: 'Prepare for Your New Arrival', cta: 'Shop Baby Essentials', bg: 'from-pink-400 to-rose-400' },
+    { query: 'pregnancy journal book', headline: 'Capture Every Milestone', cta: 'Shop Pregnancy Books', bg: 'from-purple-400 to-pink-400' },
+    { query: 'baby monitor camera wifi', headline: 'Peace of Mind', cta: 'Shop Baby Monitors', bg: 'from-blue-400 to-indigo-400' },
+    { query: 'nappy bag backpack', headline: 'Gear Up for Parenthood', cta: 'Shop Nappy Bags', bg: 'from-amber-400 to-orange-400' }
+  ],
+  general: [
+    { query: 'calculator large display', headline: 'Tools That Make Life Easier', cta: 'Shop on Amazon', bg: 'from-navy to-blue-800' },
+    { query: 'notebook journal premium', headline: 'Write It Down', cta: 'Shop Notebooks', bg: 'from-amber-500 to-orange-500' },
+    { query: 'desk organiser set', headline: 'Get Organised', cta: 'Shop Desk Organisers', bg: 'from-slate-600 to-slate-800' },
+    { query: 'usb charging station', headline: 'Power Up', cta: 'Shop Charging Stations', bg: 'from-blue-600 to-indigo-600' }
+  ],
+  'car-accessories': [
+    { query: 'dash cam 4k australia', headline: 'Protect Yourself on the Road', cta: 'Shop Dash Cams', bg: 'from-gray-800 to-gray-900' },
+    { query: 'car phone mount magnetic', headline: 'Hands-Free Driving', cta: 'Shop Phone Mounts', bg: 'from-blue-600 to-indigo-600' },
+    { query: 'tyre inflator portable', headline: 'Never Get Stuck', cta: 'Shop Tyre Inflators', bg: 'from-red-600 to-rose-600' },
+    { query: 'car cleaning kit detailing', headline: 'Keep It Clean', cta: 'Shop Car Care', bg: 'from-cyan-500 to-blue-500' }
+  ],
+  travel: [
+    { query: 'travel adapter australia', headline: 'Travel Smarter', cta: 'Shop Travel Adapters', bg: 'from-sky-500 to-blue-500' },
+    { query: 'packing cubes set', headline: 'Pack Like a Pro', cta: 'Shop Packing Cubes', bg: 'from-green-500 to-teal-500' },
+    { query: 'noise cancelling headphones', headline: 'Fly in Peace', cta: 'Shop Headphones', bg: 'from-gray-700 to-gray-900' },
+    { query: 'travel pillow neck support', headline: 'Sleep on the Go', cta: 'Shop Travel Pillows', bg: 'from-purple-500 to-indigo-500' }
+  ],
+  'office-supplies': [
+    { query: 'desk organiser set', headline: 'Organise Your Workspace', cta: 'Shop Office Supplies', bg: 'from-slate-600 to-slate-800' },
+    { query: 'planner diary 2026', headline: 'Plan Your Year', cta: 'Shop 2026 Planners', bg: 'from-blue-600 to-indigo-600' },
+    { query: 'desk calculator large', headline: 'Crunch Numbers Faster', cta: 'Shop Calculators', bg: 'from-navy to-blue-800' },
+    { query: 'whiteboard magnetic desktop', headline: 'Stay On Track', cta: 'Shop Whiteboards', bg: 'from-green-500 to-emerald-500' }
+  ],
+  kitchen: [
+    { query: 'digital kitchen scale', headline: 'Precision in Every Recipe', cta: 'Shop Kitchen Scales', bg: 'from-amber-600 to-orange-600' },
+    { query: 'measuring cups stainless steel', headline: 'Measure with Confidence', cta: 'Shop Measuring Cups', bg: 'from-gray-600 to-gray-800' },
+    { query: 'cookbook stand holder', headline: 'Hands-Free Cooking', cta: 'Shop Cookbook Stands', bg: 'from-red-500 to-rose-500' },
+    { query: 'kitchen timer digital magnetic', headline: 'Perfect Timing', cta: 'Shop Kitchen Timers', bg: 'from-green-500 to-teal-500' }
+  ],
+  'business-books': [
+    { query: 'small business book australia', headline: 'Grow Your Business', cta: 'Shop Business Books', bg: 'from-navy to-indigo-800' },
+    { query: 'business planner notebook', headline: 'Plan for Success', cta: 'Shop Business Planners', bg: 'from-green-600 to-emerald-600' },
+    { query: 'accounting ledger book', headline: 'Keep the Books Straight', cta: 'Shop Ledger Books', bg: 'from-slate-600 to-slate-800' },
+    { query: 'startup book entrepreneur', headline: 'Launch Your Idea', cta: 'Shop Startup Books', bg: 'from-orange-500 to-red-500' }
+  ],
+  'home-appliances': [
+    { query: 'smart power meter plug', headline: 'Cut Your Energy Bills', cta: 'Shop Smart Plugs', bg: 'from-green-500 to-emerald-500' },
+    { query: 'led light bulb pack warm', headline: 'Switch to LED', cta: 'Shop LED Bulbs', bg: 'from-amber-500 to-yellow-500' },
+    { query: 'water saving shower head', headline: 'Save Water, Save Money', cta: 'Shop Showerheads', bg: 'from-blue-500 to-cyan-500' },
+    { query: 'smart thermostat wifi', headline: 'Smart Climate Control', cta: 'Shop Thermostats', bg: 'from-purple-500 to-indigo-500' }
+  ],
+  'trade-tools': [
+    { query: 'tradie tool set professional', headline: 'Professional Gear for Tradies', cta: 'Shop Trade Tools', bg: 'from-yellow-600 to-amber-700' },
+    { query: 'laser level green beam', headline: 'Precision Every Time', cta: 'Shop Laser Levels', bg: 'from-green-600 to-emerald-600' },
+    { query: 'work boots steel cap', headline: 'Tough Boots for Tough Jobs', cta: 'Shop Work Boots', bg: 'from-gray-700 to-gray-900' },
+    { query: 'tool belt leather tradie', headline: 'Carry Your Gear', cta: 'Shop Tool Belts', bg: 'from-amber-700 to-orange-800' }
+  ],
+  health: [
+    { query: 'personal breathalyser', headline: 'Know Before You Go', cta: 'Shop Breathalysers', bg: 'from-red-500 to-rose-600' },
+    { query: 'first aid kit comprehensive', headline: 'Be Prepared', cta: 'Shop First Aid Kits', bg: 'from-blue-500 to-indigo-500' },
+    { query: 'pill organiser weekly', headline: 'Stay On Track', cta: 'Shop Pill Organisers', bg: 'from-green-500 to-teal-500' },
+    { query: 'thermometer digital forehead', headline: 'Quick Health Checks', cta: 'Shop Thermometers', bg: 'from-cyan-500 to-blue-500' }
+  ],
+  pet: [
+    { query: 'dog toys interactive', headline: 'Spoil Your Best Mate', cta: 'Shop Pet Toys', bg: 'from-orange-400 to-amber-500' },
+    { query: 'pet grooming kit', headline: 'Grooming Made Easy', cta: 'Shop Grooming Kits', bg: 'from-blue-400 to-indigo-400' },
+    { query: 'pet bed memory foam', headline: 'Comfort for Your Pet', cta: 'Shop Pet Beds', bg: 'from-purple-400 to-pink-400' },
+    { query: 'automatic pet feeder', headline: 'Feed on Schedule', cta: 'Shop Pet Feeders', bg: 'from-green-400 to-teal-400' }
+  ],
+  fashion: [
+    { query: 'body tape measure sewing', headline: 'Get the Perfect Fit', cta: 'Shop Tape Measures', bg: 'from-pink-500 to-purple-500' },
+    { query: 'shoe stretcher adjustable', headline: 'Perfect Shoe Fit', cta: 'Shop Shoe Care', bg: 'from-amber-500 to-orange-500' },
+    { query: 'sewing kit complete', headline: 'DIY Alterations', cta: 'Shop Sewing Kits', bg: 'from-blue-500 to-indigo-500' },
+    { query: 'garment steamer portable', headline: 'Look Sharp', cta: 'Shop Steamers', bg: 'from-gray-600 to-gray-800' }
+  ]
 };
 
 const context = typeof calc !== 'undefined' ? (calc.affiliateContext || 'general') : 'general';
-const ad = leaderboardAds[context] || leaderboardAds.general;
+const ads = allAds[context] || allAds.general;
+const ad = ads[adIndex % ads.length];
 const href = `${baseUrl}?k=${encodeURIComponent(ad.query)}&tag=${affiliateTag}`;
 %>
 <a href="<%= href %>" target="_blank" rel="nofollow noopener" class="block rounded-lg overflow-hidden bg-gradient-to-r <%= ad.bg %> text-white hover:opacity-90 transition shadow-sm">

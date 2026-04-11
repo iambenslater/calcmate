@@ -1,5 +1,5 @@
 function calculate() {
-  const state = document.getElementById('input-state').value;
+  const state = (document.getElementById('input-state').value || '').toUpperCase();
   const householdSize = document.getElementById('input-household').value;
   const tariffRate = parseFloat(document.getElementById('input-tariff').value) || 0;
 

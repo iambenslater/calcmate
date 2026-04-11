@@ -10,7 +10,7 @@ function calculate() {
   const adjustedSalePrice = salePrice - sellingCosts;
   const capitalGain = adjustedSalePrice - purchasePrice;
   const isLoss = capitalGain < 0;
-  const eligible50Discount = holdingPeriod === 'more-than-12-months' && !isLoss;
+  const eligible50Discount = (holdingPeriod === 'over12' || holdingPeriod === 'more-than-12-months') && !isLoss;
   const discountedGain = eligible50Discount ? capitalGain * 0.5 : capitalGain;
   const taxPayable = isLoss ? 0 : discountedGain * marginalRate;
   const netProfit = capitalGain - taxPayable;
