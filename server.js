@@ -112,6 +112,9 @@ app.get('/sitemap.xml', (req, res) => {
   calculators.forEach(calc => {
     xml += `  <url><loc>${baseUrl}/${calc.category}/${calc.slug}</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>\n`;
   });
+  articles.forEach(article => {
+    xml += `  <url><loc>${baseUrl}/articles/${article.slug}</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>\n`;
+  });
   xml += '</urlset>';
   res.set('Content-Type', 'application/xml');
   res.send(xml);
@@ -121,6 +124,33 @@ app.get('/sitemap.xml', (req, res) => {
 app.get('/robots.txt', (req, res) => {
   res.type('text/plain');
   res.send(`User-agent: *\nAllow: /\nSitemap: ${res.locals.siteUrl}/sitemap.xml\n`);
+});
+
+// Articles
+let articles = [];
+try { articles = require('./data/articles.json'); } catch(e) { /* no articles yet */ }
+const articleBySlug = {};
+articles.forEach(a => { articleBySlug[a.slug] = a; });
+
+app.get('/articles', (req, res) => {
+  res.render('articles', {
+    articles,
+    title: 'Articles & Guides | CalculatorMate Australia',
+    metaDescription: 'Australian finance, property, health, and lifestyle guides. Expert articles with free calculators to help you make smarter decisions.'
+  });
+});
+
+app.get('/articles/:slug', (req, res) => {
+  const article = articleBySlug[req.params.slug];
+  if (!article) return res.status(404).render('404', { title: 'Page Not Found | CalculatorMate' });
+  const relatedCalcs = (article.relatedCalculators || []).map(s => calcBySlug[s]).filter(Boolean);
+  res.render('article', {
+    article,
+    relatedCalcs,
+    calc: { affiliateContext: article.affiliateContext || 'general' },
+    title: `${article.title} | CalculatorMate Australia`,
+    metaDescription: article.metaDescription || article.excerpt
+  });
 });
 
 // Terms & Privacy

@@ -1,0 +1,138 @@
+<%- include('partials/head') %>
+<% if (article.faq && article.faq.length) { %>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    <% article.faq.forEach((f, i) => { %>
+    {
+      "@type": "Question",
+      "name": "<%- f.q.replace(/"/g, '\\"') %>",
+      "acceptedAnswer": { "@type": "Answer", "text": "<%- f.a.replace(/"/g, '\\"') %>" }
+    }<%= i < article.faq.length - 1 ? ',' : '' %>
+    <% }) %>
+  ]
+}
+</script>
+<% } %>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "<%= article.title %>",
+  "description": "<%= article.metaDescription || article.excerpt %>",
+  "url": "<%= siteUrl %>/articles/<%= article.slug %>",
+  "datePublished": "<%= article.datePublished || '2026-04-12' %>",
+  "publisher": { "@type": "Organization", "name": "CalculatorMate", "url": "<%= siteUrl %>" },
+  "author": { "@type": "Organization", "name": "CalculatorMate" }
+}
+</script>
+<%- include('partials/header') %>
+
+<!-- Header ad -->
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
+  <% adSlotNum = 0; %><%- include('partials/ad-leaderboard', { adSlot: adSlotNum++ }) %>
+</div>
+
+<main class="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-6">
+  <!-- Breadcrumbs -->
+  <nav aria-label="Breadcrumb" class="mb-4">
+    <ol class="flex items-center gap-2 text-sm text-gray-500">
+      <li><a href="/" class="hover:text-navy transition">Home</a></li>
+      <li class="text-gray-300">/</li>
+      <li><a href="/articles" class="hover:text-navy transition">Articles</a></li>
+      <li class="text-gray-300">/</li>
+      <li class="text-gray-800 font-medium"><%= article.title %></li>
+    </ol>
+  </nav>
+
+  <div class="lg:flex gap-8">
+    <!-- Main content -->
+    <div class="flex-1 min-w-0">
+      <h1 class="text-3xl font-bold text-navy mb-3"><%= article.title %></h1>
+      <p class="text-gray-500 text-sm mb-4"><%= article.datePublished || '12 April 2026' %> · <%= article.readTime || '5' %> min read</p>
+
+      <!-- Share -->
+      <%- include('partials/share', { calc: { category: 'articles', slug: article.slug, affiliateContext: article.affiliateContext || 'general' } }) %>
+
+      <!-- Article content -->
+      <article class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mb-8 prose prose-sm max-w-none text-gray-700">
+        <%- article.content %>
+      </article>
+
+      <!-- Ad: after article -->
+      <div class="mb-8"><%- include('partials/ad-leaderboard', { adSlot: adSlotNum++ }) %></div>
+
+      <!-- Inline Amazon CTA -->
+      <%- include('partials/affiliate-inline') %>
+
+      <!-- Related calculators -->
+      <% if (relatedCalcs && relatedCalcs.length) { %>
+        <div class="mb-8">
+          <h2 class="text-xl font-bold text-navy mb-4">Try These Calculators</h2>
+          <div class="grid sm:grid-cols-2 gap-3">
+            <% relatedCalcs.forEach(c => { %>
+              <a href="/<%= c.category %>/<%= c.slug %>" class="group bg-white rounded-lg p-4 shadow-sm hover:shadow-md border border-gray-100 hover:border-gold/50 transition">
+                <h3 class="font-medium text-navy group-hover:text-gold transition text-sm"><%= c.title %></h3>
+                <p class="text-xs text-gray-500 mt-1"><%= c.description %></p>
+                <span class="text-xs text-gold font-medium mt-2 inline-block">Try it free →</span>
+              </a>
+            <% }) %>
+          </div>
+        </div>
+      <% } %>
+
+      <!-- FAQ -->
+      <% if (article.faq && article.faq.length) { %>
+        <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mb-8">
+          <h2 class="text-xl font-bold text-navy mb-4">Frequently Asked Questions</h2>
+          <div class="space-y-4">
+            <% article.faq.forEach((f, fIdx) => { %>
+              <details class="group">
+                <summary class="cursor-pointer font-medium text-navy hover:text-gold transition flex items-center justify-between">
+                  <span><%= f.q %></span>
+                  <svg class="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                </summary>
+                <p class="mt-2 text-gray-600 text-sm leading-relaxed"><%= f.a %></p>
+              </details>
+              <% if (fIdx === 1) { %>
+                <div class="my-2"><%- include('partials/ad-leaderboard', { adSlot: adSlotNum++ }) %></div>
+              <% } %>
+            <% }) %>
+          </div>
+        </div>
+      <% } %>
+
+      <!-- Ad: before footer -->
+      <div class="mb-8"><%- include('partials/ad-leaderboard', { adSlot: adSlotNum++ }) %></div>
+    </div>
+
+    <!-- Sidebar -->
+    <aside class="w-full lg:w-72 mt-8 lg:mt-0 shrink-0">
+      <div class="sticky top-20 space-y-4">
+        <!-- Amazon product cards -->
+        <%- include('partials/ad-product') %>
+
+        <!-- More articles -->
+        <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-4">
+          <h3 class="font-semibold text-navy mb-3 text-sm uppercase tracking-wider">More Articles</h3>
+          <nav class="space-y-1">
+            <% articles.filter(a => a.slug !== article.slug).slice(0, 8).forEach(a => { %>
+              <a href="/articles/<%= a.slug %>" class="block px-3 py-1.5 rounded-lg text-xs hover:bg-gray-50 text-gray-600 transition"><%= a.title %></a>
+            <% }) %>
+            <a href="/articles" class="block px-3 py-1.5 rounded-lg text-xs text-gold font-medium hover:bg-gold-light transition">View all articles →</a>
+          </nav>
+        </div>
+      </div>
+    </aside>
+  </div>
+</main>
+
+<!-- Footer ad -->
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-4">
+  <%- include('partials/ad-leaderboard', { adSlot: adSlotNum++ }) %>
+</div>
+
+<%- include('partials/footer') %>
+<%- include('partials/tail') %>

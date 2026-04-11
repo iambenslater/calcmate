@@ -1,0 +1,45 @@
+<%- include('partials/head') %>
+<%- include('partials/header') %>
+
+<!-- Header ad -->
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
+  <% adSlotNum = 0; %><%- include('partials/ad-leaderboard', { adSlot: adSlotNum++, calc: { affiliateContext: 'finance-books' } }) %>
+</div>
+
+<main class="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-6">
+  <nav aria-label="Breadcrumb" class="mb-4">
+    <ol class="flex items-center gap-2 text-sm text-gray-500">
+      <li><a href="/" class="hover:text-navy transition">Home</a></li>
+      <li class="text-gray-300">/</li>
+      <li class="text-gray-800 font-medium">Articles</li>
+    </ol>
+  </nav>
+
+  <h1 class="text-3xl font-bold text-navy mb-2">Articles & Guides</h1>
+  <p class="text-gray-600 mb-8">Australian finance, property, health, and lifestyle guides — with free calculators to help you crunch the numbers.</p>
+
+  <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    <% articles.forEach((a, idx) => { %>
+      <a href="/articles/<%= a.slug %>" class="group bg-white rounded-xl p-5 shadow-sm hover:shadow-md border border-gray-100 hover:border-gold/50 transition">
+        <div class="text-xs text-gold font-medium uppercase tracking-wider mb-2"><%= a.category || 'Guide' %></div>
+        <h2 class="font-semibold text-navy group-hover:text-gold transition mb-2"><%= a.title %></h2>
+        <p class="text-sm text-gray-500 line-clamp-3"><%= a.excerpt %></p>
+        <div class="text-xs text-gray-400 mt-3"><%= a.readTime || '5' %> min read</div>
+      </a>
+      <% if (idx === 5) { %>
+        <div class="sm:col-span-2 lg:col-span-3"><%- include('partials/ad-leaderboard', { adSlot: adSlotNum++, calc: { affiliateContext: 'finance-books' } }) %></div>
+      <% } %>
+      <% if (idx === 14) { %>
+        <div class="sm:col-span-2 lg:col-span-3"><%- include('partials/affiliate-inline', { calc: { affiliateContext: 'finance-books' } }) %></div>
+      <% } %>
+    <% }) %>
+  </div>
+</main>
+
+<!-- Footer ad -->
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-4">
+  <%- include('partials/ad-leaderboard', { adSlot: adSlotNum++, calc: { affiliateContext: 'finance-books' } }) %>
+</div>
+
+<%- include('partials/footer') %>
+<%- include('partials/tail') %>
