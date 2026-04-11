@@ -1,6 +1,6 @@
 function calculate() {
   const year = document.getElementById('input-year').value;
-  const state = document.getElementById('input-state').value;
+  const state = (document.getElementById('input-state').value || '').toUpperCase();
 
   if (!year || !state) { alert('Please select a year and state.'); return; }
 
