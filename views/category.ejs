@@ -1,5 +1,28 @@
 <%- include('partials/head') %>
+<!-- WebPage schema for category -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "<%= categoryName %> Calculators",
+  "description": "<%= categoryDescription %>",
+  "url": "<%= siteUrl %>/<%= category %>",
+  "isPartOf": { "@type": "WebSite", "name": "CalculatorMate Australia", "url": "<%= siteUrl %>" },
+  "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "<%= siteUrl %>" },
+      { "@type": "ListItem", "position": 2, "name": "<%= categoryName %>" }
+    ]
+  }
+}
+</script>
 <%- include('partials/header') %>
+
+<!-- Header ad -->
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
+  <% adSlotNum = 0; %><%- include('partials/ad-leaderboard', { adSlot: adSlotNum++, calc: { affiliateContext: calcs[0] ? calcs[0].affiliateContext : 'general' } }) %>
+</div>
 
 <main class="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-6">
   <%- include('partials/breadcrumbs', { category, categoryName }) %>
@@ -13,30 +36,50 @@
       </div>
 
       <div class="grid sm:grid-cols-2 gap-4">
-        <% calcs.forEach(c => { %>
+        <% calcs.forEach((c, idx) => { %>
           <a href="/<%= c.category %>/<%= c.slug %>" class="group bg-white rounded-xl p-5 shadow-sm hover:shadow-md border border-gray-100 hover:border-gold/50 transition">
             <h2 class="font-semibold text-navy group-hover:text-gold transition mb-1"><%= c.title %></h2>
             <p class="text-sm text-gray-500"><%= c.description %></p>
           </a>
+          <% if (idx === 3 && calcs.length > 6) { %>
+            <!-- Ad: mid-listing -->
+            <div class="sm:col-span-2"><%- include('partials/ad-leaderboard', { adSlot: adSlotNum++, calc: { affiliateContext: calcs[0] ? calcs[0].affiliateContext : 'general' } }) %></div>
+          <% } %>
         <% }) %>
       </div>
+
+      <!-- Ad: after listing -->
+      <div class="mt-8"><%- include('partials/ad-leaderboard', { adSlot: adSlotNum++, calc: { affiliateContext: calcs[0] ? calcs[0].affiliateContext : 'general' } }) %></div>
+
+      <!-- Inline Amazon CTA -->
+      <div class="mt-8"><%- include('partials/affiliate-inline', { calc: { affiliateContext: calcs[0] ? calcs[0].affiliateContext : 'general' } }) %></div>
     </div>
 
     <!-- Sidebar -->
-    <aside class="w-full lg:w-64 mt-8 lg:mt-0 shrink-0">
-      <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-4 sticky top-20">
-        <h3 class="font-semibold text-navy mb-3 text-sm uppercase tracking-wider">All Categories</h3>
-        <nav class="space-y-1">
-          <% Object.entries(categoryMeta).forEach(([key, meta]) => { %>
-            <a href="/<%= key %>" class="block px-3 py-2 rounded-lg text-sm transition <%= key === category ? 'bg-gold-light text-navy font-medium' : 'hover:bg-gray-50 text-gray-600' %>">
-              <span class="mr-2"><%= meta.icon %></span><%= meta.name %>
-            </a>
-          <% }) %>
-        </nav>
+    <aside class="w-full lg:w-72 mt-8 lg:mt-0 shrink-0">
+      <div class="sticky top-20 space-y-4">
+        <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-4">
+          <h3 class="font-semibold text-navy mb-3 text-sm uppercase tracking-wider">All Categories</h3>
+          <nav class="space-y-1">
+            <% Object.entries(categoryMeta).forEach(([key, meta]) => { %>
+              <a href="/<%= key %>" class="block px-3 py-2 rounded-lg text-sm transition <%= key === category ? 'bg-gold-light text-navy font-medium' : 'hover:bg-gray-50 text-gray-600' %>">
+                <span class="mr-2"><%= meta.icon %></span><%= meta.name %>
+              </a>
+            <% }) %>
+          </nav>
+        </div>
+
+        <!-- Amazon rectangle ad -->
+        <%- include('partials/ad-rectangle', { calc: { affiliateContext: calcs[0] ? calcs[0].affiliateContext : 'general' } }) %>
       </div>
     </aside>
   </div>
 </main>
+
+<!-- Footer ad -->
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-4">
+  <%- include('partials/ad-leaderboard', { adSlot: adSlotNum++, calc: { affiliateContext: calcs[0] ? calcs[0].affiliateContext : 'general' } }) %>
+</div>
 
 <%- include('partials/footer') %>
 <%- include('partials/tail') %>

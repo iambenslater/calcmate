@@ -123,6 +123,14 @@ app.get('/robots.txt', (req, res) => {
   res.send(`User-agent: *\nAllow: /\nSitemap: ${res.locals.siteUrl}/sitemap.xml\n`);
 });
 
+// Terms & Privacy
+app.get('/terms', (req, res) => {
+  res.render('terms', { title: 'Terms of Use | CalculatorMate Australia', metaDescription: 'Terms of use for CalculatorMate Australia. Calculator results are estimates only and should not be used as professional advice.' });
+});
+app.get('/privacy', (req, res) => {
+  res.render('privacy', { title: 'Privacy Policy | CalculatorMate Australia', metaDescription: 'Privacy policy for CalculatorMate Australia. We do not collect personal information. Calculators run entirely in your browser.' });
+});
+
 // Category page
 app.get('/:category', (req, res) => {
   const cat = req.params.category;
