@@ -79,7 +79,7 @@ app.get('/', (req, res) => {
     ['take-home-pay', 'mortgage-repayment', 'bmi', 'gst-calculator', 'stamp-duty-all-states',
      'compound-interest', 'percentage', 'fuel-cost', 'days-between-dates', 'calorie-intake'].includes(c.slug)
   );
-  res.render('home', { popular, title: 'CalcMate Australia — Free Online Calculators', metaDescription: 'Free Australian calculators for tax, mortgage, health, and more. 100+ calculators built for Australians with current ATO rates and state-specific data.' });
+  res.render('home', { popular, title: 'CalculatorMate Australia — Free Online Calculators', metaDescription: 'Free Australian calculators for tax, mortgage, health, and more. 100+ calculators built for Australians with current ATO rates and state-specific data.' });
 });
 
 // Search API
@@ -127,14 +127,14 @@ app.get('/robots.txt', (req, res) => {
 app.get('/:category', (req, res) => {
   const cat = req.params.category;
   const meta = categoryMeta[cat];
-  if (!meta || !calcsByCategory[cat]) return res.status(404).render('404', { title: 'Page Not Found | CalcMate' });
+  if (!meta || !calcsByCategory[cat]) return res.status(404).render('404', { title: 'Page Not Found | CalculatorMate' });
   res.render('category', {
     category: cat,
     categoryName: meta.name,
     categoryIcon: meta.icon,
     categoryDescription: meta.description,
     calcs: calcsByCategory[cat],
-    title: `${meta.name} Calculators | CalcMate Australia`,
+    title: `${meta.name} Calculators | CalculatorMate Australia`,
     metaDescription: meta.description
   });
 });
@@ -142,7 +142,7 @@ app.get('/:category', (req, res) => {
 // Calculator page
 app.get('/:category/:slug', (req, res) => {
   const calc = calcBySlug[req.params.slug];
-  if (!calc || calc.category !== req.params.category) return res.status(404).render('404', { title: 'Page Not Found | CalcMate' });
+  if (!calc || calc.category !== req.params.category) return res.status(404).render('404', { title: 'Page Not Found | CalculatorMate' });
   const catMeta = categoryMeta[calc.category];
   const related = (calc.relatedSlugs || []).map(s => calcBySlug[s]).filter(Boolean);
   res.render('calculator', {
@@ -150,14 +150,14 @@ app.get('/:category/:slug', (req, res) => {
     categoryName: catMeta.name,
     categoryIcon: catMeta.icon,
     related,
-    title: `${calc.title} | CalcMate Australia`,
+    title: `${calc.title} | CalculatorMate Australia`,
     metaDescription: calc.metaDescription || calc.description
   });
 });
 
 // 404
 app.use((req, res) => {
-  res.status(404).render('404', { title: 'Page Not Found | CalcMate' });
+  res.status(404).render('404', { title: 'Page Not Found | CalculatorMate' });
 });
 
 app.listen(PORT, () => {
