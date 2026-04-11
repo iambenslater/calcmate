@@ -59,19 +59,21 @@ function calculateStampDuty(value, state) {
 }
 
 function getFHOG(state, propertyPrice) {
-  // First Home Owner Grants by state (new homes only — simplified)
+  // First Home Owner Grants by state (new homes only — 2025-26)
+  // ACT abolished its FHOG from 1 July 2019; SA removed price cap in 2024; TAS raised to $30k from 1 Jul 2025 with no cap
   const grants = {
     NSW: { amount: 10000, cap: 600000 },
     VIC: { amount: 10000, cap: 750000 },
     QLD: { amount: 30000, cap: 750000 },
-    SA: { amount: 15000, cap: 650000 },
-    WA: { amount: 10000, cap: 750000 },
-    TAS: { amount: 30000, cap: 600000 },
-    ACT: { amount: 7500, cap: 750000 },
+    SA: { amount: 15000, cap: Infinity }, // No price cap since Jun 2024
+    WA: { amount: 10000, cap: 750000 },  // south of 26th parallel; $1M cap north
+    TAS: { amount: 30000, cap: Infinity }, // $30,000 from 1 Jul 2025, no cap
+    ACT: { amount: 0, cap: 0 },          // Abolished 1 Jul 2019; replaced by Home Buyer Concession Scheme
     NT: { amount: 10000, cap: 750000 }
   };
   const g = grants[state];
-  return g && propertyPrice <= g.cap ? g.amount : 0;
+  if (!g || g.amount === 0) return 0;
+  return propertyPrice <= g.cap ? g.amount : 0;
 }
 
 function calculate() {

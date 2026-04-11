@@ -1,0 +1,53 @@
+<%
+// Renders real Amazon product cards from affiliate-products.json
+// Falls back to search links if no products cached
+const affiliateTag = 'benslater-22';
+const baseUrl = 'https://www.amazon.com.au/s';
+
+let products = [];
+try {
+  const productData = require('../../data/affiliate-products.json');
+  const context = typeof calc !== 'undefined' ? (calc.affiliateContext || 'general') : 'general';
+  products = (productData.products && productData.products[context]) || [];
+} catch(e) {
+  // No product cache yet — will fall back to search links
+}
+%>
+<% if (products.length > 0) { %>
+  <!-- Real product cards from PA-API -->
+  <div class="rounded-xl border overflow-hidden bg-white shadow-sm">
+    <div class="bg-gray-50 px-3 py-1.5 border-b">
+      <span class="text-[10px] text-gray-400 font-medium uppercase tracking-wider">Recommended Products</span>
+    </div>
+    <div class="p-3 space-y-3">
+      <% products.forEach(p => { %>
+        <a href="<%= p.url %>" target="_blank" rel="nofollow noopener" class="block rounded-lg p-3 border border-gray-100 hover:border-gold/50 hover:shadow-md transition bg-white">
+          <div class="flex gap-3">
+            <% if (p.imageUrl) { %>
+              <img src="<%= p.imageUrl %>" alt="<%= p.title %>" class="w-16 h-16 object-contain rounded" loading="lazy">
+            <% } %>
+            <div class="flex-1 min-w-0">
+              <div class="font-medium text-sm text-gray-900 line-clamp-2"><%= p.title %></div>
+              <div class="flex items-center gap-2 mt-1">
+                <% if (p.price) { %><span class="text-sm font-bold text-navy"><%= p.price %></span><% } %>
+                <% if (p.isPrime) { %><span class="text-[10px] bg-blue-100 text-blue-700 px-1.5 py-0.5 rounded font-medium">Prime</span><% } %>
+              </div>
+              <% if (p.rating) { %>
+                <div class="text-xs text-amber-500 mt-0.5"><%= '★'.repeat(Math.round(p.rating)) %><%= '☆'.repeat(5 - Math.round(p.rating)) %> <span class="text-gray-400"><%= p.rating %></span></div>
+              <% } %>
+            </div>
+          </div>
+        </a>
+      <% }) %>
+      <a href="https://www.amazon.com.au/?tag=<%= affiliateTag %>" target="_blank" rel="nofollow noopener" class="block text-center text-xs text-gray-400 hover:text-navy transition pt-1">
+        Browse all on Amazon.com.au →
+      </a>
+    </div>
+    <div class="bg-gray-50 px-3 py-1 border-t">
+      <span class="text-[9px] text-gray-300">As an Amazon Associate, CalculatorMate earns from qualifying purchases.</span>
+    </div>
+  </div>
+<% } else { %>
+  <!-- Fallback: search links (no product cache yet) -->
+  <%- include('ad-rectangle') %>
+<% } %>

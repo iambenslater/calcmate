@@ -3,10 +3,13 @@ function calculate() {
   const fuelType = document.getElementById('input-fuelType').value;
   const activityType = document.getElementById('input-activity').value;
 
-  // Simplified fuel tax credit rates (cents per litre) — 2024-25 indicative
+  // Fuel tax credit rates (cents per litre) — 2025-26 ATO rates
+  // Heavy vehicle on public road: full rate minus road user charge (32.4c) = ~20.1c
+  // Off-road / machinery: full excise rate ~50.8c
+  // Other business uses (light vehicles off-road etc.): ~50.8c
   const rates = {
-    'diesel': { 'heavy-vehicle': 48.8, 'machinery': 48.8, 'other': 20.5 },
-    'petrol': { 'heavy-vehicle': 48.8, 'machinery': 48.8, 'other': 20.5 }
+    'diesel': { 'heavy-vehicle': 20.1, 'machinery': 50.8, 'other': 50.8 },
+    'petrol': { 'heavy-vehicle': 20.1, 'machinery': 50.8, 'other': 50.8 }
   };
 
   const rateKey = fuelType || 'diesel';
@@ -22,7 +25,7 @@ function calculate() {
     <div class="result-row"><span class="result-label">Activity Type</span><span class="result-value">${actKey.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase())}</span></div>
     <div class="result-row"><span class="result-label">Rate</span><span class="result-value">${centsPerLitre.toFixed(1)}c per litre</span></div>
     <div class="result-row highlight"><span class="result-label">Estimated Fuel Tax Credit</span><span class="result-value">${fmt(totalCredit)}</span></div>
-    <p style="margin-top:12px;font-size:0.85rem;color:var(--text-muted)">Rates are indicative for the 2024-25 financial year. Check the ATO for current rates applicable to your situation.</p>
+    <p style="margin-top:12px;font-size:0.85rem;color:var(--text-muted)">Rates are for the 2025-26 financial year (1 July 2025–30 June 2026). Heavy vehicle on-road rate reflects the road user charge deduction. Check the ATO for current rates applicable to your situation.</p>
   `;
 }
 

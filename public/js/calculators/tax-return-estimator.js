@@ -23,25 +23,31 @@ function calculate() {
   // Income tax on taxable income
   const grossTax = calculateTax(taxableIncome);
 
-  // Low Income Tax Offset (LITO)
+  // Low Income Tax Offset (LITO) 2025-26
+  // Max $700 at ≤$37,500; reduces by 5c/$ from $37,501 to $45,000 (to $325);
+  // then reduces by 1.5c/$ from $45,001 to $66,667 (to $0)
   let lito = 0;
-  if (taxableIncome <= 45000) lito = 700;
-  else if (taxableIncome <= 66667) lito = 700 - (taxableIncome - 45000) * 0.05;
+  if (taxableIncome <= 37500) lito = 700;
+  else if (taxableIncome <= 45000) lito = 700 - (taxableIncome - 37500) * 0.05;
+  else if (taxableIncome <= 66667) lito = 325 - (taxableIncome - 45000) * 0.015;
   else lito = 0;
   lito = Math.max(0, lito);
 
   // Low and Middle Income Tax Offset is no longer available from 2025-26
 
-  // Medicare levy
-  const medicareLevy = taxableIncome > 26000 ? taxableIncome * 0.02 : 0;
+  // Medicare levy 2025-26: exempt ≤$27,222, phase-in 10c/$ to $34,028, full 2% above
+  let medicareLevy = 0;
+  if (taxableIncome > 34028) medicareLevy = taxableIncome * 0.02;
+  else if (taxableIncome > 27222) medicareLevy = (taxableIncome - 27222) * 0.10;
 
-  // Medicare levy surcharge (no PHI)
+  // Medicare levy surcharge (no PHI) — 2025-26 thresholds
+  // Tier 1: $101,001–$118,000 = 1%, Tier 2: $118,001–$144,000 = 1.25%, Tier 3: $144,001+ = 1.5%
   let medicareSurcharge = 0;
   if (!hasPrivateHealth) {
     const mlsIncome = taxableIncome; // simplified
-    if (mlsIncome > 140000) medicareSurcharge = mlsIncome * 0.015;
-    else if (mlsIncome > 105000) medicareSurcharge = mlsIncome * 0.0125;
-    else if (mlsIncome > 93000) medicareSurcharge = mlsIncome * 0.01;
+    if (mlsIncome > 144000) medicareSurcharge = mlsIncome * 0.015;
+    else if (mlsIncome > 118000) medicareSurcharge = mlsIncome * 0.0125;
+    else if (mlsIncome > 101000) medicareSurcharge = mlsIncome * 0.01;
   }
 
   // Private health insurance rebate (simplified)

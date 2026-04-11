@@ -17,7 +17,7 @@ function vicDuty(v) {
   if (v <= 130000) return 350 + (v - 25000) * 0.024;
   if (v <= 960000) return 2870 + (v - 130000) * 0.06;
   if (v <= 2000000) return 52670 + (v - 960000) * 0.055;
-  return 109870 + (v - 2000000) * 0.065;
+  return 110000 + (v - 2000000) * 0.065; // $110,000 + 6.5% above $2M (SRO current rates)
 }
 
 function qldDuty(v) {
@@ -86,8 +86,9 @@ function calculate() {
   const foreignEl = document.querySelector('input[name="input-foreignBuyer"]:checked');
   const isForeign = foreignEl ? foreignEl.value === 'yes' : false;
 
+  // Foreign surcharges: NSW increased to 9% from 1 Jan 2025
   const foreignSurcharges = {
-    NSW: 0.08, VIC: 0.08, QLD: 0.08, SA: 0.07, WA: 0.07, TAS: 0.08, ACT: 0, NT: 0
+    NSW: 0.09, VIC: 0.08, QLD: 0.08, SA: 0.07, WA: 0.07, TAS: 0.08, ACT: 0, NT: 0
   };
 
   const states = [

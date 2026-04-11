@@ -12,12 +12,12 @@ function calculate() {
 
   const annualGross = grossSalary * multiplier;
 
-  // Super guarantee rate 2025-26: 11.5%
-  const sgRate = 0.115;
+  // Super guarantee rate from 1 July 2025: 12%
+  const sgRate = 0.12;
   const annualSuper = annualGross * sgRate;
 
-  // Maximum super contribution base (quarterly) for 2025-26: ~$62,270/quarter
-  const quarterlyMaxBase = 62270;
+  // Maximum super contribution base (quarterly) for 2025-26: $62,500/quarter
+  const quarterlyMaxBase = 62500;
   const annualMaxBase = quarterlyMaxBase * 4;
   const cappedSuper = Math.min(annualSuper, annualMaxBase * sgRate);
   const isAboveCap = annualGross > annualMaxBase;
@@ -26,11 +26,10 @@ function calculate() {
   const concessionalCap = 30000;
   const remainingCap = Math.max(0, concessionalCap - annualSuper);
 
-  // Future rates
+  // SG rate schedule
   const futureRates = [
-    { year: '2025-26', rate: '11.5%' },
-    { year: '2026-27', rate: '12.0%' },
-    { year: '2027-28+', rate: '12.0% (legislated max)' }
+    { year: '2025-26', rate: '12.0% (current)' },
+    { year: '2026-27+', rate: '12.0% (legislated max)' }
   ];
 
   let futureRows = futureRates.map(r =>
@@ -40,7 +39,7 @@ function calculate() {
   document.getElementById('calc-results').classList.remove('hidden');
   document.getElementById('results-content').innerHTML = `
     <div class="result-row"><span class="result-label">Ordinary Time Earnings</span><span class="result-value">${formatCurrency(annualGross)} /year</span></div>
-    <div class="result-row"><span class="result-label">SG Rate (2025-26)</span><span class="result-value">11.5%</span></div>
+    <div class="result-row"><span class="result-label">SG Rate (2025-26)</span><span class="result-value">12.0%</span></div>
     <hr class="my-2">
     <div class="result-row font-bold"><span class="result-label">Annual Super Guarantee</span><span class="result-value">${formatCurrency(annualSuper)}</span></div>
     <div class="result-row"><span class="result-label">Per Quarter</span><span class="result-value">${formatCurrency(annualSuper / 4)}</span></div>

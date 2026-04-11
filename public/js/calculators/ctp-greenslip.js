@@ -59,7 +59,7 @@ function calculate() {
   const ctpName = {
     NSW: 'Green Slip', VIC: 'TAC Charge (included in rego)', QLD: 'CTP Premium',
     SA: 'CTP Premium', WA: 'Motor Injury Insurance', TAS: 'CTP Premium',
-    NT: 'MAITS Levy', ACT: 'CTP Premium'
+    NT: 'MAC Scheme (TIO)', ACT: 'CTP Premium'
   }[state] || 'CTP Premium';
 
   document.getElementById('calc-results').classList.remove('hidden');

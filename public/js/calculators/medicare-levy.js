@@ -16,19 +16,20 @@ function calculate() {
   let levyNote = '';
 
   if (familyStatus === 'single') {
-    if (taxableIncome <= 26000) {
+    // 2025-26 thresholds: exempt ≤$27,222; phase-in 10c/$ to $34,028; full 2% above
+    if (taxableIncome <= 27222) {
       medicareLevy = 0;
-      levyNote = 'Below the Medicare levy threshold ($26,000) — no levy payable.';
-    } else if (taxableIncome <= 32500) {
-      // Phase-in: 10% of excess over $26,000
-      medicareLevy = (taxableIncome - 26000) * 0.10;
-      levyNote = 'Reduced Medicare levy applies (income in phase-in range $26,000–$32,500).';
+      levyNote = 'Below the Medicare levy threshold ($27,222) — no levy payable.';
+    } else if (taxableIncome <= 34028) {
+      medicareLevy = (taxableIncome - 27222) * 0.10;
+      levyNote = 'Reduced Medicare levy applies (income in phase-in range $27,222–$34,028).';
     } else {
       medicareLevy = taxableIncome * 0.02;
       levyNote = 'Full Medicare levy of 2% applies.';
     }
   } else {
-    const familyThreshold = 43846 + (dependants * 4027);
+    // 2025-26 family threshold: $45,907 + $4,190 per dependant
+    const familyThreshold = 45907 + (dependants * 4190);
     const familyPhaseOut = familyThreshold * 1.25;
     if (taxableIncome <= familyThreshold) {
       medicareLevy = 0;
@@ -49,17 +50,19 @@ function calculate() {
 
   if (!hasPrivateHealth) {
     const incomeForMLS = taxableIncome; // simplified - normally includes fringe benefits etc.
+    // MLS 2025-26: Single $101,001–$118,000 Tier 1 (1%), $118,001–$144,000 Tier 2 (1.25%), $144,001+ Tier 3 (1.5%)
+    // Family: $202,001–$236,000 Tier 1, $236,001–$288,000 Tier 2, $288,001+ Tier 3
     const thresholds = familyStatus === 'single'
       ? [
-          { min: 0, max: 93000, rate: 0, tier: 'No surcharge' },
-          { min: 93001, max: 108000, rate: 0.01, tier: 'Tier 1' },
-          { min: 108001, max: 144000, rate: 0.0125, tier: 'Tier 2' },
+          { min: 0, max: 101000, rate: 0, tier: 'No surcharge' },
+          { min: 101001, max: 118000, rate: 0.01, tier: 'Tier 1' },
+          { min: 118001, max: 144000, rate: 0.0125, tier: 'Tier 2' },
           { min: 144001, max: Infinity, rate: 0.015, tier: 'Tier 3' }
         ]
       : [
-          { min: 0, max: 186000, rate: 0, tier: 'No surcharge' },
-          { min: 186001, max: 216000, rate: 0.01, tier: 'Tier 1' },
-          { min: 216001, max: 288000, rate: 0.0125, tier: 'Tier 2' },
+          { min: 0, max: 202000, rate: 0, tier: 'No surcharge' },
+          { min: 202001, max: 236000, rate: 0.01, tier: 'Tier 1' },
+          { min: 236001, max: 288000, rate: 0.0125, tier: 'Tier 2' },
           { min: 288001, max: Infinity, rate: 0.015, tier: 'Tier 3' }
         ];
 

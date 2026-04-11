@@ -72,7 +72,12 @@ function calculate() {
     `;
   }
 
-  const medicare = residency === 'resident' && taxableIncome > 26000 ? taxableIncome * 0.02 : 0;
+  // Medicare levy 2025-26: exempt ≤$27,222, phase-in 10c/$ to $34,028, full 2% above
+  let medicare = 0;
+  if (residency === 'resident') {
+    if (taxableIncome > 34028) medicare = taxableIncome * 0.02;
+    else if (taxableIncome > 27222) medicare = (taxableIncome - 27222) * 0.10;
+  }
   const afterTax = taxableIncome - tax - medicare;
   const effectiveRate = taxableIncome > 0 ? ((tax + medicare) / taxableIncome * 100).toFixed(1) : '0.0';
 

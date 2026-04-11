@@ -32,7 +32,10 @@ function calculate() {
 
   const annualGross = grossPay * multiplier;
   const annualTax = calculateAnnualTax(annualGross, claimTaxFree);
-  const annualMedicare = annualGross > 26000 ? annualGross * 0.02 : 0;
+  // Medicare levy 2025-26: exempt ≤$27,222, phase-in 10c/$ to $34,028, full 2% above
+  let annualMedicare = 0;
+  if (annualGross > 34028) annualMedicare = annualGross * 0.02;
+  else if (annualGross > 27222) annualMedicare = (annualGross - 27222) * 0.10;
 
   const taxPerPeriod = annualTax / multiplier;
   const medicarePerPeriod = annualMedicare / multiplier;

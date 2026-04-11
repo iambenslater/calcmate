@@ -19,24 +19,26 @@ function calculate() {
   } else {
     switch (state) {
       case 'NSW':
-        // NSW: $1,075,000 threshold, 1.6% up to $6,928,000, then 2%
+        // NSW: $1,075,000 general threshold; premium threshold $6,571,000 (2025 land tax year)
         threshold = 1075000;
         if (landValue <= threshold) { landTax = 0; }
-        else if (landValue <= 6928000) { landTax = 100 + (landValue - threshold) * 0.016; }
-        else { landTax = 100 + (6928000 - threshold) * 0.016 + (landValue - 6928000) * 0.02; }
-        notes = 'NSW threshold: $1,075,000. Rate: 1.6% + $100 up to $6.928M, then 2%.';
+        else if (landValue <= 6571000) { landTax = 100 + (landValue - threshold) * 0.016; }
+        else { landTax = 100 + (6571000 - threshold) * 0.016 + (landValue - 6571000) * 0.02; }
+        notes = 'NSW threshold: $1,075,000. Rate: 1.6% + $100 up to $6.571M, then 2%.';
         break;
 
       case 'VIC':
-        // VIC: $50,000 threshold (surcharge from 2024), general rate from $300,000
-        threshold = 300000;
+        // VIC: General threshold reduced to $50,000 from 1 Jan 2024 (SRO current rates)
+        threshold = 50000;
         if (landValue <= threshold) { landTax = 0; }
-        else if (landValue <= 600000) { landTax = 375 + (landValue - 300000) * 0.002; }
-        else if (landValue <= 1000000) { landTax = 975 + (landValue - 600000) * 0.005; }
-        else if (landValue <= 1800000) { landTax = 2975 + (landValue - 1000000) * 0.008; }
-        else if (landValue <= 3000000) { landTax = 9375 + (landValue - 1800000) * 0.013; }
-        else { landTax = 24975 + (landValue - 3000000) * 0.023; }
-        notes = 'VIC general threshold: $300,000. Rates range from 0.2% to 2.3%.';
+        else if (landValue <= 100000) { landTax = 500 + (landValue - 50000) * 0.001; }
+        else if (landValue <= 300000) { landTax = 550 + (landValue - 100000) * 0.0016; }
+        else if (landValue <= 600000) { landTax = 870 + (landValue - 300000) * 0.002; }
+        else if (landValue <= 1000000) { landTax = 1470 + (landValue - 600000) * 0.005; }
+        else if (landValue <= 1800000) { landTax = 3470 + (landValue - 1000000) * 0.008; }
+        else if (landValue <= 3000000) { landTax = 9870 + (landValue - 1800000) * 0.013; }
+        else { landTax = 25470 + (landValue - 3000000) * 0.023; }
+        notes = 'VIC threshold: $50,000 (reduced from $300,000 from 1 Jan 2024). Rates range from 0.1% to 2.3%.';
         break;
 
       case 'QLD':

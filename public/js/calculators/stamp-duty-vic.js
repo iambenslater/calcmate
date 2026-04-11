@@ -15,8 +15,8 @@ function calculate() {
     if (value <= 25000) return value * 0.014;
     if (value <= 130000) return 350 + (value - 25000) * 0.024;
     if (value <= 960000) return 2870 + (value - 130000) * 0.06;
-    if (value <= 2000000) return 52670 + (value - 960000) * 0.055; // 5.5% applies
-    return 52670 + (2000000 - 960000) * 0.055 + (value - 2000000) * 0.065;
+    if (value <= 2000000) return 52670 + (value - 960000) * 0.055;
+    return 110000 + (value - 2000000) * 0.065; // $110,000 + 6.5% above $2M (SRO current rates)
   }
 
   let duty = vicDuty(propertyValue);

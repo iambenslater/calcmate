@@ -13,7 +13,7 @@ function calculate() {
       { date: '2025-04-19', name: 'Saturday before Easter Sunday' },
       { date: '2025-04-21', name: 'Easter Monday' },
       { date: '2025-04-25', name: 'Anzac Day' },
-      { date: '2025-06-09', name: "Queen's Birthday" },
+      { date: '2025-06-09', name: "King's Birthday" },
       { date: '2025-12-25', name: 'Christmas Day' },
       { date: '2025-12-26', name: 'Boxing Day' },
     ],
@@ -24,7 +24,7 @@ function calculate() {
       { date: '2026-04-04', name: 'Saturday before Easter Sunday' },
       { date: '2026-04-06', name: 'Easter Monday' },
       { date: '2026-04-25', name: 'Anzac Day' },
-      { date: '2026-06-08', name: "Queen's Birthday" },
+      { date: '2026-06-08', name: "King's Birthday" },
       { date: '2026-12-25', name: 'Christmas Day' },
       { date: '2026-12-26', name: 'Boxing Day' },
     ],
@@ -35,7 +35,7 @@ function calculate() {
       { date: '2027-03-27', name: 'Saturday before Easter Sunday' },
       { date: '2027-03-29', name: 'Easter Monday' },
       { date: '2027-04-25', name: 'Anzac Day' },
-      { date: '2027-06-14', name: "Queen's Birthday" },
+      { date: '2027-06-14', name: "King's Birthday" },
       { date: '2027-12-25', name: 'Christmas Day' },
       { date: '2027-12-27', name: 'Boxing Day (substitute)' },
     ],
@@ -54,7 +54,7 @@ function calculate() {
       QLD: [
         { date: '2026-05-04', name: 'Labour Day' },
         { date: '2026-08-12', name: 'Royal Queensland Show (Brisbane)' },
-        { date: '2026-10-26', name: "Queen's Birthday (QLD)" },
+        { date: '2026-10-05', name: "King's Birthday (QLD)" },
       ],
       SA: [
         { date: '2026-03-09', name: 'Adelaide Cup' },
@@ -65,7 +65,7 @@ function calculate() {
       WA: [
         { date: '2026-03-02', name: 'Labour Day' },
         { date: '2026-06-01', name: 'Western Australia Day' },
-        { date: '2026-09-28', name: "Queen's Birthday (WA)" },
+        { date: '2026-09-28', name: "King's Birthday (WA)" },
       ],
       TAS: [
         { date: '2026-02-09', name: 'Royal Hobart Regatta (south)' },
@@ -79,36 +79,35 @@ function calculate() {
       ],
       ACT: [
         { date: '2026-03-09', name: 'Canberra Day' },
-        { date: '2026-05-25', name: 'Reconciliation Day' },
-        { date: '2026-10-05', name: 'Family & Community Day' },
+        { date: '2026-06-01', name: 'Reconciliation Day' },
       ],
     },
     '2025': {
       NSW: [], VIC: [{ date: '2025-03-10', name: 'Labour Day' }],
-      QLD: [{ date: '2025-05-05', name: 'Labour Day' }, { date: '2025-10-27', name: "Queen's Birthday (QLD)" }],
+      QLD: [{ date: '2025-05-05', name: 'Labour Day' }, { date: '2025-10-06', name: "King's Birthday (QLD)" }],
       SA: [{ date: '2025-03-10', name: 'Adelaide Cup' }], WA: [{ date: '2025-03-03', name: 'Labour Day' }],
       TAS: [{ date: '2025-03-10', name: 'Eight Hours Day' }], NT: [{ date: '2025-05-05', name: 'May Day' }],
-      ACT: [{ date: '2025-03-10', name: 'Canberra Day' }],
+      ACT: [{ date: '2025-03-10', name: 'Canberra Day' }, { date: '2025-05-26', name: 'Reconciliation Day' }],
     },
     '2027': {
       NSW: [], VIC: [{ date: '2027-03-08', name: 'Labour Day' }],
-      QLD: [{ date: '2027-05-03', name: 'Labour Day' }, { date: '2027-10-25', name: "Queen's Birthday (QLD)" }],
+      QLD: [{ date: '2027-05-03', name: 'Labour Day' }, { date: '2027-10-04', name: "King's Birthday (QLD)" }],
       SA: [{ date: '2027-03-08', name: 'Adelaide Cup' }], WA: [{ date: '2027-03-01', name: 'Labour Day' }],
       TAS: [{ date: '2027-03-08', name: 'Eight Hours Day' }], NT: [{ date: '2027-05-03', name: 'May Day' }],
-      ACT: [{ date: '2027-03-08', name: 'Canberra Day' }],
+      ACT: [{ date: '2027-03-08', name: 'Canberra Day' }, { date: '2027-05-31', name: 'Reconciliation Day' }],
     },
   };
 
-  // Queen's Birthday is state-specific for QLD and WA, national for others
+  // King's Birthday is state-specific for QLD and WA — they observe on different dates to other states
   const allHolidays = [
     ...(national[year] || []),
     ...(stateHolidays[year]?.[state] || []),
   ].sort((a, b) => a.date.localeCompare(b.date));
 
-  // Remove duplicate Queen's Birthday for QLD/WA (they have their own date)
+  // Remove the national King's Birthday for QLD/WA — they observe on different dates
   let filtered = allHolidays;
   if (state === 'QLD' || state === 'WA') {
-    filtered = allHolidays.filter(h => !(h.name === "Queen's Birthday" && !h.name.includes(state)));
+    filtered = allHolidays.filter(h => !(h.name === "King's Birthday"));
   }
 
   const now = new Date();

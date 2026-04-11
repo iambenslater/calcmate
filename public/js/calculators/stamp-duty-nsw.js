@@ -57,10 +57,10 @@ function calculate() {
 
   duty -= fhbDiscount;
 
-  // Foreign buyer surcharge: 8%
+  // Foreign buyer surcharge: 9% (increased from 8% on 1 Jan 2025)
   let foreignSurcharge = 0;
   if (isForeign) {
-    foreignSurcharge = propertyValue * 0.08;
+    foreignSurcharge = propertyValue * 0.09;
   }
 
   // First Home Owner Grant (NSW): $10,000 for new homes up to $600,000
@@ -78,7 +78,7 @@ function calculate() {
     <hr class="my-2">
     <div class="result-row"><span class="result-label">Base Transfer Duty</span><span class="result-value">${formatCurrency(duty + fhbDiscount)}</span></div>
     ${isFirstHome && fhbDiscount > 0 ? `<div class="result-row"><span class="result-label">First Home Buyer Concession</span><span class="result-value text-green-600">-${formatCurrency(fhbDiscount)}</span></div>` : ''}
-    ${isForeign ? `<div class="result-row"><span class="result-label">Foreign Buyer Surcharge (8%)</span><span class="result-value text-red-600">+${formatCurrency(foreignSurcharge)}</span></div>` : ''}
+    ${isForeign ? `<div class="result-row"><span class="result-label">Foreign Buyer Surcharge (9%)</span><span class="result-value text-red-600">+${formatCurrency(foreignSurcharge)}</span></div>` : ''}
     <div class="result-row font-bold text-lg"><span class="result-label">Total Stamp Duty (NSW)</span><span class="result-value">${formatCurrency(totalDuty)}</span></div>
     <div class="result-row"><span class="result-label">Duty as % of Property Value</span><span class="result-value">${(totalDuty / propertyValue * 100).toFixed(2)}%</span></div>
     ${fhbNote ? `<p class="text-sm text-green-600 mt-2">${fhbNote}</p>` : ''}

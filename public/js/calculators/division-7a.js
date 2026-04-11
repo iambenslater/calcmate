@@ -1,6 +1,6 @@
 function calculate() {
   const loanAmount = parseFloat(document.getElementById('input-loanAmount').value) || 0;
-  const benchmarkRate = (parseFloat(document.getElementById('input-benchmarkRate').value) || 8.27) / 100;
+  const benchmarkRate = (parseFloat(document.getElementById('input-benchmarkRate').value) || 8.37) / 100;
   const loanTerm = parseInt(document.getElementById('input-loanTerm').value) || 7;
   const yearOfLoan = parseInt(document.getElementById('input-yearOfLoan').value) || 1;
 
