@@ -1,0 +1,79 @@
+<%
+const affiliateTag = 'benslater-22';
+const baseUrl = 'https://www.amazon.com.au/s';
+
+// Rectangle ads — more visual, product-focused
+const rectangleAds = {
+  budgeting: [
+    { query: 'budget planner notebook', title: 'Budget Planners', subtitle: 'From $12.99', emoji: '📒', bg: 'bg-amber-50 border-amber-200' },
+    { query: 'financial calculator casio', title: 'Financial Calculators', subtitle: 'From $29.95', emoji: '🔢', bg: 'bg-blue-50 border-blue-200' }
+  ],
+  'tax-software': [
+    { query: 'receipt scanner app', title: 'Receipt Scanners', subtitle: 'Stay tax-ready', emoji: '📱', bg: 'bg-indigo-50 border-indigo-200' },
+    { query: 'document organiser folder', title: 'Tax Organisers', subtitle: 'From $15.99', emoji: '📁', bg: 'bg-slate-50 border-slate-200' }
+  ],
+  fitness: [
+    { query: 'body composition scale bluetooth', title: 'Smart Body Scales', subtitle: 'Track everything', emoji: '⚖️', bg: 'bg-cyan-50 border-cyan-200' },
+    { query: 'resistance bands set exercise', title: 'Resistance Bands', subtitle: 'From $19.99', emoji: '💪', bg: 'bg-orange-50 border-orange-200' }
+  ],
+  'home-tools': [
+    { query: 'laser tape measure digital', title: 'Laser Measures', subtitle: 'From $39.95', emoji: '📏', bg: 'bg-orange-50 border-orange-200' },
+    { query: 'home inspection checklist book', title: 'Inspection Guides', subtitle: 'Be prepared', emoji: '📋', bg: 'bg-green-50 border-green-200' }
+  ],
+  'car-accessories': [
+    { query: 'dash cam 4k front rear', title: '4K Dash Cams', subtitle: 'From $79.99', emoji: '📹', bg: 'bg-gray-50 border-gray-200' },
+    { query: 'tyre inflator portable car', title: 'Tyre Inflators', subtitle: 'From $49.95', emoji: '🔧', bg: 'bg-blue-50 border-blue-200' }
+  ],
+  'finance-books': [
+    { query: 'barefoot investor book', title: 'Barefoot Investor', subtitle: '#1 Finance Book', emoji: '📗', bg: 'bg-green-50 border-green-200' },
+    { query: 'investing beginners australia', title: 'Investing Guides', subtitle: 'Start your journey', emoji: '📈', bg: 'bg-emerald-50 border-emerald-200' }
+  ],
+  baby: [
+    { query: 'pregnancy journal book', title: 'Pregnancy Journals', subtitle: 'Capture every moment', emoji: '📓', bg: 'bg-pink-50 border-pink-200' },
+    { query: 'baby monitor camera wifi', title: 'Baby Monitors', subtitle: 'Peace of mind', emoji: '👶', bg: 'bg-purple-50 border-purple-200' }
+  ],
+  'trade-tools': [
+    { query: 'laser level green beam', title: 'Laser Levels', subtitle: 'From $59.95', emoji: '📐', bg: 'bg-yellow-50 border-yellow-200' },
+    { query: 'tool belt tradie', title: 'Tool Belts', subtitle: 'From $34.95', emoji: '🔨', bg: 'bg-amber-50 border-amber-200' }
+  ],
+  kitchen: [
+    { query: 'digital kitchen scale grams', title: 'Kitchen Scales', subtitle: 'From $14.99', emoji: '⚖️', bg: 'bg-orange-50 border-orange-200' },
+    { query: 'measuring cups stainless steel', title: 'Measuring Cups', subtitle: 'From $12.99', emoji: '🥤', bg: 'bg-amber-50 border-amber-200' }
+  ],
+  'home-appliances': [
+    { query: 'smart power board wifi', title: 'Smart Power Boards', subtitle: 'Save on energy', emoji: '🔌', bg: 'bg-green-50 border-green-200' },
+    { query: 'led light bulb pack warm', title: 'LED Bulbs Pack', subtitle: 'Cut your bill', emoji: '💡', bg: 'bg-yellow-50 border-yellow-200' }
+  ],
+  general: [
+    { query: 'calculator desktop large', title: 'Desktop Calculators', subtitle: 'From $12.99', emoji: '🔢', bg: 'bg-blue-50 border-blue-200' },
+    { query: 'notebook journal lined', title: 'Quality Notebooks', subtitle: 'From $9.99', emoji: '📒', bg: 'bg-amber-50 border-amber-200' }
+  ]
+};
+
+const context = typeof calc !== 'undefined' ? (calc.affiliateContext || 'general') : 'general';
+const ads = rectangleAds[context] || rectangleAds.general;
+%>
+<div class="rounded-xl border overflow-hidden bg-white shadow-sm">
+  <div class="bg-gray-50 px-3 py-1.5 border-b">
+    <span class="text-[10px] text-gray-400 font-medium uppercase tracking-wider">Recommended on Amazon</span>
+  </div>
+  <div class="p-3 space-y-3">
+    <% ads.forEach(ad => { %>
+      <a href="<%= baseUrl %>?k=<%= encodeURIComponent(ad.query) %>&tag=<%= affiliateTag %>" target="_blank" rel="nofollow noopener" class="block rounded-lg p-3 border <%= ad.bg %> hover:shadow-md transition">
+        <div class="flex items-center gap-3">
+          <span class="text-3xl"><%= ad.emoji %></span>
+          <div>
+            <div class="font-bold text-sm text-gray-900"><%= ad.title %></div>
+            <div class="text-xs text-gray-500"><%= ad.subtitle %></div>
+          </div>
+        </div>
+      </a>
+    <% }) %>
+    <a href="https://www.amazon.com.au/?tag=<%= affiliateTag %>" target="_blank" rel="nofollow noopener" class="block text-center text-xs text-gray-400 hover:text-navy transition pt-1">
+      Browse all on Amazon.com.au →
+    </a>
+  </div>
+  <div class="bg-gray-50 px-3 py-1 border-t">
+    <span class="text-[9px] text-gray-300">As an Amazon Associate, CalculatorMate earns from qualifying purchases.</span>
+  </div>
+</div>

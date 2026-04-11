@@ -35,9 +35,7 @@
 
 <!-- Header ad -->
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
-  <div class="bg-gray-100 rounded-lg p-2 text-center text-gray-400 text-xs flex items-center justify-center border border-dashed border-gray-300" style="min-height:90px">
-    Ad Space (Header Leaderboard 728x90)
-  </div>
+  <%- include('partials/ad-leaderboard') %>
 </div>
 
 <main class="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-6">
@@ -115,9 +113,7 @@
       </div>
 
       <!-- Ad: interstitial after calculator -->
-      <div class="bg-gray-100 rounded-xl p-3 text-center text-gray-400 text-xs flex items-center justify-center border border-dashed border-gray-300 mb-8" style="min-height:90px">
-        Ad Space (Leaderboard 728x90)
-      </div>
+      <div class="mb-8"><%- include('partials/ad-leaderboard') %></div>
 
       <!-- How it works -->
       <% if (calc.howItWorks) { %>
@@ -145,9 +141,7 @@
               </details>
               <% if (fIdx === 1) { %>
                 <!-- Ad: between FAQ items -->
-                <div class="bg-gray-100 rounded-lg p-2 text-center text-gray-400 text-xs flex items-center justify-center border border-dashed border-gray-200 my-2" style="min-height:60px">
-                  Ad Space (In-article)
-                </div>
+                <div class="my-2"><%- include('partials/ad-leaderboard') %></div>
               <% } %>
             <% }) %>
           </div>
@@ -155,9 +149,7 @@
       <% } %>
 
       <!-- Ad: interstitial before related -->
-      <div class="bg-gray-100 rounded-xl p-3 text-center text-gray-400 text-xs flex items-center justify-center border border-dashed border-gray-300 mb-8" style="min-height:90px">
-        Ad Space (Leaderboard 728x90)
-      </div>
+      <div class="mb-8"><%- include('partials/ad-leaderboard') %></div>
 
       <!-- Related calculators -->
       <% if (related && related.length) { %>
@@ -175,9 +167,9 @@
       <% } %>
     </div>
 
-    <!-- Sidebar — all sticky -->
+    <!-- Sidebar — sticky, no scroll -->
     <aside class="w-full lg:w-72 mt-8 lg:mt-0 shrink-0">
-      <div class="sticky top-20 space-y-4 max-h-[calc(100vh-6rem)] overflow-y-auto">
+      <div class="sticky top-20 space-y-4">
         <!-- Category nav -->
         <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-4">
           <h3 class="font-semibold text-navy mb-3 text-sm uppercase tracking-wider"><%= categoryIcon %> <%= categoryName %></h3>
@@ -190,18 +182,8 @@
           </nav>
         </div>
 
-        <!-- Ad: sidebar rectangle -->
-        <div class="bg-gray-100 rounded-xl p-4 text-center text-gray-400 text-xs flex items-center justify-center border border-dashed border-gray-300" style="min-height:250px">
-          Ad Space<br>(300x250)
-        </div>
-
-        <!-- Amazon Affiliate Links -->
-        <%- include('partials/affiliate') %>
-
-        <!-- Ad: second sidebar rectangle -->
-        <div class="bg-gray-100 rounded-xl p-4 text-center text-gray-400 text-xs flex items-center justify-center border border-dashed border-gray-300" style="min-height:250px">
-          Ad Space<br>(300x250)
-        </div>
+        <!-- Amazon rectangle ad -->
+        <%- include('partials/ad-rectangle') %>
       </div>
     </aside>
   </div>
@@ -209,9 +191,7 @@
 
 <!-- Footer ad -->
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-4">
-  <div class="bg-gray-100 rounded-lg p-2 text-center text-gray-400 text-xs flex items-center justify-center border border-dashed border-gray-300" style="min-height:90px">
-    Ad Space (Footer Leaderboard 728x90)
-  </div>
+  <%- include('partials/ad-leaderboard') %>
 </div>
 
 <%- include('partials/footer') %>

@@ -1,0 +1,44 @@
+<%
+const affiliateTag = 'benslater-22';
+const baseUrl = 'https://www.amazon.com.au/s';
+
+// Contextual leaderboard ads mapped to calculator affiliate context
+const leaderboardAds = {
+  budgeting: { query: 'budget planner 2026', headline: 'Get Your Budget Sorted', cta: 'Shop Budget Planners', bg: 'from-amber-500 to-orange-500' },
+  'tax-software': { query: 'tax return organiser', headline: 'Tax Time Made Easy', cta: 'Shop Tax Essentials', bg: 'from-blue-600 to-indigo-600' },
+  'health-insurance': { query: 'health monitor smart watch', headline: 'Take Charge of Your Health', cta: 'Shop Health Tech', bg: 'from-emerald-500 to-teal-500' },
+  'office-furniture': { query: 'ergonomic desk chair', headline: 'Upgrade Your Home Office', cta: 'Shop Office Furniture', bg: 'from-gray-700 to-gray-900' },
+  education: { query: 'scientific calculator', headline: 'Tools for Smarter Study', cta: 'Shop Study Essentials', bg: 'from-purple-500 to-indigo-500' },
+  'finance-books': { query: 'barefoot investor', headline: 'Build Your Financial Future', cta: 'Shop Finance Books', bg: 'from-green-600 to-emerald-600' },
+  savings: { query: 'savings challenge book', headline: 'Start Your Savings Journey', cta: 'Shop Savings Tools', bg: 'from-amber-500 to-yellow-500' },
+  'home-tools': { query: 'laser tape measure', headline: 'Measure Up for Your New Home', cta: 'Shop Home Tools', bg: 'from-orange-500 to-red-500' },
+  fitness: { query: 'fitness tracker smart watch', headline: 'Track Your Fitness Goals', cta: 'Shop Fitness Tech', bg: 'from-cyan-500 to-blue-500' },
+  baby: { query: 'baby essentials newborn kit', headline: 'Prepare for Your New Arrival', cta: 'Shop Baby Essentials', bg: 'from-pink-400 to-rose-400' },
+  general: { query: 'calculator large display', headline: 'Tools That Make Life Easier', cta: 'Shop on Amazon', bg: 'from-navy to-blue-800' },
+  'car-accessories': { query: 'dash cam 4k australia', headline: 'Protect Yourself on the Road', cta: 'Shop Dash Cams', bg: 'from-gray-800 to-gray-900' },
+  travel: { query: 'travel accessories kit', headline: 'Travel Smarter', cta: 'Shop Travel Gear', bg: 'from-sky-500 to-blue-500' },
+  'office-supplies': { query: 'desk organiser set', headline: 'Organise Your Workspace', cta: 'Shop Office Supplies', bg: 'from-slate-600 to-slate-800' },
+  kitchen: { query: 'digital kitchen scale', headline: 'Precision in Every Recipe', cta: 'Shop Kitchen Scales', bg: 'from-amber-600 to-orange-600' },
+  'business-books': { query: 'small business australia book', headline: 'Grow Your Business', cta: 'Shop Business Books', bg: 'from-navy to-indigo-800' },
+  'home-appliances': { query: 'smart power meter plug', headline: 'Cut Your Energy Bills', cta: 'Shop Smart Home', bg: 'from-green-500 to-emerald-500' },
+  'trade-tools': { query: 'tradie tool set professional', headline: 'Professional Gear for Tradies', cta: 'Shop Trade Tools', bg: 'from-yellow-600 to-amber-700' },
+  health: { query: 'personal breathalyser', headline: 'Know Before You Go', cta: 'Shop Breathalysers', bg: 'from-red-500 to-rose-600' },
+  pet: { query: 'dog toys interactive', headline: 'Spoil Your Best Mate', cta: 'Shop Pet Supplies', bg: 'from-orange-400 to-amber-500' },
+  fashion: { query: 'body tape measure sewing', headline: 'Get the Perfect Fit', cta: 'Shop Measuring Tools', bg: 'from-pink-500 to-purple-500' }
+};
+
+const context = typeof calc !== 'undefined' ? (calc.affiliateContext || 'general') : 'general';
+const ad = leaderboardAds[context] || leaderboardAds.general;
+const href = `${baseUrl}?k=${encodeURIComponent(ad.query)}&tag=${affiliateTag}`;
+%>
+<a href="<%= href %>" target="_blank" rel="nofollow noopener" class="block rounded-lg overflow-hidden bg-gradient-to-r <%= ad.bg %> text-white hover:opacity-90 transition shadow-sm">
+  <div class="flex items-center justify-between px-5 py-3">
+    <div>
+      <div class="font-bold text-sm md:text-base"><%= ad.headline %></div>
+      <div class="text-[10px] opacity-75 mt-0.5">Sponsored · Amazon.com.au</div>
+    </div>
+    <div class="bg-white text-gray-900 px-4 py-1.5 rounded-full text-xs font-bold whitespace-nowrap hover:bg-gray-100 transition">
+      <%= ad.cta %> →
+    </div>
+  </div>
+</a>
