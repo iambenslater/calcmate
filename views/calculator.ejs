@@ -94,7 +94,7 @@
           <% } %>
         </div>
 
-        <button id="calc-btn" onclick="calculate(); setTimeout(function(){ document.getElementById('calc-results').scrollIntoView({behavior:'smooth', block:'start'}); }, 100);" class="w-full sm:w-auto mt-2 px-8 py-3 bg-gold text-navy font-bold rounded-lg hover:bg-yellow-400 transition shadow-sm text-lg">
+        <button id="calc-btn" class="w-full sm:w-auto mt-2 px-8 py-3 bg-gold text-navy font-bold rounded-lg hover:bg-yellow-400 transition shadow-sm text-lg">
           Calculate
         </button>
 
@@ -175,4 +175,15 @@
 
 <!-- Load calculator-specific JS -->
 <script src="/js/calculators/<%= calc.slug %>.js"></script>
+<script>
+  document.getElementById('calc-btn').addEventListener('click', function() {
+    if (typeof calculate === 'function') {
+      calculate();
+      setTimeout(function() {
+        var r = document.getElementById('calc-results');
+        if (r) r.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 100);
+    }
+  });
+</script>
 <%- include('partials/tail') %>
