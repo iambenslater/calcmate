@@ -2,9 +2,8 @@
 const affiliateTag = 'benslater-22';
 const baseUrl = 'https://www.amazon.com.au/s';
 
-// Multiple ads per context — the template picks one based on a counter
-if (typeof locals._adCounter === 'undefined') locals._adCounter = 0;
-const adIndex = locals._adCounter++;
+// Each include passes a slot number (0,1,2,3...) to guarantee different ads
+const adIndex = typeof adSlot !== 'undefined' ? adSlot : Math.floor(Math.random() * 4);
 
 // Each context has 4+ ad variations so each slot shows something different
 const allAds = {

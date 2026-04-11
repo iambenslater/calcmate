@@ -35,7 +35,7 @@
 
 <!-- Header ad -->
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
-  <%- include('partials/ad-leaderboard') %>
+  <% adSlotNum = (typeof adSlotNum === 'undefined') ? 0 : adSlotNum; %><%- include('partials/ad-leaderboard', { adSlot: adSlotNum++ }) %>
 </div>
 
 <main class="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-6">
@@ -113,7 +113,7 @@
       </div>
 
       <!-- Ad: interstitial after calculator -->
-      <div class="mb-8"><%- include('partials/ad-leaderboard') %></div>
+      <div class="mb-8"><% adSlotNum = (typeof adSlotNum === 'undefined') ? 0 : adSlotNum; %><%- include('partials/ad-leaderboard', { adSlot: adSlotNum++ }) %></div>
 
       <!-- How it works -->
       <% if (calc.howItWorks) { %>
@@ -141,7 +141,7 @@
               </details>
               <% if (fIdx === 1) { %>
                 <!-- Ad: between FAQ items -->
-                <div class="my-2"><%- include('partials/ad-leaderboard') %></div>
+                <div class="my-2"><% adSlotNum = (typeof adSlotNum === 'undefined') ? 0 : adSlotNum; %><%- include('partials/ad-leaderboard', { adSlot: adSlotNum++ }) %></div>
               <% } %>
             <% }) %>
           </div>
@@ -149,7 +149,7 @@
       <% } %>
 
       <!-- Ad: interstitial before related -->
-      <div class="mb-8"><%- include('partials/ad-leaderboard') %></div>
+      <div class="mb-8"><% adSlotNum = (typeof adSlotNum === 'undefined') ? 0 : adSlotNum; %><%- include('partials/ad-leaderboard', { adSlot: adSlotNum++ }) %></div>
 
       <!-- Related calculators -->
       <% if (related && related.length) { %>
@@ -191,7 +191,7 @@
 
 <!-- Footer ad -->
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-4">
-  <%- include('partials/ad-leaderboard') %>
+  <% adSlotNum = (typeof adSlotNum === 'undefined') ? 0 : adSlotNum; %><%- include('partials/ad-leaderboard', { adSlot: adSlotNum++ }) %>
 </div>
 
 <%- include('partials/footer') %>
