@@ -1,5 +1,5 @@
 function calculate() {
-  const state = document.getElementById('input-state').value;
+  const state = document.getElementById('input-state').value.toUpperCase();
   const yearsOfService = parseFloat(document.getElementById('input-yearsService').value) || 0;
   const hoursPerWeek = parseFloat(document.getElementById('input-hoursPerWeek').value) || 38;
   const weeklyPayRate = parseFloat(document.getElementById('input-payRate').value) || 0;

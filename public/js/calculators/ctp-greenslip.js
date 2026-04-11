@@ -1,5 +1,5 @@
 function calculate() {
-  const state = document.getElementById('input-state').value;
+  const state = document.getElementById('input-state').value.toUpperCase();
   const vehicleType = document.getElementById('input-vehicleType').value;
   const driverAge = parseInt(document.getElementById('input-driverAge').value) || 0;
   const claimsHistory = document.getElementById('input-claimHistory').value;

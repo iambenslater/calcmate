@@ -1,5 +1,5 @@
 function calculate() {
-  const state = document.getElementById('input-state').value;
+  const state = document.getElementById('input-state').value.toUpperCase();
   const vehicleType = document.getElementById('input-vehicleType').value;
   const engineSize = document.getElementById('input-cylinders').value;
 

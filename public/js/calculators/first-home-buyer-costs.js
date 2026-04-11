@@ -76,7 +76,7 @@ function getFHOG(state, propertyPrice) {
 
 function calculate() {
   const propertyPrice = parseFloat(document.getElementById('input-purchasePrice').value) || 0;
-  const state = document.getElementById('input-state').value || 'QLD';
+  const state = document.getElementById('input-state').value.toUpperCase() || 'QLD';
   const depositPercent = parseFloat(document.getElementById('input-depositPercent').value) || 20;
   const firstHomeBuyerEl = document.querySelector('input[name="input-firstHomeBuyer"]:checked');
   const isFirstHomeBuyer = firstHomeBuyerEl ? firstHomeBuyerEl.value === 'yes' : true;
