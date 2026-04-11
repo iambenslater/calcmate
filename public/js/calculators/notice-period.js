@@ -4,7 +4,7 @@ function calculate() {
   const weeklyPay = parseFloat(document.getElementById('input-weeklyPay').value) || 0;
 
   if (yearsOfService < 0 || weeklyPay <= 0) {
-    alert('Please enter valid values.');
+    document.getElementById('calc-results').classList.remove('hidden'); document.getElementById('results-content').innerHTML = '<p class="text-red-600">Please enter valid values.</p>';
     return;
   }
 

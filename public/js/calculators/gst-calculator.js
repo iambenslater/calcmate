@@ -3,7 +3,7 @@ function calculate() {
   const mode = document.querySelector('input[name="input-direction"]:checked')?.value ||
                document.getElementById('input-direction')?.value || 'add';
 
-  if (amount <= 0) { alert('Please enter a valid amount.'); return; }
+  if (amount <= 0) { document.getElementById('calc-results').classList.remove('hidden'); document.getElementById('results-content').innerHTML = '<p class="text-red-600">Please enter a valid amount.</p>'; return; }
 
   let gstAmount, exGst, incGst, description;
 
@@ -30,7 +30,7 @@ function calculate() {
       description = 'Finding GST component of inclusive amount';
       break;
     default:
-      alert('Invalid mode.'); return;
+      document.getElementById('calc-results').classList.remove('hidden'); document.getElementById('results-content').innerHTML = '<p class="text-red-600">Invalid mode.</p>'; return;
   }
 
   document.getElementById('calc-results').classList.remove('hidden');

@@ -5,7 +5,7 @@ function calculate() {
   const balloonPayment = parseFloat(document.getElementById('input-balloon').value) || 0;
 
   if (loanAmount <= 0 || interestRate <= 0 || loanTerm <= 0) {
-    alert('Please enter valid loan details.');
+    document.getElementById('calc-results').classList.remove('hidden'); document.getElementById('results-content').innerHTML = '<p class="text-red-600">Please enter valid loan details.</p>';
     return;
   }
 

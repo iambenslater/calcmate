@@ -1,11 +1,11 @@
 function calculate() {
   const dobStr = document.getElementById('input-dateOfBirth').value;
-  if (!dobStr) { alert('Please enter your date of birth.'); return; }
+  if (!dobStr) { document.getElementById('calc-results').classList.remove('hidden'); document.getElementById('results-content').innerHTML = '<p class="text-red-600">Please enter your date of birth.</p>'; return; }
 
   const dob = new Date(dobStr + 'T00:00:00');
   const now = new Date();
 
-  if (dob > now) { alert('Date of birth cannot be in the future.'); return; }
+  if (dob > now) { document.getElementById('calc-results').classList.remove('hidden'); document.getElementById('results-content').innerHTML = '<p class="text-red-600">Date of birth cannot be in the future.</p>'; return; }
 
   const msPerDay = 86400000;
   const totalMs = now - dob;

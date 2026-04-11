@@ -4,7 +4,7 @@ function calculate() {
   const toCurrency = document.getElementById('input-toCurrency').value;
 
   if (amount <= 0 || !fromCurrency || !toCurrency) {
-    alert('Please enter a valid amount and select currencies.');
+    document.getElementById('calc-results').classList.remove('hidden'); document.getElementById('results-content').innerHTML = '<p class="text-red-600">Please enter a valid amount and select currencies.</p>';
     return;
   }
 
@@ -26,7 +26,7 @@ function calculate() {
   const fromRate = ratesFromAUD[fromCurrency];
   const toRate = ratesFromAUD[toCurrency];
 
-  if (!fromRate || !toRate) { alert('Unsupported currency.'); return; }
+  if (!fromRate || !toRate) { document.getElementById('calc-results').classList.remove('hidden'); document.getElementById('results-content').innerHTML = '<p class="text-red-600">Unsupported currency.</p>'; return; }
 
   // Convert: amount in fromCurrency -> AUD -> toCurrency
   const amountInAUD = amount / fromRate;

@@ -4,7 +4,7 @@ function calculate() {
   const engineSize = document.getElementById('input-cylinders').value;
 
   if (!state || !vehicleType || !engineSize) {
-    alert('Please select all fields.');
+    document.getElementById('calc-results').classList.remove('hidden'); document.getElementById('results-content').innerHTML = '<p class="text-red-600">Please select all fields.</p>';
     return;
   }
 

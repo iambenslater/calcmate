@@ -3,8 +3,8 @@ function calculate() {
   const fromUnit = document.getElementById('input-fromUnit').value;
   const toUnit = document.getElementById('input-toUnit').value;
 
-  if (isNaN(amount) || amount <= 0) { alert('Please enter a valid amount.'); return; }
-  if (!fromUnit || !toUnit) { alert('Please select units.'); return; }
+  if (isNaN(amount) || amount <= 0) { document.getElementById('calc-results').classList.remove('hidden'); document.getElementById('results-content').innerHTML = '<p class="text-red-600">Please enter a valid amount.</p>'; return; }
+  if (!fromUnit || !toUnit) { document.getElementById('calc-results').classList.remove('hidden'); document.getElementById('results-content').innerHTML = '<p class="text-red-600">Please select units.</p>'; return; }
 
   // All values in millilitres (Australian metric cup = 250ml)
   const toMl = {
@@ -19,7 +19,7 @@ function calculate() {
   const fromFactor = toMl[fromUnit];
   const toFactor = toMl[toUnit];
 
-  if (!fromFactor || !toFactor) { alert('Unknown unit.'); return; }
+  if (!fromFactor || !toFactor) { document.getElementById('calc-results').classList.remove('hidden'); document.getElementById('results-content').innerHTML = '<p class="text-red-600">Unknown unit.</p>'; return; }
 
   const mlValue = amount * fromFactor;
   const result = mlValue / toFactor;

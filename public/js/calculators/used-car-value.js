@@ -7,7 +7,7 @@ function calculate() {
   const transmission = document.getElementById('input-transmission').value || 'automatic';
 
   if (yearManufactured <= 0) {
-    alert('Please enter a valid year.');
+    document.getElementById('calc-results').classList.remove('hidden'); document.getElementById('results-content').innerHTML = '<p class="text-red-600">Please enter a valid year.</p>';
     return;
   }
 

@@ -6,7 +6,7 @@ function calculate() {
   const tripsPerWeek = parseFloat(document.getElementById('input-tripsPerWeek').value) || 0;
 
   if (!tollRoad || !vehicleType || tripsPerWeek <= 0) {
-    alert('Please fill in all fields.');
+    document.getElementById('calc-results').classList.remove('hidden'); document.getElementById('results-content').innerHTML = '<p class="text-red-600">Please fill in all fields.</p>';
     return;
   }
 

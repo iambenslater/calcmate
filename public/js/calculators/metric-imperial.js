@@ -4,8 +4,8 @@ function calculate() {
   const fromUnit = document.getElementById('input-fromUnit').value;
   const toUnit = document.getElementById('input-toUnit').value;
 
-  if (isNaN(inputValue)) { alert('Please enter a valid number.'); return; }
-  if (!unitType) { alert('Please select a unit type.'); return; }
+  if (isNaN(inputValue)) { document.getElementById('calc-results').classList.remove('hidden'); document.getElementById('results-content').innerHTML = '<p class="text-red-600">Please enter a valid number.</p>'; return; }
+  if (!unitType) { document.getElementById('calc-results').classList.remove('hidden'); document.getElementById('results-content').innerHTML = '<p class="text-red-600">Please select a unit type.</p>'; return; }
 
   const toMetric = fromUnit ? fromUnit.includes('imperial') || ['in','ft','lb','mi','gal','F'].includes(fromUnit) : false;
   let result, fromLabel, toLabel, formula;
@@ -67,7 +67,7 @@ function calculate() {
       }
       break;
     default:
-      alert('Unknown unit type.'); return;
+      document.getElementById('calc-results').classList.remove('hidden'); document.getElementById('results-content').innerHTML = '<p class="text-red-600">Unknown unit type.</p>'; return;
   }
 
   const unitSymbols = {

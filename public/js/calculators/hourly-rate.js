@@ -3,8 +3,8 @@ function calculate() {
   const hoursPerWeek = parseFloat(document.getElementById('input-hoursPerWeek').value) || 38;
   const weeksPerYear = parseFloat(document.getElementById('input-weeksPerYear').value) || 52;
 
-  if (annualSalary <= 0) { alert('Please enter a valid annual salary.'); return; }
-  if (hoursPerWeek <= 0 || weeksPerYear <= 0) { alert('Please enter valid hours and weeks.'); return; }
+  if (annualSalary <= 0) { document.getElementById('calc-results').classList.remove('hidden'); document.getElementById('results-content').innerHTML = '<p class="text-red-600">Please enter a valid annual salary.</p>'; return; }
+  if (hoursPerWeek <= 0 || weeksPerYear <= 0) { document.getElementById('calc-results').classList.remove('hidden'); document.getElementById('results-content').innerHTML = '<p class="text-red-600">Please enter valid hours and weeks.</p>'; return; }
 
   const totalHoursPerYear = hoursPerWeek * weeksPerYear;
   const hourlyRate = annualSalary / totalHoursPerYear;

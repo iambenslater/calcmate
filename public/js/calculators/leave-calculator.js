@@ -4,12 +4,12 @@ function calculate() {
   const hoursPerWeek = parseFloat(document.getElementById('input-hoursPerWeek').value) || 38;
   const leaveLoading = parseFloat(document.getElementById('input-leaveLoading').value) || 17.5;
 
-  if (!startStr || !endStr) { alert('Please select both dates.'); return; }
+  if (!startStr || !endStr) { document.getElementById('calc-results').classList.remove('hidden'); document.getElementById('results-content').innerHTML = '<p class="text-red-600">Please select both dates.</p>'; return; }
 
   const start = new Date(startStr + 'T00:00:00');
   const end = new Date(endStr + 'T00:00:00');
 
-  if (end <= start) { alert('End date must be after start date.'); return; }
+  if (end <= start) { document.getElementById('calc-results').classList.remove('hidden'); document.getElementById('results-content').innerHTML = '<p class="text-red-600">End date must be after start date.</p>'; return; }
 
   const msPerDay = 86400000;
   const totalDays = (end - start) / msPerDay;

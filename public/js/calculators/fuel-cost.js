@@ -4,7 +4,7 @@ function calculate() {
   const fuelPrice = parseFloat(document.getElementById('input-fuelPrice').value) || 0;
 
   if (distance <= 0 || consumption <= 0 || fuelPrice <= 0) {
-    alert('Please enter valid values for all fields.');
+    document.getElementById('calc-results').classList.remove('hidden'); document.getElementById('results-content').innerHTML = '<p class="text-red-600">Please enter valid values for all fields.</p>';
     return;
   }
 

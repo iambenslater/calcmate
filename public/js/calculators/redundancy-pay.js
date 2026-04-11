@@ -4,7 +4,7 @@ function calculate() {
   const hoursPerWeek = parseFloat(document.getElementById('input-hoursPerWeek').value) || 38;
 
   if (yearsOfService <= 0 || baseWeeklyPay <= 0) {
-    alert('Please enter valid values.');
+    document.getElementById('calc-results').classList.remove('hidden'); document.getElementById('results-content').innerHTML = '<p class="text-red-600">Please enter valid values.</p>';
     return;
   }
 

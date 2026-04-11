@@ -5,7 +5,7 @@ function calculate() {
   const daysPerWeek = parseFloat(document.getElementById('input-daysPerWeek').value) || 5;
 
   if (!startTime || !endTime) {
-    alert('Please enter start and end times.');
+    document.getElementById('calc-results').classList.remove('hidden'); document.getElementById('results-content').innerHTML = '<p class="text-red-600">Please enter start and end times.</p>';
     return;
   }
 
@@ -16,7 +16,7 @@ function calculate() {
   const endMinutes = endH * 60 + endM;
 
   if (endMinutes <= startMinutes) {
-    alert('End time must be after start time.');
+    document.getElementById('calc-results').classList.remove('hidden'); document.getElementById('results-content').innerHTML = '<p class="text-red-600">End time must be after start time.</p>';
     return;
   }
 
@@ -24,7 +24,7 @@ function calculate() {
   const netMinutes = grossMinutes - breakMinutes;
 
   if (netMinutes <= 0) {
-    alert('Break time exceeds work time.');
+    document.getElementById('calc-results').classList.remove('hidden'); document.getElementById('results-content').innerHTML = '<p class="text-red-600">Break time exceeds work time.</p>';
     return;
   }
 

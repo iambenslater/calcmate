@@ -3,8 +3,8 @@ function calculate() {
   const tipPercent = parseFloat(document.getElementById('input-tipPercent').value) || 0;
   const splitBetween = parseInt(document.getElementById('input-splitBetween').value) || 1;
 
-  if (billAmount <= 0) { alert('Please enter a valid bill amount.'); return; }
-  if (splitBetween < 1) { alert('Split must be at least 1 person.'); return; }
+  if (billAmount <= 0) { document.getElementById('calc-results').classList.remove('hidden'); document.getElementById('results-content').innerHTML = '<p class="text-red-600">Please enter a valid bill amount.</p>'; return; }
+  if (splitBetween < 1) { document.getElementById('calc-results').classList.remove('hidden'); document.getElementById('results-content').innerHTML = '<p class="text-red-600">Split must be at least 1 person.</p>'; return; }
 
   const tipAmount = billAmount * (tipPercent / 100);
   const totalBill = billAmount + tipAmount;

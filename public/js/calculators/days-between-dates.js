@@ -4,7 +4,8 @@ function calculate() {
   const includeEndDate = document.getElementById('input-includeEndDate')?.checked || false;
 
   if (!startStr || !endStr) {
-    alert('Please select both dates.');
+    document.getElementById('calc-results').classList.remove('hidden');
+    document.getElementById('results-content').innerHTML = '<p class="text-red-600">Please select both start and end dates.</p>';
     return;
   }
 
@@ -12,7 +13,8 @@ function calculate() {
   const end = new Date(endStr + 'T00:00:00');
 
   if (end < start) {
-    alert('End date must be on or after start date.');
+    document.getElementById('calc-results').classList.remove('hidden');
+    document.getElementById('results-content').innerHTML = '<p class="text-red-600">End date must be on or after start date.</p>';
     return;
   }
 

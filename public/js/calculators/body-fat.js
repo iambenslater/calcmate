@@ -7,16 +7,16 @@ function calculate() {
   const hip = parseFloat(document.getElementById('input-hip').value) || 0;
 
   if (height <= 0 || neck <= 0 || waist <= 0) {
-    alert('Please enter valid measurements.');
+    document.getElementById('calc-results').classList.remove('hidden'); document.getElementById('results-content').innerHTML = '<p class="text-red-600">Please enter valid measurements.</p>';
     return;
   }
 
   let bodyFat;
   if (gender === 'male') {
-    if (waist - neck <= 0) { alert('Waist must be greater than neck measurement.'); return; }
+    if (waist - neck <= 0) { document.getElementById('calc-results').classList.remove('hidden'); document.getElementById('results-content').innerHTML = '<p class="text-red-600">Waist must be greater than neck measurement.</p>'; return; }
     bodyFat = 86.010 * Math.log10(waist - neck) - 70.041 * Math.log10(height) + 36.76;
   } else {
-    if (waist + hip - neck <= 0) { alert('Waist + hip must be greater than neck measurement.'); return; }
+    if (waist + hip - neck <= 0) { document.getElementById('calc-results').classList.remove('hidden'); document.getElementById('results-content').innerHTML = '<p class="text-red-600">Waist + hip must be greater than neck measurement.</p>'; return; }
     bodyFat = 163.205 * Math.log10(waist + hip - neck) - 97.684 * Math.log10(height) - 78.387;
   }
 

@@ -4,7 +4,7 @@ function calculate() {
   const valueB = parseFloat(document.getElementById('input-valueY').value);
 
   if (isNaN(valueA) || isNaN(valueB)) {
-    alert('Please enter valid numbers.');
+    document.getElementById('calc-results').classList.remove('hidden'); document.getElementById('results-content').innerHTML = '<p class="text-red-600">Please enter valid numbers.</p>';
     return;
   }
 
@@ -19,20 +19,20 @@ function calculate() {
       break;
     case 'is':
       // What percentage is X of Y?
-      if (valueB === 0) { alert('Cannot divide by zero.'); return; }
+      if (valueB === 0) { document.getElementById('calc-results').classList.remove('hidden'); document.getElementById('results-content').innerHTML = '<p class="text-red-600">Cannot divide by zero.</p>'; return; }
       result = (valueA / valueB) * 100;
       description = `${valueA} is what % of ${valueB}?`;
       formula = `${valueA} / ${valueB} x 100 = ${result.toFixed(4)}%`;
       break;
     case 'change':
       // Percentage change from X to Y
-      if (valueA === 0) { alert('Starting value cannot be zero.'); return; }
+      if (valueA === 0) { document.getElementById('calc-results').classList.remove('hidden'); document.getElementById('results-content').innerHTML = '<p class="text-red-600">Starting value cannot be zero.</p>'; return; }
       result = ((valueB - valueA) / Math.abs(valueA)) * 100;
       description = `% change from ${valueA} to ${valueB}`;
       formula = `(${valueB} - ${valueA}) / |${valueA}| x 100 = ${result.toFixed(4)}%`;
       break;
     default:
-      alert('Please select a mode.'); return;
+      document.getElementById('calc-results').classList.remove('hidden'); document.getElementById('results-content').innerHTML = '<p class="text-red-600">Please select a mode.</p>'; return;
   }
 
   let resultDisplay;

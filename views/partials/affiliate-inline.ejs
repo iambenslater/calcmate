@@ -1,0 +1,43 @@
+<%
+const affiliateTag = 'benslater-22';
+const inlineProducts = {
+  budgeting: { query: 'budget planner notebook australia', label: 'Top-Rated Budget Planners', tagline: 'Track your spending and hit your savings goals' },
+  'tax-software': { query: 'tax return organiser folder', label: 'Tax Season Essentials', tagline: 'Stay organised this tax time' },
+  'health-insurance': { query: 'blood pressure monitor', label: 'Health Monitoring Essentials', tagline: 'Keep track of your health at home' },
+  'office-furniture': { query: 'ergonomic desk chair', label: 'Work From Home Essentials', tagline: 'Upgrade your home office setup' },
+  education: { query: 'scientific calculator casio', label: 'Study Essentials', tagline: 'Tools for students and learners' },
+  'finance-books': { query: 'barefoot investor book', label: 'Australia\'s Best Finance Books', tagline: 'Build your financial literacy' },
+  savings: { query: 'savings challenge book', label: 'Savings Challenge Books', tagline: 'Make saving money fun' },
+  'home-tools': { query: 'first home buyer book australia', label: 'First Home Buyer Guides', tagline: 'Navigate the property market with confidence' },
+  fitness: { query: 'body composition scale bluetooth', label: 'Smart Body Scales', tagline: 'Track more than just weight' },
+  baby: { query: 'pregnancy journal book', label: 'Pregnancy Journals', tagline: 'Capture every milestone' },
+  general: { query: 'calculator large display', label: 'Best-Selling Calculators', tagline: 'Reliable tools for everyday maths' },
+  'car-accessories': { query: 'dash cam australia 4k', label: 'Top Dash Cams for Aussie Roads', tagline: 'Protect yourself on the road' },
+  travel: { query: 'travel adapter australia', label: 'Travel Essentials', tagline: 'Everything you need for your next trip' },
+  'office-supplies': { query: 'desk calculator large display', label: 'Office Calculators', tagline: 'Professional tools for your desk' },
+  kitchen: { query: 'kitchen scale digital grams', label: 'Digital Kitchen Scales', tagline: 'Precision for every recipe' },
+  'business-books': { query: 'small business book australia', label: 'Small Business Books', tagline: 'Grow your business smarter' },
+  'home-appliances': { query: 'smart power meter plug', label: 'Energy Saving Gadgets', tagline: 'Cut your power bill' },
+  'trade-tools': { query: 'laser level green beam', label: 'Top Trade Tools', tagline: 'Professional gear for tradies' },
+  health: { query: 'personal breathalyser australia', label: 'Personal Breathalysers', tagline: 'Know before you go' },
+  pet: { query: 'dog treat dispenser puzzle', label: 'Pet Enrichment Toys', tagline: 'Keep your furry mate entertained' },
+  fashion: { query: 'sewing tape measure body', label: 'Body Tape Measures', tagline: 'Get your measurements right' }
+};
+
+const context = typeof calc !== 'undefined' ? calc.affiliateContext : '';
+const product = inlineProducts[context] || inlineProducts.general;
+const baseUrl = 'https://www.amazon.com.au/s';
+%>
+<div class="bg-gold-light rounded-xl p-5 mb-8 border border-gold/30">
+  <div class="flex items-start gap-4">
+    <div class="text-3xl">🛒</div>
+    <div class="flex-1">
+      <h3 class="font-bold text-navy text-sm mb-1"><%= product.label %></h3>
+      <p class="text-xs text-gray-600 mb-3"><%= product.tagline %></p>
+      <a href="<%= baseUrl %>?k=<%= encodeURIComponent(product.query) %>&tag=<%= affiliateTag %>" target="_blank" rel="nofollow noopener" class="inline-block px-4 py-2 bg-gold text-navy text-xs font-bold rounded-lg hover:bg-yellow-400 transition">
+        Shop on Amazon →
+      </a>
+    </div>
+  </div>
+  <p class="text-[10px] text-gray-400 mt-2">As an Amazon Associate, CalcMate earns from qualifying purchases.</p>
+</div>

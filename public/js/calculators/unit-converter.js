@@ -4,8 +4,8 @@ function calculate() {
   const fromUnit = document.getElementById('input-fromUnit').value;
   const toUnit = document.getElementById('input-toUnit').value;
 
-  if (isNaN(inputValue)) { alert('Please enter a valid number.'); return; }
-  if (!category || !fromUnit || !toUnit) { alert('Please select all fields.'); return; }
+  if (isNaN(inputValue)) { document.getElementById('calc-results').classList.remove('hidden'); document.getElementById('results-content').innerHTML = '<p class="text-red-600">Please enter a valid number.</p>'; return; }
+  if (!category || !fromUnit || !toUnit) { document.getElementById('calc-results').classList.remove('hidden'); document.getElementById('results-content').innerHTML = '<p class="text-red-600">Please select all fields.</p>'; return; }
 
   // Conversion factors to base unit per category
   const conversions = {
@@ -47,13 +47,13 @@ function calculate() {
   };
 
   const cat = conversions[category];
-  if (!cat) { alert('Unknown category.'); return; }
+  if (!cat) { document.getElementById('calc-results').classList.remove('hidden'); document.getElementById('results-content').innerHTML = '<p class="text-red-600">Unknown category.</p>'; return; }
 
   const fromFactor = cat.units[fromUnit];
   const toFactor = cat.units[toUnit];
 
   if (fromFactor === undefined || toFactor === undefined) {
-    alert('Unknown unit. Please select valid units for this category.');
+    document.getElementById('calc-results').classList.remove('hidden'); document.getElementById('results-content').innerHTML = '<p class="text-red-600">Unknown unit. Please select valid units for this category.</p>';
     return;
   }
 

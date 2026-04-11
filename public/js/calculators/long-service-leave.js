@@ -5,7 +5,7 @@ function calculate() {
   const weeklyPayRate = parseFloat(document.getElementById('input-payRate').value) || 0;
 
   if (!state || yearsOfService <= 0 || weeklyPayRate <= 0) {
-    alert('Please fill in all fields.');
+    document.getElementById('calc-results').classList.remove('hidden'); document.getElementById('results-content').innerHTML = '<p class="text-red-600">Please fill in all fields.</p>';
     return;
   }
 
@@ -23,7 +23,7 @@ function calculate() {
   };
 
   const rule = rules[state];
-  if (!rule) { alert('Unknown state.'); return; }
+  if (!rule) { document.getElementById('calc-results').classList.remove('hidden'); document.getElementById('results-content').innerHTML = '<p class="text-red-600">Unknown state.</p>'; return; }
 
   const ftRatio = hoursPerWeek / 38;
   const totalWeeksEntitlement = yearsOfService * rule.accrualPerYear * ftRatio;

@@ -2,7 +2,7 @@ function calculate() {
   const year = document.getElementById('input-year').value;
   const state = (document.getElementById('input-state').value || '').toUpperCase();
 
-  if (!year || !state) { alert('Please select a year and state.'); return; }
+  if (!year || !state) { document.getElementById('calc-results').classList.remove('hidden'); document.getElementById('results-content').innerHTML = '<p class="text-red-600">Please select a year and state.</p>'; return; }
 
   // National public holidays
   const national = {

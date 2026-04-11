@@ -3,7 +3,7 @@ function calculate() {
   const gender = document.querySelector('input[name="input-gender"]:checked')?.value ||
                  document.getElementById('input-gender')?.value || 'male';
 
-  if (heightCm <= 0) { alert('Please enter a valid height in cm.'); return; }
+  if (heightCm <= 0) { document.getElementById('calc-results').classList.remove('hidden'); document.getElementById('results-content').innerHTML = '<p class="text-red-600">Please enter a valid height in cm.</p>'; return; }
 
   const heightIn = heightCm / 2.54;
   const inchesOver5ft = Math.max(0, heightIn - 60);

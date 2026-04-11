@@ -5,7 +5,7 @@ function calculate() {
   const targetTimezone = document.getElementById('input-targetTimezone').value;
 
   if (!inputTime || !sourceTimezone || !targetTimezone) {
-    alert('Please fill in all fields.');
+    document.getElementById('calc-results').classList.remove('hidden'); document.getElementById('results-content').innerHTML = '<p class="text-red-600">Please fill in all fields.</p>';
     return;
   }
 
@@ -32,14 +32,14 @@ function calculate() {
   const targetOffset = offsets[targetTimezone];
 
   if (sourceOffset === undefined || targetOffset === undefined) {
-    alert('Invalid timezone selected.');
+    document.getElementById('calc-results').classList.remove('hidden'); document.getElementById('results-content').innerHTML = '<p class="text-red-600">Invalid timezone selected.</p>';
     return;
   }
 
   // Parse time (HH:MM format)
   const [hours, minutes] = inputTime.split(':').map(Number);
   if (isNaN(hours) || isNaN(minutes)) {
-    alert('Please enter a valid time.');
+    document.getElementById('calc-results').classList.remove('hidden'); document.getElementById('results-content').innerHTML = '<p class="text-red-600">Please enter a valid time.</p>';
     return;
   }
 
