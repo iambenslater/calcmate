@@ -28,7 +28,30 @@
   "url": "<%= siteUrl %>/<%= calc.category %>/<%= calc.slug %>",
   "applicationCategory": "UtilityApplication",
   "operatingSystem": "All",
-  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "AUD" }
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "AUD" },
+  "publisher": { "@type": "Organization", "name": "CalculatorMate", "url": "<%= siteUrl %>" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "<%= calc.title %>",
+  "description": "<%= calc.metaDescription || calc.description %>",
+  "url": "<%= siteUrl %>/<%= calc.category %>/<%= calc.slug %>",
+  "isPartOf": { "@type": "WebSite", "name": "CalculatorMate Australia", "url": "<%= siteUrl %>" },
+  "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "<%= siteUrl %>" },
+      { "@type": "ListItem", "position": 2, "name": "<%= categoryName %>", "item": "<%= siteUrl %>/<%= calc.category %>" },
+      { "@type": "ListItem", "position": 3, "name": "<%= calc.title %>" }
+    ]
+  },
+  "speakable": {
+    "@type": "SpeakableSpecification",
+    "cssSelector": ["h1", ".result-value"]
+  }
 }
 </script>
 <%- include('partials/header') %>
@@ -45,7 +68,8 @@
     <!-- Main content -->
     <div class="flex-1 min-w-0">
       <h1 class="text-3xl font-bold text-navy mb-2"><%= calc.title %></h1>
-      <p class="text-gray-600 mb-6"><%= calc.description %></p>
+      <p class="text-gray-600 mb-4"><%= calc.description %></p>
+      <%- include('partials/share') %>
 
       <!-- Calculator widget -->
       <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mb-8" id="calculator-widget">
