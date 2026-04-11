@@ -33,19 +33,23 @@
         "options": [
           {
             "value": "weekly",
-            "label": "Weekly"
+            "label": "Weekly",
+            "default": false
           },
           {
             "value": "fortnightly",
-            "label": "Fortnightly"
+            "label": "Fortnightly",
+            "default": false
           },
           {
             "value": "monthly",
-            "label": "Monthly"
+            "label": "Monthly",
+            "default": false
           },
           {
             "value": "annually",
-            "label": "Annually"
+            "label": "Annually",
+            "default": true
           }
         ]
       },
