@@ -195,8 +195,9 @@ Respond with JSON only, no markdown. Format:
 {"matches":[{"slug":"calculator-slug","category":"category","reason":"one-line why this is relevant","inputs":{"inputId":"value"}}],"summary":"one sentence explaining what you found"}
 
 Rules:
+- ALWAYS return matching calculators even if you can only extract some inputs — users will fill in the rest
 - Return 1-5 matches, most relevant first
-- Only include inputs you can confidently extract from the question
+- Only include inputs you can confidently extract from the question — omit uncertain ones
 - Use exact input IDs from the calculator definitions
 - For select/radio inputs, use exact option values
 - For checkbox inputs, use true/false
