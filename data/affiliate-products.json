@@ -8,7 +8,8 @@
         "price": "$15.22",
         "rating": 4.6,
         "tagline": "Weigh your portions accurately",
-        "searchFallback": "digital kitchen food scale"
+        "searchFallback": "digital kitchen food scale",
+        "image": "https://m.media-amazon.com/images/I/71eiII6MS-L._SL200_.jpg"
       },
       {
         "asin": "B0939X6TMM",
@@ -16,7 +17,8 @@
         "price": "$35.95",
         "rating": 4.3,
         "tagline": "Portion control made easy",
-        "searchFallback": "meal prep containers bpa free"
+        "searchFallback": "meal prep containers bpa free",
+        "image": "https://m.media-amazon.com/images/I/91FV0WUBiwL._SL200_.jpg"
       },
       {
         "asin": "B0787GY484",
@@ -24,7 +26,8 @@
         "price": "$34.97",
         "rating": 4.4,
         "tagline": "Hit your protein targets",
-        "searchFallback": "protein powder plant based"
+        "searchFallback": "protein powder plant based",
+        "image": "https://m.media-amazon.com/images/I/71wEz88mbqL._SL200_.jpg"
       },
       {
         "asin": "B0DKB4MRFF",
@@ -32,7 +35,8 @@
         "price": "$24.99",
         "rating": 4.6,
         "tagline": "USB rechargeable, stainless steel",
-        "searchFallback": "kitchen scale rechargeable"
+        "searchFallback": "kitchen scale rechargeable",
+        "image": "https://m.media-amazon.com/images/I/61KuOU2tLGL._SL200_.jpg"
       }
     ],
     "fitness": [
@@ -42,7 +46,8 @@
         "price": "$29.99",
         "rating": 4.6,
         "tagline": "Track 13 body metrics via app",
-        "searchFallback": "body composition scale bluetooth"
+        "searchFallback": "body composition scale bluetooth",
+        "image": "https://m.media-amazon.com/images/I/61TzXwG6vnL._SL200_.jpg"
       },
       {
         "asin": "B07T3K157H",
@@ -50,7 +55,8 @@
         "price": "$18.99",
         "rating": 4.4,
         "tagline": "Home workouts sorted",
-        "searchFallback": "resistance bands set exercise"
+        "searchFallback": "resistance bands set exercise",
+        "image": "https://m.media-amazon.com/images/I/61E4dquh8YL._SL200_.jpg"
       },
       {
         "asin": "B08D9CBZDZ",
@@ -58,7 +64,8 @@
         "price": "$50.95",
         "rating": 4.6,
         "tagline": "Natural latex, multiple resistance levels",
-        "searchFallback": "power bands resistance set"
+        "searchFallback": "power bands resistance set",
+        "image": "https://m.media-amazon.com/images/I/61sJW2jZbDL._SL200_.jpg"
       },
       {
         "asin": "B087G9R27X",
@@ -66,7 +73,8 @@
         "price": "$33.99",
         "rating": 4.7,
         "tagline": "Syncs with Apple Health & Fitbit",
-        "searchFallback": "smart scale body weight"
+        "searchFallback": "smart scale body weight",
+        "image": "https://m.media-amazon.com/images/I/61qAsymO0RL._SL200_.jpg"
       }
     ],
     "finance-books": [
@@ -76,15 +84,17 @@
         "price": "$19.00",
         "rating": 4.8,
         "tagline": "#1 Australian finance book, 8K+ reviews",
-        "searchFallback": "barefoot investor book"
+        "searchFallback": "barefoot investor book",
+        "image": "https://m.media-amazon.com/images/I/81MNNaYbJML._SL200_.jpg"
       },
       {
         "asin": "B0DPDF9M3P",
         "title": "Monthly Budget Planner & Expense Tracker",
         "price": "$10.99",
-        "rating": 5.0,
+        "rating": 5,
         "tagline": "Track every dollar, Prime eligible",
-        "searchFallback": "budget planner notebook"
+        "searchFallback": "budget planner notebook",
+        "image": "https://m.media-amazon.com/images/I/61SZ1B2+nmL._SL200_.jpg"
       },
       {
         "asin": "0730396533",
@@ -92,7 +102,8 @@
         "price": "$31.19",
         "rating": 4.4,
         "tagline": "Australian share market guide",
-        "searchFallback": "share investing australia"
+        "searchFallback": "share investing australia",
+        "image": "https://m.media-amazon.com/images/I/61FBM9BFDNL._SL200_.jpg"
       },
       {
         "asin": "1460763653",
@@ -100,7 +111,8 @@
         "price": "$19.00",
         "rating": 4.7,
         "tagline": "Teach your kids about money",
-        "searchFallback": "barefoot kids book"
+        "searchFallback": "barefoot kids book",
+        "image": "https://m.media-amazon.com/images/I/812HJ8Ry6VL._SL200_.jpg"
       }
     ],
     "tax-software": [
@@ -110,7 +122,8 @@
         "price": "$12.90",
         "rating": 4.7,
         "tagline": "Keep your tax receipts sorted",
-        "searchFallback": "receipt organiser folder"
+        "searchFallback": "receipt organiser folder",
+        "image": "https://m.media-amazon.com/images/I/71zuXv3jJPL._SL200_.jpg"
       },
       {
         "asin": "B0D3HKRX27",
@@ -118,7 +131,8 @@
         "price": "$11.98",
         "rating": 4.5,
         "tagline": "Monthly tabs for easy tax prep",
-        "searchFallback": "tax file organiser expandable"
+        "searchFallback": "tax file organiser expandable",
+        "image": "https://m.media-amazon.com/images/I/51Yb3eEJbXL._SL200_.jpg"
       },
       {
         "asin": "073039753X",
@@ -126,7 +140,8 @@
         "price": "$19.00",
         "rating": 4.8,
         "tagline": "Australia's #1 money book",
-        "searchFallback": "barefoot investor book"
+        "searchFallback": "barefoot investor book",
+        "image": "https://m.media-amazon.com/images/I/81MNNaYbJML._SL200_.jpg"
       },
       {
         "asin": "B082P6TTMP",
@@ -134,7 +149,8 @@
         "price": "$27.89",
         "rating": 4.4,
         "tagline": "8.2K reviews, reliable workhorse",
-        "searchFallback": "casio scientific calculator"
+        "searchFallback": "casio scientific calculator",
+        "image": "https://m.media-amazon.com/images/I/61w1PMHiZoL._SL200_.jpg"
       }
     ],
     "budgeting": [
@@ -142,9 +158,10 @@
         "asin": "B0DPDF9M3P",
         "title": "Monthly Budget Planner & Expense Tracker",
         "price": "$10.99",
-        "rating": 5.0,
+        "rating": 5,
         "tagline": "Finance organiser with expense tracker",
-        "searchFallback": "budget planner notebook"
+        "searchFallback": "budget planner notebook",
+        "image": "https://m.media-amazon.com/images/I/61SZ1B2+nmL._SL200_.jpg"
       },
       {
         "asin": "073039753X",
@@ -152,7 +169,8 @@
         "price": "$19.00",
         "rating": 4.8,
         "tagline": "Step-by-step money management",
-        "searchFallback": "barefoot investor book"
+        "searchFallback": "barefoot investor book",
+        "image": "https://m.media-amazon.com/images/I/81MNNaYbJML._SL200_.jpg"
       },
       {
         "asin": "B0B1Q4VGWL",
@@ -160,7 +178,8 @@
         "price": "$12.90",
         "rating": 4.7,
         "tagline": "Organise bills, receipts, statements",
-        "searchFallback": "accordion file organiser"
+        "searchFallback": "accordion file organiser",
+        "image": "https://m.media-amazon.com/images/I/71zuXv3jJPL._SL200_.jpg"
       }
     ],
     "mortgage": [
@@ -170,7 +189,8 @@
         "price": "$17.35",
         "rating": 4.4,
         "tagline": "First home buyer's bible",
-        "searchFallback": "buying property australia book"
+        "searchFallback": "buying property australia book",
+        "image": "https://m.media-amazon.com/images/I/813jlstWDlL._SL200_.jpg"
       },
       {
         "asin": "0648980499",
@@ -178,7 +198,8 @@
         "price": "$25.20",
         "rating": 4.4,
         "tagline": "Step-by-step Australian property guide",
-        "searchFallback": "home buying guide australia"
+        "searchFallback": "home buying guide australia",
+        "image": "https://m.media-amazon.com/images/I/618WFMz7oWL._SL200_.jpg"
       },
       {
         "asin": "073039753X",
@@ -186,7 +207,8 @@
         "price": "$19.00",
         "rating": 4.8,
         "tagline": "Sort your finances before buying",
-        "searchFallback": "barefoot investor book"
+        "searchFallback": "barefoot investor book",
+        "image": "https://m.media-amazon.com/images/I/81MNNaYbJML._SL200_.jpg"
       },
       {
         "asin": "B0CNW3C7YN",
@@ -194,7 +216,8 @@
         "price": "$39.87",
         "rating": 4.8,
         "tagline": "Protect your mortgage docs",
-        "searchFallback": "fireproof document bag"
+        "searchFallback": "fireproof document bag",
+        "image": "https://m.media-amazon.com/images/I/8171xGLRbBL._SL200_.jpg"
       }
     ],
     "savings": [
@@ -204,15 +227,17 @@
         "price": "$19.00",
         "rating": 4.8,
         "tagline": "The savings system that works",
-        "searchFallback": "barefoot investor book"
+        "searchFallback": "barefoot investor book",
+        "image": "https://m.media-amazon.com/images/I/81MNNaYbJML._SL200_.jpg"
       },
       {
         "asin": "B0DPDF9M3P",
         "title": "Monthly Budget Planner & Expense Tracker",
         "price": "$10.99",
-        "rating": 5.0,
+        "rating": 5,
         "tagline": "Track your savings goals",
-        "searchFallback": "budget planner tracker"
+        "searchFallback": "budget planner tracker",
+        "image": "https://m.media-amazon.com/images/I/61SZ1B2+nmL._SL200_.jpg"
       },
       {
         "asin": "0730396533",
@@ -220,7 +245,8 @@
         "price": "$31.19",
         "rating": 4.4,
         "tagline": "Make your savings work harder",
-        "searchFallback": "investing for beginners australia"
+        "searchFallback": "investing for beginners australia",
+        "image": "https://m.media-amazon.com/images/I/61FBM9BFDNL._SL200_.jpg"
       }
     ],
     "investment": [
@@ -230,7 +256,8 @@
         "price": "$31.19",
         "rating": 4.4,
         "tagline": "Australian share market starter guide",
-        "searchFallback": "share investing australia"
+        "searchFallback": "share investing australia",
+        "image": "https://m.media-amazon.com/images/I/61FBM9BFDNL._SL200_.jpg"
       },
       {
         "asin": "073039753X",
@@ -238,15 +265,17 @@
         "price": "$19.00",
         "rating": 4.8,
         "tagline": "Australia's #1 money book",
-        "searchFallback": "barefoot investor"
+        "searchFallback": "barefoot investor",
+        "image": "https://m.media-amazon.com/images/I/81MNNaYbJML._SL200_.jpg"
       },
       {
         "asin": "B0DPDF9M3P",
         "title": "Monthly Budget Planner & Expense Tracker",
         "price": "$10.99",
-        "rating": 5.0,
+        "rating": 5,
         "tagline": "Track investments and expenses",
-        "searchFallback": "financial planner notebook"
+        "searchFallback": "financial planner notebook",
+        "image": "https://m.media-amazon.com/images/I/61SZ1B2+nmL._SL200_.jpg"
       }
     ],
     "car-accessories": [
@@ -256,7 +285,8 @@
         "price": "$62.99",
         "rating": 4.9,
         "tagline": "Mini dashcam with 32GB card included",
-        "searchFallback": "dash cam 2k australia"
+        "searchFallback": "dash cam 2k australia",
+        "image": "https://m.media-amazon.com/images/I/71iRtoR66LL._SL200_.jpg"
       },
       {
         "asin": "B0FBX2L9N9",
@@ -264,7 +294,8 @@
         "price": "$158.99",
         "rating": 4.8,
         "tagline": "Starlight night vision, front + rear",
-        "searchFallback": "dash cam front and rear 4k"
+        "searchFallback": "dash cam front and rear 4k",
+        "image": "https://m.media-amazon.com/images/I/71bQ4tNE9RL._SL200_.jpg"
       },
       {
         "asin": "B0FPD3HD9N",
@@ -272,7 +303,8 @@
         "price": "$161.49",
         "rating": 4.7,
         "tagline": "Front, rear & cabin - 699 reviews",
-        "searchFallback": "3 channel dash cam"
+        "searchFallback": "3 channel dash cam",
+        "image": "https://m.media-amazon.com/images/I/81H9FHMW3UL._SL200_.jpg"
       }
     ],
     "car-loan": [
@@ -282,7 +314,8 @@
         "price": "$62.99",
         "rating": 4.9,
         "tagline": "Protect your new investment",
-        "searchFallback": "dash cam australia"
+        "searchFallback": "dash cam australia",
+        "image": "https://m.media-amazon.com/images/I/71iRtoR66LL._SL200_.jpg"
       },
       {
         "asin": "073039753X",
@@ -290,7 +323,8 @@
         "price": "$19.00",
         "rating": 4.8,
         "tagline": "Smart finance before you sign",
-        "searchFallback": "barefoot investor book"
+        "searchFallback": "barefoot investor book",
+        "image": "https://m.media-amazon.com/images/I/81MNNaYbJML._SL200_.jpg"
       },
       {
         "asin": "B0CNW3C7YN",
@@ -298,7 +332,8 @@
         "price": "$39.87",
         "rating": 4.8,
         "tagline": "Store your loan and rego docs safely",
-        "searchFallback": "fireproof document bag"
+        "searchFallback": "fireproof document bag",
+        "image": "https://m.media-amazon.com/images/I/8171xGLRbBL._SL200_.jpg"
       }
     ],
     "trade-tools": [
@@ -308,7 +343,8 @@
         "price": "$59.99",
         "rating": null,
         "tagline": "Green beam cross line, brightness adjust",
-        "searchFallback": "laser level green beam tripod"
+        "searchFallback": "laser level green beam tripod",
+        "image": "https://m.media-amazon.com/images/I/6148RBnK+FL._SL200_.jpg"
       },
       {
         "asin": "B09B28HJK2",
@@ -316,7 +352,8 @@
         "price": "$223.65",
         "rating": 4.4,
         "tagline": "4x360 green cross line, pro grade",
-        "searchFallback": "huepar laser level 16 lines"
+        "searchFallback": "huepar laser level 16 lines",
+        "image": "https://m.media-amazon.com/images/I/71BnTNk7f6L._SL200_.jpg"
       },
       {
         "asin": "B082P6TTMP",
@@ -324,7 +361,8 @@
         "price": "$27.89",
         "rating": 4.4,
         "tagline": "Quick material calcs on site",
-        "searchFallback": "casio scientific calculator"
+        "searchFallback": "casio scientific calculator",
+        "image": "https://m.media-amazon.com/images/I/61w1PMHiZoL._SL200_.jpg"
       }
     ],
     "home-appliances": [
@@ -334,7 +372,8 @@
         "price": "$22.00",
         "rating": 4.7,
         "tagline": "Energy monitoring per device, 512 reviews",
-        "searchFallback": "smart plug energy monitoring"
+        "searchFallback": "smart plug energy monitoring",
+        "image": "https://m.media-amazon.com/images/I/31X-hBbub5L._SL200_.jpg"
       },
       {
         "asin": "B0DPMR35HW",
@@ -342,7 +381,8 @@
         "price": "$49.99",
         "rating": 4.4,
         "tagline": "Energy monitoring + Home Automation",
-        "searchFallback": "smart plug energy monitor 2 pack"
+        "searchFallback": "smart plug energy monitor 2 pack",
+        "image": "https://m.media-amazon.com/images/I/51yKvtS53gL._SL200_.jpg"
       },
       {
         "asin": "B0CGNR2MP5",
@@ -350,7 +390,8 @@
         "price": "$36.59",
         "rating": 4.4,
         "tagline": "Whole-home power consumption monitor",
-        "searchFallback": "smart energy meter wifi"
+        "searchFallback": "smart energy meter wifi",
+        "image": "https://m.media-amazon.com/images/I/51pIJP9CjJL._SL200_.jpg"
       }
     ],
     "home-tools": [
@@ -360,7 +401,8 @@
         "price": "$39.87",
         "rating": 4.8,
         "tagline": "Protect important docs during reno",
-        "searchFallback": "fireproof document bag"
+        "searchFallback": "fireproof document bag",
+        "image": "https://m.media-amazon.com/images/I/8171xGLRbBL._SL200_.jpg"
       },
       {
         "asin": "B082P6TTMP",
@@ -368,7 +410,8 @@
         "price": "$27.89",
         "rating": 4.4,
         "tagline": "Calculate paint, timber, materials",
-        "searchFallback": "casio scientific calculator"
+        "searchFallback": "casio scientific calculator",
+        "image": "https://m.media-amazon.com/images/I/61w1PMHiZoL._SL200_.jpg"
       }
     ],
     "kitchen": [
@@ -378,7 +421,8 @@
         "price": "$15.22",
         "rating": 4.6,
         "tagline": "Precise to 1g, batteries included",
-        "searchFallback": "digital kitchen scale"
+        "searchFallback": "digital kitchen scale",
+        "image": "https://m.media-amazon.com/images/I/71eiII6MS-L._SL200_.jpg"
       },
       {
         "asin": "B0BAGAIL",
@@ -394,7 +438,8 @@
         "price": "$24.99",
         "rating": 4.6,
         "tagline": "USB rechargeable, stainless steel",
-        "searchFallback": "kitchen scale rechargeable 15kg"
+        "searchFallback": "kitchen scale rechargeable 15kg",
+        "image": "https://m.media-amazon.com/images/I/61KuOU2tLGL._SL200_.jpg"
       }
     ],
     "baby": [
@@ -404,7 +449,8 @@
         "price": "$24.96",
         "rating": 4.7,
         "tagline": "Track every milestone",
-        "searchFallback": "pregnancy journal book"
+        "searchFallback": "pregnancy journal book",
+        "image": "https://m.media-amazon.com/images/I/81i2Tb2YDAL._SL200_.jpg"
       },
       {
         "asin": "B0BC9CC5RB",
@@ -412,7 +458,8 @@
         "price": "$39.99",
         "rating": 4.3,
         "tagline": "WiFi camera with phone app",
-        "searchFallback": "baby monitor camera wifi"
+        "searchFallback": "baby monitor camera wifi",
+        "image": "https://m.media-amazon.com/images/I/51pPuXgFziL._SL200_.jpg"
       },
       {
         "asin": "B01N1UX8RW",
@@ -420,7 +467,8 @@
         "price": "$29.99",
         "rating": 4.6,
         "tagline": "Track pregnancy weight safely",
-        "searchFallback": "bluetooth body scale"
+        "searchFallback": "bluetooth body scale",
+        "image": "https://m.media-amazon.com/images/I/61TzXwG6vnL._SL200_.jpg"
       }
     ],
     "education": [
@@ -430,7 +478,8 @@
         "price": "$27.89",
         "rating": 4.4,
         "tagline": "8.2K reviews, exam approved",
-        "searchFallback": "casio scientific calculator"
+        "searchFallback": "casio scientific calculator",
+        "image": "https://m.media-amazon.com/images/I/61w1PMHiZoL._SL200_.jpg"
       },
       {
         "asin": "B084TFV38M",
@@ -438,7 +487,8 @@
         "price": "$27.00",
         "rating": 4.7,
         "tagline": "Australian curriculum approved",
-        "searchFallback": "casio fx-82au plus"
+        "searchFallback": "casio fx-82au plus",
+        "image": "https://m.media-amazon.com/images/I/81wLyAB+U1L._SL200_.jpg"
       },
       {
         "asin": "B0BD3GVXKF",
@@ -446,7 +496,8 @@
         "price": "$10.99",
         "rating": 4.1,
         "tagline": "Budget-friendly 240 functions",
-        "searchFallback": "scientific calculator cheap"
+        "searchFallback": "scientific calculator cheap",
+        "image": "https://m.media-amazon.com/images/I/51VU37pKTLL._SL200_.jpg"
       }
     ],
     "fashion": [
@@ -456,7 +507,8 @@
         "price": "$29.99",
         "rating": 4.6,
         "tagline": "Know your measurements accurately",
-        "searchFallback": "body composition scale"
+        "searchFallback": "body composition scale",
+        "image": "https://m.media-amazon.com/images/I/61TzXwG6vnL._SL200_.jpg"
       }
     ],
     "travel": [
@@ -466,7 +518,8 @@
         "price": "$29.90",
         "rating": 4.7,
         "tagline": "1.3K reviews, organise your luggage",
-        "searchFallback": "packing cubes travel set"
+        "searchFallback": "packing cubes travel set",
+        "image": "https://m.media-amazon.com/images/I/612gYzOoj1L._SL200_.jpg"
       }
     ],
     "business-books": [
@@ -476,7 +529,8 @@
         "price": "$19.00",
         "rating": 4.8,
         "tagline": "Sort your business finances",
-        "searchFallback": "barefoot investor book"
+        "searchFallback": "barefoot investor book",
+        "image": "https://m.media-amazon.com/images/I/81MNNaYbJML._SL200_.jpg"
       },
       {
         "asin": "B0B1Q4VGWL",
@@ -484,7 +538,8 @@
         "price": "$12.90",
         "rating": 4.7,
         "tagline": "Keep receipts and invoices sorted",
-        "searchFallback": "receipt organiser folder"
+        "searchFallback": "receipt organiser folder",
+        "image": "https://m.media-amazon.com/images/I/71zuXv3jJPL._SL200_.jpg"
       },
       {
         "asin": "B082P6TTMP",
@@ -492,7 +547,8 @@
         "price": "$27.89",
         "rating": 4.4,
         "tagline": "Quick business calcs",
-        "searchFallback": "casio scientific calculator"
+        "searchFallback": "casio scientific calculator",
+        "image": "https://m.media-amazon.com/images/I/61w1PMHiZoL._SL200_.jpg"
       }
     ],
     "office-furniture": [
@@ -502,7 +558,8 @@
         "price": "$45.99",
         "rating": 4.6,
         "tagline": "Ergonomic desk setup",
-        "searchFallback": "monitor stand desk riser"
+        "searchFallback": "monitor stand desk riser",
+        "image": "https://m.media-amazon.com/images/I/51zuoV2C7jL._SL200_.jpg"
       },
       {
         "asin": "B0741GJFFH",
@@ -510,7 +567,8 @@
         "price": "$39.99",
         "rating": 4.5,
         "tagline": "Desktop organiser + monitor riser",
-        "searchFallback": "monitor stand wood desk"
+        "searchFallback": "monitor stand wood desk",
+        "image": "https://m.media-amazon.com/images/I/71w0DWhsCsL._SL200_.jpg"
       }
     ],
     "office-supplies": [
@@ -520,7 +578,8 @@
         "price": "$27.89",
         "rating": 4.4,
         "tagline": "Desktop calculator for the office",
-        "searchFallback": "casio calculator"
+        "searchFallback": "casio calculator",
+        "image": "https://m.media-amazon.com/images/I/61w1PMHiZoL._SL200_.jpg"
       },
       {
         "asin": "B0B1Q4VGWL",
@@ -528,7 +587,8 @@
         "price": "$12.90",
         "rating": 4.7,
         "tagline": "Sort your desk paperwork",
-        "searchFallback": "file organiser desk"
+        "searchFallback": "file organiser desk",
+        "image": "https://m.media-amazon.com/images/I/71zuXv3jJPL._SL200_.jpg"
       }
     ],
     "pet": [
@@ -538,7 +598,8 @@
         "price": "$15.22",
         "rating": 4.6,
         "tagline": "Weigh pet food portions accurately",
-        "searchFallback": "digital scale pet food"
+        "searchFallback": "digital scale pet food",
+        "image": "https://m.media-amazon.com/images/I/71eiII6MS-L._SL200_.jpg"
       }
     ],
     "insurance": [
@@ -548,7 +609,8 @@
         "price": "$39.87",
         "rating": 4.8,
         "tagline": "Protect policies and important docs",
-        "searchFallback": "fireproof document bag"
+        "searchFallback": "fireproof document bag",
+        "image": "https://m.media-amazon.com/images/I/8171xGLRbBL._SL200_.jpg"
       },
       {
         "asin": "B08QFK76CG",
@@ -556,7 +618,8 @@
         "price": "$34.99",
         "rating": 4.4,
         "tagline": "Two sizes for different documents",
-        "searchFallback": "fireproof bag documents"
+        "searchFallback": "fireproof bag documents",
+        "image": "https://m.media-amazon.com/images/I/81kOMl6ZuKL._SL200_.jpg"
       },
       {
         "asin": "B0B1Q4VGWL",
@@ -564,7 +627,8 @@
         "price": "$12.90",
         "rating": 4.7,
         "tagline": "Organise all your policy docs",
-        "searchFallback": "file organiser accordion"
+        "searchFallback": "file organiser accordion",
+        "image": "https://m.media-amazon.com/images/I/71zuXv3jJPL._SL200_.jpg"
       }
     ],
     "health": [
@@ -574,7 +638,8 @@
         "price": "$104.92",
         "rating": 4.8,
         "tagline": "Bluetooth, irregular heartbeat detection",
-        "searchFallback": "omron blood pressure monitor"
+        "searchFallback": "omron blood pressure monitor",
+        "image": "https://m.media-amazon.com/images/I/51SQBy4kVmL._SL200_.jpg"
       },
       {
         "asin": "B01N1UX8RW",
@@ -582,7 +647,8 @@
         "price": "$29.99",
         "rating": 4.6,
         "tagline": "Track 13 body metrics via app",
-        "searchFallback": "body composition scale bluetooth"
+        "searchFallback": "body composition scale bluetooth",
+        "image": "https://m.media-amazon.com/images/I/61TzXwG6vnL._SL200_.jpg"
       },
       {
         "asin": "B09YLG7QMS",
@@ -590,7 +656,8 @@
         "price": "$42.99",
         "rating": 4.5,
         "tagline": "LED backlit, easy one-button use",
-        "searchFallback": "blood pressure monitor arm"
+        "searchFallback": "blood pressure monitor arm",
+        "image": "https://m.media-amazon.com/images/I/71LRl8oT3iL._SL200_.jpg"
       }
     ],
     "health-insurance": [
@@ -600,7 +667,8 @@
         "price": "$104.92",
         "rating": 4.8,
         "tagline": "Take charge of your health at home",
-        "searchFallback": "omron blood pressure monitor"
+        "searchFallback": "omron blood pressure monitor",
+        "image": "https://m.media-amazon.com/images/I/51SQBy4kVmL._SL200_.jpg"
       },
       {
         "asin": "B01N1UX8RW",
@@ -608,7 +676,8 @@
         "price": "$29.99",
         "rating": 4.6,
         "tagline": "Track your health metrics",
-        "searchFallback": "smart body scale bluetooth"
+        "searchFallback": "smart body scale bluetooth",
+        "image": "https://m.media-amazon.com/images/I/61TzXwG6vnL._SL200_.jpg"
       }
     ],
     "credit-cards": [
@@ -616,9 +685,10 @@
         "asin": "B0DPDF9M3P",
         "title": "Monthly Budget Planner & Expense Tracker",
         "price": "$10.99",
-        "rating": 5.0,
+        "rating": 5,
         "tagline": "Track and crush your debt",
-        "searchFallback": "debt payoff planner"
+        "searchFallback": "debt payoff planner",
+        "image": "https://m.media-amazon.com/images/I/61SZ1B2+nmL._SL200_.jpg"
       },
       {
         "asin": "073039753X",
@@ -626,7 +696,8 @@
         "price": "$19.00",
         "rating": 4.8,
         "tagline": "The debt domino strategy",
-        "searchFallback": "barefoot investor book"
+        "searchFallback": "barefoot investor book",
+        "image": "https://m.media-amazon.com/images/I/81MNNaYbJML._SL200_.jpg"
       }
     ],
     "personal-loan": [
@@ -636,15 +707,17 @@
         "price": "$19.00",
         "rating": 4.8,
         "tagline": "Before you borrow, read this",
-        "searchFallback": "barefoot investor book"
+        "searchFallback": "barefoot investor book",
+        "image": "https://m.media-amazon.com/images/I/81MNNaYbJML._SL200_.jpg"
       },
       {
         "asin": "B0DPDF9M3P",
         "title": "Monthly Budget Planner & Expense Tracker",
         "price": "$10.99",
-        "rating": 5.0,
+        "rating": 5,
         "tagline": "Plan your repayments properly",
-        "searchFallback": "budget planner repayment tracker"
+        "searchFallback": "budget planner repayment tracker",
+        "image": "https://m.media-amazon.com/images/I/61SZ1B2+nmL._SL200_.jpg"
       }
     ],
     "general": [
@@ -654,7 +727,8 @@
         "price": "$19.00",
         "rating": 4.8,
         "tagline": "Australia's #1 money book",
-        "searchFallback": "barefoot investor book"
+        "searchFallback": "barefoot investor book",
+        "image": "https://m.media-amazon.com/images/I/81MNNaYbJML._SL200_.jpg"
       },
       {
         "asin": "B082P6TTMP",
@@ -662,7 +736,8 @@
         "price": "$27.89",
         "rating": 4.4,
         "tagline": "When you need a real calculator",
-        "searchFallback": "casio scientific calculator"
+        "searchFallback": "casio scientific calculator",
+        "image": "https://m.media-amazon.com/images/I/61w1PMHiZoL._SL200_.jpg"
       },
       {
         "asin": "B01N1UX8RW",
@@ -670,7 +745,8 @@
         "price": "$29.99",
         "rating": 4.6,
         "tagline": "Know your numbers",
-        "searchFallback": "body composition scale bluetooth"
+        "searchFallback": "body composition scale bluetooth",
+        "image": "https://m.media-amazon.com/images/I/61TzXwG6vnL._SL200_.jpg"
       }
     ]
   }

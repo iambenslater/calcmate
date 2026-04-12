@@ -68,21 +68,26 @@ function formatReviewCount(n) {
     <div class="w-1 h-5 bg-gray-300 rounded-full"></div>
     <span class="text-xs font-medium text-gray-400 uppercase tracking-wider">Our pick</span>
   </div>
-  <div class="pl-3">
-    <a href="<%- pickUrl(pick) %>" target="_blank" rel="nofollow noopener" class="group" data-affiliate-product="<%= pick.asin %>" data-affiliate-position="0">
-      <h3 class="text-base font-semibold text-gray-900 group-hover:text-blue-700 transition leading-snug"><%= pick.title %></h3>
-    </a>
-    <p class="text-sm text-gray-600 mt-1 leading-relaxed"><%= reason %></p>
-    <div class="flex items-center flex-wrap gap-x-3 gap-y-1 mt-2">
-      <% if (pick.price) { %><span class="text-sm font-semibold text-gray-900"><%= pick.price %></span><% } %>
-      <% if (pick.rating) { %>
-        <span class="text-sm text-gray-500"><%= pick.rating %><span class="text-amber-500 ml-0.5"><%= '★'.repeat(Math.round(pick.rating)) %></span><% if (pick.reviewCount) { %> <span class="text-gray-400">(<%= formatReviewCount(pick.reviewCount) %> reviews)</span><% } %></span>
-      <% } %>
+  <a href="<%- pickUrl(pick) %>" target="_blank" rel="nofollow noopener" class="flex items-start gap-5 group" data-affiliate-product="<%= pick.asin %>" data-affiliate-position="0">
+    <% if (pick.image) { %>
+    <div class="shrink-0 w-24 h-24 sm:w-28 sm:h-28 flex items-center justify-center">
+      <img src="<%= pick.image %>" alt="<%= pick.title %>" class="max-w-full max-h-full object-contain" loading="lazy">
     </div>
-    <a href="<%- pickUrl(pick) %>" target="_blank" rel="nofollow noopener" class="inline-block mt-3 text-sm font-medium text-blue-700 hover:text-blue-900 transition" data-affiliate-product="<%= pick.asin %>" data-affiliate-position="0">
-      Check price on Amazon &rarr;
-    </a>
-  </div>
-  <p class="text-[10px] text-gray-300 mt-3 pl-3">We may earn a commission at no extra cost to you.</p>
+    <% } %>
+    <div class="flex-1 min-w-0">
+      <h3 class="text-base font-semibold text-gray-900 group-hover:text-blue-700 transition leading-snug"><%= pick.title %></h3>
+      <p class="text-sm text-gray-500 mt-1 leading-relaxed"><%= reason %></p>
+      <div class="flex items-center flex-wrap gap-x-3 gap-y-1 mt-2">
+        <% if (pick.price) { %><span class="text-base font-bold text-gray-900"><%= pick.price %></span><% } %>
+        <% if (pick.rating) { %>
+          <span class="text-sm text-gray-500"><%= pick.rating %><span class="text-amber-500 ml-0.5"><%= '★'.repeat(Math.round(pick.rating)) %></span><% if (pick.reviewCount) { %> <span class="text-gray-400">(<%= formatReviewCount(pick.reviewCount) %> reviews)</span><% } %></span>
+        <% } %>
+      </div>
+      <span class="inline-block mt-2 text-sm font-medium text-blue-700 group-hover:text-blue-900 transition">
+        Check price on Amazon &rarr;
+      </span>
+    </div>
+  </a>
+  <p class="text-[10px] text-gray-300 mt-3">We may earn a commission at no extra cost to you.</p>
 </div>
 <% } %>

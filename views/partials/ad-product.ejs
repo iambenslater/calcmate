@@ -50,21 +50,23 @@ function formatReviewCount(n) {
   </div>
   <div class="space-y-4">
     <% products.forEach((p, idx) => { %>
-      <div>
-        <a href="<%- productUrl(p) %>" target="_blank" rel="nofollow noopener" class="group" data-affiliate-product="<%= p.asin %>" data-affiliate-position="<%= idx + 1 %>">
-          <div class="text-sm font-medium text-gray-900 group-hover:text-blue-700 transition leading-snug"><%= p.title %></div>
-        </a>
-        <p class="text-xs text-gray-500 mt-0.5"><%= p.tagline %></p>
-        <div class="flex items-center flex-wrap gap-x-2 gap-y-0.5 mt-1">
-          <% if (p.price) { %><span class="text-sm font-semibold text-gray-900"><%= p.price %></span><% } %>
-          <% if (p.rating) { %>
-            <span class="text-xs text-gray-400"><%= p.rating %><span class="text-amber-500 ml-0.5"><%= '★'.repeat(Math.round(p.rating)) %></span><% if (p.reviewCount) { %> (<%= formatReviewCount(p.reviewCount) %>)<% } %></span>
-          <% } %>
+      <a href="<%- productUrl(p) %>" target="_blank" rel="nofollow noopener" class="flex items-start gap-3 group" data-affiliate-product="<%= p.asin %>" data-affiliate-position="<%= idx + 1 %>">
+        <% if (p.image) { %>
+        <div class="shrink-0 w-16 h-16 flex items-center justify-center">
+          <img src="<%= p.image %>" alt="<%= p.title %>" class="max-w-full max-h-full object-contain" loading="lazy">
         </div>
-        <a href="<%- productUrl(p) %>" target="_blank" rel="nofollow noopener" class="text-xs text-blue-600 hover:text-blue-800 transition mt-1 inline-block" data-affiliate-product="<%= p.asin %>" data-affiliate-position="<%= idx + 1 %>">
-          Check price on Amazon
-        </a>
-      </div>
+        <% } %>
+        <div class="flex-1 min-w-0">
+          <div class="text-sm font-medium text-gray-900 group-hover:text-blue-700 transition leading-snug"><%= p.title %></div>
+          <div class="flex items-center flex-wrap gap-x-2 gap-y-0.5 mt-1">
+            <% if (p.price) { %><span class="text-sm font-bold text-gray-900"><%= p.price %></span><% } %>
+            <% if (p.rating) { %>
+              <span class="text-xs text-gray-400"><%= p.rating %><span class="text-amber-500 ml-0.5"><%= '★'.repeat(Math.round(p.rating)) %></span><% if (p.reviewCount) { %> (<%= formatReviewCount(p.reviewCount) %>)<% } %></span>
+            <% } %>
+          </div>
+          <span class="text-xs text-blue-600 group-hover:text-blue-800 transition mt-1 inline-block">Check price</span>
+        </div>
+      </a>
     <% }) %>
   </div>
   <p class="text-[9px] text-gray-300 mt-3">We may earn a commission at no extra cost to you.</p>
