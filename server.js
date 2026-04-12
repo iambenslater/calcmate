@@ -10,6 +10,18 @@ const PORT = process.env.PORT || 3000;
 // Load calculator registry
 const calculators = require('./data/calculators.json');
 
+// Load affiliate product catalog
+let affiliateProducts = { products: {} };
+try {
+  affiliateProducts = require('./data/affiliate-products.json');
+} catch(e) { /* no product catalog yet */ }
+
+// Load affiliate click stats (if available)
+let affiliateStats = {};
+try {
+  affiliateStats = require('./data/affiliate-stats.json');
+} catch(e) { /* no stats yet */ }
+
 // Build lookup maps
 const calcBySlug = {};
 const calcsByCategory = {};
@@ -115,6 +127,8 @@ app.use((req, res, next) => {
   res.locals.calcsByCategory = calcsByCategory;
   res.locals.categoryMeta = categoryMeta;
   res.locals.articles = articles;
+  res.locals.affiliateProducts = affiliateProducts;
+  res.locals.affiliateStats = affiliateStats;
   res.locals.currentPath = req.path;
   res.locals.siteUrl = process.env.SITE_URL || 'https://calculatormate.com.au';
   next();

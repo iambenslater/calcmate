@@ -1,34 +1,32 @@
 <%
 // Renders curated Amazon product cards from affiliate-products.json
-// Uses direct ASIN links for higher conversion, falls back to search links
+// Data passed via res.locals from server.js (no require() in EJS)
 const affiliateTag = 'benslater-22';
 
 let products = [];
 let affiliateCtx = 'general';
 try {
-  const productData = require(require('path').join(process.cwd(), 'data', 'affiliate-products.json'));
+  const productData = typeof affiliateProducts !== 'undefined' ? affiliateProducts : { products: {} };
   affiliateCtx = typeof calc !== 'undefined' ? (calc.affiliateContext || calc.category || 'general')
     : (typeof affiliateContext !== 'undefined' ? affiliateContext : 'general');
   products = (productData.products && productData.products[affiliateCtx]) || [];
   if (!products.length) products = productData.products['general'] || [];
 
   // Load click stats if available — boost products with higher CTR
-  try {
-    const stats = require(require('path').join(process.cwd(), 'data', 'affiliate-stats.json'));
-    if (stats.byProduct) {
-      products = products.map(p => {
-        const s = stats.byProduct[p.asin];
-        return { ...p, clicks: s ? s.clicks : 0 };
-      });
-      // Sort by clicks descending (most clicked first), then by rating
-      products.sort((a, b) => (b.clicks - a.clicks) || ((b.rating || 0) - (a.rating || 0)));
-    }
-  } catch(e) { /* no stats yet, use default order */ }
+  const stats = typeof affiliateStats !== 'undefined' ? affiliateStats : {};
+  if (stats.byProduct) {
+    products = products.map(p => {
+      const s = stats.byProduct[p.asin];
+      return { ...p, clicks: s ? s.clicks : 0 };
+    });
+    // Sort by clicks descending (most clicked first), then by rating
+    products.sort((a, b) => (b.clicks - a.clicks) || ((b.rating || 0) - (a.rating || 0)));
+  }
 
   // Show max 3 products in sidebar
   products = products.slice(0, 3);
 } catch(e) {
-  // No product cache — will fall back to search links
+  // No product data — will fall back to search links
 }
 
 // Build product URL: direct ASIN link or search fallback

@@ -2,10 +2,11 @@
 const affiliateTag = 'benslater-22';
 
 // Load curated product for this context — show the #1 pick as the inline CTA
+// Data passed via res.locals from server.js (no require() in EJS)
 let inlineProduct = null;
 let affiliateCtx = 'general';
 try {
-  const productData = require(require('path').join(process.cwd(), 'data', 'affiliate-products.json'));
+  const productData = typeof affiliateProducts !== 'undefined' ? affiliateProducts : { products: {} };
   affiliateCtx = typeof calc !== 'undefined' ? (calc.affiliateContext || calc.category || 'general')
     : (typeof affiliateContext !== 'undefined' ? affiliateContext : 'general');
   const products = (productData.products && productData.products[affiliateCtx]) || productData.products['general'] || [];
