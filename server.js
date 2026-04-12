@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const fs = require('fs');
 const compression = require('compression');
 const helmet = require('helmet');
 
@@ -120,6 +121,122 @@ app.get('/api/search', (req, res) => {
     url: `/${c.category}/${c.slug}`
   }));
   res.json(results);
+});
+
+// AI-powered natural language calculator search
+const AI_BUDGET_FILE = path.join(__dirname, 'data', 'ai-query-count.json');
+const AI_QUERY_LIMIT = 50000; // ~$50 at $0.001/query
+
+function getAIQueryCount() {
+  try {
+    const data = JSON.parse(fs.readFileSync(AI_BUDGET_FILE, 'utf8'));
+    return data.count || 0;
+  } catch { return 0; }
+}
+function incrementAIQueryCount() {
+  const count = getAIQueryCount() + 1;
+  fs.writeFileSync(AI_BUDGET_FILE, JSON.stringify({ count, lastQuery: new Date().toISOString() }));
+  return count;
+}
+
+// Rate limiter: 10 req/min per IP
+const aiRateLimit = {};
+function checkAIRateLimit(ip) {
+  const now = Date.now();
+  if (!aiRateLimit[ip]) aiRateLimit[ip] = [];
+  aiRateLimit[ip] = aiRateLimit[ip].filter(t => now - t < 60000);
+  if (aiRateLimit[ip].length >= 10) return false;
+  aiRateLimit[ip].push(now);
+  return true;
+}
+
+// Build compressed calculator index for AI prompt
+const calcIndex = calculators.map(c => {
+  const inputs = (c.inputs || []).map(i => {
+    let desc = `${i.id}(${i.type}`;
+    if (i.options) desc += ':' + i.options.map(o => o.value).join('/');
+    if (i.prefix) desc += ',prefix:' + i.prefix;
+    if (i.suffix) desc += ',suffix:' + i.suffix;
+    desc += ')';
+    return desc;
+  }).join(', ');
+  return `${c.category}/${c.slug}: ${c.title} — ${c.description} | Inputs: ${inputs}`;
+}).join('\n');
+
+app.post('/api/ai-search', express.json(), async (req, res) => {
+  const query = (req.body.query || '').trim();
+  if (!query || query.length < 10) return res.json({ error: 'Please ask a more detailed question.' });
+  if (query.length > 500) return res.json({ error: 'Question too long.' });
+
+  // Budget check
+  if (getAIQueryCount() >= AI_QUERY_LIMIT) {
+    return res.json({ error: 'AI search is temporarily unavailable. Please use the keyword search.' });
+  }
+
+  // Rate limit
+  const ip = req.ip || req.connection.remoteAddress;
+  if (!checkAIRateLimit(ip)) {
+    return res.json({ error: 'Too many requests. Please wait a moment.' });
+  }
+
+  try {
+    const Anthropic = require('@anthropic-ai/sdk');
+    const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
+
+    const response = await client.messages.create({
+      model: 'claude-haiku-4-5-20251001',
+      max_tokens: 500,
+      system: `You are CalculatorMate's AI assistant. Given a user's question, identify which Australian calculators are relevant and extract input values from their question.
+
+Available calculators (category/slug: title — description | Inputs):
+${calcIndex}
+
+Respond with JSON only, no markdown. Format:
+{"matches":[{"slug":"calculator-slug","category":"category","reason":"one-line why this is relevant","inputs":{"inputId":"value"}}],"summary":"one sentence explaining what you found"}
+
+Rules:
+- Return 1-5 matches, most relevant first
+- Only include inputs you can confidently extract from the question
+- Use exact input IDs from the calculator definitions
+- For select/radio inputs, use exact option values
+- For checkbox inputs, use true/false
+- Australian context: amounts in AUD, states as NSW/VIC/QLD etc
+- If the question isn't about calculations, return {"matches":[],"summary":"I can only help with calculator questions."}`,
+      messages: [{ role: 'user', content: query }]
+    });
+
+    incrementAIQueryCount();
+
+    const text = response.content[0].text;
+    let parsed;
+    try {
+      parsed = JSON.parse(text);
+    } catch {
+      // Try to extract JSON from response
+      const jsonMatch = text.match(/\{[\s\S]*\}/);
+      parsed = jsonMatch ? JSON.parse(jsonMatch[0]) : { matches: [], summary: 'Could not parse response.' };
+    }
+
+    // Enrich matches with full calculator data
+    if (parsed.matches) {
+      parsed.matches = parsed.matches.map(m => {
+        const calc = calcBySlug[m.slug];
+        if (!calc) return null;
+        return {
+          ...m,
+          title: calc.title,
+          description: calc.description,
+          url: `/${calc.category}/${calc.slug}`
+        };
+      }).filter(Boolean).slice(0, 5);
+    }
+
+    parsed.remaining = AI_QUERY_LIMIT - getAIQueryCount();
+    res.json(parsed);
+  } catch (err) {
+    console.error('AI search error:', err.message);
+    res.json({ error: 'AI search is temporarily unavailable. Please use the keyword search.' });
+  }
 });
 
 // Sitemap

@@ -316,5 +316,44 @@
       }
     });
   })();
+
+  // Pre-fill from URL params (AI search or shareable links)
+  (function() {
+    var params = new URLSearchParams(window.location.search);
+    if (!params.get('prefill')) return;
+    var filled = false;
+    params.forEach(function(value, key) {
+      if (key === 'prefill') return;
+      // Try number/text input
+      var el = document.getElementById('input-' + key);
+      if (el) {
+        if (el.type === 'checkbox') {
+          el.checked = (value === 'true' || value === '1' || value === 'yes');
+        } else if (el.tagName === 'SELECT') {
+          el.value = value;
+        } else {
+          el.value = value;
+        }
+        filled = true;
+        return;
+      }
+      // Try radio
+      var radio = document.querySelector('input[name="input-' + key + '"][value="' + value + '"]');
+      if (radio) { radio.checked = true; filled = true; }
+    });
+    // Auto-calculate if we filled anything
+    if (filled) {
+      setTimeout(function() {
+        if (typeof calculate === 'function') {
+          calculate();
+          if (typeof window.onCalculateComplete === 'function') window.onCalculateComplete();
+          setTimeout(function() {
+            var r = document.getElementById('calc-results');
+            if (r) r.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }, 200);
+        }
+      }, 300);
+    }
+  })();
 </script>
 <%- include('partials/tail') %>
