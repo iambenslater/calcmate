@@ -1,49 +1,57 @@
 (function() {
   var input = document.getElementById('hero-search');
-  var btn = document.getElementById('ai-search-btn');
   var keywordResults = document.getElementById('hero-search-results');
   var results = document.getElementById('ai-results');
   var loading = document.getElementById('ai-loading');
-  if (!input || !btn) return;
+  var hint = document.getElementById('hero-hint');
+  if (!input) return;
+
+  var defaultHint = hint ? hint.textContent : '';
+
+  // Global flag search.js checks to suppress keyword results
+  window._aiMode = false;
 
   function looksLikeQuestion(q) {
     if (q.indexOf('?') !== -1) return true;
     var starters = /^(what|how|can|do|should|will|is|are|if i|i want|i need|i earn|i make|my |calculate my|show me|help me|tell me|i'm |im |i am )/i;
     if (starters.test(q)) return true;
-    // Contains a dollar amount + other words = likely a question
     if (/\$[\d,]+/.test(q) && q.split(/\s+/).length >= 4) return true;
     return false;
   }
 
-  // Show/hide Ask Mate button based on input
+  // Detect question vs keyword and update UI
   input.addEventListener('input', function() {
     var q = input.value.trim();
     if (q.length >= 8 && looksLikeQuestion(q)) {
-      btn.classList.remove('hidden');
+      window._aiMode = true;
+      keywordResults.classList.add('hidden');
+      keywordResults.innerHTML = '';
+      if (hint) {
+        hint.textContent = 'Press Enter to ask Mate';
+        hint.classList.remove('text-gray-400');
+        hint.classList.add('text-gold', 'font-medium');
+      }
     } else {
-      btn.classList.add('hidden');
+      window._aiMode = false;
+      if (hint) {
+        hint.textContent = defaultHint;
+        hint.classList.add('text-gray-400');
+        hint.classList.remove('text-gold', 'font-medium');
+      }
     }
-    // Hide AI results when user changes input
     results.classList.add('hidden');
   });
 
-  // Enter key: if it looks like a question, do AI search instead of keyword
+  // Enter key: if question detected, do AI search
   input.addEventListener('keydown', function(e) {
     if (e.key === 'Enter') {
       var q = input.value.trim();
       if (q.length >= 8 && looksLikeQuestion(q)) {
         e.preventDefault();
-        // Hide keyword results
         keywordResults.classList.add('hidden');
         doSearch();
       }
-      // Otherwise, let the default keyword search handle it
     }
-  });
-
-  btn.addEventListener('click', function() {
-    keywordResults.classList.add('hidden');
-    doSearch();
   });
 
   function doSearch() {
@@ -54,8 +62,9 @@
       return;
     }
 
-    btn.disabled = true;
-    btn.textContent = 'Thinking...';
+    if (hint) {
+      hint.textContent = 'Thinking...';
+    }
     loading.classList.remove('hidden');
     results.classList.add('hidden');
 
@@ -67,8 +76,11 @@
     .then(function(r) { return r.json(); })
     .then(function(data) {
       loading.classList.add('hidden');
-      btn.disabled = false;
-      btn.textContent = 'Ask Mate';
+      if (hint) {
+        hint.textContent = defaultHint;
+        hint.classList.add('text-gray-400');
+        hint.classList.remove('text-gold', 'font-medium');
+      }
 
       if (data.error) {
         results.innerHTML = '<p class="text-sm text-red-500">' + escHtml(data.error) + '</p>';
@@ -114,8 +126,11 @@
     })
     .catch(function() {
       loading.classList.add('hidden');
-      btn.disabled = false;
-      btn.textContent = 'Ask Mate';
+      if (hint) {
+        hint.textContent = defaultHint;
+        hint.classList.add('text-gray-400');
+        hint.classList.remove('text-gold', 'font-medium');
+      }
       results.innerHTML = '<p class="text-sm text-red-500">Something went wrong. Please try a keyword search instead.</p>';
       results.classList.remove('hidden');
     });

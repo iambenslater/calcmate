@@ -11,6 +11,8 @@
       clearTimeout(debounceTimer);
       const q = this.value.trim();
       if (q.length < 2) { results.classList.add('hidden'); results.innerHTML = ''; return; }
+      // If AI mode is active (question detected), suppress keyword search
+      if (window._aiMode && inputId === 'hero-search') { results.classList.add('hidden'); results.innerHTML = ''; return; }
       debounceTimer = setTimeout(() => {
         fetch('/api/search?q=' + encodeURIComponent(q))
           .then(r => r.json())
