@@ -115,6 +115,10 @@ app.get('/sitemap.xml', (req, res) => {
   articles.forEach(article => {
     xml += `  <url><loc>${baseUrl}/articles/${article.slug}</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>\n`;
   });
+  xml += `  <url><loc>${baseUrl}/for</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>\n`;
+  audiences.forEach(a => {
+    xml += `  <url><loc>${baseUrl}/for/${a.slug}</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>\n`;
+  });
   xml += '</urlset>';
   res.set('Content-Type', 'application/xml');
   res.send(xml);
@@ -151,6 +155,32 @@ app.get('/articles/:slug', (req, res) => {
     calc: { affiliateContext: article.affiliateContext || 'general' },
     title: `${article.title} | CalculatorMate Australia`,
     metaDescription: article.metaDescription || article.excerpt
+  });
+});
+
+// Audience pages
+let audiences = [];
+try { audiences = require('./data/audiences.json'); } catch(e) {}
+const audienceBySlug = {};
+audiences.forEach(a => { audienceBySlug[a.slug] = a; });
+
+app.get('/for', (req, res) => {
+  res.render('audiences', {
+    audiences,
+    title: 'Calculators By Audience | CalculatorMate Australia',
+    metaDescription: 'Find the right Australian calculators for your situation — first home buyers, families, retirees, small business owners, teenagers, and more.'
+  });
+});
+
+app.get('/for/:slug', (req, res) => {
+  const audience = audienceBySlug[req.params.slug];
+  if (!audience) return res.status(404).render('404', { title: 'Page Not Found | CalculatorMate' });
+  res.render('audience', {
+    audience,
+    audiences,
+    allCalcs: calcBySlug,
+    title: `${audience.title} | CalculatorMate Australia`,
+    metaDescription: audience.metaDescription
   });
 });
 

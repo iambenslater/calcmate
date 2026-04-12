@@ -1,0 +1,301 @@
+<%- include('partials/head') %>
+<% if (audience.faq && audience.faq.length) { %>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    <% audience.faq.forEach((f, i) => { %>
+    {
+      "@type": "Question",
+      "name": "<%- (f.q || f.question || '').replace(/"/g, '\\"') %>",
+      "acceptedAnswer": { "@type": "Answer", "text": "<%- (f.a || f.answer || '').replace(/"/g, '\\"') %>" }
+    }<%= i < audience.faq.length - 1 ? ',' : '' %>
+    <% }) %>
+  ]
+}
+</script>
+<% } %>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "<%= audience.title %>",
+  "description": "<%= audience.metaDescription %>",
+  "url": "<%= siteUrl %>/for/<%= audience.slug %>",
+  "isPartOf": { "@type": "WebSite", "name": "CalculatorMate Australia", "url": "<%= siteUrl %>" },
+  "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "<%= siteUrl %>" },
+      { "@type": "ListItem", "position": 2, "name": "By Audience", "item": "<%= siteUrl %>/for" },
+      { "@type": "ListItem", "position": 3, "name": "<%= audience.title %>" }
+    ]
+  }
+}
+</script>
+<%- include('partials/header') %>
+
+<!-- Header ad -->
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
+  <% adSlotNum = 0; %><%- include('partials/ad-leaderboard', { adSlot: adSlotNum++, calc: { affiliateContext: audience.affiliateContext || 'general' } }) %>
+</div>
+
+<main class="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-6">
+  <!-- Breadcrumbs -->
+  <nav aria-label="Breadcrumb" class="mb-4">
+    <ol class="flex items-center gap-2 text-sm text-gray-500">
+      <li><a href="/" class="hover:text-navy transition">Home</a></li>
+      <li class="text-gray-300">/</li>
+      <li><a href="/for" class="hover:text-navy transition">By Audience</a></li>
+      <li class="text-gray-300">/</li>
+      <li class="text-gray-800 font-medium"><%= audience.shortTitle || audience.title %></li>
+    </ol>
+  </nav>
+
+  <!-- Hero -->
+  <section class="mb-8">
+    <h1 class="text-3xl md:text-4xl font-bold text-navy mb-3"><%= audience.headline %></h1>
+    <p class="text-lg text-gray-600 max-w-3xl"><%= audience.blurb %></p>
+  </section>
+
+  <div class="lg:flex gap-8">
+    <div class="flex-1 min-w-0">
+
+      <!-- Intro content -->
+      <% if (audience.intro) { %>
+        <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 md:p-8 mb-8 article-content">
+          <%- audience.intro %>
+        </div>
+      <% } %>
+
+      <!-- Featured calculators — embedded -->
+      <section class="mb-8">
+        <h2 class="text-2xl font-bold text-navy mb-4">Your Essential Calculators</h2>
+        <div class="space-y-4">
+          <% audience.calculators.forEach((calcSlug, idx) => { %>
+            <% const c = allCalcs[calcSlug]; if (!c) return; %>
+            <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden" id="calc-section-<%= idx %>">
+              <button onclick="toggleCalc(<%= idx %>)" class="w-full text-left px-6 py-4 flex items-center justify-between hover:bg-gray-50 transition">
+                <div>
+                  <h3 class="font-bold text-navy text-lg"><%= c.title %></h3>
+                  <p class="text-sm text-gray-500 mt-0.5"><%= c.description %></p>
+                </div>
+                <svg id="chevron-<%= idx %>" class="w-6 h-6 text-gray-400 transition-transform shrink-0 ml-4 <%= idx === 0 ? 'rotate-180' : '' %>" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+              </button>
+              <div id="calc-body-<%= idx %>" class="px-6 pb-6 <%= idx === 0 ? '' : 'hidden' %>">
+                <div class="border-t border-gray-100 pt-4">
+                  <!-- Calculator inputs -->
+                  <% if (c.inputs && c.inputs.length) { %>
+                    <% c.inputs.forEach(input => { %>
+                      <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-700 mb-1"><%= input.label %></label>
+                        <% if (input.type === 'select') { %>
+                          <select id="aud<%= idx %>-<%= input.id %>" class="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gold focus:border-gold transition">
+                            <% (input.options || []).forEach((opt, optIdx) => { %>
+                              <option value="<%= opt.value %>" <%= opt.default || (!input.options.some(o => o.default) && optIdx === 0) ? 'selected' : '' %>><%= opt.label %></option>
+                            <% }) %>
+                          </select>
+                        <% } else if (input.type === 'radio') { %>
+                          <div class="flex flex-wrap gap-3">
+                            <% const hasDefault = (input.options || []).some(o => o.default); %>
+                            <% (input.options || []).forEach((opt, optIdx) => { %>
+                              <label class="flex items-center gap-2 cursor-pointer">
+                                <input type="radio" name="aud<%= idx %>-<%= input.id %>" value="<%= opt.value %>" <%= opt.default || (!hasDefault && optIdx === 0) ? 'checked' : '' %> class="text-gold focus:ring-gold">
+                                <span class="text-sm"><%= opt.label %></span>
+                              </label>
+                            <% }) %>
+                          </div>
+                        <% } else if (input.type === 'checkbox') { %>
+                          <label class="flex items-center gap-2 cursor-pointer">
+                            <input type="checkbox" id="aud<%= idx %>-<%= input.id %>" <%= input.default ? 'checked' : '' %> class="rounded text-gold focus:ring-gold">
+                            <span class="text-sm"><%= input.checkLabel || '' %></span>
+                          </label>
+                        <% } else if (input.type === 'date') { %>
+                          <input type="date" id="aud<%= idx %>-<%= input.id %>" value="<%= input.default || '' %>" class="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gold focus:border-gold transition">
+                        <% } else { %>
+                          <div class="relative">
+                            <% if (input.prefix) { %><span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm"><%= input.prefix %></span><% } %>
+                            <input type="<%= input.type || 'number' %>" id="aud<%= idx %>-<%= input.id %>"
+                              value="<%= typeof input.default !== 'undefined' ? input.default : '' %>"
+                              placeholder="<%= input.placeholder || '' %>"
+                              <% if (typeof input.min !== 'undefined') { %>min="<%= input.min %>"<% } %>
+                              <% if (typeof input.max !== 'undefined') { %>max="<%= input.max %>"<% } %>
+                              <% if (input.step) { %>step="<%= input.step %>"<% } %>
+                              class="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gold focus:border-gold transition <%= input.prefix ? 'pl-8' : '' %>"
+                            >
+                            <% if (input.suffix) { %><span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm"><%= input.suffix %></span><% } %>
+                          </div>
+                        <% } %>
+                        <% if (input.help) { %><p class="text-xs text-gray-400 mt-1"><%= input.help %></p><% } %>
+                      </div>
+                    <% }) %>
+                  <% } %>
+
+                  <button onclick="runCalc(<%= idx %>, '<%= c.slug %>')" class="w-full sm:w-auto px-8 py-3 bg-gold text-navy font-bold rounded-lg hover:bg-yellow-400 transition shadow-sm text-lg">
+                    Calculate
+                  </button>
+
+                  <div id="aud-results-<%= idx %>" class="mt-6 hidden">
+                    <div class="border-t border-gray-100 pt-4">
+                      <h4 class="text-lg font-bold text-navy mb-3">Results</h4>
+                      <div id="aud-results-content-<%= idx %>" class="space-y-3"></div>
+                    </div>
+                  </div>
+
+                  <p class="text-xs text-gray-400 mt-4">
+                    <a href="/<%= c.category %>/<%= c.slug %>" class="text-navy underline hover:text-gold">Open full calculator →</a> for more options and detailed breakdown.
+                  </p>
+                </div>
+              </div>
+            </div>
+          <% }) %>
+        </div>
+      </section>
+
+      <!-- Ad -->
+      <div class="mb-8"><%- include('partials/ad-leaderboard', { adSlot: adSlotNum++, calc: { affiliateContext: audience.affiliateContext || 'general' } }) %></div>
+
+      <!-- Guides content -->
+      <% if (audience.guides) { %>
+        <section class="mb-8">
+          <h2 class="text-2xl font-bold text-navy mb-4">Helpful Guides</h2>
+          <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 md:p-8 article-content">
+            <%- audience.guides %>
+          </div>
+        </section>
+      <% } %>
+
+      <!-- Inline Amazon CTA -->
+      <%- include('partials/affiliate-inline', { calc: { affiliateContext: audience.affiliateContext || 'general' } }) %>
+
+      <!-- FAQ -->
+      <% if (audience.faq && audience.faq.length) { %>
+        <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mb-8">
+          <h2 class="text-xl font-bold text-navy mb-4">Frequently Asked Questions</h2>
+          <div class="space-y-4">
+            <% audience.faq.forEach((f, fIdx) => { %>
+              <details class="group border-b border-gray-100 pb-3">
+                <summary class="cursor-pointer font-medium hover:text-gold transition flex justify-between gap-2 text-sm sm:text-base leading-snug py-1" style="color: #00205B;">
+                  <span class="flex-1" style="color: #00205B;"><%= f.q || f.question || '' %></span>
+                  <svg class="w-5 h-5 shrink-0 mt-0.5" style="color: #9ca3af;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                </summary>
+                <p class="mt-2 text-sm leading-relaxed" style="color: #4b5563;"><%= f.a || f.answer || '' %></p>
+              </details>
+              <% if (fIdx === 1) { %>
+                <div class="my-2"><%- include('partials/ad-leaderboard', { adSlot: adSlotNum++, calc: { affiliateContext: audience.affiliateContext || 'general' } }) %></div>
+              <% } %>
+            <% }) %>
+          </div>
+        </div>
+      <% } %>
+
+      <!-- All related calculators grid -->
+      <section class="mb-8">
+        <h2 class="text-xl font-bold text-navy mb-4">All <%= audience.shortTitle || '' %> Calculators</h2>
+        <div class="grid sm:grid-cols-2 gap-3">
+          <% (audience.allCalculators || audience.calculators).forEach(slug => { %>
+            <% const c = allCalcs[slug]; if (!c) return; %>
+            <a href="/<%= c.category %>/<%= c.slug %>" class="group bg-white rounded-lg p-4 shadow-sm hover:shadow-md border border-gray-100 hover:border-gold/50 transition">
+              <h3 class="font-medium text-navy group-hover:text-gold transition text-sm"><%= c.title %></h3>
+              <p class="text-xs text-gray-500 mt-1"><%= c.description %></p>
+            </a>
+          <% }) %>
+        </div>
+      </section>
+
+      <!-- Footer ad -->
+      <div class="mb-8"><%- include('partials/ad-leaderboard', { adSlot: adSlotNum++, calc: { affiliateContext: audience.affiliateContext || 'general' } }) %></div>
+    </div>
+
+    <!-- Sidebar -->
+    <aside class="w-full lg:w-72 mt-8 lg:mt-0 shrink-0">
+      <div class="sticky top-20 space-y-4">
+        <!-- Other audience pages -->
+        <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-4">
+          <h3 class="font-semibold text-navy mb-3 text-sm uppercase tracking-wider">By Audience</h3>
+          <nav class="space-y-1">
+            <% audiences.forEach(a => { %>
+              <a href="/for/<%= a.slug %>" class="block px-3 py-2 rounded-lg text-sm transition <%= a.slug === audience.slug ? 'bg-gold-light text-navy font-medium' : 'hover:bg-gray-50 text-gray-600' %>">
+                <span class="mr-2"><%= a.icon || '👤' %></span><%= a.shortTitle || a.title %>
+              </a>
+            <% }) %>
+          </nav>
+        </div>
+
+        <!-- Amazon product cards -->
+        <%- include('partials/ad-product', { calc: { affiliateContext: audience.affiliateContext || 'general' } }) %>
+      </div>
+    </aside>
+  </div>
+</main>
+
+<!-- Footer ad -->
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-4">
+  <%- include('partials/ad-leaderboard', { adSlot: adSlotNum++, calc: { affiliateContext: audience.affiliateContext || 'general' } }) %>
+</div>
+
+<%- include('partials/footer') %>
+
+<!-- Audience calculator scripts -->
+<script>
+function toggleCalc(idx) {
+  const body = document.getElementById('calc-body-' + idx);
+  const chevron = document.getElementById('chevron-' + idx);
+  body.classList.toggle('hidden');
+  chevron.classList.toggle('rotate-180');
+}
+
+// Remap getElementById for scoped calculators
+function runCalc(idx, slug) {
+  // Temporarily override getElementById to use prefixed IDs
+  const origGetById = document.getElementById.bind(document);
+  const prefix = 'aud' + idx + '-';
+
+  document.getElementById = function(id) {
+    if (id === 'calc-results') return origGetById('aud-results-' + idx);
+    if (id === 'results-content') return origGetById('aud-results-content-' + idx);
+    if (id.startsWith('input-')) return origGetById(prefix + id.replace('input-', ''));
+    return origGetById(id);
+  };
+
+  // Also patch querySelector for radio buttons
+  const origQS = document.querySelector.bind(document);
+  document.querySelector = function(sel) {
+    if (sel.includes('input[name="input-')) {
+      const newSel = sel.replace('input[name="input-', 'input[name="' + prefix);
+      return origQS(newSel);
+    }
+    return origQS(sel);
+  };
+
+  // Load and run the calculator
+  if (!window['_calcLoaded_' + slug]) {
+    const script = document.createElement('script');
+    script.src = '/js/calculators/' + slug + '.js';
+    script.onload = function() {
+      window['_calcLoaded_' + slug] = true;
+      if (typeof calculate === 'function') calculate();
+      // Scroll to results
+      setTimeout(function() {
+        const r = origGetById('aud-results-' + idx);
+        if (r) r.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 100);
+      // Restore
+      document.getElementById = origGetById;
+      document.querySelector = origQS;
+    };
+    document.body.appendChild(script);
+  } else {
+    if (typeof calculate === 'function') calculate();
+    setTimeout(function() {
+      const r = origGetById('aud-results-' + idx);
+      if (r) r.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 100);
+    document.getElementById = origGetById;
+    document.querySelector = origQS;
+  }
+}
+</script>
+
+<%- include('partials/tail') %>
