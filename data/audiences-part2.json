@@ -1,0 +1,249 @@
+[
+  {
+    "slug": "property-investors",
+    "title": "Property Investment Calculators for Australian Investors",
+    "shortTitle": "Property Investors",
+    "headline": "Property Investment Calculators",
+    "blurb": "Rental yield, negative gearing, capital gains tax, and mortgage tools for Australian property investors.",
+    "icon": "📈",
+    "metaDescription": "Free Australian property investment calculators — rental yield, negative gearing, capital gains tax, offset account, LVR and more. Make smarter investment decisions.",
+    "keywords": [
+      "property investment calculator australia",
+      "rental yield calculator",
+      "negative gearing calculator",
+      "capital gains tax calculator australia",
+      "investment property mortgage calculator",
+      "offset account calculator"
+    ],
+    "affiliateContext": "finance-books",
+    "calculators": [
+      "rental-yield",
+      "negative-gearing",
+      "capital-gains-tax",
+      "mortgage-repayment",
+      "offset-account"
+    ],
+    "allCalculators": [
+      "rental-yield",
+      "negative-gearing",
+      "capital-gains-tax",
+      "mortgage-repayment",
+      "offset-account",
+      "stamp-duty-all-states",
+      "land-tax",
+      "refinance-savings",
+      "home-loan-affordability",
+      "lvr",
+      "lmi",
+      "loan-comparison",
+      "compound-interest"
+    ],
+    "intro": "<h2>Making the Numbers Work on Australian Investment Property</h2><p>Property investment in Australia is a serious financial commitment — and the difference between a portfolio that builds real wealth and one that quietly drains your cash flow often comes down to whether you ran the numbers properly before you bought. These calculators cut through the complexity of rental yields, gearing, tax and borrowing costs so you can assess any deal with confidence.</p><h3>Gross Yield vs Net Yield: Why the Gap Matters</h3><p>Most property listings quote gross rental yield — annual rent divided by purchase price, expressed as a percentage. A property advertised at 5.5% gross sounds solid, but once you subtract property management fees (typically 7–10% of rent), council rates, water rates, insurance, maintenance, and vacancy allowances, the net yield can fall to 3.5% or lower. Always run our <a href='/finance/rental-yield' class='text-navy font-medium underline'>Rental Yield Calculator</a> using your realistic net income, not the headline figure.</p><h3>How Negative Gearing Works (and When It Makes Sense)</h3><p>A property is negatively geared when the rental income is less than the interest and holding costs. The shortfall is a deductible loss that reduces your taxable income — so the ATO effectively subsidises part of your holding cost. At a 37% marginal rate, a $10,000 annual loss costs you only $6,300 out of pocket after the tax benefit. This only makes economic sense, however, if you expect strong capital growth to compensate. Our <a href='/finance/negative-gearing' class='text-navy font-medium underline'>Negative Gearing Calculator</a> shows your true after-tax holding cost so you can compare properties on equal footing.</p><h3>Capital Gains Tax and the 50% Discount</h3><p>When you sell an investment property held for more than 12 months, only 50% of your capital gain is included in your assessable income. This CGT discount is one of the most powerful concessions in the Australian tax system — a $200,000 gain becomes a $100,000 addition to your taxable income for the year of sale. Timing a sale to a low-income year (say, after retirement) can reduce the effective CGT rate dramatically. Factor this into your long-term return projections using our <a href='/finance/capital-gains-tax' class='text-navy font-medium underline'>Capital Gains Tax Calculator</a>.</p><h3>Depreciation Schedules: Free Tax Deductions You Might Be Missing</h3><p>New and near-new investment properties attract depreciation deductions for both the building structure (Division 43, at 2.5% per year over 40 years) and plant and equipment items (Division 40 — appliances, carpet, blinds). A quality depreciation schedule from a quantity surveyor costs $500–700 and can generate $3,000–8,000 in first-year deductions on a new property. You don't need a calculator for this one — just a good quantity surveyor and a claim in your next tax return.</p><h3>Offset vs Redraw: Which Saves You More?</h3><p>On your primary residence or a property you plan to move into, keeping savings in an offset account rather than redrawing is usually the smarter structure. Redrawing contaminated funds can compromise tax deductibility on investment loans — a well-documented ATO risk area. Our <a href='/finance/offset-account' class='text-navy font-medium underline'>Offset Account Calculator</a> shows exactly how much interest you save by parking cash in offset versus a separate savings account.</p><p>Whether you're analysing your first investment property or managing a multi-property portfolio, having the right tools means fewer surprises come tax time — and better decisions before settlement day.</p>",
+    "guides": "<h2>Key Concepts Every Australian Property Investor Should Know</h2><h3>Loan-to-Value Ratio (LVR) and Lenders Mortgage Insurance</h3><p>Most lenders require a maximum LVR of 80% for investment loans without Lenders Mortgage Insurance (LMI). At 90% LVR, LMI can add $10,000–$20,000 to your upfront costs — a real drag on early returns. Use our <a href='/finance/lvr' class='text-navy font-medium underline'>LVR Calculator</a> and <a href='/finance/lmi' class='text-navy font-medium underline'>LMI Calculator</a> to understand your borrowing position before you approach a lender.</p><h3>Stamp Duty Across States</h3><p>Stamp duty rates vary significantly across Australia and can represent 3–5% of the purchase price on a typical investment property. Some states offer foreign investor surcharges of an additional 7–8%. Always run our <a href='/finance/stamp-duty-all-states' class='text-navy font-medium underline'>Stamp Duty Calculator</a> for the relevant state before budgeting your purchase costs.</p><h3>Land Tax: The Ongoing Cost Investors Forget</h3><p>Land tax is levied annually on the unimproved land value of investment properties (your principal place of residence is generally exempt). Thresholds and rates vary by state. In NSW, for example, the general threshold is around $1,075,000 in combined land value — once exceeded, you pay 1.6% on the excess. Investors with multiple properties can hit this threshold faster than they expect.</p><h3>Recommended Reading</h3><p>For investors who want to go deeper on property investment strategy, tax structuring, and portfolio building, these titles are worth having on the shelf: <a href='https://www.amazon.com.au/s?k=property+investment+australia&tag=benslater-22' target='_blank' rel='nofollow noopener' class='text-navy font-medium underline'>Australian property investment books on Amazon</a> — look for titles covering tax strategy, depreciation, and portfolio structuring for the Australian market specifically.</p>",
+    "faq": [
+      {
+        "q": "What is a good rental yield for an investment property in Australia?",
+        "a": "A gross yield of 4–6% is generally considered reasonable in Australian capital cities, though this varies significantly by location and property type. Regional areas can deliver 6–9% gross yields but may have lower capital growth prospects. Net yield — after management fees, rates, insurance and maintenance — is typically 1.5–2 percentage points lower than gross yield, so focus on net yield when comparing investments."
+      },
+      {
+        "q": "How much tax do I save through negative gearing?",
+        "a": "The tax saving depends on your marginal rate. At the 37% rate (income $135,001–$190,000), every $10,000 of net rental loss saves you $3,700 in tax. At the 45% rate, it's $4,500. The ATO effectively subsidises your shortfall — but you still carry the remaining out-of-pocket cost, so the property still needs to deliver capital growth to make economic sense."
+      },
+      {
+        "q": "Do I pay capital gains tax on my whole profit when I sell an investment property?",
+        "a": "No. If you've held the property for more than 12 months, you only include 50% of the net capital gain in your assessable income for that year. The gain is then taxed at your marginal rate. Timing the sale to a lower-income year (after retirement, for example) can significantly reduce the effective CGT rate."
+      },
+      {
+        "q": "Is land tax deductible on an investment property?",
+        "a": "Yes. Land tax paid on an investment property is a deductible expense under Section 8-1 of the ITAA 1997. It reduces your rental income (or increases your rental loss) for the year, which feeds into your negative gearing calculation. Keep your land tax assessment notices with your property records."
+      },
+      {
+        "q": "Can I claim depreciation on a second-hand investment property?",
+        "a": "For properties purchased after 7 May 2017, plant and equipment depreciation on second-hand assets (carpet, blinds, appliances previously used by a tenant or owner) can no longer be claimed. However, Division 43 building allowance (2.5% per year on construction cost) can still be claimed on properties built after 16 September 1987, regardless of whether the property is new or second-hand. A quantity surveyor can prepare a compliant depreciation schedule."
+      }
+    ]
+  },
+  {
+    "slug": "freelancers-gig-workers",
+    "title": "Calculators for Australian Freelancers and Gig Workers",
+    "shortTitle": "Freelancers & Gig Workers",
+    "headline": "Calculators for Freelancers & Gig Workers",
+    "blurb": "Work out your real hourly rate, set aside the right amount for tax, and manage your super when nobody else does it for you.",
+    "icon": "💻",
+    "metaDescription": "Free calculators for Australian freelancers and gig workers — real hourly rate, income tax, GST, super contributions, home office, and business viability.",
+    "keywords": [
+      "freelancer calculator australia",
+      "hourly rate calculator australia",
+      "gig worker tax calculator",
+      "GST registration threshold",
+      "freelance super contributions australia",
+      "home office deduction calculator"
+    ],
+    "affiliateContext": "business-books",
+    "calculators": [
+      "hourly-rate",
+      "income-tax",
+      "gst-calculator",
+      "super-contribution"
+    ],
+    "allCalculators": [
+      "hourly-rate",
+      "income-tax",
+      "gst-calculator",
+      "super-contribution",
+      "take-home-pay",
+      "budget-planner",
+      "business-viability",
+      "home-office-expenses",
+      "fuel-cost",
+      "savings-goal",
+      "compound-interest"
+    ],
+    "intro": "<h2>Running Your Own Numbers When Nobody Does It For You</h2><p>When you work for yourself — whether you're a freelance designer, Uber driver, contractor, or sole trader — there's no payroll department setting aside your tax, no employer paying your super, and no HR team to ask when you're confused. The upside is flexibility and control. The downside is that every financial mistake is your own. These calculators help you stay on top of the numbers that matter.</p><h3>Working Out Your Real Hourly Rate</h3><p>The most common mistake freelancers make is quoting an hourly rate based on what they want to earn — without accounting for all the hours they're not billing. Every hour spent on admin, client emails, invoicing, chasing payments, and unpaid pitching is time that has to be covered by your billable hours. A freelancer working 40 hours a week may only bill 25 of them. Our <a href='/finance/hourly-rate' class='text-navy font-medium underline'>Hourly Rate Calculator</a> walks you through the maths: desired income, billable hours, business expenses, and a buffer for gaps between contracts.</p><h3>Setting Aside Tax Quarterly</h3><p>As a sole trader or contractor, the ATO expects you to pay tax as you earn through the PAYG instalment system. In your first year of self-employment you'll receive an assessment after lodging your first return, but from year two onwards you'll receive quarterly instalment notices. A safe rule of thumb: set aside 25–30% of every invoice payment into a separate tax savings account from day one. If you earn over $27,500 in the current year, the ATO will almost certainly put you onto quarterly instalments. Use our <a href='/finance/income-tax' class='text-navy font-medium underline'>Income Tax Calculator</a> to estimate your annual liability and reverse-engineer how much to quarantine per payment received.</p><h3>GST Registration: The $75,000 Threshold</h3><p>You must register for GST if your annual turnover is $75,000 or more (or $150,000 for non-profit bodies). Once registered, you add 10% GST to your invoices, collect it from clients, and remit the net amount to the ATO quarterly. The benefit: you can also claim GST credits on your business purchases. Our <a href='/finance/gst-calculator' class='text-navy font-medium underline'>GST Calculator</a> helps you quickly add or remove GST from any amount, and track what you owe at BAS time.</p><h3>Voluntary Super When Nobody Pays It For You</h3><p>Employees get super paid on top of their salary by their employer. As a freelancer, you don't — unless you set it up yourself. The ATO's super rules for contractors have been expanding: from July 2026, the extended Super Guarantee may apply more broadly to contractor arrangements. Regardless of the rules, voluntary super contributions are one of the most tax-effective ways to save for retirement. Concessional contributions (capped at $30,000 per year) are taxed at 15% inside the fund — significantly lower than most freelancers' marginal rate. Use our <a href='/finance/super-contribution' class='text-navy font-medium underline'>Super Contribution Calculator</a> to see how much you can put in and what you'll save in tax.</p><h3>Home Office Deductions: Fixed Rate vs Actual Cost</h3><p>If you work from home, you can claim a deduction for home office expenses. The ATO's revised fixed rate method allows a deduction of 67 cents per hour for electricity, internet, and phone — with separate claims still available for depreciation of office furniture and equipment. Keep a log of your work-from-home hours throughout the year. Our <a href='/finance/home-office-expenses' class='text-navy font-medium underline'>Home Office Expenses Calculator</a> compares both methods so you claim the higher deduction.</p><h3>ABN vs Employee: The Insurance Gap Nobody Warns You About</h3><p>When you leave employment and go out on your own, you lose workers compensation coverage, employer-paid income protection, and often access to the group life insurance inside your super fund. Income protection insurance for freelancers is deductible and worth serious consideration — without it, an illness or injury that stops you working means no income, with no safety net. Budget for it as a genuine business expense.</p>",
+    "guides": "<h2>Freelancer Finance: The Essentials in Plain English</h2><h3>The Difference Between ABN Income and Employee Income</h3><p>When you invoice on an ABN, clients don't withhold any tax — you receive the full invoice amount and are responsible for setting aside and paying your own tax. This creates a cash flow advantage in the short term, but a potentially nasty surprise at tax time if you haven't quarantined enough. Treat tax as a line item in every invoice from the start.</p><h3>Business Viability: Can You Actually Make This Work?</h3><p>Before you commit to freelancing full-time, run the numbers on minimum viable income. What's your base cost of living? Add business expenses (software, equipment, accounting, insurance). Divide by realistic billable hours. That's your break-even rate — anything above it is profit. Our <a href='/finance/business-viability' class='text-navy font-medium underline'>Business Viability Calculator</a> structures this analysis for you.</p><h3>Tracking Fuel Costs for Client Visits</h3><p>If you drive to client sites, the ATO allows either the cents-per-kilometre method (88 cents/km for 2025-26, up to 5,000 km) or a logbook method for higher deductions. Use our <a href='/utilities/fuel-cost' class='text-navy font-medium underline'>Fuel Cost Calculator</a> alongside your logbook to estimate your deductible travel costs.</p><h3>Recommended Business Reading</h3><p>These books are worth the investment for anyone running their own show: <a href='https://www.amazon.com.au/s?k=small+business+australia+book&tag=benslater-22' target='_blank' rel='nofollow noopener' class='text-navy font-medium underline'>Australian small business and freelancer books on Amazon</a> — look for titles covering sole trader tax, pricing strategy, and financial management for self-employed Australians.</p>",
+    "faq": [
+      {
+        "q": "How much should I set aside for tax as a freelancer in Australia?",
+        "a": "A conservative rule of thumb is 25–30% of every payment received, saved into a dedicated account you don't touch. The exact amount depends on your total income, deductions, and whether you have other sources of income. Use the Income Tax Calculator with your estimated annual turnover to get a more precise figure, then divide by your expected number of invoices to work out a per-payment percentage."
+      },
+      {
+        "q": "Do I need to register for GST if I earn less than $75,000?",
+        "a": "No, GST registration is optional below the $75,000 annual turnover threshold (for most businesses). However, if your clients are all GST-registered businesses, there can be advantages to registering voluntarily — it allows you to claim GST credits on business purchases, and GST-registered businesses can recover the GST on your invoices anyway, so it rarely affects your competitiveness."
+      },
+      {
+        "q": "Can I claim my laptop and phone as a business expense?",
+        "a": "Yes, but the rules depend on how you use them. If an item is used exclusively for business, you can claim 100%. If it's mixed use (personal and business), you can only claim the business-use percentage. Items costing over $300 typically need to be depreciated over their effective life rather than claimed immediately, unless you're using the Small Business immediate write-off concession, which allows full deduction in the year of purchase for eligible assets."
+      },
+      {
+        "q": "As a contractor, does my client have to pay super on top of my invoice?",
+        "a": "In some contractor arrangements, yes. The Super Guarantee can apply to contractors who are engaged primarily for their personal labour, work under a contract that is wholly or principally for labour, and don't subcontract the work. If your contract meets these conditions, the engaging entity is required to pay super on your behalf. From July 2026, the extended SGC rules will apply more broadly. Check with an accountant if you're unsure whether your specific arrangement is covered."
+      },
+      {
+        "q": "What is the best way to manage my money as a freelancer?",
+        "a": "A three-account structure works well: one account for business income (all invoices go here), one dedicated tax savings account (transfer your tax percentage immediately on receipt), and one operating account for business expenses and your own drawings. This separates your obligations from your available cash and prevents the most common freelancer tax problem — spending money that was earmarked for the ATO."
+      }
+    ]
+  },
+  {
+    "slug": "recent-migrants",
+    "title": "Australian Money Calculators for New Residents",
+    "shortTitle": "New to Australia",
+    "headline": "Australian Money Calculators for New Residents",
+    "blurb": "New to Australia? These calculators explain how tax, super, Medicare, and living costs work — in plain English.",
+    "icon": "🌏",
+    "metaDescription": "Calculators and guides for new residents in Australia — understand income tax, superannuation, Medicare levy, cost of living, and how Australian pay works.",
+    "keywords": [
+      "australia tax calculator new resident",
+      "how does australian tax work",
+      "superannuation new migrant australia",
+      "medicare levy explained",
+      "australia cost of living calculator",
+      "new to australia finance guide"
+    ],
+    "affiliateContext": "general",
+    "calculators": [
+      "take-home-pay",
+      "income-tax",
+      "medicare-levy",
+      "currency-converter"
+    ],
+    "allCalculators": [
+      "take-home-pay",
+      "income-tax",
+      "medicare-levy",
+      "currency-converter",
+      "budget-planner",
+      "savings-goal",
+      "gst-calculator",
+      "bmi",
+      "metric-imperial",
+      "timezone-converter",
+      "stamp-duty-all-states",
+      "mortgage-repayment"
+    ],
+    "intro": "<h2>Understanding Money in Australia When You're Starting Fresh</h2><p>Moving to a new country means learning a new financial system from scratch — often while managing a job, a new home, and the general chaos of settling in. Australia's tax, super, and healthcare systems are well-designed but not always intuitive. This page explains the essentials in plain English and gives you the calculators to work out your own numbers.</p><h3>Tax File Number and the Basics of Australian Tax</h3><p>The first financial task for any new resident or worker in Australia is applying for a Tax File Number (TFN). You can apply through the ATO website (ato.gov.au) as a new arrival. Without a TFN, your employer is legally required to withhold tax from your pay at the highest marginal rate (47% including Medicare Levy) — so getting your TFN quickly is important.</p><p>Australia uses a progressive income tax system. You pay 0% on the first $18,200 of taxable income (the tax-free threshold), then increasing rates on higher income. Use our <a href='/finance/income-tax' class='text-navy font-medium underline'>Income Tax Calculator</a> to see how much tax you'll pay at your salary, and our <a href='/finance/take-home-pay' class='text-navy font-medium underline'>Take Home Pay Calculator</a> to see what actually lands in your bank account each fortnight.</p><h3>Superannuation: Australia's Compulsory Retirement Savings</h3><p>Superannuation (super) is a compulsory retirement savings system. Your employer must pay 11.5% of your ordinary time earnings into a super fund on top of your salary (for 2025-26). This money is yours — it goes into your own account at a fund of your choice — but you generally can't access it until you reach your preservation age (between 55 and 60, depending on your birth year) and retire.</p><p>As a new migrant on a temporary visa, you may be able to claim your super back when you permanently leave Australia under the Departing Australia Superannuation Payment (DASP) — though this is taxed at 35–65% depending on the components. If you're planning to stay permanently, treat super as a long-term asset and choose a fund with low fees and solid investment returns.</p><h3>Medicare Levy: Funding Australia's Healthcare System</h3><p>Most Australian residents pay a 2% Medicare Levy on their taxable income. This funds the Medicare system — Australia's universal public healthcare scheme, which covers GP visits, public hospital stays, and many specialist appointments. Use our <a href='/finance/medicare-levy' class='text-navy font-medium underline'>Medicare Levy Calculator</a> to see what you'll pay.</p><p>If you hold a temporary visa that doesn't grant Medicare access, you may be exempt from the levy — your employer can adjust your tax withholding if you provide the right declaration form. Check your visa conditions on the Home Affairs website.</p><h3>Understanding Your Payslip</h3><p>An Australian payslip typically shows: gross earnings (total before deductions), income tax withheld (PAYG), Medicare Levy (sometimes combined with tax), super (shown separately as it's not deducted from your pay — it's paid on top), and net pay (what hits your bank account). The gap between your gross salary and net pay is normal — our Take Home Pay Calculator explains every deduction.</p><h3>Setting Up Banking in Australia</h3><p>Australia's four major banks — Commonwealth Bank (CommBank), ANZ, Westpac, and NAB — all offer accounts you can open online before you arrive, or within days of landing with your passport and visa documentation. Many migrants find neobanks like Up or ING useful as a secondary everyday account for their low fees and high-interest savings accounts. You'll need your TFN to give to your bank to avoid withholding tax on interest earnings.</p><h3>Cost of Living: What to Budget For</h3><p>Australian cities — especially Sydney and Melbourne — rank among the most expensive in the world for housing. A realistic monthly budget for a single person renting in a major city might include: rent ($1,500–$2,500+), groceries ($400–600), utilities ($150–200), transport ($150–200), and phone/internet ($80–120). Use our <a href='/finance/budget-planner' class='text-navy font-medium underline'>Budget Planner</a> to map your own expected costs against your take-home pay.</p>",
+    "guides": "<h2>Practical Steps for New Arrivals</h2><h3>Converting Your Home Currency</h3><p>When you first arrive, you'll naturally compare Australian prices to what things cost back home. Our <a href='/utilities/currency-converter' class='text-navy font-medium underline'>Currency Converter</a> makes that quick and easy. As a longer-term exercise, it's worth retraining yourself to think in AUD — the mental conversion can distort your perception of what's affordable and what's not.</p><h3>Metric and Unit Conversions</h3><p>Australia uses the metric system for everything — distances in kilometres, temperatures in Celsius, weights in kilograms. If you're arriving from the US or UK, our <a href='/utilities/metric-imperial' class='text-navy font-medium underline'>Metric-Imperial Converter</a> will get you oriented quickly for weather, road signs, cooking, and fitness.</p><h3>Buying a Home as a New Resident</h3><p>Permanent residents and citizens can generally buy property without restriction. Temporary visa holders may need Foreign Investment Review Board (FIRB) approval — fees and rules apply. When you're ready to look at property, use our <a href='/finance/stamp-duty-all-states' class='text-navy font-medium underline'>Stamp Duty Calculator</a> to factor in state purchase costs, and our <a href='/finance/mortgage-repayment' class='text-navy font-medium underline'>Mortgage Repayment Calculator</a> to estimate loan repayments.</p><h3>Time Zones and Staying Connected</h3><p>Australia spans three main time zones (AEST, ACST, AWST) and observes daylight saving in some states. If you're working remotely for an employer in your home country or coordinating with family overseas, our <a href='/utilities/timezone-converter' class='text-navy font-medium underline'>Timezone Converter</a> makes scheduling across continents straightforward.</p>",
+    "faq": [
+      {
+        "q": "Do I pay Australian income tax if I've only just arrived?",
+        "a": "Yes, if you're working in Australia you pay tax on Australian-sourced income from day one. Australian tax residents (which includes most people who live and work here, even on temporary visas) get the $18,200 tax-free threshold. The financial year runs from 1 July to 30 June, and you'll lodge a tax return by 31 October covering your income for that year."
+      },
+      {
+        "q": "What happens to my superannuation if I leave Australia permanently?",
+        "a": "If you held a temporary visa and have permanently departed Australia, you can apply for a Departing Australia Superannuation Payment (DASP) to claim your super balance. The tax applied to DASP is high — 35% on taxable taxed components — so it's worth understanding the tax cost before deciding whether to claim it or leave the money in the fund if there's any chance you'll return."
+      },
+      {
+        "q": "Do I have to pay Medicare Levy if I can't use Medicare?",
+        "a": "Not necessarily. If you're on a temporary visa that doesn't give you access to Medicare, you may be exempt from the Medicare Levy. Provide your employer with a Medicare Levy Exemption Declaration (NAT 0929) so they adjust your withholding. You'll also need to declare the exemption in your tax return. Citizens and permanent residents from countries with Reciprocal Health Care Agreements (including the UK, New Zealand, Italy, and others) generally do have Medicare access and pay the levy."
+      },
+      {
+        "q": "What is GST and do I pay it as a consumer?",
+        "a": "GST (Goods and Services Tax) is a 10% tax included in the price of most goods and services in Australia. As a consumer, you don't pay it separately — it's already in the advertised price. You'll see it broken out on tax invoices if you buy for business purposes. Fresh food, some medical services, and some educational materials are GST-free."
+      },
+      {
+        "q": "How does the Australian financial year differ from the calendar year?",
+        "a": "The Australian financial year runs from 1 July to 30 June — not 1 January to 31 December. Your employer's payroll, your super contributions, and your tax return all follow this July-June cycle. If you arrive mid-year, your first tax return will only cover income from your arrival date to 30 June. The tax return deadline is 31 October (or later if you use a registered tax agent)."
+      }
+    ]
+  },
+  {
+    "slug": "car-buyers",
+    "title": "Car Buying Calculators for Australians",
+    "shortTitle": "Car Buyers",
+    "headline": "Car Buying Calculators",
+    "blurb": "Compare loan options, estimate running costs, and find out what that car is really worth before you buy.",
+    "icon": "🚗",
+    "metaDescription": "Free Australian car buying calculators — car loan repayments, fuel costs, used car value, registration, CTP, and true cost of ownership. Buy smarter.",
+    "keywords": [
+      "car loan calculator australia",
+      "used car value calculator australia",
+      "car running costs calculator",
+      "car registration cost australia",
+      "ctp greenslip calculator",
+      "true cost of car ownership australia"
+    ],
+    "affiliateContext": "car-accessories",
+    "calculators": [
+      "car-loan",
+      "fuel-cost",
+      "used-car-value",
+      "car-registration"
+    ],
+    "allCalculators": [
+      "car-loan",
+      "fuel-cost",
+      "used-car-value",
+      "car-registration",
+      "ctp-greenslip",
+      "toll-calculator",
+      "budget-planner",
+      "savings-goal",
+      "loan-comparison",
+      "percentage"
+    ],
+    "intro": "<h2>What Does That Car Actually Cost You?</h2><p>The sticker price is just the beginning. The true cost of owning a car in Australia includes registration, CTP insurance, comprehensive insurance, fuel, servicing, tyres, and — often the biggest factor of all — depreciation. Before you sign anything, run the numbers across the full ownership picture. These calculators help you do exactly that.</p><h3>New vs Used: The Maths Behind the Decision</h3><p>New cars come with manufacturer warranty, the latest safety features, and the peace of mind of knowing the vehicle's full history. The cost is rapid early depreciation — a new car typically loses 15–25% of its value in the first year and up to 50% in three years. If you buy a car that's 2–3 years old with low kilometres, someone else has absorbed that first depreciation hit. Use our <a href='/finance/used-car-value' class='text-navy font-medium underline'>Used Car Value Calculator</a> to estimate what a vehicle should be worth based on age, kilometres, and make.</p><h3>Finance vs Saving: What's the Real Cost of a Car Loan?</h3><p>Dealer finance is convenient but often expensive. A $30,000 car on a 5-year loan at 9.99% interest (common for dealer-arranged finance) costs around $7,900 in interest — nearly the price of a second-hand car. Bank and credit union loans typically offer lower rates. Our <a href='/finance/car-loan' class='text-navy font-medium underline'>Car Loan Calculator</a> shows your repayments and total interest at any rate, and our <a href='/finance/loan-comparison' class='text-navy font-medium underline'>Loan Comparison Calculator</a> lets you see two loan options side by side.</p><p>Alternatively, saving for a year or two before buying means no interest at all. Use our <a href='/finance/savings-goal' class='text-navy font-medium underline'>Savings Goal Calculator</a> to see how long it takes to reach your target at a realistic savings rate. The trade-off is time versus money — the right answer depends on your situation and how urgently you need the vehicle.</p><h3>True Cost of Ownership: The Numbers Most Buyers Ignore</h3><p>Beyond the purchase price, a typical Australian car owner pays annually for: registration ($300–1,000+ depending on state and vehicle), CTP insurance ($400–900 per year), comprehensive insurance ($800–2,000+), fuel (varies enormously by usage and vehicle), servicing and tyres ($500–2,000 per year), and depreciation ($2,000–6,000+ per year for most vehicles). Add all of these together and a $30,000 car can cost $7,000–$12,000 per year to run before you've made a single loan repayment. Budget for the full picture, not just the repayment.</p><h3>Dealer vs Private Sale: What to Check Before You Buy</h3><p>Buying privately is usually cheaper but comes with less protection. Key checks: run a PPSR search (Personal Property Securities Register, ppe.gov.au — costs around $2) to confirm the car isn't encumbered (still under finance) and hasn't been written off. Check the VIN against the registration papers. Use RedBook or similar for market value benchmarking. Have a pre-purchase inspection done by an independent mechanic — spending $150–250 on an inspection can save you thousands on a car with hidden problems.</p><p>Buying from a licensed dealer gives you Australian Consumer Law protections including statutory warranties for used vehicles (the length varies by state and price). The vehicle must be fit for purpose and of acceptable quality — your rights exist regardless of what the dealer's contract says.</p><h3>Registration and CTP: State by State</h3><p>Car registration and CTP (Compulsory Third Party) insurance costs vary significantly by state. In NSW, CTP (called a Greenslip) is purchased separately from registration from a private insurer. In other states, CTP is bundled into the registration fee. Use our <a href='/finance/car-registration' class='text-navy font-medium underline'>Car Registration Calculator</a> and <a href='/finance/ctp-greenslip' class='text-navy font-medium underline'>CTP Calculator</a> to estimate costs in your state before you buy. These costs are not optional — you can't legally drive an unregistered or uninsured vehicle on Australian roads.</p>",
+    "guides": "<h2>Practical Car Buying Tips for Australians</h2><h3>Fuel Costs: More Variable Than You Think</h3><p>Fuel is one of the biggest ongoing costs for most car owners, and it varies dramatically by vehicle type and how much you drive. A petrol SUV averaging 10L/100km costs roughly $2,200 per year in fuel at current prices for 15,000km of annual driving. A fuel-efficient small car at 6L/100km costs around $1,320. An EV on home charging costs a fraction of that. Use our <a href='/utilities/fuel-cost' class='text-navy font-medium underline'>Fuel Cost Calculator</a> to model your expected annual fuel spend before you choose a vehicle.</p><h3>Tolls: The Hidden Cost for Commuters</h3><p>If you're buying a car for a regular commute in Sydney, Melbourne, or Brisbane, factor in toll costs. Sydney's toll network is among the most expensive in the world — regular commuters on some routes pay $3,000–$5,000 per year in tolls alone. Our <a href='/utilities/toll-calculator' class='text-navy font-medium underline'>Toll Calculator</a> gives you a realistic estimate for your regular routes.</p><h3>Car Accessories Worth Having</h3><p>Once you've bought the car, a few accessories make a real difference to safety and day-to-day convenience. A quality dashcam provides evidence in the event of an accident — essential given Australian roads. A good set of floor mats protects resale value. A portable tyre inflator and first aid kit are sensible to carry. Browse <a href='https://www.amazon.com.au/s?k=car+accessories+australia&tag=benslater-22' target='_blank' rel='nofollow noopener' class='text-navy font-medium underline'>car accessories on Amazon Australia</a> — dashcams, seat organisers, car chargers, and emergency kits are all available with fast shipping.</p><h3>Setting a Budget That Actually Works</h3><p>The standard financial advice is that total vehicle costs (loan repayments plus running costs) shouldn't exceed 15–20% of your take-home pay. Use our <a href='/finance/budget-planner' class='text-navy font-medium underline'>Budget Planner</a> to see where a car fits in the context of your full monthly expenses before you commit.</p>",
+    "faq": [
+      {
+        "q": "What is a fair interest rate for a car loan in Australia?",
+        "a": "As of 2025-26, car loan interest rates from banks and credit unions typically range from 6.5% to 9.5% per year for borrowers with good credit. Dealer-arranged finance is often higher — 9.99% to 14%+ is common. Always compare your dealer's finance offer against at least one bank or credit union loan before signing. Pre-approval from your bank before visiting the dealership gives you a clear budget and negotiating leverage."
+      },
+      {
+        "q": "How do I find out what a used car is actually worth?",
+        "a": "RedBook (redbook.com.au) is the industry standard for used car valuations in Australia. It provides trade-in (what a dealer would pay), private sale (what a private buyer would pay), and dealer retail (what a dealer would sell it for) values based on make, model, year, and kilometres. Carsales and CarGurus market data also give you a real-time sense of what similar vehicles are listing for in your area."
+      },
+      {
+        "q": "What is a PPSR check and do I need one?",
+        "a": "A PPSR (Personal Property Securities Register) check confirms whether a vehicle has any encumbrances — finance owing that the seller hasn't paid off. If you buy a car with finance attached, the lender can legally repossess it even though you paid for it. A PPSR check costs around $2 at ppsr.gov.au and takes minutes. It also flags whether a vehicle has been reported as written off. Never buy a used car privately without running one."
+      },
+      {
+        "q": "Is it better to buy or lease a car in Australia?",
+        "a": "For private individuals, leasing (novated lease through an employer) can offer tax benefits if your employer offers salary packaging — pre-tax dollars are used for the car payment, reducing your taxable income. For most private buyers without salary packaging, buying outright or via a low-interest loan is simpler and usually cheaper over five years. Novated leases make more sense at higher incomes where the tax saving is larger. Talk to your employer's salary packaging provider if this option is available to you."
+      },
+      {
+        "q": "What insurance do I legally need for a car in Australia?",
+        "a": "Compulsory Third Party (CTP) insurance — also called a Greenslip in NSW — is legally required in every state and territory. It covers personal injury to others if you cause an accident. CTP does not cover damage to vehicles or property. Comprehensive insurance (which covers your car and damage to others' property) is optional but strongly advisable for any vehicle worth more than a few thousand dollars. Third-party property insurance is a middle option that covers damage you cause to other vehicles but not your own."
+      }
+    ]
+  }
+]
