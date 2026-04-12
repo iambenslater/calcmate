@@ -48,8 +48,7 @@ async function generateImage(prompt) {
         parts: [{ text: `Generate an image: ${prompt}` }]
       }],
       generationConfig: {
-        responseModalities: ['IMAGE', 'TEXT'],
-        imageSizeOptions: { width: 1200, height: 630 }
+        responseModalities: ['IMAGE', 'TEXT']
       }
     });
 
