@@ -18,7 +18,7 @@
   // Show/hide Ask Mate button based on input
   input.addEventListener('input', function() {
     var q = input.value.trim();
-    if (q.length >= 10 && looksLikeQuestion(q)) {
+    if (q.length >= 8 && looksLikeQuestion(q)) {
       btn.classList.remove('hidden');
     } else {
       btn.classList.add('hidden');
@@ -31,7 +31,7 @@
   input.addEventListener('keydown', function(e) {
     if (e.key === 'Enter') {
       var q = input.value.trim();
-      if (q.length >= 10 && looksLikeQuestion(q)) {
+      if (q.length >= 8 && looksLikeQuestion(q)) {
         e.preventDefault();
         // Hide keyword results
         keywordResults.classList.add('hidden');
