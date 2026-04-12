@@ -62,27 +62,27 @@ function formatReviewCount(n) {
 }
 %>
 <% if (hero) { %>
-<a href="<%- heroUrl(hero) %>" target="_blank" rel="nofollow noopener" class="block bg-gray-50 border-b border-gray-200 hover:bg-gray-100 transition group" data-affiliate-product="<%= hero.asin %>" data-affiliate-position="hero">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-5">
-    <div class="flex items-center gap-5 sm:gap-8">
+<a href="<%- heroUrl(hero) %>" target="_blank" rel="nofollow noopener" class="block bg-gray-950 hover:bg-gray-900 transition group" data-affiliate-product="<%= hero.asin %>" data-affiliate-position="hero">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+    <div class="flex items-center gap-6 sm:gap-10">
       <% if (hero.image) { %>
-      <div class="shrink-0 w-16 h-16 sm:w-20 sm:h-20 bg-white rounded-lg border border-gray-100 flex items-center justify-center p-1.5 sm:p-2">
-        <img src="<%= hero.image.replace('_SL200_', '_SL160_') %>" alt="<%= hero.title %>" class="max-w-full max-h-full object-contain" loading="eager">
+      <div class="shrink-0 w-24 h-24 sm:w-36 sm:h-36 bg-white rounded-xl flex items-center justify-center p-3 sm:p-4">
+        <img src="<%= hero.image.replace('_SL200_', '_SL300_') %>" alt="<%= hero.title %>" class="max-w-full max-h-full object-contain" loading="eager">
       </div>
       <% } %>
       <div class="flex-1 min-w-0">
-        <p class="text-xs text-gray-400 font-medium uppercase tracking-wider mb-0.5">Our recommendation</p>
-        <p class="text-sm sm:text-base font-semibold text-gray-900 leading-snug"><%= headline %></p>
-        <div class="flex items-center flex-wrap gap-x-3 gap-y-0.5 mt-1">
-          <span class="text-sm font-medium text-gray-700"><%= hero.title %></span>
-        </div>
-        <div class="flex items-center flex-wrap gap-x-3 gap-y-0.5 mt-0.5">
-          <% if (hero.price) { %><span class="text-sm font-bold text-gray-900"><%= hero.price %></span><% } %>
+        <p class="text-[11px] sm:text-xs text-gray-400 font-semibold uppercase tracking-widest mb-1 sm:mb-2">Our recommendation</p>
+        <h2 class="text-lg sm:text-2xl lg:text-3xl font-bold text-white leading-tight" style="letter-spacing: -0.02em;"><%= headline %></h2>
+        <p class="text-sm sm:text-base text-gray-400 mt-1 sm:mt-2"><%= hero.title %></p>
+        <div class="flex items-center flex-wrap gap-x-4 gap-y-1 mt-2 sm:mt-3">
+          <% if (hero.price) { %><span class="text-base sm:text-lg font-bold text-white"><%= hero.price %></span><% } %>
           <% if (hero.rating) { %>
-            <span class="text-xs text-gray-400"><%= hero.rating %><span class="text-amber-500 ml-0.5"><%= '★'.repeat(Math.round(hero.rating)) %></span><% if (hero.reviewCount) { %> (<%= formatReviewCount(hero.reviewCount) %> reviews)<% } %></span>
+            <span class="text-sm text-gray-400"><span class="text-amber-400"><%= '★'.repeat(Math.round(hero.rating)) %></span> <%= hero.rating %><% if (hero.reviewCount) { %> (<%= formatReviewCount(hero.reviewCount) %> reviews)<% } %></span>
           <% } %>
-          <span class="text-xs text-blue-600 group-hover:text-blue-800 font-medium transition">Check price on Amazon &rarr;</span>
         </div>
+        <span class="inline-block mt-3 sm:mt-4 px-5 py-2 bg-white text-gray-900 text-sm font-bold rounded-full group-hover:bg-gray-100 transition">
+          Check price on Amazon &rarr;
+        </span>
       </div>
     </div>
   </div>
