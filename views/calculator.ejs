@@ -134,6 +134,13 @@
             <div id="results-content" class="space-y-3"></div>
           </div>
         </div>
+
+        <!-- Chart -->
+        <div id="chart-container" class="mt-6 hidden">
+          <div class="bg-gray-50 rounded-lg p-4" style="max-height: 350px;">
+            <canvas id="calcmate-chart"></canvas>
+          </div>
+        </div>
       </div>
 
       <!-- Ad: interstitial after calculator -->
@@ -220,12 +227,26 @@
 
 <%- include('partials/footer') %>
 
+<!-- Expose calc data for results enhancement -->
+<script>
+  window._calcInputs = <%- JSON.stringify(calc.inputs || []) %>;
+  window._calcSlug = '<%= calc.slug %>';
+  window._calcCategory = '<%= calc.category %>';
+  window._calcTitle = '<%= calc.title %>';
+  window._chartConfig = <%- JSON.stringify(calc.chartConfig || null) %>;
+</script>
+
 <!-- Load calculator-specific JS -->
 <script src="/js/calculators/<%= calc.slug %>.js"></script>
+
+<!-- Results enhancement (charts, sharing, PDF) -->
+<script src="/js/calcmate-results.js"></script>
+
 <script>
   document.getElementById('calc-btn').addEventListener('click', function() {
     if (typeof calculate === 'function') {
       calculate();
+      if (typeof window.onCalculateComplete === 'function') window.onCalculateComplete();
       setTimeout(function() {
         var r = document.getElementById('calc-results');
         if (r) r.scrollIntoView({ behavior: 'smooth', block: 'start' });

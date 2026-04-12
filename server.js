@@ -45,7 +45,7 @@ app.use(helmet({
   contentSecurityPolicy: {
     directives: {
       defaultSrc: ["'self'"],
-      scriptSrc: ["'self'", "'unsafe-inline'", "https://cdn.tailwindcss.com", "https://pagead2.googlesyndication.com", "https://www.googletagmanager.com", "https://www.google-analytics.com"],
+      scriptSrc: ["'self'", "'unsafe-inline'", "https://cdn.tailwindcss.com", "https://pagead2.googlesyndication.com", "https://www.googletagmanager.com", "https://www.google-analytics.com", "https://cdn.jsdelivr.net", "https://cdnjs.cloudflare.com"],
       scriptSrcAttr: ["'unsafe-inline'"],
       styleSrc: ["'self'", "'unsafe-inline'", "https://cdn.tailwindcss.com", "https://fonts.googleapis.com"],
       fontSrc: ["'self'", "https://fonts.gstatic.com"],
@@ -57,6 +57,27 @@ app.use(helmet({
 app.use(express.static(path.join(__dirname, 'public'), { maxAge: process.env.NODE_ENV === 'production' ? '7d' : '0' }));
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
+
+// JSON body parser for API endpoints
+app.use(express.json({ limit: '10kb' }));
+
+// Simple rate limiter (in-memory, per IP)
+const rateLimitMap = new Map();
+function rateLimit(windowMs, maxRequests) {
+  return (req, res, next) => {
+    const ip = req.ip;
+    const now = Date.now();
+    const windowStart = now - windowMs;
+    const requests = rateLimitMap.get(ip) || [];
+    const recent = requests.filter(t => t > windowStart);
+    if (recent.length >= maxRequests) {
+      return res.status(429).json({ error: 'Too many requests. Try again in a minute.' });
+    }
+    recent.push(now);
+    rateLimitMap.set(ip, recent);
+    next();
+  };
+}
 
 // Make data available to all templates
 app.use((req, res, next) => {
@@ -156,6 +177,53 @@ app.get('/articles/:slug', (req, res) => {
     title: `${article.title} | CalculatorMate Australia`,
     metaDescription: article.metaDescription || article.excerpt
   });
+});
+
+// Email results endpoint
+app.post('/api/email-results', rateLimit(60000, 1), async (req, res) => {
+  try {
+    const { email, calculatorTitle, resultsSummary, primaryResult, shareUrl } = req.body;
+    if (!email || !email.includes('@')) return res.status(400).json({ error: 'Invalid email' });
+    if (!resultsSummary) return res.status(400).json({ error: 'No results to send' });
+
+    // Try SendGrid if available
+    const sgKey = process.env.SENDGRID_API_KEY;
+    if (sgKey) {
+      const sgMail = require('@sendgrid/mail');
+      sgMail.setApiKey(sgKey);
+      await sgMail.send({
+        to: email,
+        from: process.env.SENDGRID_FROM || 'results@calculatormate.com.au',
+        subject: `Your ${calculatorTitle} Result — CalculatorMate`,
+        html: `
+          <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+            <div style="background: #00205B; padding: 16px 24px; border-radius: 8px 8px 0 0;">
+              <span style="color: #FFB800; font-size: 20px; font-weight: bold;">Calculator</span><span style="color: white; font-size: 20px; font-weight: bold;">Mate</span>
+            </div>
+            <div style="background: white; padding: 24px; border: 1px solid #e5e7eb; border-top: none;">
+              <h2 style="color: #00205B; margin: 0 0 8px 0;">${calculatorTitle}</h2>
+              <div style="background: #FFF3D0; padding: 12px 16px; border-radius: 8px; margin-bottom: 16px;">
+                <span style="color: #00205B; font-weight: bold; font-size: 18px;">${primaryResult || ''}</span>
+              </div>
+              <pre style="font-family: Arial, sans-serif; font-size: 14px; color: #374151; line-height: 1.6; white-space: pre-wrap; margin: 0 0 16px 0;">${resultsSummary}</pre>
+              <a href="${shareUrl}" style="display: inline-block; background: #FFB800; color: #00205B; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: bold;">View Full Result →</a>
+            </div>
+            <div style="padding: 12px 24px; font-size: 11px; color: #9ca3af;">
+              <p>This is an estimate only. Consult a qualified professional before making decisions based on these results.</p>
+              <p>CalculatorMate — calculatormate.com.au</p>
+            </div>
+          </div>
+        `
+      });
+      return res.json({ success: true });
+    }
+
+    // Fallback: mailto link (no SendGrid configured)
+    return res.json({ success: false, error: 'Email service not configured. Use the share link instead.' });
+  } catch (err) {
+    console.error('Email error:', err.message);
+    return res.status(500).json({ error: 'Failed to send email. Try again.' });
+  }
 });
 
 // Audience pages
