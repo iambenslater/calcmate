@@ -146,6 +146,7 @@ app.get('/articles/:slug', (req, res) => {
   const relatedCalcs = (article.relatedCalculators || []).map(s => calcBySlug[s]).filter(Boolean);
   res.render('article', {
     article,
+    articles,
     relatedCalcs,
     calc: { affiliateContext: article.affiliateContext || 'general' },
     title: `${article.title} | CalculatorMate Australia`,
