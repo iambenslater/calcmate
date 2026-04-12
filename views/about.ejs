@@ -1,0 +1,70 @@
+<%- include('partials/head') %>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  "name": "About CalculatorMate",
+  "description": "<%= metaDescription %>",
+  "url": "<%= siteUrl %>/about",
+  "mainEntity": {
+    "@type": "Organization",
+    "name": "CalculatorMate",
+    "url": "<%= siteUrl %>",
+    "founder": {
+      "@type": "Person",
+      "name": "Ben Slater",
+      "address": { "@type": "PostalAddress", "addressLocality": "Brisbane", "addressRegion": "QLD", "addressCountry": "AU" }
+    },
+    "areaServed": { "@type": "Country", "name": "Australia" }
+  }
+}
+</script>
+<%- include('partials/header') %>
+
+<main class="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-8">
+  <div class="max-w-3xl mx-auto bg-white rounded-xl shadow-sm border border-gray-100 p-8">
+
+    <h1 class="text-3xl font-bold text-navy mb-2">About CalculatorMate</h1>
+    <p class="text-sm text-gray-400 mb-8">Built in Brisbane, for every Australian</p>
+
+    <div class="article-content">
+
+      <h2>The Short Version</h2>
+      <p>CalculatorMate is a free collection of 117+ online calculators built specifically for Australians. Current ATO tax rates, state-by-state stamp duty, Medicare levy thresholds, superannuation rules, workplace entitlements &mdash; all in one place, all free, no sign-up required.</p>
+
+      <h2>Why I Built This</h2>
+      <p>My name is Ben Slater. I'm a father of three, based in Brisbane, Queensland. The idea for CalculatorMate started at my kitchen table.</p>
+      <p>My eldest was asking about how much tax comes out of a pay cheque. Simple question, right? I went looking for a quick, clear answer online and found &mdash; well, not much that was actually useful. Most Australian calculator sites were buried in ads, outdated, or so cluttered that a teenager would close the tab in seconds.</p>
+      <p>That bothered me. Financial literacy isn't something our schools do particularly well, and yet it's one of the most practical skills a young person can have. I wanted my kids to be able to type a question, get an instant answer, and actually understand what the numbers meant.</p>
+      <p>So I built a take-home pay calculator. Then a mortgage repayment calculator. Then a stamp duty calculator. Then a BMI calculator. Then a GST calculator. Then &mdash; well, you get the idea. One calculator turned into ten, ten turned into fifty, and somewhere around calculator number eighty I realised this had gotten slightly out of hand.</p>
+      <p>Today, CalculatorMate has over 117 calculators covering finance, property, health, business, superannuation, investment, construction, science, and more. Every single one uses current Australian rates and data, runs entirely in your browser (nothing is sent to a server), and is designed to give you a clear answer in under ten seconds.</p>
+
+      <h2>What Makes CalculatorMate Different</h2>
+      <ul>
+        <li><strong>Built for Australia.</strong> Not a US calculator with a dollar sign swapped out. We use real ATO tax brackets, state-specific stamp duty tables, Australian super guarantee rates, Fair Work leave entitlements, and Medicare levy thresholds &mdash; updated for the current financial year.</li>
+        <li><strong>Free. No sign-up. No paywall.</strong> Every calculator on this site is completely free. You don't need to create an account, hand over your email, or sit through a webinar to find out what your take-home pay is.</li>
+        <li><strong>Privacy-first.</strong> All calculations happen in your browser. We don't collect, store, or transmit your financial data. Your salary, your mortgage amount, your health stats &mdash; none of it leaves your device.</li>
+        <li><strong>Fast and clean.</strong> No pop-ups. No intrusive modals. No "subscribe to our newsletter" banners blocking the result. You came here to calculate something &mdash; we respect that.</li>
+        <li><strong>Plain English results.</strong> Every calculator includes a TLDR summary that translates the numbers into a sentence a human can actually understand.</li>
+      </ul>
+
+      <h2>Who Uses CalculatorMate</h2>
+      <p>Everyone, really. First home buyers working out stamp duty in their state. Small business owners calculating GST or checking employee leave entitlements. Parents budgeting for the school year. Tradies estimating concrete or timber for a job. Retirees projecting their super balance. Students figuring out what a part-time wage actually looks like after tax.</p>
+      <p>If you live in Australia and you need to calculate something, there's a good chance we've built a tool for it.</p>
+
+      <h2>The Philosophy</h2>
+      <p>I believe that access to clear, accurate financial and practical information shouldn't be locked behind a paywall, buried in jargon, or gatekept by professionals charging by the hour. Calculators are a starting point &mdash; they help you ask better questions, understand your situation, and make more informed decisions.</p>
+      <p>CalculatorMate will never replace a qualified accountant, financial adviser, or medical professional. But it will help you walk into that conversation with a much better understanding of where you stand.</p>
+
+      <h2>Get in Touch</h2>
+      <p>Found a bug? Got a calculator idea? Want to let me know that the stamp duty rates changed and I haven't updated yet? I'd genuinely love to hear from you.</p>
+      <p>Drop me a line at <a href="mailto:hello@calculatormate.com.au">hello@calculatormate.com.au</a>.</p>
+
+      <p class="text-sm text-gray-400 mt-8">Cheers,<br><strong class="text-navy">Ben Slater</strong><br>Brisbane, QLD</p>
+    </div>
+
+  </div>
+</main>
+
+<%- include('partials/footer') %>
+<%- include('partials/tail') %>

@@ -4,15 +4,15 @@
 {
   "@context": "https://schema.org",
   "@type": "CollectionPage",
-  "name": "<%= categoryName %> Calculators",
-  "description": "<%= categoryDescription %>",
+  "name": "<%- categoryName.replace(/&/g, '&amp;') %> Calculators",
+  "description": "<%- categoryDescription.replace(/"/g, '\\"') %>",
   "url": "<%= siteUrl %>/<%= category %>",
   "isPartOf": { "@type": "WebSite", "name": "CalculatorMate Australia", "url": "<%= siteUrl %>" },
   "breadcrumb": {
     "@type": "BreadcrumbList",
     "itemListElement": [
       { "@type": "ListItem", "position": 1, "name": "Home", "item": "<%= siteUrl %>" },
-      { "@type": "ListItem", "position": 2, "name": "<%= categoryName %>" }
+      { "@type": "ListItem", "position": 2, "name": "<%- categoryName.replace(/&/g, '&amp;') %>", "item": "<%= siteUrl %>/<%= category %>" }
     ]
   }
 }

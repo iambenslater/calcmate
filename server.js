@@ -53,7 +53,9 @@ app.use(helmet({
       imgSrc: ["'self'", "data:", "https:", "https://www.google-analytics.com", "https://www.googletagmanager.com"],
       connectSrc: ["'self'", "https:", "https://www.google-analytics.com", "https://analytics.google.com"]
     }
-  }
+  },
+  referrerPolicy: { policy: 'strict-origin-when-cross-origin' },
+  strictTransportSecurity: { maxAge: 31536000, includeSubDomains: true }
 }));
 app.use(express.static(path.join(__dirname, 'public'), { maxAge: process.env.NODE_ENV === 'production' ? '7d' : '0' }));
 app.set('view engine', 'ejs');
@@ -243,21 +245,24 @@ Rules:
 // Sitemap
 app.get('/sitemap.xml', (req, res) => {
   const baseUrl = res.locals.siteUrl;
+  const today = new Date().toISOString().split('T')[0];
   let xml = '<?xml version="1.0" encoding="UTF-8"?>\n';
   xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n';
-  xml += `  <url><loc>${baseUrl}/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>\n`;
+  xml += `  <url><loc>${baseUrl}/</loc><lastmod>${today}</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>\n`;
   Object.keys(categoryMeta).forEach(cat => {
-    xml += `  <url><loc>${baseUrl}/${cat}</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>\n`;
+    xml += `  <url><loc>${baseUrl}/${cat}</loc><lastmod>${today}</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>\n`;
   });
   calculators.forEach(calc => {
-    xml += `  <url><loc>${baseUrl}/${calc.category}/${calc.slug}</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>\n`;
+    xml += `  <url><loc>${baseUrl}/${calc.category}/${calc.slug}</loc><lastmod>${today}</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>\n`;
   });
   articles.forEach(article => {
-    xml += `  <url><loc>${baseUrl}/articles/${article.slug}</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>\n`;
+    const lastmod = article.dateModified || article.datePublished || today;
+    xml += `  <url><loc>${baseUrl}/articles/${article.slug}</loc><lastmod>${lastmod}</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>\n`;
   });
-  xml += `  <url><loc>${baseUrl}/for</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>\n`;
+  xml += `  <url><loc>${baseUrl}/about</loc><lastmod>${today}</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>\n`;
+  xml += `  <url><loc>${baseUrl}/for</loc><lastmod>${today}</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>\n`;
   audiences.forEach(a => {
-    xml += `  <url><loc>${baseUrl}/for/${a.slug}</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>\n`;
+    xml += `  <url><loc>${baseUrl}/for/${a.slug}</loc><lastmod>${today}</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>\n`;
   });
   xml += '</urlset>';
   res.set('Content-Type', 'application/xml');
@@ -267,7 +272,7 @@ app.get('/sitemap.xml', (req, res) => {
 // Robots.txt
 app.get('/robots.txt', (req, res) => {
   res.type('text/plain');
-  res.send(`User-agent: *\nAllow: /\nSitemap: ${res.locals.siteUrl}/sitemap.xml\n`);
+  res.send(`User-agent: *\nAllow: /\nSitemap: ${res.locals.siteUrl}/sitemap.xml\n\n# AI crawlers\nUser-agent: GPTBot\nAllow: /\nUser-agent: ChatGPT-User\nAllow: /\nUser-agent: Claude-Web\nAllow: /\nUser-agent: Perplexity-User\nAllow: /\n`);
 });
 
 // Articles
@@ -369,6 +374,39 @@ app.get('/for/:slug', (req, res) => {
     title: `${audience.title} | CalculatorMate Australia`,
     metaDescription: audience.metaDescription
   });
+});
+
+// About
+app.get('/about', (req, res) => {
+  res.render('about', {
+    title: 'About CalculatorMate — Built by a Brisbane Dad for Real Australians',
+    metaDescription: 'CalculatorMate was built by Ben Slater, a Brisbane-based father of three, to give every Australian free access to accurate, easy-to-use financial, property, health, and lifestyle calculators.'
+  });
+});
+
+// llms.txt — AI crawler discoverability
+app.get('/llms.txt', (req, res) => {
+  const baseUrl = res.locals.siteUrl;
+  let txt = '# CalculatorMate Australia\n';
+  txt += '> 117 free online calculators built for Australians — tax, mortgage, health, business, and more.\n\n';
+  txt += `## About\nCalculatorMate provides free, accurate calculators using current ATO rates, state-specific stamp duty, Medicare levy thresholds, and Australian workplace law. All calculations run client-side in the browser.\n\n`;
+  txt += '## Calculators\n';
+  Object.entries(categoryMeta).forEach(([key, meta]) => {
+    const calcs = calcsByCategory[key] || [];
+    txt += `\n### ${meta.name}\n`;
+    calcs.forEach(c => {
+      txt += `- [${c.title}](${baseUrl}/${c.category}/${c.slug}): ${c.description}\n`;
+    });
+  });
+  if (articles.length) {
+    txt += '\n## Articles & Guides\n';
+    articles.forEach(a => {
+      txt += `- [${a.title}](${baseUrl}/articles/${a.slug}): ${a.metaDescription || a.excerpt}\n`;
+    });
+  }
+  txt += `\n## Links\n- Homepage: ${baseUrl}\n- About: ${baseUrl}/about\n- Sitemap: ${baseUrl}/sitemap.xml\n`;
+  res.type('text/plain');
+  res.send(txt);
 });
 
 // Terms & Privacy

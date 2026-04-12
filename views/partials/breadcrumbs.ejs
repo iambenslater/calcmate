@@ -15,6 +15,7 @@
       <li class="text-gray-300">/</li>
       <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
         <span itemprop="name" class="text-gray-800 font-medium"><%= calc.title %></span>
+        <link itemprop="item" href="<%= siteUrl %>/<%= calc.category %>/<%= calc.slug %>">
         <meta itemprop="position" content="3">
       </li>
     <% } %>
