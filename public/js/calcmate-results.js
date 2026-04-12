@@ -260,16 +260,6 @@
           '</div>' +
         '</div>' +
 
-        // Email result
-        '<div class="mb-4">' +
-          '<label class="block text-sm font-medium text-gray-700 mb-1">Email this result</label>' +
-          '<div class="flex gap-2">' +
-            '<input type="email" placeholder="your@email.com" class="flex-1 px-3 py-2 text-sm border rounded-lg" id="share-email-input">' +
-            '<button id="share-email-btn" class="px-4 py-2 bg-navy text-white font-bold rounded-lg text-sm hover:bg-blue-800 transition">Send</button>' +
-          '</div>' +
-          '<div id="share-email-status" class="text-xs mt-1"></div>' +
-        '</div>' +
-
         // Download PDF
         '<button id="share-pdf-btn" class="w-full py-3 bg-gray-100 text-navy font-bold rounded-lg text-sm hover:bg-gray-200 transition flex items-center justify-center gap-2">' +
           '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg> Download as PDF' +
@@ -279,9 +269,6 @@
     '</div>';
 
     document.body.appendChild(overlay);
-
-    // Wire up email button
-    document.getElementById('share-email-btn').addEventListener('click', sendEmailResult);
 
     // Wire up PDF button
     document.getElementById('share-pdf-btn').addEventListener('click', downloadPDF);
