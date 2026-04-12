@@ -11188,7 +11188,7 @@
         "a": "The algorithm processes the combined letters of both names using a consistent hash function, so different letter combinations produce different scores. Nicknames vs full names will give different results."
       }
     ],
-    "howItWorks": "<p>Combines both names, counts the occurrences of letters in the word 'LOVES' and 'TRUE', then applies a deterministic algorithm to produce a percentage between 1-99%. The same two names always produce the same result. This is entertainment only.</p>",
+    "howItWorks": "<p>Pop in two names, and our totally scientific™ love algorithm will tell you if you're soulmates or if you should keep swiping. Same names always get the same result, so no cheating by refreshing. Will it predict your future? Absolutely not. Will it start arguments at parties? Almost certainly.</p>",
     "affiliateContext": "general",
     "relatedSlugs": [
       "pizza-split",
@@ -11280,7 +11280,7 @@
         "a": "Domino's and Pizza Hut charge $8-$18 per pizza (with frequent deals). Gourmet pizzerias charge $18-$30. Delivery fees are typically $5-$10. Value picks and bundle deals are usually the best bang for your buck."
       }
     ],
-    "howItWorks": "<p>Calculates total pizza area using pi x r^2 for each pizza, sums them, then divides by number of people for area per person. Also calculates total slices and slices per person. Provides a fun comparison of pizza area to common objects.</p>",
+    "howItWorks": "<p>Finally, an answer to humanity's greatest question: are we ordering enough pizza? Tell us how many hungry humans you're feeding and we'll do the maths on slices, total pizza area, and whether Dave really deserves that last slice. Spoiler: he doesn't.</p>",
     "affiliateContext": "kitchen",
     "relatedSlugs": [
       "love-calculator",
@@ -11366,7 +11366,7 @@
         "a": "Not necessarily — life is about balance. But knowing the true cost helps you make informed choices. Maybe switch to home-brew on some days, or redirect the savings to a goal that motivates you. A $5.50 daily saving adds up to $25,000+ over 10 years."
       }
     ],
-    "howItWorks": "<p>Multiplies coffees per day by price per coffee by days per week by 52 weeks for annual cost. Projects the opportunity cost of that money if invested using compound interest over 5, 10, 20, and 30 year horizons. Also compares to the cost of making coffee at home.</p>",
+    "howItWorks": "<p>Ever wondered what your daily flat white habit is actually costing you? This calculator adds it all up — and then twists the knife by showing what that money could be worth if you'd invested it instead. Don't shoot the messenger. You're still going to buy the coffee tomorrow. We all are.</p>",
     "affiliateContext": "kitchen",
     "relatedSlugs": [
       "love-calculator",
@@ -13990,7 +13990,7 @@
         "a": "No. More attempts improve your cumulative probability, but each individual attempt has the same odds. Even with 1000 lottery tickets, your overall chance is still tiny."
       }
     ],
-    "howItWorks": "<p>Uses probability theory. Single event: P = 1/X. Multiple independent events: P(at least once) = 1 - (1 - 1/X)^n. Also shows how many attempts you would need for a 50% and 95% cumulative chance.</p>",
+    "howItWorks": "<p>Pick a wild scenario — winning Oz Lotto, getting struck by lightning, finding a four-leaf clover — or enter your own odds. We'll tell you the real probability and how many attempts you'd need before luck is on your side. Great for settling pub debates.</p>",
     "affiliateContext": "general",
     "relatedSlugs": [
       "love-calculator",
@@ -14036,7 +14036,7 @@
         "a": "These are estimates based on medical averages. Individual numbers vary based on fitness, activity level, health, and lifestyle. They are fun approximations, not precise measurements."
       }
     ],
-    "howItWorks": "<p>Multiplies your age by scientifically-backed daily averages: ~17,000 blinks/day (awake hours), ~22,000 breaths/day, ~100,000 heartbeats/day, ~3 meals/day, ~2,600 days slept (8hrs/day), ~3,000 litres of water/year, and more.</p>",
+    "howItWorks": "<p>Your body has been quietly racking up some truly absurd numbers since the day you were born. Heartbeats, blinks, breaths, meals, hours slept — this calculator tallies up your lifetime stats. The results are either fascinating or existentially terrifying. Possibly both.</p>",
     "affiliateContext": "general",
     "relatedSlugs": [
       "what-are-the-odds",
@@ -14124,7 +14124,7 @@
         "a": "Yes. Select \"Custom date\" and enter any future date. You can count down to weddings, holidays, retirement, exams, or anything else."
       }
     ],
-    "howItWorks": "<p>Calculates the exact difference between now and your target date in days, hours, minutes, and seconds. For quick picks, it automatically determines the next upcoming occurrence of that event.</p>",
+    "howItWorks": "<p>Whether you're counting down to Christmas, dreading the end of financial year, or just need to know exactly how many sleeps until your next holiday — this is your calculator. Pick a date or use one of our quick picks. Time waits for no one, but at least now you know how much of it you've got.</p>",
     "affiliateContext": "general",
     "relatedSlugs": [
       "how-many-calculator",
@@ -14215,7 +14215,7 @@
         "a": "Health authorities generally recommend no more than 400mg per day for healthy adults — roughly 3-4 cups of coffee. Pregnant women are advised to stay under 200mg. Children and teenagers should consume significantly less."
       }
     ],
-    "howItWorks": "<p>Calculates based on the LD50 (median lethal dose) of caffeine: approximately 150mg per kilogram of body weight. Divides your theoretical lethal dose by the caffeine content of your chosen drink. This is purely educational and entertaining — please do not attempt to verify.</p>",
+    "howItWorks": "<p>We've all said \"I could literally die for a coffee right now.\" But how many coffees would it actually take? This calculator works it out based on your body weight and drink of choice. Purely for entertainment — please continue to enjoy your coffees responsibly and one at a time.</p>",
     "affiliateContext": "kitchen",
     "relatedSlugs": [
       "coffee-cost",
@@ -14262,7 +14262,7 @@
         "a": "Absolutely not. Real friendship is built on trust, shared experiences, and being there for each other — not a name algorithm. But it is fun to share with your mates."
       }
     ],
-    "howItWorks": "<p>Similar to the love calculator, but uses a different hash seed based on the word \"MATES\" and \"BEST\" to produce a friendship-specific percentage between 1-99%.</p>",
+    "howItWorks": "<p>Just like the love calculator, but for your mates. Type in two names and find out your official Friendship Compatibility Score™. Use it to confirm what you already knew: your best mate is top-tier. Or use it to stir the pot in the group chat. We won't judge.</p>",
     "affiliateContext": "general",
     "relatedSlugs": [
       "love-calculator",
@@ -14305,7 +14305,7 @@
         "a": "Numerology is considered a pseudoscience with no scientific evidence supporting it. This calculator is for entertainment and curiosity purposes only. Have fun with it, but don't make life decisions based on the results!"
       }
     ],
-    "howItWorks": "<p>Reduces your birth date to a single digit (or master number 11, 22, 33) using numerological digit summing. Each number has traditional meanings: 1 = leadership, 2 = partnership, 3 = creativity, etc. Also identifies your repeating angel number sequence (111, 222, etc.).</p>",
+    "howItWorks": "<p>Pop in your birthday and discover your angel number — the single digit (or rare master number) that numerology says reveals your life path. Are you a Leader, a Creative, or a Master Builder? Is it scientifically proven? Nope. Is it fun to read at 2am? Absolutely.</p>",
     "affiliateContext": "general",
     "relatedSlugs": [
       "love-calculator",
@@ -14426,7 +14426,7 @@
         "a": "Use a medium egg from the fridge, lower gently into rapidly boiling water, and cook for exactly 6 minutes 30 seconds. Transfer immediately to an ice bath to stop the cooking."
       }
     ],
-    "howItWorks": "<p>Base times: soft 6min, medium 8min, hard 12min for a medium room-temp egg at sea level. Adjusts +30s for fridge-cold eggs, ±15-30s for egg size, and +30s per 500m altitude. Times assume eggs lowered into already-boiling water.</p>",
+    "howItWorks": "<p>Runny, jammy, or hard? Getting the perfect boiled egg is weirdly stressful. This calculator takes the guesswork out — tell us how you like it, how big the egg is, and whether it's coming straight from the fridge. We'll give you the exact time. No more grey yolks. No more soupy whites. Just eggs, done right.</p>",
     "affiliateContext": "kitchen",
     "relatedSlugs": [
       "pizza-split",
@@ -14490,7 +14490,7 @@
         "a": "Use mesh laundry bags, pair socks before washing, use clips or sock locks, and always check inside fitted sheets and duvet covers before drying."
       }
     ],
-    "howItWorks": "<p>Based on research showing the average person loses 1.3 socks per month (about 15 per year). Adjusts for household size and laundry frequency. Also calculates the estimated cost in replacement socks and the total orphaned socks sitting in your drawer.</p>",
+    "howItWorks": "<p>Where do they go? Seriously, where? One minute you've got a pair, next minute you've got a lonely orphan and a drawer full of mismatched disappointment. This calculator tallies up your estimated lifetime sock losses. The number might upset you. The cost definitely will.</p>",
     "affiliateContext": "general",
     "relatedSlugs": [
       "how-many-calculator",
@@ -14584,7 +14584,7 @@
         "a": "The calculator rounds up to the nearest half-dozen, because showing up with too many donuts is always better than too few. Nobody has ever complained about leftover donuts."
       }
     ],
-    "howItWorks": "<p>Base rate of 1.5 donuts per person, adjusted for occasion (kids = 1.2x, breakfast meeting = 1.5x) and appetite level (+/- 25%). Rounds up to nearest half-dozen. Also suggests variety split and estimates cost at ~ per donut (Australian bakery average).</p>",
+    "howItWorks": "<p>You've been asked to bring donuts. The pressure is real. Too few and you're the villain. Too many and... actually, has anyone ever complained about too many donuts? Tell us the occasion and how many people, and we'll sort out the rest. Including a suggested variety split, because nobody wants 36 cinnamon.</p>",
     "affiliateContext": "kitchen",
     "relatedSlugs": [
       "pizza-split",
@@ -14677,7 +14677,7 @@
         "a": "Australia is one of the most expensive countries in the world for beer. The average Australian adult drinks about 75 litres of beer per year, spending roughly ,000-3,000 annually."
       }
     ],
-    "howItWorks": "<p>Calculates total beers consumed over your drinking career, then applies real loss rates: ~8% foam (tap), ~5% warm dregs left in glass, ~3% spillage, and a cheeky estimate for beers bought for mates who never shout back. Converts to litres, bathtubs, and swimming pools.</p>",
+    "howItWorks": "<p>Here's a painful truth: not every drop of beer you've paid for has made it to your mouth. Between the foam, the warm dregs you leave at the bottom, the odd spillage, and the rounds you've bought for mates who mysteriously vanish when it's their shout — the losses add up. This calculator shows you exactly how much. Sorry in advance.</p>",
     "affiliateContext": "general",
     "relatedSlugs": [
       "caffeine-calculator",
