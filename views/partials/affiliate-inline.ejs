@@ -1,75 +1,68 @@
 <%
+// Inline product mention — editorial style, NOT a bordered box
+// Appears between content sections as a natural recommendation
 const affiliateTag = 'benslater-22';
 
-// Load curated product for this context — show the #1 pick as the inline CTA
-// Data passed via res.locals from server.js (no require() in EJS)
-let inlineProduct = null;
-let affiliateCtx = 'general';
-try {
-  const productData = typeof affiliateProducts !== 'undefined' ? affiliateProducts : { products: {} };
-  affiliateCtx = typeof calc !== 'undefined' ? (calc.affiliateContext || calc.category || 'general')
-    : (typeof affiliateContext !== 'undefined' ? affiliateContext : 'general');
-  const products = (productData.products && productData.products[affiliateCtx]) || productData.products['general'] || [];
-  if (products.length) inlineProduct = products[0];
-} catch(e) { /* no product data */ }
+const productData = typeof affiliateProducts !== 'undefined' ? affiliateProducts : { products: {} };
+const inlineCtx = typeof calc !== 'undefined' ? (calc.affiliateContext || calc.category || 'general')
+  : (typeof affiliateContext !== 'undefined' ? affiliateContext : 'general');
+const ctxProducts = (productData.products && productData.products[inlineCtx]) || productData.products['general'] || [];
 
-// Fallback labels by context
-const contextLabels = {
-  food: 'Meal Prep Essentials',
-  fitness: 'Smart Body Tracking',
-  'finance-books': "Australia's Best Finance Books",
-  'tax-software': 'Tax Season Essentials',
-  budgeting: 'Budget Planning Tools',
-  mortgage: 'First Home Buyer Guides',
-  savings: 'Savings & Investing',
-  investment: 'Investing Starter Kit',
-  'car-accessories': 'Dash Cams for Australian Roads',
-  'car-loan': 'New Car Essentials',
-  'trade-tools': 'Professional Trade Tools',
-  'home-appliances': 'Energy Saving Gadgets',
-  'home-tools': 'Home Improvement Essentials',
-  kitchen: 'Kitchen Precision Tools',
-  baby: 'New Parent Must-Haves',
-  education: 'Study Essentials',
-  fashion: 'Body Measurement Tools',
-  travel: 'Travel Packing Essentials',
-  'business-books': 'Small Business Books',
-  'office-furniture': 'Work From Home Upgrade',
-  'office-supplies': 'Office Desk Tools',
-  pet: 'Pet Care Essentials',
-  insurance: 'Document Protection',
-  health: 'Health Monitoring at Home',
-  'health-insurance': 'Health Tracking Essentials',
-  'credit-cards': 'Debt Freedom Tools',
-  'personal-loan': 'Financial Planning Tools',
-  general: 'Best-Selling on Amazon'
-};
+// Pick the second product (first is used as "Our Pick" above results)
+const inlineProduct = ctxProducts.length > 1 ? ctxProducts[1] : (ctxProducts.length > 0 ? ctxProducts[0] : null);
 
-const label = contextLabels[affiliateCtx] || contextLabels.general;
-
-function inlineUrl() {
-  if (inlineProduct && inlineProduct.asin && inlineProduct.asin.length >= 10) {
-    return 'https://www.amazon.com.au/dp/' + inlineProduct.asin + '?tag=' + affiliateTag;
+function inlineUrl(p) {
+  if (p && p.asin && p.asin.length >= 10) {
+    return 'https://www.amazon.com.au/dp/' + p.asin + '?tag=' + affiliateTag;
   }
-  if (inlineProduct && inlineProduct.searchFallback) {
-    return 'https://www.amazon.com.au/s?k=' + encodeURIComponent(inlineProduct.searchFallback) + '&tag=' + affiliateTag;
+  if (p && p.searchFallback) {
+    return 'https://www.amazon.com.au/s?k=' + encodeURIComponent(p.searchFallback) + '&tag=' + affiliateTag;
   }
   return 'https://www.amazon.com.au/?tag=' + affiliateTag;
 }
+
+function formatReviewCount(n) {
+  if (!n) return '';
+  if (n >= 1000) return (n / 1000).toFixed(n >= 10000 ? 0 : 1).replace(/\.0$/, '') + 'K';
+  return String(n);
+}
+
+// Context-aware intro line that feels like editorial content
+const inlineIntros = {
+  food: 'If you\'re tracking macros seriously,',
+  fitness: 'For anyone serious about body composition,',
+  'finance-books': 'If you\'re looking to go deeper on this,',
+  'tax-software': 'To make next tax season easier,',
+  budgeting: 'If you want to make this budget real,',
+  mortgage: 'Before you start the application process,',
+  savings: 'To put this savings plan into action,',
+  investment: 'If you\'re just starting your investment journey,',
+  'car-accessories': 'Something worth adding to your new ride:',
+  'car-loan': 'One thing worth considering with a new car:',
+  'trade-tools': 'A tool that pays for itself quickly:',
+  'home-appliances': 'To actually see where your energy goes,',
+  'home-tools': 'One thing worth sorting before you start:',
+  kitchen: 'If you want consistent results,',
+  baby: 'Something other parents swear by:',
+  education: 'A solid option for students:',
+  health: 'For monitoring at home between visits,',
+  'health-insurance': 'Worth having at home:',
+  general: 'Something worth checking out:',
+  'credit-cards': 'To make your repayment plan tangible,',
+  'personal-loan': 'Worth reading before you sign anything:',
+  insurance: 'To keep your important documents safe,',
+  'office-furniture': 'A simple upgrade that makes a difference:',
+  'office-supplies': 'A desk essential that earns its space:',
+  pet: 'For getting portions right,',
+  fashion: 'For accurate measurements at home,',
+  travel: 'Something seasoned travellers recommend:',
+  'business-books': 'If you\'re building something,'
+};
+const intro = inlineIntros[inlineCtx] || inlineIntros.general;
 %>
 <% if (inlineProduct) { %>
-<div class="bg-gold-light rounded-xl p-5 mb-8 border border-gold/30">
-  <div class="flex items-start gap-4">
-    <div class="text-3xl">🛒</div>
-    <div class="flex-1">
-      <h3 class="font-bold text-navy text-sm mb-1"><%= label %></h3>
-      <p class="text-sm text-gray-800 font-medium"><%= inlineProduct.title %> — <%= inlineProduct.price %></p>
-      <p class="text-xs text-gray-600 mb-3"><%= inlineProduct.tagline %><% if (inlineProduct.rating) { %> · <span class="text-amber-500"><%= '★'.repeat(Math.round(inlineProduct.rating)) %></span> <%= inlineProduct.rating %><% } %></p>
-      <a href="<%- inlineUrl() %>" target="_blank" rel="nofollow noopener" class="inline-block px-4 py-2 bg-gold text-navy text-xs font-bold rounded-lg hover:bg-yellow-400 transition">
-        View on Amazon →
-      </a>
-    </div>
-  </div>
-  <p class="text-[10px] text-gray-400 mt-2">As an Amazon Associate, CalculatorMate earns from qualifying purchases.</p>
-</div>
+<p class="text-sm text-gray-600 my-6 leading-relaxed">
+  <%= intro %> the <a href="<%- inlineUrl(inlineProduct) %>" target="_blank" rel="nofollow noopener" class="text-blue-700 hover:text-blue-900 font-medium transition" data-affiliate-product="<%= inlineProduct.asin %>" data-affiliate-position="inline"><%= inlineProduct.title %></a> (<%= inlineProduct.price %><% if (inlineProduct.rating) { %>, <%= inlineProduct.rating %>&#9733;<% if (inlineProduct.reviewCount) { %> from <%= formatReviewCount(inlineProduct.reviewCount) %> reviews<% } %><% } %>) is worth a look.
+  <span class="text-[10px] text-gray-300 ml-1">Affiliate link</span>
+</p>
 <% } %>

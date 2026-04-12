@@ -56,11 +56,6 @@
 </script>
 <%- include('partials/header') %>
 
-<!-- Header ad -->
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
-  <% adSlotNum = (typeof adSlotNum === 'undefined') ? 0 : adSlotNum; %><%- include('partials/ad-leaderboard', { adSlot: adSlotNum++ }) %>
-</div>
-
 <main class="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-6" data-calculator-slug="<%= calc.slug %>" data-affiliate-context="<%= calc.affiliateContext || calc.category %>">
   <%- include('partials/breadcrumbs', { category: calc.category, categoryName, calc }) %>
 
@@ -150,8 +145,8 @@
         </div>
       </div>
 
-      <!-- Ad: interstitial after calculator -->
-      <div class="mb-8"><% adSlotNum = (typeof adSlotNum === 'undefined') ? 0 : adSlotNum; %><%- include('partials/ad-leaderboard', { adSlot: adSlotNum++ }) %></div>
+      <!-- Editorial product pick — appears after results at peak engagement -->
+      <%- include('partials/ad-editorial-pick') %>
 
       <!-- How it works -->
       <% if (calc.howItWorks) { %>
@@ -177,17 +172,10 @@
                 </summary>
                 <p class="mt-2 text-sm leading-relaxed" style="color: #4b5563;"><%= f.a %></p>
               </details>
-              <% if (fIdx === 1) { %>
-                <!-- Ad: between FAQ items -->
-                <div class="my-2"><% adSlotNum = (typeof adSlotNum === 'undefined') ? 0 : adSlotNum; %><%- include('partials/ad-leaderboard', { adSlot: adSlotNum++ }) %></div>
-              <% } %>
             <% }) %>
           </div>
         </div>
       <% } %>
-
-      <!-- Ad: interstitial before related -->
-      <div class="mb-8"><% adSlotNum = (typeof adSlotNum === 'undefined') ? 0 : adSlotNum; %><%- include('partials/ad-leaderboard', { adSlot: adSlotNum++ }) %></div>
 
       <!-- Related calculators -->
       <% if (related && related.length) { %>
@@ -260,11 +248,6 @@
     </aside>
   </div>
 </main>
-
-<!-- Footer ad -->
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-4">
-  <% adSlotNum = (typeof adSlotNum === 'undefined') ? 0 : adSlotNum; %><%- include('partials/ad-leaderboard', { adSlot: adSlotNum++ }) %>
-</div>
 
 <%- include('partials/footer') %>
 

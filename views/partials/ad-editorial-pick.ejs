@@ -1,0 +1,88 @@
+<%
+// Editorial "Our Pick" — Wirecutter-style product recommendation
+// Appears inline after calculator results (peak engagement moment)
+// Designed to look like editorial content, NOT an ad
+const affiliateTag = 'benslater-22';
+
+const productData = typeof affiliateProducts !== 'undefined' ? affiliateProducts : { products: {} };
+const pickCtx = typeof calc !== 'undefined' ? (calc.affiliateContext || calc.category || 'general')
+  : (typeof affiliateContext !== 'undefined' ? affiliateContext : 'general');
+const ctxProducts = (productData.products && productData.products[pickCtx]) || productData.products['general'] || [];
+
+// Pick the #1 product for this context
+const pick = ctxProducts.length > 0 ? ctxProducts[0] : null;
+
+// Context-aware recommendation copy — explains WHY this product is relevant
+const pickReasons = {
+  food: 'Accurate portion control starts with a decent scale.',
+  fitness: 'Tracking body composition helps you see real progress beyond the number on the scale.',
+  'finance-books': 'Understanding your numbers is step one. This is the book most Australians start with.',
+  'tax-software': 'Tax time is easier when your receipts are already sorted.',
+  budgeting: 'Writing it down is what makes a budget actually stick.',
+  mortgage: 'First home buyers who research before they apply get better outcomes.',
+  savings: 'A clear plan makes saving automatic instead of aspirational.',
+  investment: 'Understanding the basics before you invest protects your money.',
+  'car-accessories': 'A dash cam pays for itself the first time you need it.',
+  'car-loan': 'Protect your new investment from day one.',
+  'trade-tools': 'The right tools pay for themselves in time saved.',
+  'home-appliances': 'Smart energy monitoring pays for itself within months.',
+  'home-tools': 'Keep your important documents protected during renovations.',
+  kitchen: 'Precision makes the difference between a good recipe and a great one.',
+  baby: 'Capturing the journey helps you remember details you think you won\'t forget.',
+  education: 'The right calculator makes study sessions faster and less frustrating.',
+  fashion: 'Accurate body measurements save you from returns and bad fits.',
+  travel: 'Organised packing means less stress and more room for souvenirs.',
+  'business-books': 'The businesses that survive year one are the ones that plan their finances.',
+  'office-furniture': 'Ergonomic upgrades reduce fatigue and boost focus.',
+  'office-supplies': 'Simple tools that keep your desk organised save minutes every day.',
+  pet: 'Accurate portions keep your pet at a healthy weight.',
+  insurance: 'Fireproof storage protects the documents that protect you.',
+  health: 'Regular home monitoring catches changes your annual check-up might miss.',
+  'health-insurance': 'Home health monitoring catches trends between doctor visits.',
+  'credit-cards': 'A written plan turns debt repayment from overwhelming to mechanical.',
+  'personal-loan': 'Understanding your finances before borrowing leads to better decisions.',
+  general: 'One of the most useful tools Australians are buying right now.'
+};
+
+const reason = pickReasons[pickCtx] || pickReasons.general;
+
+function pickUrl(p) {
+  if (p && p.asin && p.asin.length >= 10) {
+    return 'https://www.amazon.com.au/dp/' + p.asin + '?tag=' + affiliateTag;
+  }
+  if (p && p.searchFallback) {
+    return 'https://www.amazon.com.au/s?k=' + encodeURIComponent(p.searchFallback) + '&tag=' + affiliateTag;
+  }
+  return 'https://www.amazon.com.au/?tag=' + affiliateTag;
+}
+
+function formatReviewCount(n) {
+  if (!n) return '';
+  if (n >= 1000) return (n / 1000).toFixed(n >= 10000 ? 0 : 1).replace(/\.0$/, '') + 'K';
+  return String(n);
+}
+%>
+<% if (pick) { %>
+<div class="my-8">
+  <div class="flex items-center gap-2 mb-3">
+    <div class="w-1 h-5 bg-gray-300 rounded-full"></div>
+    <span class="text-xs font-medium text-gray-400 uppercase tracking-wider">Our pick</span>
+  </div>
+  <div class="pl-3">
+    <a href="<%- pickUrl(pick) %>" target="_blank" rel="nofollow noopener" class="group" data-affiliate-product="<%= pick.asin %>" data-affiliate-position="0">
+      <h3 class="text-base font-semibold text-gray-900 group-hover:text-blue-700 transition leading-snug"><%= pick.title %></h3>
+    </a>
+    <p class="text-sm text-gray-600 mt-1 leading-relaxed"><%= reason %></p>
+    <div class="flex items-center flex-wrap gap-x-3 gap-y-1 mt-2">
+      <% if (pick.price) { %><span class="text-sm font-semibold text-gray-900"><%= pick.price %></span><% } %>
+      <% if (pick.rating) { %>
+        <span class="text-sm text-gray-500"><%= pick.rating %><span class="text-amber-500 ml-0.5"><%= '★'.repeat(Math.round(pick.rating)) %></span><% if (pick.reviewCount) { %> <span class="text-gray-400">(<%= formatReviewCount(pick.reviewCount) %> reviews)</span><% } %></span>
+      <% } %>
+    </div>
+    <a href="<%- pickUrl(pick) %>" target="_blank" rel="nofollow noopener" class="inline-block mt-3 text-sm font-medium text-blue-700 hover:text-blue-900 transition" data-affiliate-product="<%= pick.asin %>" data-affiliate-position="0">
+      Check price on Amazon &rarr;
+    </a>
+  </div>
+  <p class="text-[10px] text-gray-300 mt-3 pl-3">We may earn a commission at no extra cost to you.</p>
+</div>
+<% } %>

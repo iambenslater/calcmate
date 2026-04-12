@@ -1,6 +1,6 @@
 <%
-// Renders curated Amazon product cards from affiliate-products.json
-// Data passed via res.locals from server.js (no require() in EJS)
+// Sidebar product recommendations — clean editorial style (no ad-like borders/colours)
+// Data passed via res.locals from server.js
 const affiliateTag = 'benslater-22';
 
 let products = [];
@@ -12,59 +12,61 @@ try {
   products = (productData.products && productData.products[affiliateCtx]) || [];
   if (!products.length) products = productData.products['general'] || [];
 
-  // Load click stats if available — boost products with higher CTR
+  // Load click stats — boost products with higher CTR
   const stats = typeof affiliateStats !== 'undefined' ? affiliateStats : {};
   if (stats.byProduct) {
     products = products.map(p => {
       const s = stats.byProduct[p.asin];
       return { ...p, clicks: s ? s.clicks : 0 };
     });
-    // Sort by clicks descending (most clicked first), then by rating
     products.sort((a, b) => (b.clicks - a.clicks) || ((b.rating || 0) - (a.rating || 0)));
   }
 
-  // Show max 3 products in sidebar
-  products = products.slice(0, 3);
+  // Skip the first product (shown as "Our Pick" inline) — show next 2-3
+  products = products.slice(1, 4);
 } catch(e) {
-  // No product data — will fall back to search links
+  products = [];
 }
 
-// Build product URL: direct ASIN link or search fallback
 function productUrl(p) {
   if (p.asin && p.asin.length >= 10) {
     return 'https://www.amazon.com.au/dp/' + p.asin + '?tag=' + affiliateTag;
   }
   return 'https://www.amazon.com.au/s?k=' + encodeURIComponent(p.searchFallback || p.title) + '&tag=' + affiliateTag;
 }
+
+function formatReviewCount(n) {
+  if (!n) return '';
+  if (n >= 1000) return (n / 1000).toFixed(n >= 10000 ? 0 : 1).replace(/\.0$/, '') + 'K';
+  return String(n);
+}
 %>
 <% if (products.length > 0) { %>
-  <!-- Curated product cards -->
-  <div class="rounded-xl border overflow-hidden bg-white shadow-sm">
-    <div class="bg-gray-50 px-3 py-1.5 border-b">
-      <span class="text-[10px] text-gray-400 font-medium uppercase tracking-wider">Recommended on Amazon</span>
-    </div>
-    <div class="p-3 space-y-2">
-      <% products.forEach((p, idx) => { %>
-        <a href="<%- productUrl(p) %>" target="_blank" rel="nofollow noopener" class="block rounded-lg p-3 border border-gray-100 hover:border-gold/50 hover:shadow-md transition bg-white group" data-affiliate-product="<%= p.asin %>" data-affiliate-position="<%= idx %>">
-          <div class="font-medium text-sm text-gray-900 group-hover:text-navy transition line-clamp-2"><%= p.title %></div>
-          <div class="text-xs text-gray-500 mt-0.5"><%= p.tagline %></div>
-          <div class="flex items-center gap-2 mt-1.5">
-            <% if (p.price) { %><span class="text-sm font-bold text-navy"><%= p.price %></span><% } %>
-            <% if (p.rating) { %>
-              <span class="text-xs text-amber-500"><%= '★'.repeat(Math.round(p.rating)) %><%= '☆'.repeat(5 - Math.round(p.rating)) %> <span class="text-gray-400"><%= p.rating %></span></span>
-            <% } %>
-          </div>
-        </a>
-      <% }) %>
-      <a href="https://www.amazon.com.au/s?k=<%= encodeURIComponent(products[0].searchFallback || '') %>&tag=<%= affiliateTag %>" target="_blank" rel="nofollow noopener" class="block text-center text-xs text-gray-400 hover:text-navy transition pt-1">
-        Browse more on Amazon.com.au →
-      </a>
-    </div>
-    <div class="bg-gray-50 px-3 py-1 border-t">
-      <span class="text-[9px] text-gray-300">As an Amazon Associate, CalculatorMate earns from qualifying purchases.</span>
-    </div>
+<div class="mt-1">
+  <div class="flex items-center gap-2 mb-3">
+    <div class="w-6 border-t border-gray-200"></div>
+    <span class="text-[10px] text-gray-400 font-medium uppercase tracking-wider">Worth a look</span>
+    <div class="flex-1 border-t border-gray-200"></div>
   </div>
-<% } else { %>
-  <!-- Fallback: search links (no product data) -->
-  <%- include('ad-rectangle') %>
+  <div class="space-y-4">
+    <% products.forEach((p, idx) => { %>
+      <div>
+        <a href="<%- productUrl(p) %>" target="_blank" rel="nofollow noopener" class="group" data-affiliate-product="<%= p.asin %>" data-affiliate-position="<%= idx + 1 %>">
+          <div class="text-sm font-medium text-gray-900 group-hover:text-blue-700 transition leading-snug"><%= p.title %></div>
+        </a>
+        <p class="text-xs text-gray-500 mt-0.5"><%= p.tagline %></p>
+        <div class="flex items-center flex-wrap gap-x-2 gap-y-0.5 mt-1">
+          <% if (p.price) { %><span class="text-sm font-semibold text-gray-900"><%= p.price %></span><% } %>
+          <% if (p.rating) { %>
+            <span class="text-xs text-gray-400"><%= p.rating %><span class="text-amber-500 ml-0.5"><%= '★'.repeat(Math.round(p.rating)) %></span><% if (p.reviewCount) { %> (<%= formatReviewCount(p.reviewCount) %>)<% } %></span>
+          <% } %>
+        </div>
+        <a href="<%- productUrl(p) %>" target="_blank" rel="nofollow noopener" class="text-xs text-blue-600 hover:text-blue-800 transition mt-1 inline-block" data-affiliate-product="<%= p.asin %>" data-affiliate-position="<%= idx + 1 %>">
+          Check price on Amazon
+        </a>
+      </div>
+    <% }) %>
+  </div>
+  <p class="text-[9px] text-gray-300 mt-3">We may earn a commission at no extra cost to you.</p>
+</div>
 <% } %>
