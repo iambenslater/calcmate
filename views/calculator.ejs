@@ -138,12 +138,6 @@
           </div>
         </div>
 
-        <!-- Chart -->
-        <div id="chart-container" class="mt-6 hidden">
-          <div class="bg-gray-50 rounded-2xl p-5 md:p-6 border border-gray-100" style="max-height: 380px;">
-            <canvas id="calcmate-chart"></canvas>
-          </div>
-        </div>
       </div>
 
       <!-- Editorial product pick — appears after results at peak engagement -->
@@ -259,7 +253,6 @@
   window._calcSlug = '<%= calc.slug %>';
   window._calcCategory = '<%= calc.category %>';
   window._calcTitle = '<%= calc.title %>';
-  window._chartConfig = <%- JSON.stringify(calc.chartConfig || null) %>;
 </script>
 
 <!-- Load calculator-specific JS -->

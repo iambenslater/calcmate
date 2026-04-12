@@ -1,7 +1,7 @@
 /**
  * CalculatorMate — Results Enhancement Layer
  *
- * Adds shareable URLs, Chart.js charts, share modal, PDF export, and email results
+ * Adds shareable URLs, share modal, PDF export, and email results
  * to ALL calculators without modifying individual calculator JS files.
  *
  * Hooks into the calculate flow via window.onCalculateComplete() callback.
@@ -17,9 +17,6 @@
   const calcSlug = window._calcSlug || '';
   const calcCategory = window._calcCategory || '';
   const calcTitle = window._calcTitle || '';
-  const chartConfig = window._chartConfig || null;
-  let currentChart = null;
-
   // Pre-fill inputs from URL params on page load
   function prefillFromURL() {
     const params = new URLSearchParams(window.location.search);
@@ -72,159 +69,6 @@
   function getPrimaryResult() {
     var boldRow = document.querySelector('#results-content .font-bold .result-value, #results-content .result-value');
     return boldRow ? boldRow.textContent.trim() : '';
-  }
-
-  // ============================================================
-  // PHASE 2: CHART.JS RENDERING
-  // ============================================================
-
-  function renderChart() {
-    if (typeof Chart === 'undefined') return;
-    var container = document.getElementById('chart-container');
-    var canvas = document.getElementById('calcmate-chart');
-    if (!container || !canvas) return;
-
-    // Destroy previous chart
-    if (currentChart) { currentChart.destroy(); currentChart = null; }
-
-    var data = null;
-    var type = 'doughnut';
-    var options = {};
-
-    // Option 1: Calculator set window._chartData directly
-    if (window._chartData) {
-      data = window._chartData;
-      type = window._chartData._type || 'doughnut';
-      delete data._type;
-    }
-    // Option 2: chartConfig from JSON — scrape result rows
-    else if (chartConfig) {
-      type = chartConfig.type || 'doughnut';
-      var labels = [];
-      var values = [];
-      var colours = chartConfig.colours || ['#00205B', '#FFB800', '#3B82F6', '#10B981', '#6366F1', '#EC4899', '#F59E0B', '#8B5CF6'];
-
-      if (chartConfig.dataLabels) {
-        // Scrape specific result rows by label text
-        var rows = document.querySelectorAll('#results-content .result-row');
-        rows.forEach(function(row) {
-          var label = row.querySelector('.result-label');
-          var value = row.querySelector('.result-value');
-          if (!label || !value) return;
-          var labelText = label.textContent.trim();
-          // Match exact or startsWith (for labels with dynamic suffixes like "Protein (35%)")
-          var matched = chartConfig.dataLabels.some(function(dl) { return labelText === dl || labelText.startsWith(dl); });
-          if (matched) {
-            labels.push(labelText);
-            // Parse currency or number from value text
-            var numStr = value.textContent.replace(/[^0-9.-]/g, '');
-            values.push(Math.abs(parseFloat(numStr)) || 0);
-          }
-        });
-      }
-
-      if (labels.length > 0) {
-        data = {
-          labels: labels,
-          datasets: [{
-            data: values,
-            backgroundColor: colours.slice(0, labels.length),
-            borderWidth: type === 'doughnut' || type === 'pie' ? 2 : 1,
-            borderColor: '#fff'
-          }]
-        };
-      }
-    }
-
-    if (!data) { container.classList.add('hidden'); return; }
-
-    container.classList.remove('hidden');
-
-    // Chart options
-    if (type === 'doughnut' || type === 'pie') {
-      options = {
-        responsive: true,
-        maintainAspectRatio: true,
-        cutout: type === 'doughnut' ? '60%' : 0,
-        plugins: {
-          legend: {
-            position: 'bottom',
-            labels: {
-              padding: 20,
-              usePointStyle: true,
-              pointStyleWidth: 10,
-              font: { family: 'Inter, system-ui, sans-serif', size: 13, weight: '500' },
-              color: '#1d1d1f'
-            }
-          },
-          tooltip: {
-            backgroundColor: '#1d1d1f',
-            titleFont: { family: 'Inter, system-ui, sans-serif', size: 13, weight: '600' },
-            bodyFont: { family: 'Inter, system-ui, sans-serif', size: 12 },
-            padding: 12,
-            cornerRadius: 8,
-            displayColors: true,
-            boxPadding: 6,
-            callbacks: {
-              label: function(ctx) {
-                var total = ctx.dataset.data.reduce(function(a, b) { return a + b; }, 0);
-                var pct = total > 0 ? ((ctx.parsed / total) * 100).toFixed(1) : 0;
-                return ' $' + ctx.parsed.toLocaleString('en-AU', {minimumFractionDigits: 2}) + ' (' + pct + '%)';
-              }
-            }
-          }
-        }
-      };
-    } else if (type === 'bar') {
-      options = {
-        responsive: true,
-        maintainAspectRatio: true,
-        plugins: {
-          legend: { display: false },
-          tooltip: {
-            backgroundColor: '#1d1d1f',
-            titleFont: { family: 'Inter, system-ui, sans-serif', size: 13, weight: '600' },
-            bodyFont: { family: 'Inter, system-ui, sans-serif', size: 12 },
-            padding: 12,
-            cornerRadius: 8,
-            callbacks: { label: function(ctx) { return ' $' + ctx.parsed.y.toLocaleString('en-AU', {minimumFractionDigits: 2}); } }
-          }
-        },
-        scales: {
-          y: {
-            beginAtZero: true,
-            grid: { color: '#f0f0f2', drawBorder: false },
-            ticks: { callback: function(v) { return '$' + v.toLocaleString(); }, font: { size: 11 }, color: '#86868b' }
-          },
-          x: {
-            grid: { display: false },
-            ticks: { font: { size: 12, weight: '500' }, color: '#1d1d1f' }
-          }
-        }
-      };
-      // Convert doughnut-style data to bar-style
-      if (data.datasets && data.datasets[0] && !data.datasets[0].label) {
-        data.datasets[0] = {
-          label: calcTitle,
-          data: data.datasets[0].data,
-          backgroundColor: data.datasets[0].backgroundColor,
-          borderRadius: 4
-        };
-      }
-    } else if (type === 'line') {
-      options = {
-        responsive: true,
-        maintainAspectRatio: true,
-        plugins: {
-          legend: { position: 'bottom', labels: { font: { family: 'Inter, system-ui, sans-serif', size: 12 } } }
-        },
-        scales: {
-          y: { beginAtZero: true, ticks: { callback: function(v) { return '$' + v.toLocaleString(); } } }
-        }
-      };
-    }
-
-    currentChart = new Chart(canvas, { type: type, data: data, options: options });
   }
 
   // ============================================================
@@ -419,19 +263,6 @@
         y += Math.min(imgHeight, 120) + 6;
       }
 
-      // Chart — export from Chart.js directly (better quality)
-      if (currentChart) {
-        if (y + 80 > 270) { doc.addPage(); y = margin; }
-        doc.setTextColor(0, 32, 91);
-        doc.setFontSize(12);
-        doc.setFont('helvetica', 'bold');
-        doc.text('Chart', margin, y);
-        y += 4;
-        var chartImg = currentChart.toBase64Image('image/png', 1);
-        doc.addImage(chartImg, 'PNG', margin, y, pageWidth - (margin * 2), 70);
-        y += 76;
-      }
-
       // Disclaimer
       if (y + 20 > 280) { doc.addPage(); y = margin; }
       doc.setDrawColor(200, 200, 200);
@@ -529,14 +360,8 @@
     // Update shareable URL
     updateShareableURL();
 
-    // Render chart
-    renderChart();
-
     // Inject share button
     injectShareButton();
-
-    // Clear any previous chart data
-    window._chartData = null;
   };
 
   // ============================================================

@@ -36,7 +36,7 @@
   <!-- Hero -->
   <section class="text-center py-12 md:py-16">
     <h1 class="text-4xl md:text-5xl font-bold text-navy mb-4">Your Calculation <span class="text-gold">Mate</span></h1>
-    <p class="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">121 free online calculators built for Australians. Tax, mortgage, health, business — all with current rates and state-specific data.</p>
+    <p class="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">131 free online calculators built for Australians. Tax, mortgage, health, business — all with current rates and state-specific data.</p>
     <div class="max-w-xl mx-auto relative">
       <input type="search" id="hero-search" placeholder="Search or ask a question..." class="w-full px-6 py-4 rounded-xl border-2 border-gray-200 text-lg focus:outline-none focus:border-gold focus:ring-2 focus:ring-gold/20 shadow-sm transition" autocomplete="off" maxlength="500">
       <div id="hero-search-results" class="absolute top-full left-0 right-0 mt-2 bg-white rounded-xl shadow-xl hidden max-h-80 overflow-y-auto z-50 border border-gray-100"></div>
@@ -143,7 +143,7 @@
       <% Object.entries(categoryMeta).forEach(([key, meta]) => { %>
         <% const calcs = calcsByCategory[key] || []; %>
         <div class="mb-6 last:mb-0">
-          <h3 class="font-semibold text-navy mb-2"><%= meta.icon %> <%= meta.name %></h3>
+          <h3 class="font-semibold text-navy mb-2"><a href="/<%= key %>" class="hover:text-gold transition"><%= meta.icon %> <%= meta.name %></a></h3>
           <div class="flex flex-wrap gap-2">
             <% calcs.forEach(c => { %>
               <a href="/<%= c.category %>/<%= c.slug %>" class="text-sm px-3 py-1 rounded-full bg-gray-50 hover:bg-gold-light hover:text-navy transition border border-gray-200 hover:border-gold/50"><%= c.title %></a>
