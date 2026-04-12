@@ -8,16 +8,19 @@
    GLOBAL TYPOGRAPHY OVERRIDES
    ============================================================ */
 
-/* Headlines use DM Sans — tighter tracking at large sizes */
-h1, h2, h3, .font-display {
+/* Headlines + navigation use DM Sans — tighter tracking at large sizes */
+h1, h2, h3, h4, .font-display, nav a, button, .font-semibold, .font-bold, .font-medium {
   font-family: 'DM Sans', system-ui, sans-serif !important;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.01em;
 }
+h1, h2 { letter-spacing: -0.02em; }
 
 /* Body text containers — constrain line length for readability */
-.article-content, #results-content, .prose {
-  max-width: 65ch;
+.article-content, #results-content, .prose, .line-clamp, p {
+  max-width: 75ch;
 }
+/* Don't constrain flex/grid children or result rows */
+.result-row, .result-row p, .flex p, .grid p { max-width: none; }
 
 /* ============================================================
    CONTENT TYPOGRAPHY (articles, audience pages, guides)
