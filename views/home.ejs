@@ -39,22 +39,12 @@
     <h1 class="text-4xl md:text-5xl font-bold text-navy mb-4">Your Calculation <span class="text-gold">Mate</span></h1>
     <p class="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">117 free online calculators built for Australians. Tax, mortgage, health, business — all with current rates and state-specific data.</p>
     <div class="max-w-xl mx-auto relative">
-      <input type="search" id="hero-search" placeholder="What do you need to calculate?" class="w-full px-6 py-4 rounded-xl border-2 border-gray-200 text-lg focus:outline-none focus:border-gold focus:ring-2 focus:ring-gold/20 shadow-sm transition" autocomplete="off">
+      <input type="search" id="hero-search" placeholder="Search or ask a question..." class="w-full px-6 py-4 pr-28 rounded-xl border-2 border-gray-200 text-lg focus:outline-none focus:border-gold focus:ring-2 focus:ring-gold/20 shadow-sm transition" autocomplete="off" maxlength="500">
+      <button id="ai-search-btn" class="absolute right-3 top-1/2 -translate-y-1/2 px-4 py-1.5 bg-navy text-white text-sm font-medium rounded-lg hover:bg-navy/90 transition hidden">Ask Mate</button>
       <div id="hero-search-results" class="absolute top-full left-0 right-0 mt-2 bg-white rounded-xl shadow-xl hidden max-h-80 overflow-y-auto z-50 border border-gray-100"></div>
     </div>
-    <p class="text-sm text-gray-400 mt-3">Try: "take home pay", "stamp duty", "BMI", "mortgage"</p>
-
-    <!-- AI Search -->
-    <div class="max-w-2xl mx-auto mt-6">
-      <div class="flex items-center gap-2 mb-3">
-        <div class="h-px flex-1 bg-gray-200"></div>
-        <span class="text-xs text-gray-400 font-medium uppercase tracking-wider">or ask a question</span>
-        <div class="h-px flex-1 bg-gray-200"></div>
-      </div>
-      <div class="relative">
-        <textarea id="ai-search" rows="2" placeholder="Ask in plain English, e.g. &quot;What's my take-home pay on $85k in NSW with a HECS debt?&quot; or &quot;I want to buy a $700k house in QLD — what will it cost me?&quot;" class="w-full px-5 py-3 rounded-xl border-2 border-navy/20 text-base focus:outline-none focus:border-gold focus:ring-2 focus:ring-gold/20 shadow-sm transition resize-none" maxlength="500"></textarea>
-        <button id="ai-search-btn" class="absolute right-3 bottom-3 px-4 py-1.5 bg-navy text-white text-sm font-medium rounded-lg hover:bg-navy/90 transition">Ask Mate</button>
-      </div>
+    <p id="hero-hint" class="text-sm text-gray-400 mt-3">Try "stamp duty" or ask "What's my take-home pay on $85k in NSW?"</p>
+    <div class="max-w-xl mx-auto">
       <div id="ai-results" class="mt-4 hidden"></div>
       <div id="ai-loading" class="mt-4 hidden text-center">
         <div class="inline-flex items-center gap-2 text-gray-500 text-sm">
