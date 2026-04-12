@@ -8,7 +8,7 @@ const adIndex = typeof adSlot !== 'undefined' ? adSlot : Math.floor(Math.random(
 // Each context has 4+ ad variations so each slot shows something different
 const allAds = {
   budgeting: [
-    { query: 'budget planner 2026', headline: 'Get Your Budget Sorted', cta: 'Shop Budget Planners', bg: 'from-amber-700 to-orange-600' },
+    { query: 'budget planner 2026', headline: 'Get Your Budget Sorted', cta: 'Shop Budget Planners', bg: 'from-amber-700 to-orange-800' },
     { query: 'financial calculator casio', headline: 'Crunch the Numbers', cta: 'Shop Calculators', bg: 'from-blue-600 to-indigo-600' },
     { query: 'money management book australia', headline: 'Master Your Money', cta: 'Shop Finance Books', bg: 'from-green-600 to-emerald-600' },
     { query: 'savings jar money box', headline: 'Start Saving Today', cta: 'Shop Savings Tools', bg: 'from-purple-500 to-indigo-500' }
@@ -29,22 +29,22 @@ const allAds = {
     { query: 'ergonomic desk chair', headline: 'Upgrade Your Home Office', cta: 'Shop Office Chairs', bg: 'from-gray-700 to-gray-900' },
     { query: 'standing desk electric', headline: 'Stand Up for Health', cta: 'Shop Standing Desks', bg: 'from-blue-600 to-indigo-700' },
     { query: 'monitor arm dual', headline: 'Perfect Your Setup', cta: 'Shop Monitor Arms', bg: 'from-slate-600 to-slate-800' },
-    { query: 'desk lamp led', headline: 'Light Up Your Work', cta: 'Shop Desk Lamps', bg: 'from-amber-700 to-orange-600' }
+    { query: 'desk lamp led', headline: 'Light Up Your Work', cta: 'Shop Desk Lamps', bg: 'from-amber-700 to-orange-800' }
   ],
   education: [
     { query: 'scientific calculator', headline: 'Tools for Smarter Study', cta: 'Shop Study Essentials', bg: 'from-purple-500 to-indigo-500' },
     { query: 'whiteboard marker set', headline: 'Visualise the Problem', cta: 'Shop Whiteboards', bg: 'from-blue-500 to-cyan-500' },
     { query: 'stationery set premium', headline: 'Level Up Your Stationery', cta: 'Shop Stationery', bg: 'from-pink-500 to-rose-500' },
-    { query: 'textbook stand holder', headline: 'Study Comfortably', cta: 'Shop Study Gear', bg: 'from-amber-700 to-orange-600' }
+    { query: 'textbook stand holder', headline: 'Study Comfortably', cta: 'Shop Study Gear', bg: 'from-amber-700 to-orange-800' }
   ],
   'finance-books': [
     { query: 'barefoot investor', headline: 'Build Your Financial Future', cta: 'Shop Finance Books', bg: 'from-green-600 to-emerald-600' },
     { query: 'investing for beginners australia', headline: 'Start Investing Today', cta: 'Shop Investing Books', bg: 'from-blue-600 to-indigo-600' },
     { query: 'property investment book australia', headline: 'Property Investing 101', cta: 'Shop Property Books', bg: 'from-orange-500 to-red-500' },
-    { query: 'financial freedom retire early', headline: 'Plan Your Freedom', cta: 'Shop FIRE Books', bg: 'from-amber-700 to-orange-600' }
+    { query: 'financial freedom retire early', headline: 'Plan Your Freedom', cta: 'Shop FIRE Books', bg: 'from-amber-700 to-orange-800' }
   ],
   savings: [
-    { query: 'savings challenge book', headline: 'Start Your Savings Journey', cta: 'Shop Savings Tools', bg: 'from-amber-700 to-orange-600' },
+    { query: 'savings challenge book', headline: 'Start Your Savings Journey', cta: 'Shop Savings Tools', bg: 'from-amber-700 to-orange-800' },
     { query: 'money box adult', headline: 'Old School Saving', cta: 'Shop Money Boxes', bg: 'from-green-500 to-emerald-500' },
     { query: 'budget envelopes cash', headline: 'Cash Envelope Method', cta: 'Shop Budget Envelopes', bg: 'from-purple-500 to-pink-500' },
     { query: 'financial planner notebook', headline: 'Plan Every Dollar', cta: 'Shop Planners', bg: 'from-blue-500 to-indigo-500' }
@@ -69,7 +69,7 @@ const allAds = {
   ],
   general: [
     { query: 'calculator large display', headline: 'Tools That Make Life Easier', cta: 'Shop on Amazon', bg: 'from-navy to-blue-800' },
-    { query: 'notebook journal premium', headline: 'Write It Down', cta: 'Shop Notebooks', bg: 'from-amber-700 to-orange-600' },
+    { query: 'notebook journal premium', headline: 'Write It Down', cta: 'Shop Notebooks', bg: 'from-amber-700 to-orange-800' },
     { query: 'desk organiser set', headline: 'Get Organised', cta: 'Shop Desk Organisers', bg: 'from-slate-600 to-slate-800' },
     { query: 'usb charging station', headline: 'Power Up', cta: 'Shop Charging Stations', bg: 'from-blue-600 to-indigo-600' }
   ],
@@ -92,7 +92,7 @@ const allAds = {
     { query: 'whiteboard magnetic desktop', headline: 'Stay On Track', cta: 'Shop Whiteboards', bg: 'from-green-500 to-emerald-500' }
   ],
   kitchen: [
-    { query: 'digital kitchen scale', headline: 'Precision in Every Recipe', cta: 'Shop Kitchen Scales', bg: 'from-amber-600 to-orange-600' },
+    { query: 'digital kitchen scale', headline: 'Precision in Every Recipe', cta: 'Shop Kitchen Scales', bg: 'from-amber-600 to-orange-800' },
     { query: 'measuring cups stainless steel', headline: 'Measure with Confidence', cta: 'Shop Measuring Cups', bg: 'from-gray-600 to-gray-800' },
     { query: 'cookbook stand holder', headline: 'Hands-Free Cooking', cta: 'Shop Cookbook Stands', bg: 'from-red-500 to-rose-500' },
     { query: 'kitchen timer digital magnetic', headline: 'Perfect Timing', cta: 'Shop Kitchen Timers', bg: 'from-green-500 to-teal-500' }
@@ -105,7 +105,7 @@ const allAds = {
   ],
   'home-appliances': [
     { query: 'smart power meter plug', headline: 'Cut Your Energy Bills', cta: 'Shop Smart Plugs', bg: 'from-green-500 to-emerald-500' },
-    { query: 'led light bulb pack warm', headline: 'Switch to LED', cta: 'Shop LED Bulbs', bg: 'from-amber-700 to-orange-600' },
+    { query: 'led light bulb pack warm', headline: 'Switch to LED', cta: 'Shop LED Bulbs', bg: 'from-amber-700 to-orange-800' },
     { query: 'water saving shower head', headline: 'Save Water, Save Money', cta: 'Shop Showerheads', bg: 'from-blue-500 to-cyan-500' },
     { query: 'smart thermostat wifi', headline: 'Smart Climate Control', cta: 'Shop Thermostats', bg: 'from-purple-500 to-indigo-500' }
   ],
@@ -129,7 +129,7 @@ const allAds = {
   ],
   fashion: [
     { query: 'body tape measure sewing', headline: 'Get the Perfect Fit', cta: 'Shop Tape Measures', bg: 'from-pink-500 to-purple-500' },
-    { query: 'shoe stretcher adjustable', headline: 'Perfect Shoe Fit', cta: 'Shop Shoe Care', bg: 'from-amber-700 to-orange-600' },
+    { query: 'shoe stretcher adjustable', headline: 'Perfect Shoe Fit', cta: 'Shop Shoe Care', bg: 'from-amber-700 to-orange-800' },
     { query: 'sewing kit complete', headline: 'DIY Alterations', cta: 'Shop Sewing Kits', bg: 'from-blue-500 to-indigo-500' },
     { query: 'garment steamer portable', headline: 'Look Sharp', cta: 'Shop Steamers', bg: 'from-gray-600 to-gray-800' }
   ]
