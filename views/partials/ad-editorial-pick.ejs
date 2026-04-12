@@ -2,7 +2,8 @@
 // Editorial "Our Pick" — Wirecutter-style product recommendation
 // Appears inline after calculator results (peak engagement moment)
 // Designed to look like editorial content, NOT an ad
-const affiliateTag = 'benslater-22';
+const _affiliateTag = typeof affiliateTag !== 'undefined' ? affiliateTag : 'calculatormate-22';
+const _amazonDomain = typeof amazonDomain !== 'undefined' ? amazonDomain : 'amazon.com.au';
 
 const productData = typeof affiliateProducts !== 'undefined' ? affiliateProducts : { products: {} };
 const pickCtx = typeof calc !== 'undefined' ? (calc.affiliateContext || calc.category || 'general')
@@ -48,12 +49,12 @@ const reason = pickReasons[pickCtx] || pickReasons.general;
 
 function pickUrl(p) {
   if (p && p.asin && p.asin.length >= 10) {
-    return 'https://www.amazon.com.au/dp/' + p.asin + '?tag=' + affiliateTag;
+    return 'https://www.' + _amazonDomain + '/dp/' + p.asin + '?tag=' + _affiliateTag;
   }
   if (p && p.searchFallback) {
-    return 'https://www.amazon.com.au/s?k=' + encodeURIComponent(p.searchFallback) + '&tag=' + affiliateTag;
+    return 'https://www.' + _amazonDomain + '/s?k=' + encodeURIComponent(p.searchFallback) + '&tag=' + _affiliateTag;
   }
-  return 'https://www.amazon.com.au/?tag=' + affiliateTag;
+  return 'https://www.' + _amazonDomain + '/?tag=' + _affiliateTag;
 }
 
 function formatReviewCount(n) {

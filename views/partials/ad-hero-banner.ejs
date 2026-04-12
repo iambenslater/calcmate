@@ -2,7 +2,8 @@
 // Large-format hero product banner — sits above everything (header, nav, search)
 // Modelled on Wirecutter's full-width above-the-fold product placement
 // Shows one curated product per page context with image + editorial copy
-const affiliateTag = 'benslater-22';
+const _affiliateTag = typeof affiliateTag !== 'undefined' ? affiliateTag : 'calculatormate-22';
+const _amazonDomain = typeof amazonDomain !== 'undefined' ? amazonDomain : 'amazon.com.au';
 
 const productData = typeof affiliateProducts !== 'undefined' ? affiliateProducts : { products: {} };
 const heroCtx = typeof calc !== 'undefined' ? (calc.affiliateContext || calc.category || 'general')
@@ -47,12 +48,12 @@ const headline = heroHeadlines[heroCtx] || heroHeadlines.general;
 
 function heroUrl(p) {
   if (p && p.asin && p.asin.length >= 10) {
-    return 'https://www.amazon.com.au/dp/' + p.asin + '?tag=' + affiliateTag;
+    return 'https://www.' + _amazonDomain + '/dp/' + p.asin + '?tag=' + _affiliateTag;
   }
   if (p && p.searchFallback) {
-    return 'https://www.amazon.com.au/s?k=' + encodeURIComponent(p.searchFallback) + '&tag=' + affiliateTag;
+    return 'https://www.' + _amazonDomain + '/s?k=' + encodeURIComponent(p.searchFallback) + '&tag=' + _affiliateTag;
   }
-  return 'https://www.amazon.com.au/?tag=' + affiliateTag;
+  return 'https://www.' + _amazonDomain + '/?tag=' + _affiliateTag;
 }
 
 function formatReviewCount(n) {

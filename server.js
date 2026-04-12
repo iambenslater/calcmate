@@ -3,6 +3,7 @@ const path = require('path');
 const fs = require('fs');
 const compression = require('compression');
 const helmet = require('helmet');
+const geoip = require('geoip-lite');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -121,6 +122,13 @@ app.post('/api/affiliate-click', (req, res) => {
   res.status(204).end();
 });
 
+// Amazon geo-routing: detect visitor country → correct Amazon domain + affiliate tag
+const amazonGeoConfig = {
+  US: { domain: 'amazon.com', tag: 'calculatormat-20' },
+  // Default (AU + everything else)
+  default: { domain: 'amazon.com.au', tag: 'calculatormate-22' }
+};
+
 // Make data available to all templates
 app.use((req, res, next) => {
   res.locals.calculators = calculators;
@@ -131,6 +139,15 @@ app.use((req, res, next) => {
   res.locals.affiliateStats = affiliateStats;
   res.locals.currentPath = req.path;
   res.locals.siteUrl = process.env.SITE_URL || 'https://calculatormate.com.au';
+
+  // Geo-detect Amazon domain + tag
+  const ip = req.headers['x-forwarded-for']?.split(',')[0]?.trim() || req.ip;
+  const geo = geoip.lookup(ip);
+  const countryCode = geo && geo.country ? geo.country : 'AU';
+  const amazonConfig = amazonGeoConfig[countryCode] || amazonGeoConfig.default;
+  res.locals.amazonDomain = amazonConfig.domain;
+  res.locals.affiliateTag = amazonConfig.tag;
+
   next();
 });
 

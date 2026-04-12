@@ -1,7 +1,8 @@
 <%
 // Sidebar product recommendations — clean editorial style (no ad-like borders/colours)
 // Data passed via res.locals from server.js
-const affiliateTag = 'benslater-22';
+const _affiliateTag = typeof affiliateTag !== 'undefined' ? affiliateTag : 'calculatormate-22';
+const _amazonDomain = typeof amazonDomain !== 'undefined' ? amazonDomain : 'amazon.com.au';
 
 let products = [];
 let affiliateCtx = 'general';
@@ -30,9 +31,9 @@ try {
 
 function productUrl(p) {
   if (p.asin && p.asin.length >= 10) {
-    return 'https://www.amazon.com.au/dp/' + p.asin + '?tag=' + affiliateTag;
+    return 'https://www.' + _amazonDomain + '/dp/' + p.asin + '?tag=' + _affiliateTag;
   }
-  return 'https://www.amazon.com.au/s?k=' + encodeURIComponent(p.searchFallback || p.title) + '&tag=' + affiliateTag;
+  return 'https://www.' + _amazonDomain + '/s?k=' + encodeURIComponent(p.searchFallback || p.title) + '&tag=' + _affiliateTag;
 }
 
 function formatReviewCount(n) {
