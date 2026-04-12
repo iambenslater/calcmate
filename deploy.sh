@@ -17,6 +17,13 @@ git pull --ff-only
 if git diff HEAD~1 --name-only | grep -q 'package.json'; then
   echo "package.json changed — installing deps..."
   npm install --omit=dev
+  npm install -D tailwindcss
+fi
+
+# Rebuild CSS if templates or tailwind config changed
+if git diff HEAD~1 --name-only | grep -qE '\.(ejs|js)$|tailwind\.config'; then
+  echo "Templates changed — rebuilding CSS..."
+  npx tailwindcss -i src/input.css -o public/css/tailwind.css --minify
 fi
 
 # Get PID before reload
