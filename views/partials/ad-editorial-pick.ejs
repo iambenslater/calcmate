@@ -63,31 +63,32 @@ function formatReviewCount(n) {
 }
 %>
 <% if (pick) { %>
-<div class="my-8">
-  <div class="flex items-center gap-2 mb-3">
-    <div class="w-1 h-5 bg-gray-300 rounded-full"></div>
-    <span class="text-xs font-medium text-gray-400 uppercase tracking-wider">Our pick</span>
-  </div>
-  <a href="<%- pickUrl(pick) %>" target="_blank" rel="nofollow noopener" class="flex items-start gap-5 group" data-affiliate-product="<%= pick.asin %>" data-affiliate-position="0">
-    <% if (pick.image) { %>
-    <div class="shrink-0 w-20 h-20 sm:w-24 sm:h-24 bg-white rounded-lg border border-gray-100 flex items-center justify-center p-2">
-      <img src="<%= pick.image %>" alt="<%= pick.title %>" class="max-w-full max-h-full object-contain" loading="lazy">
-    </div>
-    <% } %>
-    <div class="flex-1 min-w-0">
-      <h3 class="text-base font-semibold text-gray-900 group-hover:text-blue-700 transition leading-snug"><%= pick.title %></h3>
-      <p class="text-sm text-gray-500 mt-1 leading-relaxed"><%= reason %></p>
-      <div class="flex items-center flex-wrap gap-x-3 gap-y-1 mt-2">
-        <% if (pick.price) { %><span class="text-base font-bold text-gray-900"><%= pick.price %></span><% } %>
-        <% if (pick.rating) { %>
-          <span class="text-sm text-gray-500"><%= pick.rating %><span class="text-amber-500 ml-0.5"><%= '★'.repeat(Math.round(pick.rating)) %></span><% if (pick.reviewCount) { %> <span class="text-gray-400">(<%= formatReviewCount(pick.reviewCount) %> reviews)</span><% } %></span>
-        <% } %>
+<a href="<%- pickUrl(pick) %>" target="_blank" rel="nofollow noopener" class="block my-8 rounded-2xl bg-gray-50 border border-gray-100 hover:border-gray-200 hover:shadow-sm transition group overflow-hidden" data-affiliate-product="<%= pick.asin %>" data-affiliate-position="0">
+  <div class="p-5 sm:p-6">
+    <p class="text-[11px] text-gray-400 font-semibold uppercase tracking-widest mb-3">Our pick</p>
+    <div class="flex items-center gap-5 sm:gap-8">
+      <% if (pick.image) { %>
+      <div class="shrink-0 w-28 h-28 sm:w-36 sm:h-36 bg-white rounded-xl border border-gray-100 flex items-center justify-center p-3 sm:p-4">
+        <img src="<%= pick.image.replace('_SL200_', '_SL300_') %>" alt="<%= pick.title %>" class="max-w-full max-h-full object-contain" loading="lazy">
       </div>
-      <span class="inline-block mt-2 text-sm font-medium text-blue-700 group-hover:text-blue-900 transition">
-        Check price on Amazon &rarr;
-      </span>
+      <% } %>
+      <div class="flex-1 min-w-0">
+        <h3 class="text-lg sm:text-xl font-bold text-gray-900 group-hover:text-blue-700 transition leading-snug" style="letter-spacing: -0.01em;"><%= pick.title %></h3>
+        <p class="text-sm text-gray-500 mt-1.5 leading-relaxed"><%= reason %></p>
+        <div class="flex items-center flex-wrap gap-x-4 gap-y-1 mt-3">
+          <% if (pick.price) { %><span class="text-xl font-bold text-gray-900"><%= pick.price %></span><% } %>
+          <% if (pick.rating) { %>
+            <span class="text-sm text-gray-500"><span class="text-amber-500"><%= '★'.repeat(Math.round(pick.rating)) %></span> <%= pick.rating %><% if (pick.reviewCount) { %> <span class="text-gray-400">(<%= formatReviewCount(pick.reviewCount) %> reviews)</span><% } %></span>
+          <% } %>
+        </div>
+        <span class="inline-block mt-3 px-5 py-2 bg-navy text-white text-sm font-bold rounded-full group-hover:bg-blue-800 transition">
+          Check price on Amazon &rarr;
+        </span>
+      </div>
     </div>
-  </a>
-  <p class="text-[10px] text-gray-300 mt-3">We may earn a commission at no extra cost to you.</p>
-</div>
+  </div>
+  <div class="bg-gray-100/50 px-5 py-1.5 border-t border-gray-100">
+    <p class="text-[10px] text-gray-400">We independently recommend products. We may earn a commission at no extra cost to you.</p>
+  </div>
+</a>
 <% } %>
