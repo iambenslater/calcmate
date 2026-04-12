@@ -64,8 +64,8 @@
 
       <!-- Hero image -->
       <% const imgPath = '/images/audiences/' + audience.slug + '.png'; %>
-      <figure class="mb-8 rounded-xl overflow-hidden border border-gray-100 shadow-sm">
-        <img src="<%= imgPath %>" alt="<%= audience.title %>" class="w-full h-auto" loading="lazy" onerror="this.parentElement.style.display='none'">
+      <figure class="mb-8 rounded-xl overflow-hidden border border-gray-100 shadow-sm max-h-64 md:max-h-80">
+        <img src="<%= imgPath %>" alt="<%= audience.title %>" class="w-full h-full object-cover" loading="lazy" onerror="this.parentElement.style.display='none'">
       </figure>
 
       <!-- Intro content -->
