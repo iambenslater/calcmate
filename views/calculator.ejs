@@ -69,8 +69,6 @@
     <div class="flex-1 min-w-0">
       <h1 class="text-3xl font-bold text-navy mb-2"><%= calc.title %></h1>
       <p class="text-gray-600 mb-4"><%= calc.description %></p>
-      <%- include('partials/share') %>
-
       <!-- Calculator widget -->
       <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mb-8" id="calculator-widget">
         <div id="calc-inputs">
@@ -242,6 +240,8 @@
     <!-- Sidebar — sticky, no scroll -->
     <aside class="w-full lg:w-72 mt-8 lg:mt-0 shrink-0">
       <div class="sticky top-20 space-y-4">
+        <!-- Share -->
+        <%- include('partials/share') %>
         <!-- Category nav -->
         <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-4">
           <h3 class="font-semibold text-navy mb-3 text-sm uppercase tracking-wider"><%= categoryIcon %> <%= categoryName %></h3>
