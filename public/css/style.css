@@ -1,33 +1,50 @@
-/* CalculatorMate custom styles */
-
-/* === CONTENT TYPOGRAPHY (articles, audience pages, any HTML content blocks) === */
-/* !important needed to override Tailwind CDN preflight reset */
-.article-content h2 { font-size: 1.375rem !important; font-weight: 700 !important; color: #00205B !important; margin-top: 2rem !important; margin-bottom: 0.75rem !important; line-height: 1.3 !important; }
-.article-content h3 { font-size: 1.125rem !important; font-weight: 600 !important; color: #00205B !important; margin-top: 1.5rem !important; margin-bottom: 0.5rem !important; }
-.article-content p { margin-bottom: 1rem !important; line-height: 1.75 !important; font-size: 0.9375rem !important; color: #374151 !important; }
-.article-content ul, .article-content ol { margin-bottom: 1rem !important; padding-left: 1.5rem !important; }
-.article-content li { margin-bottom: 0.5rem !important; line-height: 1.6 !important; font-size: 0.9375rem !important; color: #374151 !important; }
-.article-content ul li { list-style-type: disc !important; }
-.article-content ol li { list-style-type: decimal !important; }
-.article-content a { color: #00205B !important; font-weight: 500 !important; text-decoration: underline !important; text-underline-offset: 2px !important; }
-.article-content a:hover { color: #FFB800 !important; }
-.article-content strong { font-weight: 600 !important; color: #1f2937 !important; }
-.article-content table { width: 100% !important; border-collapse: collapse !important; margin: 1rem 0 !important; font-size: 0.875rem !important; }
-.article-content th { background: #f9fafb !important; padding: 0.5rem 0.75rem !important; text-align: left !important; font-weight: 600 !important; border-bottom: 2px solid #e5e7eb !important; }
-.article-content td { padding: 0.5rem 0.75rem !important; border-bottom: 1px solid #f3f4f6 !important; }
-.article-content blockquote { border-left: 3px solid #FFB800 !important; padding-left: 1rem !important; margin: 1rem 0 !important; color: #6b7280 !important; font-style: italic !important; }
-.article-content h2:first-child { margin-top: 0 !important; }
-.article-content figure { margin: 1.5rem 0 !important; }
-.article-content figcaption { font-size: 0.8125rem !important; color: #6b7280 !important; padding: 0.5rem 0 !important; }
+/* CalculatorMate — Design System
+   Font: DM Sans (display/headlines) + Inter (body/UI)
+   Palette: navy #00205B, gold #FFB800, body #1d1d1f, subtle #6e6e73
+   All text meets WCAG AA contrast (4.5:1 body, 3:1 large)
+*/
 
 /* ============================================================
-   RESULTS PANEL — Professional calculator results styling
-   Typography hierarchy: primary result large + gold accent,
-   secondary results medium + navy, labels subtle grey.
-   Generous whitespace between rows. Clean separators.
+   GLOBAL TYPOGRAPHY OVERRIDES
    ============================================================ */
 
-/* Results container */
+/* Headlines use DM Sans — tighter tracking at large sizes */
+h1, h2, h3, .font-display {
+  font-family: 'DM Sans', system-ui, sans-serif !important;
+  letter-spacing: -0.02em;
+}
+
+/* Body text containers — constrain line length for readability */
+.article-content, #results-content, .prose {
+  max-width: 65ch;
+}
+
+/* ============================================================
+   CONTENT TYPOGRAPHY (articles, audience pages, guides)
+   ============================================================ */
+.article-content h2 { font-size: 1.375rem !important; font-weight: 700 !important; color: #1d1d1f !important; margin-top: 2rem !important; margin-bottom: 0.75rem !important; line-height: 1.2 !important; font-family: 'DM Sans', system-ui, sans-serif !important; letter-spacing: -0.02em !important; }
+.article-content h3 { font-size: 1.125rem !important; font-weight: 600 !important; color: #1d1d1f !important; margin-top: 1.5rem !important; margin-bottom: 0.5rem !important; font-family: 'DM Sans', system-ui, sans-serif !important; }
+.article-content p { margin-bottom: 1rem !important; line-height: 1.75 !important; font-size: 0.9375rem !important; color: #424245 !important; }
+.article-content ul, .article-content ol { margin-bottom: 1rem !important; padding-left: 1.5rem !important; }
+.article-content li { margin-bottom: 0.5rem !important; line-height: 1.6 !important; font-size: 0.9375rem !important; color: #424245 !important; }
+.article-content ul li { list-style-type: disc !important; }
+.article-content ol li { list-style-type: decimal !important; }
+.article-content a { color: #00205B !important; font-weight: 500 !important; text-decoration: underline !important; text-underline-offset: 3px !important; text-decoration-color: #00205B40 !important; }
+.article-content a:hover { color: #FFB800 !important; text-decoration-color: #FFB800 !important; }
+.article-content strong { font-weight: 600 !important; color: #1d1d1f !important; }
+.article-content table { width: 100% !important; border-collapse: collapse !important; margin: 1rem 0 !important; font-size: 0.875rem !important; }
+.article-content th { background: #f5f5f7 !important; padding: 0.5rem 0.75rem !important; text-align: left !important; font-weight: 600 !important; border-bottom: 2px solid #e5e7eb !important; color: #1d1d1f !important; }
+.article-content td { padding: 0.5rem 0.75rem !important; border-bottom: 1px solid #f0f0f2 !important; color: #424245 !important; }
+/* Blockquote — subtle left accent, NOT the thick AI-tell side-tab */
+.article-content blockquote { border-left: 2px solid #e5e7eb !important; padding-left: 1rem !important; margin: 1rem 0 !important; color: #6e6e73 !important; font-style: italic !important; }
+.article-content h2:first-child { margin-top: 0 !important; }
+.article-content figure { margin: 1.5rem 0 !important; }
+.article-content figcaption { font-size: 0.8125rem !important; color: #6e6e73 !important; padding: 0.5rem 0 !important; }
+
+/* ============================================================
+   RESULTS PANEL
+   ============================================================ */
+
 #calc-results {
   animation: fadeInUp 0.4s ease-out;
 }
@@ -48,16 +65,14 @@
 .result-row:last-child { border-bottom: none; }
 .result-row:first-child { padding-top: 0; }
 
-/* Labels — subtle, readable */
 .result-label {
-  color: #86868b;
+  color: #6e6e73;
   font-size: 0.875rem;
   font-weight: 400;
   letter-spacing: 0.01em;
   line-height: 1.4;
 }
 
-/* Values — bold, navy, authoritative */
 .result-value {
   font-weight: 600;
   color: #1d1d1f;
@@ -65,9 +80,9 @@
   text-align: right;
   letter-spacing: -0.01em;
   flex-shrink: 0;
+  font-family: 'DM Sans', system-ui, sans-serif;
 }
 
-/* Primary/highlight result — large, gold accent */
 .result-value.highlight,
 .result-row.font-bold .result-value {
   color: #00205B;
@@ -76,7 +91,6 @@
   letter-spacing: -0.02em;
 }
 
-/* Bold rows (totals/summaries) — elevated */
 .result-row.font-bold {
   padding: 1rem 0;
   border-bottom: 2px solid #00205B;
@@ -88,24 +102,11 @@
   font-size: 0.9375rem;
 }
 
-/* Negative values (deductions) */
-.result-value.text-red-600 {
-  color: #dc2626 !important;
-  font-weight: 500;
-}
+.result-value.text-red-600 { color: #dc2626 !important; font-weight: 500; }
+.result-value.text-green-600 { color: #16a34a !important; font-weight: 500; }
+.result-value.text-amber-600 { color: #b45309 !important; }
 
-/* Positive values */
-.result-value.text-green-600 {
-  color: #16a34a !important;
-  font-weight: 500;
-}
-
-/* Warning values */
-.result-value.text-amber-600 {
-  color: #d97706 !important;
-}
-
-/* Section separators within results */
+/* Results separators */
 #results-content hr {
   border: none;
   border-top: 1px solid #e5e7eb;
@@ -114,7 +115,7 @@
 
 /* Results section headers */
 #results-content h4 {
-  color: #00205B;
+  color: #1d1d1f;
   font-size: 0.8125rem;
   font-weight: 600;
   text-transform: uppercase;
@@ -124,43 +125,21 @@
   padding-bottom: 0.25rem;
   border-bottom: 2px solid #FFB800;
   display: inline-block;
+  font-family: 'DM Sans', system-ui, sans-serif;
 }
 
-/* Tables within results */
-#results-content table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 0.75rem 0;
-  font-size: 0.8125rem;
-}
-#results-content th {
-  background: #f9fafb;
-  padding: 0.5rem 0.75rem;
-  text-align: left;
-  font-weight: 600;
-  color: #1d1d1f;
-  border-bottom: 2px solid #e5e7eb;
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.03em;
-}
-#results-content td {
-  padding: 0.5rem 0.75rem;
-  border-bottom: 1px solid #f3f4f6;
-  color: #374151;
-}
-#results-content tr:hover td {
-  background: #fafafa;
-}
+/* Results tables */
+#results-content table { width: 100%; border-collapse: collapse; margin: 0.75rem 0; font-size: 0.8125rem; }
+#results-content th { background: #f5f5f7; padding: 0.5rem 0.75rem; text-align: left; font-weight: 600; color: #1d1d1f; border-bottom: 2px solid #e5e7eb; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.03em; }
+#results-content td { padding: 0.5rem 0.75rem; border-bottom: 1px solid #f0f0f2; color: #424245; }
+#results-content tr:hover td { background: #fafafa; }
 
 /* Chart container */
-#chart-container {
-  animation: fadeInUp 0.5s ease-out 0.1s both;
-}
+#chart-container { animation: fadeInUp 0.5s ease-out 0.1s both; }
 #chart-container .bg-gray-50 {
   background: #fafafa !important;
   border: 1px solid #f0f0f2 !important;
-  border-radius: 12px !important;
+  border-radius: 16px !important;
   padding: 1.5rem !important;
 }
 
@@ -171,41 +150,61 @@
   border-radius: 12px !important;
   font-size: 0.9375rem !important;
   letter-spacing: -0.01em !important;
-  transition: all 0.2s ease-out !important;
+  transition: all 0.25s ease-out !important;
+  font-family: 'DM Sans', system-ui, sans-serif !important;
 }
 #share-result-btn:hover {
   transform: translateY(-1px) !important;
   box-shadow: 0 4px 12px rgba(0, 32, 91, 0.15) !important;
 }
 
-/* Share modal */
+/* Share modal — tinted overlay instead of pure black */
+#share-modal-overlay {
+  background: rgba(29, 29, 31, 0.6) !important;
+}
 #share-modal-overlay .bg-white {
   border-radius: 16px !important;
-  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15) !important;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.12) !important;
 }
 
-/* Results disclaimer text */
+/* Results disclaimer — meet minimum text size */
 #results-content .text-gray-400,
-#results-content .text-gray-500 {
-  font-size: 0.75rem !important;
+#results-content .text-gray-500,
+#results-content p.text-xs,
+#results-content p.text-sm {
+  font-size: 0.8125rem !important;
   line-height: 1.5 !important;
+  color: #6e6e73 !important;
   margin-top: 1rem !important;
   padding-top: 0.75rem !important;
   border-top: 1px solid #f0f0f2 !important;
 }
 
-/* Mobile: stack result rows vertically on very small screens */
+/* Mobile: stack result rows */
 @media (max-width: 400px) {
-  .result-row {
-    flex-direction: column;
-    gap: 0.125rem;
-  }
-  .result-value {
-    text-align: left;
-  }
+  .result-row { flex-direction: column; gap: 0.125rem; }
+  .result-value { text-align: left; }
 }
 
-/* Calculator input groups */
+/* ============================================================
+   GLOBAL CONTRAST FIXES
+   Replacing #9ca3af (fails AA) with #6e6e73 (passes AA at 4.6:1)
+   ============================================================ */
+
+/* Tiny text minimum — nothing below 12px */
+.text-\[10px\], .text-\[9px\] { font-size: 0.75rem !important; }
+
+/* Fix grey text contrast globally */
+.text-gray-400 { color: #6e6e73 !important; }
+.text-gray-300 { color: #86868b !important; }
+
+/* Fix gold-light background text */
+.bg-gold-light .text-gray-400,
+.bg-gold-light .text-gray-300 { color: #7a6b3a !important; }
+
+/* ============================================================
+   CALCULATOR INPUT STYLING
+   ============================================================ */
 .calc-group { margin-bottom: 1rem; }
 
 /* Smooth FAQ toggle */

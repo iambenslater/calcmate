@@ -260,7 +260,7 @@
 
     var overlay = document.createElement('div');
     overlay.id = 'share-modal-overlay';
-    overlay.className = 'fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4';
+    overlay.className = 'fixed inset-0 bg-[#1d1d1f]/60 z-50 flex items-center justify-center p-4';
     overlay.addEventListener('click', function(e) { if (e.target === overlay) overlay.remove(); });
 
     var encodedUrl = encodeURIComponent(shareUrl);
