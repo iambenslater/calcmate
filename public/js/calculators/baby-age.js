@@ -66,3 +66,21 @@ function calculate() {
     }).join('')}` : ''}
   `;
 }
+
+function getTLDR() {
+  var dobStr = document.getElementById('input-dob').value;
+  if (!dobStr) return '';
+  var dob = new Date(dobStr + 'T00:00:00');
+  var today = new Date();
+  today.setHours(0, 0, 0, 0);
+  var totalDays = Math.floor((today - dob) / (1000 * 60 * 60 * 24));
+  if (totalDays < 0) return '';
+  var totalWeeks = Math.floor(totalDays / 7);
+  var remainDays = totalDays % 7;
+  var months = (today.getFullYear() - dob.getFullYear()) * 12 + (today.getMonth() - dob.getMonth());
+  if (today.getDate() < dob.getDate()) months--;
+  var years = Math.floor(months / 12);
+  var remMonths = months % 12;
+  var ageStr = years > 0 ? years + ' year' + (years !== 1 ? 's' : '') + ', ' + remMonths + ' month' + (remMonths !== 1 ? 's' : '') : remMonths + ' month' + (remMonths !== 1 ? 's' : '');
+  return 'Your baby is ' + totalWeeks + ' weeks' + (remainDays > 0 ? ' and ' + remainDays + ' day' + (remainDays !== 1 ? 's' : '') : '') + ' old (' + ageStr + ' — ' + totalDays.toLocaleString('en-AU') + ' days total).';
+}

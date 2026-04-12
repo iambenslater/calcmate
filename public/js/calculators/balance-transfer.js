@@ -89,3 +89,29 @@ function calculate() {
 function fmt(n) {
   return new Intl.NumberFormat('en-AU', { style: 'currency', currency: 'AUD', minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(n);
 }
+
+function getTLDR() {
+  var currentBalance = parseFloat(document.getElementById('input-currentBalance').value) || 0;
+  var currentRate = (parseFloat(document.getElementById('input-currentRate').value) || 20.0) / 100;
+  var btRate = (parseFloat(document.getElementById('input-btRate').value) || 0) / 100;
+  var btPeriod = parseInt(document.getElementById('input-btPeriod').value) || 12;
+  var btFeePct = (parseFloat(document.getElementById('input-btFee').value) || 2) / 100;
+  var monthlyRepayment = parseFloat(document.getElementById('input-monthlyRepayment').value) || 0;
+  if (currentBalance <= 0) return '';
+  var btFeeAmount = currentBalance * btFeePct;
+  var monthlyRateCurrent = currentRate / 12;
+  var monthlyRateBT = btRate / 12;
+  var balA = currentBalance, totalInterestA = 0;
+  var balB = currentBalance + btFeeAmount, totalInterestB = 0;
+  for (var m = 0; m < btPeriod; m++) {
+    var intA = balA * monthlyRateCurrent; var payA = monthlyRepayment > 0 ? Math.min(monthlyRepayment, balA + intA) : 0; balA = Math.max(0, balA + intA - payA); totalInterestA += intA;
+    var intB = balB * monthlyRateBT; var payB = monthlyRepayment > 0 ? Math.min(monthlyRepayment, balB + intB) : 0; balB = Math.max(0, balB + intB - payB); totalInterestB += intB;
+  }
+  var netSavings = totalInterestA - totalInterestB;
+  if (netSavings > 0) {
+    return 'Transferring your ' + fmt(currentBalance) + ' balance saves you ' + fmt(netSavings) + ' in interest over the ' + btPeriod + '-month promo period — worth doing, just make sure you pay it off before the promo rate expires.';
+  } else {
+    return 'With a ' + fmt(currentBalance) + ' balance, the balance transfer fee of ' + fmt(btFeeAmount) + ' outweighs the interest savings — it\'s cheaper to stay on your current card at ' + (currentRate * 100).toFixed(2) + '% p.a.';
+  }
+}
+

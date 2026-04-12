@@ -47,3 +47,15 @@ function calculate() {
 function fmt(n) {
   return '$' + n.toLocaleString('en-AU', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 }
+
+function getTLDR() {
+  const amount = parseFloat(document.getElementById('input-amount').value) || 0;
+  const mode = document.querySelector('input[name="input-direction"]:checked')?.value ||
+               document.getElementById('input-direction')?.value || 'add';
+  if (amount <= 0) return '';
+  let gstAmount, exGst, incGst;
+  if (mode === 'add') { exGst = amount; gstAmount = amount * 0.10; incGst = amount + gstAmount; }
+  else { incGst = amount; gstAmount = amount / 11; exGst = amount - gstAmount; }
+  const modeLabel = mode === 'add' ? 'Adding GST to' : 'Removing GST from';
+  return modeLabel + ' ' + fmt(amount) + ' gives a GST component of ' + fmt(gstAmount) + ' — ex-GST ' + fmt(exGst) + ', GST-inclusive ' + fmt(incGst) + '.';
+}

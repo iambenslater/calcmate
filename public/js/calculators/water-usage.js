@@ -51,3 +51,29 @@ function calculate() {
 }
 
 function fmt(n) { return '$' + n.toLocaleString('en-AU', {minimumFractionDigits:2, maximumFractionDigits:2}); }
+
+function getTLDR() {
+  const householdSize = parseInt(document.getElementById('input-people').value) || 1;
+  const showerMinutes = parseFloat(document.getElementById('input-showerMinutes').value) || 0;
+  const showersPerDay = parseFloat(document.getElementById('input-showersPerDay').value) || 0;
+  const washingLoads = parseFloat(document.getElementById('input-washesPerWeek').value) || 0;
+  const waterPrice = parseFloat(document.getElementById('input-waterRate').value) || 0;
+
+  const showerDaily = showerMinutes * showersPerDay * householdSize * 9;
+  const toiletDaily = householdSize * 5 * 4.5;
+  const washingDaily = (washingLoads / 7) * 60;
+  const dishwasherDaily = 12;
+  const drinkingCooking = householdSize * 4;
+  const gardenLitres = 30;
+
+  const totalDaily = showerDaily + toiletDaily + washingDaily + dishwasherDaily + drinkingCooking + gardenLitres;
+  const perPersonDaily = totalDaily / householdSize;
+  const auAvgPerPerson = 340;
+  const comparison = perPersonDaily / auAvgPerPerson * 100;
+  const totalYearly = totalDaily * 365;
+  const yearlyCost = waterPrice > 0 ? (totalYearly / 1000) * waterPrice : 0;
+
+  const vsAvg = comparison > 100 ? Math.round(comparison - 100) + '% above' : Math.round(100 - comparison) + '% below';
+  const costNote = waterPrice > 0 ? ', costing roughly ' + fmt(yearlyCost / 4) + ' per quarter' : '';
+  return 'Your household of ' + householdSize + ' uses an estimated ' + Math.round(totalDaily) + ' litres per day (' + Math.round(perPersonDaily) + 'L per person) — ' + vsAvg + ' the Australian average' + costNote + '.';
+}

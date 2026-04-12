@@ -68,3 +68,16 @@ function calculate() {
     <p class="text-sm text-gray-500 mt-4">Australian tablespoon = 20ml (differs from US 15ml). Australian metric cup = 250ml. Fluid ounces shown are US measures (29.57ml).</p>
   `;
 }
+
+function getTLDR() {
+  var amount = parseFloat(document.getElementById('input-amount').value);
+  var fromUnit = document.getElementById('input-fromUnit').value;
+  var toUnit = document.getElementById('input-toUnit').value;
+  if (isNaN(amount) || amount <= 0 || !fromUnit || !toUnit) return '';
+  var toMl = { 'cup': 250, 'cup-au': 250, 'cup-us': 236.588, 'tbsp': 20, 'tbsp-us': 14.787, 'tsp': 5, 'ml': 1, 'l': 1000, 'L': 1000, 'g': 1, 'kg': 1000, 'oz': 28.3495, 'floz': 29.5735, 'fl-oz': 29.5735 };
+  var fromFactor = toMl[fromUnit];
+  var toFactor = toMl[toUnit];
+  if (!fromFactor || !toFactor) return '';
+  var result = (amount * fromFactor) / toFactor;
+  return amount + ' ' + fromUnit + ' = ' + result.toLocaleString('en-AU', { minimumFractionDigits: 2, maximumFractionDigits: 3 }) + ' ' + toUnit + ' (using Australian measurements: 1 cup = 250ml, 1 tablespoon = 20ml).';
+}

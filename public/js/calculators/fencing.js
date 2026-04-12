@@ -48,3 +48,19 @@ function calculate() {
     <p class="result-note">${gateNote}. Posts include 600mm depth in ground. Check local council regulations for fence height limits.</p>
   `;
 }
+
+function getTLDR() {
+  const fenceLength = parseFloat(document.getElementById('input-totalLength').value) || 0;
+  const fenceHeight = parseFloat(document.getElementById('input-fenceHeight').value) || 1.8;
+  const postSpacing = parseFloat(document.getElementById('input-postSpacing').value) || 2.7;
+  const material = document.getElementById('input-material').value;
+  if (fenceLength <= 0) return '';
+  const numPosts = Math.ceil(fenceLength / postSpacing) + 1;
+  const numRailRows = fenceHeight >= 1.8 ? 3 : 2;
+  const totalRailMetres = numRailRows * fenceLength;
+  const panelsOrPalings = material === 'timber'
+    ? Math.ceil(fenceLength / 0.16)
+    : numPosts - 1;
+  const unitName = material === 'timber' ? 'palings' : 'Colorbond panels';
+  return 'For a ' + fenceLength + 'm ' + (material === 'timber' ? 'timber paling' : 'Colorbond') + ' fence you\'ll need ' + numPosts + ' posts, ' + totalRailMetres.toFixed(0) + 'm of rails, and ' + panelsOrPalings.toLocaleString() + ' ' + unitName + '.';
+}

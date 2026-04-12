@@ -86,3 +86,22 @@ function calculate() {
     <p class="text-sm text-gray-500 mt-3">Calculation uses monthly compounding. Does not account for rate changes over the loan term.</p>
   `;
 }
+
+function getTLDR() {
+  const loanAmount = parseFloat(document.getElementById('input-loanAmount').value) || 0;
+  const annualRate = parseFloat(document.getElementById('input-interestRate').value) || 6.5;
+  const monthlyRepayment = parseFloat(document.getElementById('input-monthlyRepayment').value) || 0;
+  if (loanAmount <= 0 || monthlyRepayment <= 0) return '';
+  const monthlyRate = (annualRate / 100) / 12;
+  const firstMonthInterest = loanAmount * monthlyRate;
+  if (monthlyRepayment <= firstMonthInterest) return 'Your repayment of ' + formatCurrency(monthlyRepayment) + ' doesn\'t cover the first month\'s interest of ' + formatCurrency(firstMonthInterest) + ' — the loan will never be paid off at this rate.';
+  let balance = loanAmount, totalInterest = 0, months = 0;
+  while (balance > 0 && months < 600) {
+    const interest = balance * monthlyRate;
+    const principal = Math.min(monthlyRepayment - interest, balance);
+    totalInterest += interest; balance -= principal; months++;
+    if (balance < 0.01) break;
+  }
+  const years = Math.floor(months / 12), remainingMonths = months % 12;
+  return 'At ' + formatCurrency(monthlyRepayment) + '/month, your ' + formatCurrency(loanAmount) + ' loan will be paid off in ' + (years > 0 ? years + ' year' + (years !== 1 ? 's' : '') : '') + (remainingMonths > 0 ? ' ' + remainingMonths + ' month' + (remainingMonths !== 1 ? 's' : '') : '') + ', with ' + formatCurrency(totalInterest) + ' in total interest paid.';
+}

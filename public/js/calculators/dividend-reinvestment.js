@@ -53,3 +53,26 @@ function calculate() {
 }
 
 function fmt(n) { return '$' + n.toLocaleString('en-AU', {minimumFractionDigits:2, maximumFractionDigits:2}); }
+
+function getTLDR() {
+  const initialInvestment = parseFloat(document.getElementById('input-initialInvestment').value) || 0;
+  const dividendYield = parseFloat(document.getElementById('input-dividendYield').value) || 0;
+  const capitalGrowthRate = parseFloat(document.getElementById('input-capitalGrowth').value) || 0;
+  const years = parseInt(document.getElementById('input-years').value) || 10;
+  if (initialInvestment <= 0) return '';
+  const divRate = dividendYield / 100;
+  const growthRate = capitalGrowthRate / 100;
+  let reinvestValue = initialInvestment;
+  let cashValue = initialInvestment;
+  let totalDividendsPaidOut = 0;
+  for (let y = 1; y <= years; y++) {
+    const reinvestDiv = reinvestValue * divRate;
+    reinvestValue = (reinvestValue + reinvestDiv) * (1 + growthRate);
+    const cashDiv = cashValue * divRate;
+    totalDividendsPaidOut += cashDiv;
+    cashValue = cashValue * (1 + growthRate);
+  }
+  const cashTotal = cashValue + totalDividendsPaidOut;
+  const difference = reinvestValue - cashTotal;
+  return 'Reinvesting dividends grows ' + fmt(initialInvestment) + ' to ' + fmt(reinvestValue) + ' over ' + years + ' years — ' + fmt(difference) + ' more than taking dividends as cash (' + fmt(cashTotal) + ' total).';
+}

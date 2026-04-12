@@ -88,3 +88,21 @@ function calculate() {
     <p class="text-xs text-gray-400 mt-3">BMI is a screening tool and does not account for muscle mass, bone density, or body composition. Consult a healthcare professional for a comprehensive assessment.</p>
   `;
 }
+
+function getTLDR() {
+  var height = parseFloat(document.getElementById('input-height').value) || 0;
+  var weight = parseFloat(document.getElementById('input-weight').value) || 0;
+  if (height <= 0 || weight <= 0) return '';
+  var heightM = height / 100;
+  var bmi = weight / (heightM * heightM);
+  var category;
+  if (bmi < 18.5) category = 'Underweight';
+  else if (bmi < 25) category = 'Healthy Weight';
+  else if (bmi < 30) category = 'Overweight';
+  else if (bmi < 35) category = 'Obese (Class I)';
+  else if (bmi < 40) category = 'Obese (Class II)';
+  else category = 'Obese (Class III)';
+  var healthyMin = (18.5 * heightM * heightM).toFixed(1);
+  var healthyMax = (24.9 * heightM * heightM).toFixed(1);
+  return 'At ' + weight + ' kg and ' + height + ' cm, your BMI is ' + bmi.toFixed(1) + ' — ' + category + '. Your healthy weight range for this height is ' + healthyMin + '–' + healthyMax + ' kg.';
+}

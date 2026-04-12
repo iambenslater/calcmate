@@ -41,3 +41,18 @@ function calculate() {
     <p class="result-note">Recommended: 2-3 slices of a large pizza per adult, 1-2 for kids. When in doubt, order one more pizza.</p>
   `;
 }
+
+function getTLDR() {
+  const diameter = parseFloat(document.getElementById('input-diameter').value) || 0;
+  const numPizzas = parseInt(document.getElementById('input-pizzas').value) || 1;
+  const numPeople = parseInt(document.getElementById('input-people').value) || 1;
+  const slicesPerPizza = parseInt(document.getElementById('input-slicesPerPizza').value) || 8;
+
+  if (diameter <= 0) return '';
+
+  const totalSlices = numPizzas * slicesPerPizza;
+  const wholeSlices = Math.floor(totalSlices / numPeople);
+  const leftoverSlices = totalSlices % numPeople;
+
+  return numPizzas + ' x ' + diameter + 'cm pizza' + (numPizzas > 1 ? 's' : '') + ' split between ' + numPeople + ' people gives everyone ' + wholeSlices + ' slices each' + (leftoverSlices > 0 ? ', with ' + leftoverSlices + ' slice' + (leftoverSlices > 1 ? 's' : '') + ' left over' : '') + '.';
+}

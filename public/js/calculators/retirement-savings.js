@@ -45,3 +45,35 @@ function calculate() {
 }
 
 function fmt(n) { return '$' + n.toLocaleString('en-AU', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
+
+function getTLDR() {
+  const currentAge = parseInt(document.getElementById('input-currentAge').value) || 30;
+  const retirementAge = parseInt(document.getElementById('input-retireAge').value) || 67;
+  const desiredIncome = parseFloat(document.getElementById('input-desiredIncome').value) || 0;
+  const currentSuper = parseFloat(document.getElementById('input-superBalance').value) || 0;
+  const otherSavings = parseFloat(document.getElementById('input-otherSavings').value) || 0;
+
+  if (desiredIncome <= 0) return '';
+
+  const yearsToRetirement = Math.max(0, retirementAge - currentAge);
+  const retirementYears = Math.max(0, 90 - retirementAge);
+  const growthRate = 0.07;
+  const drawdownRate = 0.04;
+
+  const projectedSuper = currentSuper * Math.pow(1 + growthRate, yearsToRetirement);
+  const projectedOther = otherSavings * Math.pow(1 + growthRate, yearsToRetirement);
+  const totalProjected = projectedSuper + projectedOther;
+
+  const totalNeeded = desiredIncome * ((1 - Math.pow(1 + drawdownRate, -retirementYears)) / drawdownRate);
+  const gap = totalNeeded - totalProjected;
+  const onTrack = gap <= 0;
+
+  if (onTrack) {
+    return 'You\'re on track for retirement at ' + retirementAge + ' — your projected savings of ' + fmt(totalProjected) + ' exceed the ' + fmt(totalNeeded) + ' needed to fund ' + fmt(desiredIncome) + '/year to age 90.';
+  } else {
+    const annualSavingsNeeded = gap > 0 && yearsToRetirement > 0
+      ? gap / (((Math.pow(1 + growthRate, yearsToRetirement) - 1) / growthRate))
+      : 0;
+    return 'At retirement age ' + retirementAge + ', you\'re projected to have ' + fmt(totalProjected) + ' but need ' + fmt(totalNeeded) + ' for ' + fmt(desiredIncome) + '/year to age 90 — a shortfall of ' + fmt(gap) + ' requiring an extra ' + fmt(annualSavingsNeeded) + '/year in savings.';
+  }
+}

@@ -110,3 +110,40 @@ function calculate() {
     <p class="text-sm text-gray-500 mt-3">Assumes the lump sum is applied directly to reduce principal at month ${monthsBeforeLump}. Monthly repayment stays the same. Uses monthly compounding.</p>
   `;
 }
+
+function getTLDR() {
+  const loanAmount = parseFloat(document.getElementById('input-loanAmount').value) || 0;
+  const lumpSum = parseFloat(document.getElementById('input-lumpSum').value) || 0;
+  const yearOfPayment = parseFloat(document.getElementById('input-yearOfPayment').value) || 5;
+  const annualRate = parseFloat(document.getElementById('input-interestRate').value) || 6.5;
+  const loanTerm = parseFloat(document.getElementById('input-loanTerm').value) || 30;
+  if (loanAmount <= 0 || lumpSum <= 0) return '';
+  const monthlyRate = (annualRate / 100) / 12;
+  const totalMonths = loanTerm * 12;
+  const monthlyRepayment = loanAmount * (monthlyRate * Math.pow(1 + monthlyRate, totalMonths)) / (Math.pow(1 + monthlyRate, totalMonths) - 1);
+  function amortise(principal, mRate, payment) {
+    let balance = principal, totalInterest = 0, months = 0;
+    while (balance > 0.01 && months < 600) {
+      const interest = balance * mRate;
+      const principalPaid = Math.min(payment - interest, balance);
+      totalInterest += interest; balance -= principalPaid; months++;
+    }
+    return { months, totalInterest };
+  }
+  const original = amortise(loanAmount, monthlyRate, monthlyRepayment);
+  const monthsBeforeLump = Math.round(yearOfPayment * 12);
+  let balance = loanAmount, interestBefore = 0;
+  for (let m = 0; m < monthsBeforeLump && balance > 0.01; m++) {
+    const interest = balance * monthlyRate;
+    interestBefore += interest; balance -= Math.min(monthlyRepayment - interest, balance);
+  }
+  const lumpApplied = Math.min(lumpSum, balance);
+  balance -= lumpApplied;
+  const remaining = balance > 0.01 ? amortise(balance, monthlyRate, monthlyRepayment) : { months: 0, totalInterest: 0 };
+  const totalMonthsWithLump = monthsBeforeLump + remaining.months;
+  const interestSaved = original.totalInterest - (interestBefore + remaining.totalInterest);
+  const monthsSaved = original.months - totalMonthsWithLump;
+  const yearsSaved = Math.floor(monthsSaved / 12), mosSaved = monthsSaved % 12;
+  const timeSavedStr = (yearsSaved > 0 ? yearsSaved + ' yr' + (yearsSaved !== 1 ? 's' : '') : '') + (mosSaved > 0 ? ' ' + mosSaved + ' mo' : '');
+  return 'Making a ' + formatCurrency(lumpApplied) + ' lump sum payment at year ' + yearOfPayment + ' saves you ' + formatCurrency(interestSaved) + ' in interest and pays off your loan ' + timeSavedStr.trim() + ' earlier.';
+}

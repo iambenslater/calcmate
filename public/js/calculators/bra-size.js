@@ -80,3 +80,28 @@ function calculate() {
     <p class="result-note">Sister sizes have the same cup volume with different band fits. Always try on before buying as sizing varies between brands. Measure without a bra or in an unpadded bra.</p>
   `;
 }
+
+function getTLDR() {
+  var underBust = parseFloat(document.getElementById('input-underBust').value) || 0;
+  var overBust = parseFloat(document.getElementById('input-overBust').value) || 0;
+  if (underBust <= 0 || overBust <= 0) return '';
+  var bandCm = Math.round(underBust / 2) * 2;
+  var diff = Math.round(overBust - bandCm);
+  var cupChart = [
+    { diff: 10, cup: 'AA' }, { diff: 12, cup: 'A' }, { diff: 14, cup: 'B' }, { diff: 16, cup: 'C' },
+    { diff: 18, cup: 'D' }, { diff: 20, cup: 'DD' }, { diff: 22, cup: 'E' }, { diff: 24, cup: 'F' },
+    { diff: 26, cup: 'FF' }, { diff: 28, cup: 'G' }, { diff: 30, cup: 'GG' }, { diff: 32, cup: 'H' },
+    { diff: 34, cup: 'HH' }, { diff: 36, cup: 'J' }
+  ];
+  var cup = 'AA';
+  for (var i = 0; i < cupChart.length; i++) { if (diff >= cupChart[i].diff) cup = cupChart[i].cup; }
+  var bandSizes = [
+    { cm: 63, au: 8, us: 30, eu: 60 }, { cm: 68, au: 10, us: 32, eu: 65 }, { cm: 73, au: 12, us: 34, eu: 70 },
+    { cm: 78, au: 14, us: 36, eu: 75 }, { cm: 83, au: 16, us: 38, eu: 80 }, { cm: 88, au: 18, us: 40, eu: 85 },
+    { cm: 93, au: 20, us: 42, eu: 90 }, { cm: 98, au: 22, us: 44, eu: 95 }
+  ];
+  var bestBand = bandSizes[2];
+  var minD = 999;
+  for (var j = 0; j < bandSizes.length; j++) { var d = Math.abs(bandSizes[j].cm - bandCm); if (d < minD) { minD = d; bestBand = bandSizes[j]; } }
+  return 'Your estimated bra size is ' + bestBand.au + cup + ' (AU) — equivalent to ' + bestBand.us + cup + ' in US/UK sizing and ' + bestBand.eu + cup + ' in EU. Always try on before buying as sizing can vary between brands.';
+}

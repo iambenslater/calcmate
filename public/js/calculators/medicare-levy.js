@@ -96,3 +96,33 @@ function calculate() {
     <div class="result-row"><span class="result-label">Per Fortnight</span><span class="result-value">${formatCurrency(totalLevy / 26)}</span></div>
   `;
 }
+
+function getTLDR() {
+  const taxableIncome = parseFloat(document.getElementById('input-taxableIncome').value) || 0;
+  if (taxableIncome <= 0) return '';
+  const familyStatus = document.getElementById('input-familyStatus').value || 'single';
+  const dependants = parseInt(document.getElementById('input-dependants').value) || 0;
+  const privateHealthEl = document.querySelector('input[name="input-privateHealth"]:checked');
+  const hasPrivateHealth = privateHealthEl ? privateHealthEl.value === 'yes' : false;
+  let medicareLevy = 0;
+  if (familyStatus === 'single') {
+    if (taxableIncome > 34028) medicareLevy = taxableIncome * 0.02;
+    else if (taxableIncome > 27222) medicareLevy = (taxableIncome - 27222) * 0.10;
+  } else {
+    const familyThreshold = 45907 + (dependants * 4190);
+    const familyPhaseOut = familyThreshold * 1.25;
+    if (taxableIncome > familyPhaseOut) medicareLevy = taxableIncome * 0.02;
+    else if (taxableIncome > familyThreshold) medicareLevy = (taxableIncome - familyThreshold) * 0.10;
+  }
+  let surcharge = 0, surchargeRate = 0;
+  if (!hasPrivateHealth) {
+    const thresholds = familyStatus === 'single'
+      ? [{ min: 101001, max: 118000, rate: 0.01 }, { min: 118001, max: 144000, rate: 0.0125 }, { min: 144001, max: Infinity, rate: 0.015 }]
+      : [{ min: 202001, max: 236000, rate: 0.01 }, { min: 236001, max: 288000, rate: 0.0125 }, { min: 288001, max: Infinity, rate: 0.015 }];
+    for (const t of thresholds) { if (taxableIncome >= t.min) { surchargeRate = t.rate; break; } }
+    surcharge = taxableIncome * surchargeRate;
+  }
+  const totalLevy = medicareLevy + surcharge;
+  const surchargeNote = surcharge > 0 ? ' plus ' + formatCurrency(surcharge) + ' Medicare Levy Surcharge (no private health cover)' : '';
+  return 'On an income of ' + formatCurrency(taxableIncome) + ' you owe ' + formatCurrency(medicareLevy) + ' in Medicare levy' + surchargeNote + ' — totalling ' + formatCurrency(totalLevy) + '/year (' + formatCurrency(totalLevy / 26) + '/fortnight).';
+}

@@ -46,3 +46,23 @@ function calculate() {
     <p class="result-note">Assumes 90x45mm framing pine. Double top plate, single bottom plate. Add extra for corners, trimmers, and jack studs around openings.</p>
   `;
 }
+
+function getTLDR() {
+  const wallLength = parseFloat(document.getElementById('input-totalLength').value) || 0;
+  const wallHeight = parseFloat(document.getElementById('input-height').value) || 0;
+  const studSpacing = parseInt(document.getElementById('input-spacing').value) || 600;
+  const pricePerMetre = parseFloat(document.getElementById('input-pricePerMetre').value) || 0;
+  if (wallLength <= 0 || wallHeight <= 0) return '';
+
+  const spacingM = studSpacing / 1000;
+  const numStuds = Math.ceil(wallLength / spacingM) + 1;
+  const totalPlateMetres = 3 * wallLength;
+  const noggingRows = wallHeight <= 2.7 ? 1 : 2;
+  const noggingsPerRow = numStuds - 1;
+  const totalNoggingMetres = noggingRows * noggingsPerRow * spacingM;
+  const totalStudMetres = numStuds * wallHeight;
+  const totalTimberMetres = totalStudMetres + totalPlateMetres + totalNoggingMetres;
+
+  const costNote = pricePerMetre > 0 ? ', costing about $' + (totalTimberMetres * pricePerMetre).toLocaleString('en-AU', {minimumFractionDigits: 2, maximumFractionDigits: 2}) : '';
+  return 'For a ' + wallLength + 'm x ' + wallHeight + 'm wall at ' + studSpacing + 'mm centres, you\'ll need ' + numStuds + ' studs and ' + totalTimberMetres.toFixed(1) + 'm of timber in total' + costNote + '.';
+}

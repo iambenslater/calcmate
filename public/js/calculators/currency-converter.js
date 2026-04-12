@@ -70,3 +70,23 @@ function calculate() {
     <p class="text-sm text-gray-500 mt-4">Rates are approximate and for illustrative purposes only. For live rates, check your bank or a service like XE.com. Actual exchange rates will differ and may include fees and spreads.</p>
   `;
 }
+
+function getTLDR() {
+  const amount = parseFloat(document.getElementById('input-amount').value) || 0;
+  const fromCurrency = document.getElementById('input-fromCurrency').value;
+  const toCurrency = document.getElementById('input-toCurrency').value;
+  if (amount <= 0 || !fromCurrency || !toCurrency) return '';
+  const ratesFromAUD = {
+    AUD: 1.00, USD: 0.64, GBP: 0.51, EUR: 0.59, NZD: 1.10,
+    JPY: 97.50, CNY: 4.65, CAD: 0.89, SGD: 0.86, HKD: 5.00, INR: 53.80,
+  };
+  const symbols = { AUD: 'A$', USD: 'US$', GBP: '£', EUR: '€', NZD: 'NZ$', JPY: '¥', CNY: '¥', CAD: 'C$', SGD: 'S$', HKD: 'HK$', INR: '₹' };
+  const fromRate = ratesFromAUD[fromCurrency];
+  const toRate = ratesFromAUD[toCurrency];
+  if (!fromRate || !toRate) return '';
+  const result = (amount / fromRate) * toRate;
+  const exchangeRate = toRate / fromRate;
+  const fromSym = symbols[fromCurrency] || fromCurrency;
+  const toSym = symbols[toCurrency] || toCurrency;
+  return fromSym + amount.toLocaleString('en-AU', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' ' + fromCurrency + ' converts to ' + toSym + result.toLocaleString('en-AU', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' ' + toCurrency + ' at a rate of 1 ' + fromCurrency + ' = ' + exchangeRate.toFixed(4) + ' ' + toCurrency + '.';
+}

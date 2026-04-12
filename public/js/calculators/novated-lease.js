@@ -229,3 +229,34 @@ function calculate() {
   document.getElementById('results-content').innerHTML = html;
   document.getElementById('calc-results').classList.remove('hidden');
 }
+
+function getTLDR() {
+  const carPrice = parseFloat(document.getElementById('input-carPrice').value);
+  const annualSalary = parseFloat(document.getElementById('input-annualSalary').value);
+  const leaseTerm = parseInt(document.getElementById('input-leaseTerm').value);
+  const annualKm = parseInt(document.getElementById('input-annualKm').value);
+  const fuelType = document.querySelector('input[name="input-fuelType"]:checked').value;
+  if (isNaN(carPrice) || carPrice <= 0 || isNaN(annualSalary) || annualSalary <= 0) return '';
+  const fmt = v => new Intl.NumberFormat('en-AU', { style: 'currency', currency: 'AUD', minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(v);
+  const fmt2 = v => new Intl.NumberFormat('en-AU', { style: 'currency', currency: 'AUD', minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(v);
+  function calcTax(income) {
+    if (income <= 18200) return 0; if (income <= 45000) return (income - 18200) * 0.19;
+    if (income <= 120000) return 5092 + (income - 45000) * 0.325; if (income <= 180000) return 29467 + (income - 120000) * 0.37;
+    return 51667 + (income - 180000) * 0.45;
+  }
+  let annualFuelCost;
+  if (fuelType === 'electric') annualFuelCost = (annualKm / 10) * 2 * 0.30;
+  else { const consumption = fuelType === 'diesel' ? 7.5 : fuelType === 'hybrid' ? 4.5 : 9.5; annualFuelCost = (annualKm / 100) * consumption * 1.95; }
+  const annualRunningCosts = annualFuelCost + 1500 + 800 + (fuelType === 'electric' ? 600 : 1000) + 500;
+  const residualRates = { 1: 0.65, 2: 0.56, 3: 0.46, 4: 0.37, 5: 0.28 };
+  const residualValue = carPrice * (residualRates[leaseTerm] || 0.46);
+  const totalInterest = ((carPrice + residualValue) / 2) * 0.07 * leaseTerm;
+  const totalLeasePayments = (carPrice - residualValue) + totalInterest;
+  const monthlyLeasePayment = totalLeasePayments / (leaseTerm * 12);
+  const annualPreTaxDeduction = (monthlyLeasePayment + annualRunningCosts / 12) * 12;
+  const taxSaving = calcTax(annualSalary) - calcTax(annualSalary - annualPreTaxDeduction);
+  const medicareSaving = annualSalary * 0.02 - Math.max(0, annualSalary - annualPreTaxDeduction) * 0.02;
+  const netAnnualCost = annualPreTaxDeduction - taxSaving - medicareSaving;
+  const netFortnightCost = netAnnualCost / 26;
+  return 'Novated-leasing a ' + fmt(carPrice) + ' car on a ' + fmt(annualSalary) + ' salary costs you ' + fmt2(netFortnightCost) + '/fortnight after tax savings of ' + fmt(taxSaving + medicareSaving) + '/year — all running costs included.';
+}

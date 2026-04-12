@@ -58,3 +58,33 @@ function calculate() {
     <p class="result-note">Assumes gable roof with two equal sides. Always confirm quantities with your supplier. Prices vary by region and profile.</p>
   `;
 }
+
+function getTLDR() {
+  const roofArea = parseFloat(document.getElementById('input-roofArea').value) || 0;
+  const pitch = document.getElementById('input-pitch').value;
+  const material = document.getElementById('input-material').value;
+
+  if (roofArea <= 0) return '';
+
+  const pitchRad = parseFloat(pitch) * Math.PI / 180;
+  const pitchFactor = 1 / Math.cos(pitchRad);
+  const roofLength = Math.sqrt(roofArea);
+  const flatArea = roofLength * roofLength;
+  const actualArea = flatArea * pitchFactor;
+
+  let totalUnits, unitLabel;
+  if (material === 'colorbond') {
+    const sheetWidth = 0.762;
+    const sheetsNeeded = Math.ceil(roofLength / sheetWidth) * 2;
+    const wasteUnits = Math.ceil(sheetsNeeded * 0.05);
+    totalUnits = sheetsNeeded + wasteUnits;
+    unitLabel = 'Colorbond sheets';
+  } else {
+    const sheetsNeeded = Math.ceil(actualArea * 9.5);
+    const wasteUnits = Math.ceil(sheetsNeeded * 0.05);
+    totalUnits = sheetsNeeded + wasteUnits;
+    unitLabel = 'roof tiles';
+  }
+
+  return 'A ' + roofArea + ' m\u00B2 footprint with a ' + pitch + '\u00B0 pitch gives an actual roof area of ' + actualArea.toFixed(1) + ' m\u00B2, requiring ' + totalUnits.toLocaleString() + ' ' + unitLabel + ' to order (including 5% waste).';
+}

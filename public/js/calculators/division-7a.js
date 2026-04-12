@@ -45,3 +45,15 @@ function calculate() {
 }
 
 function fmt(n) { return '$' + n.toLocaleString('en-AU', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
+
+function getTLDR() {
+  const loanAmount = parseFloat(document.getElementById('input-loanAmount').value) || 0;
+  const benchmarkRate = (parseFloat(document.getElementById('input-benchmarkRate').value) || 8.37) / 100;
+  const loanTerm = parseInt(document.getElementById('input-loanTerm').value) || 7;
+  if (loanAmount <= 0) return '';
+  const minRepayment = benchmarkRate > 0
+    ? loanAmount * benchmarkRate / (1 - Math.pow(1 + benchmarkRate, -loanTerm))
+    : loanAmount / loanTerm;
+  const totalInterest = (minRepayment * loanTerm) - loanAmount;
+  return 'The minimum yearly Division 7A repayment on a ' + fmt(loanAmount) + ' loan is ' + fmt(minRepayment) + ' per year over ' + loanTerm + ' years, totalling ' + fmt(totalInterest) + ' in interest at the ' + (benchmarkRate * 100).toFixed(2) + '% benchmark rate.';
+}

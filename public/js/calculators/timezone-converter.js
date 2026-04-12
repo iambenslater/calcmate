@@ -93,3 +93,43 @@ function calculate() {
     <p class="text-sm text-gray-500 mt-4">Offsets are fixed approximations. Daylight saving transitions change actual offsets. AEDT/ACDT are Australian daylight saving time zones (summer).</p>
   `;
 }
+
+function getTLDR() {
+  const inputTime = document.getElementById('input-time').value;
+  const sourceTimezone = document.getElementById('input-sourceTimezone').value;
+  const targetTimezone = document.getElementById('input-targetTimezone').value;
+  if (!inputTime || !sourceTimezone || !targetTimezone) return '';
+
+  const offsets = {
+    'AEST': 10, 'AEDT': 11, 'ACST': 9.5, 'ACDT': 10.5, 'AWST': 8,
+    'UTC': 0, 'GMT': 0, 'EST': -5, 'PST': -8, 'CST': -6,
+    'JST': 9, 'IST': 5.5, 'CET': 1, 'NZST': 12, 'NZDT': 13
+  };
+
+  const sourceOffset = offsets[sourceTimezone];
+  const targetOffset = offsets[targetTimezone];
+  if (sourceOffset === undefined || targetOffset === undefined) return '';
+
+  const [hours, minutes] = inputTime.split(':').map(Number);
+  if (isNaN(hours) || isNaN(minutes)) return '';
+
+  const diffHours = targetOffset - sourceOffset;
+  let targetMinutes = hours * 60 + minutes + diffHours * 60;
+  let dayShift = 0;
+  if (targetMinutes >= 1440) { targetMinutes -= 1440; dayShift = 1; }
+  else if (targetMinutes < 0) { targetMinutes += 1440; dayShift = -1; }
+
+  const targetH = Math.floor(targetMinutes / 60);
+  const targetM = Math.round(targetMinutes % 60);
+  const formatTime = (h, m) => {
+    const ampm = h >= 12 ? 'PM' : 'AM';
+    const h12 = h % 12 || 12;
+    return h12 + ':' + String(m).padStart(2, '0') + ' ' + ampm;
+  };
+
+  const dayNote = dayShift === 1 ? ' the next day' : dayShift === -1 ? ' the previous day' : '';
+  const diffSign = diffHours >= 0 ? '+' : '';
+  const diffDisplay = Number.isInteger(diffHours) ? diffHours : diffHours.toFixed(1);
+
+  return inputTime + ' ' + sourceTimezone + ' is ' + formatTime(targetH, targetM) + ' ' + targetTimezone + dayNote + ' — a difference of ' + diffSign + diffDisplay + ' hours.';
+}

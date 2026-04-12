@@ -40,3 +40,28 @@ function calculate() {
 }
 
 function fmt(n) { return '$' + n.toLocaleString('en-AU', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
+
+function getTLDR() {
+  const balance = parseFloat(document.getElementById('input-currentBalance').value) || 0;
+  if (balance <= 0) return '';
+
+  const f1Fees = (parseFloat(document.getElementById('input-fund1Fee').value) || 0) / 100;
+  const f1Return = (parseFloat(document.getElementById('input-fund1Return').value) || 0) / 100;
+  const f1Insurance = parseFloat(document.getElementById('input-fund1Insurance').value) || 0;
+  const f2Fees = (parseFloat(document.getElementById('input-fund2Fee').value) || 0) / 100;
+  const f2Return = (parseFloat(document.getElementById('input-fund2Return').value) || 0) / 100;
+  const f2Insurance = parseFloat(document.getElementById('input-fund2Insurance').value) || 0;
+
+  const f1NetReturn = f1Return - f1Fees;
+  const f2NetReturn = f2Return - f2Fees;
+  let bal1 = balance;
+  let bal2 = balance;
+  for (let y = 1; y <= 30; y++) {
+    bal1 = (bal1 - f1Insurance) * (1 + f1NetReturn);
+    bal2 = (bal2 - f2Insurance) * (1 + f2NetReturn);
+  }
+
+  const diff = Math.abs(bal1 - bal2);
+  const winner = bal1 >= bal2 ? 'Fund 1' : 'Fund 2';
+  return 'Over 30 years, ' + winner + ' comes out ahead by ' + fmt(diff) + ' — from a starting balance of ' + fmt(balance) + ', Fund 1 would reach ' + fmt(bal1) + ' vs Fund 2 at ' + fmt(bal2) + '.';
+}

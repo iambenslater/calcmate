@@ -52,3 +52,23 @@ function calculate() {
     <div class="result-row"><span class="result-label">End Time</span><span class="result-value">${endTime}</span></div>
   `;
 }
+
+function getTLDR() {
+  const startTime = document.getElementById('input-startTime').value;
+  const endTime = document.getElementById('input-endTime').value;
+  const breakMinutes = parseFloat(document.getElementById('input-breakMinutes').value) || 0;
+  const daysPerWeek = parseFloat(document.getElementById('input-daysPerWeek').value) || 5;
+  if (!startTime || !endTime) return '';
+
+  const [startH, startM] = startTime.split(':').map(Number);
+  const [endH, endM] = endTime.split(':').map(Number);
+  const grossMinutes = (endH * 60 + endM) - (startH * 60 + startM);
+  const netMinutes = grossMinutes - breakMinutes;
+  if (netMinutes <= 0) return '';
+
+  const dailyHours = netMinutes / 60;
+  const weeklyHours = dailyHours * daysPerWeek;
+  const annualHours = Math.round(weeklyHours * 52);
+
+  return 'Working ' + startTime + ' to ' + endTime + ' with a ' + breakMinutes + '-minute break gives you ' + dailyHours.toFixed(2) + ' hours per day, ' + weeklyHours.toFixed(2) + ' hours per week, and ' + annualHours + ' hours per year.';
+}

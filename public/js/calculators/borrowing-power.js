@@ -74,3 +74,32 @@ function calculate() {
     <p class="text-sm text-gray-500 mt-3">This is an estimate only. Actual borrowing power depends on your lender's specific criteria, credit history, and full financial assessment.</p>
   `;
 }
+
+function getTLDR() {
+  var grossIncome = parseFloat(document.getElementById('input-grossIncome').value) || 0;
+  var partnerIncome = parseFloat(document.getElementById('input-partnerIncome').value) || 0;
+  var annualIncome = grossIncome + partnerIncome;
+  var monthlyExpenses = parseFloat(document.getElementById('input-monthlyExpenses').value) || 0;
+  var existingDebts = parseFloat(document.getElementById('input-existingLoans').value) || 0;
+  var creditCardLimits = parseFloat(document.getElementById('input-creditCardLimits').value) || 0;
+  var dependants = parseInt(document.getElementById('input-dependants').value) || 0;
+  var interestRate = (parseFloat(document.getElementById('input-interestRate').value) || 6.5) / 100;
+  var loanTerm = parseInt(document.getElementById('input-loanTerm').value) || 30;
+  var monthlyGross = annualIncome / 12;
+  var estimatedTaxRate = annualIncome <= 18200 ? 0 : annualIncome <= 45000 ? 0.10 : annualIncome <= 135000 ? 0.22 : 0.32;
+  var monthlyNet = monthlyGross * (1 - estimatedTaxRate);
+  var dependantCost = dependants * 400;
+  var livingExpenses = Math.max(monthlyExpenses, 1500 + dependantCost);
+  var creditCardMonthly = creditCardLimits * 0.03;
+  var monthlySurplus = monthlyNet - livingExpenses - existingDebts - creditCardMonthly;
+  var assessmentRate = Math.max(interestRate + 0.03, 0.095);
+  var monthlyAssessmentRate = assessmentRate / 12;
+  var totalPayments = loanTerm * 12;
+  var maxLoan = 0;
+  if (monthlySurplus > 0 && monthlyAssessmentRate > 0) {
+    maxLoan = monthlySurplus * (Math.pow(1 + monthlyAssessmentRate, totalPayments) - 1) / (monthlyAssessmentRate * Math.pow(1 + monthlyAssessmentRate, totalPayments));
+  }
+  var realisticRate = interestRate / 12;
+  var monthlyRepayment = maxLoan > 0 ? maxLoan * (realisticRate * Math.pow(1 + realisticRate, totalPayments)) / (Math.pow(1 + realisticRate, totalPayments) - 1) : 0;
+  return 'Based on a ' + formatCurrency(annualIncome) + ' annual income, your estimated borrowing power is ' + formatCurrency(Math.max(0, maxLoan)) + ' with repayments of around ' + formatCurrency(monthlyRepayment) + '/month at ' + (interestRate * 100).toFixed(1) + '% p.a. over ' + loanTerm + ' years.';
+}

@@ -30,3 +30,14 @@ function calculate() {
 }
 
 function fmt(n) { return '$' + n.toLocaleString('en-AU', {minimumFractionDigits:2, maximumFractionDigits:2}); }
+
+function getTLDR() {
+  const wattage = parseFloat(document.getElementById('input-watts').value) || 0;
+  const hoursPerDay = parseFloat(document.getElementById('input-hoursPerDay').value) || 0;
+  const tariffRate = parseFloat(document.getElementById('input-tariff').value) || 0;
+  if (wattage <= 0 || hoursPerDay <= 0 || tariffRate <= 0) return '';
+  const kwhPerDay = (wattage * hoursPerDay) / 1000;
+  const costPerDay = kwhPerDay * (tariffRate / 100);
+  const costPerYear = costPerDay * 365;
+  return 'Running that ' + wattage + 'W appliance for ' + hoursPerDay + ' hours a day costs ' + fmt(costPerDay) + '/day (' + kwhPerDay.toFixed(2) + ' kWh) — that\'s ' + fmt(costPerYear) + ' per year at ' + tariffRate + 'c/kWh.';
+}

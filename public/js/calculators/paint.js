@@ -57,3 +57,23 @@ function getBestTins(litres) {
   if (remaining > 0) result.push(`1 x 1L`);
   return result.join(' + ') || '0L';
 }
+
+function getTLDR() {
+  const roomLength = parseFloat(document.getElementById('input-roomLength').value) || 0;
+  const roomWidth = parseFloat(document.getElementById('input-roomWidth').value) || 0;
+  const roomHeight = parseFloat(document.getElementById('input-wallHeight').value) || 0;
+  if (roomLength <= 0 || roomWidth <= 0 || roomHeight <= 0) return '';
+  const numCoats = parseInt(document.getElementById('input-coats').value) || 2;
+  const numDoors = parseInt(document.getElementById('input-doors').value) || 0;
+  const numWindows = parseInt(document.getElementById('input-windows').value) || 0;
+  const includeCeiling = document.getElementById('input-includeCeiling').value !== 'no';
+  const coverageRate = parseFloat(document.getElementById('input-coverageRate').value) || 12;
+  const wallArea = 2 * (roomLength + roomWidth) * roomHeight;
+  const deductions = (numDoors * 1.9 * 0.82) + (numWindows * 1.2 * 1.0);
+  const netWallArea = Math.max(0, wallArea - deductions);
+  const ceilingArea = roomLength * roomWidth;
+  const totalArea = netWallArea + (includeCeiling ? ceilingArea : 0);
+  const totalLitres = (netWallArea * numCoats + (includeCeiling ? ceilingArea * numCoats : 0)) / coverageRate;
+  const tins = getBestTins(totalLitres);
+  return 'Your ' + roomLength + 'm x ' + roomWidth + 'm room needs ' + totalLitres.toFixed(1) + 'L of paint for ' + numCoats + ' coat' + (numCoats !== 1 ? 's' : '') + ' across ' + totalArea.toFixed(1) + 'm\u00b2 — buy ' + tins + '.';
+}

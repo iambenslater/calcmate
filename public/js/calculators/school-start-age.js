@@ -78,3 +78,40 @@ function calculate() {
     <p style="margin-top:12px;font-size:0.85rem;color:var(--text-muted)">Dates are indicative. Check with your state education department for exact enrolment dates and any exemption processes.</p>
   `;
 }
+
+function getTLDR() {
+  const dobStr = document.getElementById('input-childDOB').value;
+  const state = document.getElementById('input-state').value;
+
+  if (!dobStr || !state) return '';
+
+  const cutoffs = {
+    'qld':  { cutoff: '06-30', gradeLabel: 'Prep' },
+    'nsw':  { cutoff: '07-31', gradeLabel: 'Kindergarten' },
+    'vic':  { cutoff: '04-30', gradeLabel: 'Foundation' },
+    'sa':   { cutoff: '05-01', gradeLabel: 'Reception' },
+    'wa':   { cutoff: '06-30', gradeLabel: 'Pre-primary' },
+    'tas':  { cutoff: '01-01', gradeLabel: 'Prep' },
+    'nt':   { cutoff: '06-30', gradeLabel: 'Transition' },
+    'act':  { cutoff: '04-30', gradeLabel: 'Kindergarten' },
+  };
+
+  const stateInfo = cutoffs[state];
+  if (!stateInfo) return '';
+
+  const dob = new Date(dobStr + 'T00:00:00');
+  const birthYear = dob.getFullYear();
+  const birthMonth = dob.getMonth();
+  const birthDay = dob.getDate();
+  const [cutMonth, cutDay] = stateInfo.cutoff.split('-').map(Number);
+
+  const turnsFiveYear = birthYear + 5;
+  const turnsFiveDate = new Date(turnsFiveYear, birthMonth, birthDay);
+  const cutoffDate = new Date(turnsFiveYear, cutMonth - 1, cutDay);
+
+  const startYear = turnsFiveDate <= cutoffDate ? turnsFiveYear : turnsFiveYear + 1;
+
+  const stateNames = { 'qld': 'Queensland', 'nsw': 'New South Wales', 'vic': 'Victoria', 'sa': 'South Australia', 'wa': 'Western Australia', 'tas': 'Tasmania', 'nt': 'Northern Territory', 'act': 'ACT' };
+
+  return 'Your child is expected to start ' + stateInfo.gradeLabel + ' in ' + startYear + ' in ' + (stateNames[state] || state) + '.';
+}

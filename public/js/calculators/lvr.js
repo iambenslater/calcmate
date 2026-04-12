@@ -98,3 +98,14 @@ function calculate() {
     </table></div>
   `;
 }
+
+function getTLDR() {
+  const propertyValue = parseFloat(document.getElementById('input-propertyValue').value) || 0;
+  const loanAmount = parseFloat(document.getElementById('input-loanAmount').value) || 0;
+  if (propertyValue <= 0) return '';
+  const lvr = (loanAmount / propertyValue) * 100;
+  const deposit = propertyValue - loanAmount;
+  const lmiRequired = lvr > 80;
+  const zone = lvr <= 60 ? 'Excellent' : lvr <= 70 ? 'Very Good' : lvr <= 80 ? 'Good' : lvr <= 90 ? 'High LVR' : 'Very High LVR';
+  return 'Your LVR is ' + lvr.toFixed(1) + '% (' + zone + ') with a deposit of ' + formatCurrency(deposit) + ' on a ' + formatCurrency(propertyValue) + ' property' + (lmiRequired ? ' — LMI is required at this LVR.' : ' — no LMI required.');
+}

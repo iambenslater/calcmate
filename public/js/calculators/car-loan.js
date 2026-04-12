@@ -64,3 +64,20 @@ function calculate() {
 function fmt(n) {
   return '$' + n.toLocaleString('en-AU', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 }
+
+function getTLDR() {
+  var loanAmount = parseFloat(document.getElementById('input-loanAmount').value) || 0;
+  var interestRate = parseFloat(document.getElementById('input-interestRate').value) || 0;
+  var loanTerm = parseFloat(document.getElementById('input-loanTerm').value) || 0;
+  var balloonPayment = parseFloat(document.getElementById('input-balloon').value) || 0;
+  if (loanAmount <= 0 || interestRate <= 0 || loanTerm <= 0) return '';
+  var monthlyRate = interestRate / 100 / 12;
+  var totalMonths = loanTerm * 12;
+  var pvBalloon = balloonPayment / Math.pow(1 + monthlyRate, totalMonths);
+  var adjustedLoan = loanAmount - pvBalloon;
+  var monthlyPayment = adjustedLoan * monthlyRate / (1 - Math.pow(1 + monthlyRate, -totalMonths));
+  var totalPayments = monthlyPayment * totalMonths + balloonPayment;
+  var totalInterest = totalPayments - loanAmount;
+  return 'A ' + fmt(loanAmount) + ' car loan at ' + interestRate + '% p.a. over ' + loanTerm + ' year' + (loanTerm !== 1 ? 's' : '') + ' costs ' + fmt(monthlyPayment) + '/month, with ' + fmt(totalInterest) + ' in total interest paid' + (balloonPayment > 0 ? ' (plus a ' + fmt(balloonPayment) + ' balloon at the end)' : '') + '.';
+}
+

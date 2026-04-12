@@ -37,3 +37,22 @@ function calculate() {
     <p class="text-sm text-gray-500 mt-4">These formulas estimate ideal body weight based on height. They were originally designed for drug dosage calculations and provide a rough guide only. Individual factors like muscle mass, frame size, and body composition are not considered.</p>
   `;
 }
+
+function getTLDR() {
+  const heightCm = parseFloat(document.getElementById('input-height').value) || 0;
+  const gender = document.querySelector('input[name="input-gender"]:checked')?.value ||
+                 document.getElementById('input-gender')?.value || 'male';
+  if (heightCm <= 0) return '';
+  const heightIn = heightCm / 2.54;
+  const inchesOver5ft = Math.max(0, heightIn - 60);
+  let devine, robinson, miller, hamwi;
+  if (gender === 'male') {
+    devine = 50.0 + 2.3 * inchesOver5ft; robinson = 52.0 + 1.9 * inchesOver5ft;
+    miller = 56.2 + 1.41 * inchesOver5ft; hamwi = 48.0 + 2.7 * inchesOver5ft;
+  } else {
+    devine = 45.5 + 2.3 * inchesOver5ft; robinson = 49.0 + 1.7 * inchesOver5ft;
+    miller = 53.1 + 1.36 * inchesOver5ft; hamwi = 45.5 + 2.2 * inchesOver5ft;
+  }
+  const avg = (devine + robinson + miller + hamwi) / 4;
+  return 'Based on your height of ' + heightCm + ' cm, the four standard formulas put your ideal weight between ' + Math.min(devine, robinson, miller, hamwi).toFixed(1) + ' kg and ' + Math.max(devine, robinson, miller, hamwi).toFixed(1) + ' kg, with an average of ' + avg.toFixed(1) + ' kg (' + (avg * 2.20462).toFixed(1) + ' lb).';
+}

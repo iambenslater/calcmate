@@ -61,3 +61,21 @@ function calculate() {
     <p class="result-note">AU and UK sizes are generally the same. Sizes vary between brands. Always refer to the specific brand's size chart when available.</p>
   `;
 }
+
+function getTLDR() {
+  const size = parseInt(document.getElementById('input-size').value) || 0;
+  const fromSystem = document.getElementById('input-sizeSystem').value;
+  if (!size || !fromSystem) return '';
+  const chart = [
+    { au: 4, us: 0, uk: 4, eu: 32 }, { au: 6, us: 2, uk: 6, eu: 34 },
+    { au: 8, us: 4, uk: 8, eu: 36 }, { au: 10, us: 6, uk: 10, eu: 38 },
+    { au: 12, us: 8, uk: 12, eu: 40 }, { au: 14, us: 10, uk: 14, eu: 42 },
+    { au: 16, us: 12, uk: 16, eu: 44 }, { au: 18, us: 14, uk: 18, eu: 46 },
+    { au: 20, us: 16, uk: 20, eu: 48 }, { au: 22, us: 18, uk: 22, eu: 50 },
+    { au: 24, us: 20, uk: 24, eu: 52 }, { au: 26, us: 22, uk: 26, eu: 54 },
+  ];
+  const key = fromSystem.toLowerCase();
+  const match = chart.find(r => r[key] === size);
+  if (!match) return '';
+  return fromSystem + ' size ' + size + ' is AU ' + match.au + ' / US ' + match.us + ' / UK ' + match.uk + ' / EU ' + match.eu + '.';
+}

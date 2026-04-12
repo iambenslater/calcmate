@@ -53,3 +53,22 @@ function calculate() {
 }
 
 function fmt(n) { return '$' + n.toLocaleString('en-AU', {minimumFractionDigits:2, maximumFractionDigits:2}); }
+
+function getTLDR() {
+  const buyPrice = parseFloat(document.getElementById('input-buyPrice').value) || 0;
+  const sellPrice = parseFloat(document.getElementById('input-sellPrice').value) || 0;
+  const quantity = parseFloat(document.getElementById('input-quantity').value) || 0;
+  const buyFeeRate = parseFloat(document.getElementById('input-buyFee').value) || 0;
+  const sellFeeRate = parseFloat(document.getElementById('input-sellFee').value) || 0;
+  const holdingMonths = parseInt(document.getElementById('input-holdingPeriod').value) || 0;
+  if (buyPrice <= 0 || quantity <= 0) return '';
+  const totalBuyCost = buyPrice * quantity;
+  const totalSellValue = sellPrice * quantity;
+  const buyFee = totalBuyCost * (buyFeeRate / 100);
+  const sellFee = totalSellValue * (sellFeeRate / 100);
+  const netProfit = (totalSellValue - totalBuyCost) - (buyFee + sellFee);
+  const percentReturn = totalBuyCost > 0 ? (netProfit / totalBuyCost) * 100 : 0;
+  const cgtDiscount = holdingMonths >= 12;
+  const direction = netProfit >= 0 ? 'profit' : 'loss';
+  return 'You made a net ' + direction + ' of ' + fmt(Math.abs(netProfit)) + ' (' + percentReturn.toFixed(2) + '%) on ' + quantity + ' units after fees.' + (netProfit > 0 ? ' The taxable capital gain is ' + fmt(netProfit > 0 ? (cgtDiscount ? netProfit * 0.5 : netProfit) : 0) + (cgtDiscount ? ' (50% CGT discount applied for holding 12+ months).' : ' (no CGT discount — held under 12 months).') : '');
+}

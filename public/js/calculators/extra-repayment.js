@@ -75,3 +75,24 @@ function calculate() {
     <p class="text-sm text-gray-500 mt-3">Uses monthly compounding. Assumes the interest rate remains constant over the loan term.</p>
   `;
 }
+
+function getTLDR() {
+  const loanAmount = parseFloat(document.getElementById('input-loanAmount').value) || 0;
+  const annualRate = parseFloat(document.getElementById('input-interestRate').value) || 6.5;
+  const loanTerm = parseFloat(document.getElementById('input-loanTerm').value) || 30;
+  const extraMonthly = parseFloat(document.getElementById('input-extraMonthly').value) || 0;
+  if (loanAmount <= 0 || extraMonthly <= 0) return '';
+  const monthlyRate = (annualRate / 100) / 12;
+  const totalMonths = loanTerm * 12;
+  const baseRepayment = loanAmount * (monthlyRate * Math.pow(1 + monthlyRate, totalMonths)) / (Math.pow(1 + monthlyRate, totalMonths) - 1);
+  let balance = loanAmount, totalInterestOrig = 0, monthsOrig = 0;
+  while (balance > 0.01 && monthsOrig < 600) { const i = balance * monthlyRate; totalInterestOrig += i; balance -= Math.min(baseRepayment - i, balance); monthsOrig++; }
+  const newRepayment = baseRepayment + extraMonthly;
+  let balExtra = loanAmount, totalInterestExtra = 0, monthsExtra = 0;
+  while (balExtra > 0.01 && monthsExtra < 600) { const i = balExtra * monthlyRate; totalInterestExtra += i; balExtra -= Math.min(newRepayment - i, balExtra); monthsExtra++; }
+  const interestSaved = totalInterestOrig - totalInterestExtra;
+  const monthsSaved = monthsOrig - monthsExtra;
+  const yearsSaved = Math.floor(monthsSaved / 12);
+  const mosSaved = monthsSaved % 12;
+  return 'Paying an extra ' + formatCurrency(extraMonthly) + '/month saves you ' + formatCurrency(interestSaved) + ' in interest and cuts ' + (yearsSaved > 0 ? yearsSaved + ' yr' + (yearsSaved !== 1 ? 's' : '') : '') + (mosSaved > 0 ? ' ' + mosSaved + ' mo' : '') + ' off your loan term.';
+}

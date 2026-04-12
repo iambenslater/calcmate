@@ -43,3 +43,28 @@ function calculate() {
 }
 
 function fmt(n) { return '$' + n.toLocaleString('en-AU', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
+
+function getTLDR() {
+  const salary = parseFloat(document.getElementById('input-annualSalary').value) || 0;
+  const superRate = (parseFloat(document.getElementById('input-superRate').value) || 12) / 100;
+  const salarySacrifice = parseFloat(document.getElementById('input-salarySacrifice').value) || 0;
+  if (salary <= 0) return '';
+
+  const employerSuper = salary * superRate;
+  const totalConcessional = employerSuper + salarySacrifice;
+  const concessionalCap = 30000;
+  const overCap = Math.max(0, totalConcessional - concessionalCap);
+
+  let marginalRate = 0;
+  if (salary > 190000) marginalRate = 0.45;
+  else if (salary > 135000) marginalRate = 0.37;
+  else if (salary > 45000) marginalRate = 0.30;
+  else if (salary > 18200) marginalRate = 0.16;
+
+  const superTax = Math.min(salarySacrifice, concessionalCap - employerSuper) * 0.15;
+  const netTaxSaving = salarySacrifice * marginalRate - superTax;
+
+  if (salarySacrifice <= 0) return 'Your employer contributes ' + fmt(employerSuper) + '/year in super (at ' + (superRate * 100).toFixed(1) + '%), leaving ' + fmt(Math.max(0, concessionalCap - employerSuper)) + ' of your annual concessional cap available for salary sacrifice.';
+
+  return 'Salary sacrificing ' + fmt(salarySacrifice) + '/year saves you ' + fmt(netTaxSaving) + ' in tax' + (overCap > 0 ? ' — but you\'re ' + fmt(overCap) + ' over the ' + fmt(concessionalCap) + ' concessional cap, so the excess will be taxed at your marginal rate' : '') + '.';
+}

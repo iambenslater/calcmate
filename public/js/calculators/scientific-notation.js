@@ -34,3 +34,24 @@ function calculate() {
     <div class="result-row"><span class="result-label">Number of Digits</span><span class="result-value">${Math.abs(number).toString().replace('.', '').replace(/^0+/, '').length}</span></div>
   `;
 }
+
+function getTLDR() {
+  const raw = document.getElementById('input-number').value.trim();
+  if (!raw) return '';
+
+  let number;
+  const sciMatch = raw.match(/^([+-]?\d*\.?\d+)\s*[xX\*]\s*10\^([+-]?\d+)$/);
+  if (sciMatch) {
+    number = parseFloat(sciMatch[1]) * Math.pow(10, parseInt(sciMatch[2]));
+  } else {
+    number = parseFloat(raw);
+  }
+
+  if (isNaN(number)) return '';
+
+  const exp = number === 0 ? 0 : Math.floor(Math.log10(Math.abs(number)));
+  const coeff = number / Math.pow(10, exp);
+  const coeffStr = parseFloat(coeff.toFixed(6)).toString();
+
+  return raw + ' in scientific notation is ' + coeffStr + ' \u00D7 10^' + exp + ' (or ' + number.toExponential(4).replace(/\.?0+e/, 'e') + ').';
+}

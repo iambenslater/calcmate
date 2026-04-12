@@ -64,3 +64,21 @@ function calculate() {
     <p class="text-sm text-gray-500 mt-2">Your principal place of residence is generally exempt from CGT. Costs are estimates only.</p>
   `;
 }
+
+function getTLDR() {
+  const salePrice = parseFloat(document.getElementById('input-salePrice').value) || 0;
+  const commissionPct = parseFloat(document.getElementById('input-agentCommission').value) || 2.0;
+  const marketingBudget = parseFloat(document.getElementById('input-marketingBudget').value) || 5000;
+  const outstandingMortgage = parseFloat(document.getElementById('input-outstandingMortgage').value) || 0;
+
+  if (salePrice <= 0) return '';
+
+  const agentCommission = salePrice * (commissionPct / 100);
+  const auctioneerFee = 600;
+  const conveyancingFee = 1100;
+  const dischargeFee = outstandingMortgage > 0 ? 400 : 0;
+  const totalCosts = agentCommission + marketingBudget + auctioneerFee + conveyancingFee + dischargeFee;
+  const netProceedsBeforeCGT = salePrice - totalCosts - outstandingMortgage;
+
+  return 'Selling for ' + formatCurrency(salePrice) + ' will cost around ' + formatCurrency(totalCosts) + ' in selling costs (including ' + formatCurrency(agentCommission) + ' agent commission), leaving estimated net proceeds of ' + formatCurrency(Math.max(0, netProceedsBeforeCGT)) + ' before any capital gains tax.';
+}

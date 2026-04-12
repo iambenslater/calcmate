@@ -53,3 +53,19 @@ function calculate() {
 }
 
 function fmt(n) { return '$' + n.toLocaleString('en-AU', {minimumFractionDigits:2, maximumFractionDigits:2}); }
+
+function getTLDR() {
+  const bedrooms = document.getElementById('input-bedrooms').value;
+  const floorLevel = document.getElementById('input-floorFrom').value;
+  const needPacking = document.getElementById('input-packing').checked;
+  const distanceKm = parseFloat(document.getElementById('input-distance').value) || 0;
+  const baseCosts = { '1': 400, '2': 600, '3': 900, '4': 1200, '5+': 1600 };
+  const baseCost = baseCosts[bedrooms] || 900;
+  const floorSurcharges = { 'ground': 0, '1st': 150, '2nd': 300, '3rd+': 500 };
+  const floorSurcharge = floorSurcharges[floorLevel] || 0;
+  const packingCost = needPacking ? (parseInt(bedrooms) || 3) * 200 : 0;
+  const distanceSurcharge = distanceKm > 25 ? (distanceKm - 25) * 2.50 : 0;
+  const interstateSurcharge = distanceKm > 100 ? distanceKm * 1.50 : 0;
+  const total = baseCost + floorSurcharge + packingCost + distanceSurcharge + interstateSurcharge + 150;
+  return 'Moving your ' + bedrooms + '-bedroom home ' + (distanceKm > 0 ? distanceKm + 'km' : 'locally') + ' is estimated to cost around ' + fmt(total) + ' (budget range: ' + fmt(total * 0.8) + '–' + fmt(total * 1.3) + ').';
+}

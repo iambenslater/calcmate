@@ -80,3 +80,29 @@ function calculate() {
 function fmt(n) {
   return '$' + n.toLocaleString('en-AU', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 }
+
+function getTLDR() {
+  const state = document.getElementById('input-state').value.toUpperCase();
+  const yearsOfService = parseFloat(document.getElementById('input-yearsService').value) || 0;
+  const hoursPerWeek = parseFloat(document.getElementById('input-hoursPerWeek').value) || 38;
+  const weeklyPayRate = parseFloat(document.getElementById('input-payRate').value) || 0;
+  if (!state || yearsOfService <= 0 || weeklyPayRate <= 0) return '';
+  const rules = {
+    NSW: { threshold: 10, accrualPerYear: 0.8667, proRataFrom: 5 },
+    VIC: { threshold: 10, accrualPerYear: 0.8667, proRataFrom: 7 },
+    QLD: { threshold: 10, accrualPerYear: 0.8667, proRataFrom: 7 },
+    SA:  { threshold: 10, accrualPerYear: 0.8667, proRataFrom: 7 },
+    WA:  { threshold: 10, accrualPerYear: 0.8667, proRataFrom: 7 },
+    TAS: { threshold: 10, accrualPerYear: 0.8667, proRataFrom: 7 },
+    NT:  { threshold: 10, accrualPerYear: 0.8667, proRataFrom: 7 },
+    ACT: { threshold:  7, accrualPerYear: 0.8667, proRataFrom: 5 },
+  };
+  const rule = rules[state];
+  if (!rule) return '';
+  const ftRatio = hoursPerWeek / 38;
+  const entitlementWeeks = yearsOfService >= rule.proRataFrom ? yearsOfService * rule.accrualPerYear * ftRatio : 0;
+  if (entitlementWeeks === 0) return 'You need ' + rule.proRataFrom + ' years of service to access pro-rata long service leave in ' + state + ' — you\'re at ' + yearsOfService + ' years so far.';
+  const entitlementValue = entitlementWeeks * weeklyPayRate;
+  const status = yearsOfService >= rule.threshold ? 'fully entitled to' : 'eligible for pro-rata';
+  return 'After ' + yearsOfService + ' years of service in ' + state + ', you are ' + status + ' ' + entitlementWeeks.toFixed(2) + ' weeks of long service leave, worth ' + fmt(entitlementValue) + '.';
+}

@@ -140,3 +140,23 @@ function calculate() {
     <div class="result-row"><span class="result-label">Costs Beyond Deposit</span><span class="result-value">${formatCurrency(netUpfront - deposit)}</span></div>
   `;
 }
+
+function getTLDR() {
+  const propertyPrice = parseFloat(document.getElementById('input-purchasePrice').value) || 0;
+  const state = document.getElementById('input-state').value.toUpperCase() || 'QLD';
+  const depositPercent = parseFloat(document.getElementById('input-depositPercent').value) || 20;
+  if (propertyPrice <= 0) return '';
+  const deposit = propertyPrice * (depositPercent / 100);
+  const loanAmount = propertyPrice - deposit;
+  const lvr = (loanAmount / propertyPrice) * 100;
+  const stampDuty = calculateStampDuty(propertyPrice, state);
+  const fhog = getFHOG(state, propertyPrice);
+  let lmi = 0;
+  if (lvr > 80 && lvr <= 85) lmi = loanAmount * 0.01;
+  else if (lvr > 85 && lvr <= 90) lmi = loanAmount * 0.022;
+  else if (lvr > 90 && lvr <= 95) lmi = loanAmount * 0.04;
+  else if (lvr > 95) lmi = loanAmount * 0.06;
+  const fixedCosts = 1500 + 500 + 350 + 50 + 200 + 250 + 1500;
+  const netUpfront = deposit + stampDuty + lmi + fixedCosts - fhog;
+  return 'To buy a ' + formatCurrency(propertyPrice) + ' property in ' + state + ' you\'ll need roughly ' + formatCurrency(netUpfront) + ' upfront — that covers your ' + depositPercent + '% deposit, ' + formatCurrency(stampDuty) + ' stamp duty, and other costs' + (fhog > 0 ? ', minus the ' + formatCurrency(fhog) + ' First Home Owner Grant' : '') + '.';
+}

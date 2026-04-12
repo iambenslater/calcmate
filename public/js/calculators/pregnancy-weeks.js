@@ -73,3 +73,34 @@ function calculate() {
     }).join('')}` : ''}
   `;
 }
+
+function getTLDR() {
+  const dueDateStr = document.getElementById('input-date').value;
+  const method = document.getElementById('input-calcMethod').value || 'due-date';
+
+  if (!dueDateStr) return '';
+
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  const inputDate = new Date(dueDateStr + 'T00:00:00');
+
+  let lmpDate, dueDate;
+  if (method === 'due-date') {
+    dueDate = inputDate;
+    lmpDate = new Date(dueDate);
+    lmpDate.setDate(lmpDate.getDate() - 280);
+  } else {
+    lmpDate = inputDate;
+    dueDate = new Date(lmpDate);
+    dueDate.setDate(dueDate.getDate() + 280);
+  }
+
+  const daysSinceLMP = Math.floor((today - lmpDate) / (1000 * 60 * 60 * 24));
+  const currentWeek = Math.floor(daysSinceLMP / 7);
+  const currentDay = daysSinceLMP % 7;
+  const daysUntilDue = Math.floor((dueDate - today) / (1000 * 60 * 60 * 24));
+
+  const formatShort = d => d.toLocaleDateString('en-AU', { day: 'numeric', month: 'long', year: 'numeric' });
+
+  return 'You are ' + currentWeek + ' weeks and ' + currentDay + ' day' + (currentDay !== 1 ? 's' : '') + ' pregnant, due ' + formatShort(dueDate) + ' (' + (daysUntilDue > 0 ? daysUntilDue + ' days away' : 'past due date') + ').';
+}

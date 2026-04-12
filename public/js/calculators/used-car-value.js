@@ -82,3 +82,47 @@ function calculate() {
 function fmt(n) {
   return '$' + n.toLocaleString('en-AU', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 }
+
+function getTLDR() {
+  const make = document.getElementById('input-make').value || '';
+  const model = document.getElementById('input-model').value || '';
+  const yearManufactured = parseInt(document.getElementById('input-year').value) || 0;
+  const kilometres = parseFloat(document.getElementById('input-kilometres').value) || 0;
+  const condition = document.getElementById('input-condition').value;
+  if (yearManufactured <= 0) return '';
+
+  const makeBaseValues = {
+    toyota: 25000, honda: 22000, mazda: 21000, ford: 20000, holden: 18000,
+    hyundai: 19000, kia: 18500, subaru: 22000, volkswagen: 23000, bmw: 35000,
+    mercedes: 40000, audi: 38000, nissan: 19000, mitsubishi: 18000, other: 20000
+  };
+  const purchasePrice = makeBaseValues[make.toLowerCase()] || 20000;
+  const currentYear = new Date().getFullYear();
+  const age = Math.max(0, currentYear - yearManufactured);
+
+  let depreciatedValue = purchasePrice;
+  for (let y = 1; y <= age; y++) {
+    let rate;
+    if (y === 1) rate = 0.20;
+    else if (y === 2) rate = 0.15;
+    else if (y === 3) rate = 0.12;
+    else if (y <= 5) rate = 0.10;
+    else if (y <= 10) rate = 0.07;
+    else rate = 0.04;
+    depreciatedValue *= (1 - rate);
+  }
+
+  const expectedKm = age * 15000;
+  const kmDiff = kilometres - expectedKm;
+  let kmAdjustment = 1.0;
+  if (kmDiff > 0) kmAdjustment = Math.max(0.7, 1 - (kmDiff / 200000));
+  else if (kmDiff < 0) kmAdjustment = Math.min(1.15, 1 + (Math.abs(kmDiff) / 300000));
+
+  const conditionMultipliers = { excellent: 1.10, good: 1.00, fair: 0.85, poor: 0.65 };
+  const condMulti = conditionMultipliers[condition] || 1.0;
+  const estimatedValue = Math.max(500, depreciatedValue * kmAdjustment * condMulti);
+  const depreciationPercent = ((purchasePrice - estimatedValue) / purchasePrice * 100).toFixed(1);
+
+  const carName = [yearManufactured, make ? make.charAt(0).toUpperCase() + make.slice(1) : '', model].filter(Boolean).join(' ');
+  return 'The ' + carName + ' with ' + kilometres.toLocaleString('en-AU') + ' km in ' + condition + ' condition has an estimated value of ' + fmt(estimatedValue) + ' — down ' + depreciationPercent + '% from new.';
+}

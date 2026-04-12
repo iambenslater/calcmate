@@ -70,3 +70,27 @@ function calculate() {
     </table></div>
   `;
 }
+
+function getTLDR() {
+  const repaymentIncome = parseFloat(document.getElementById('input-repaymentIncome').value) || 0;
+  const helpBalance = parseFloat(document.getElementById('input-helpBalance').value) || 0;
+  if (repaymentIncome <= 0 || helpBalance <= 0) return '';
+
+  let annualRepayment = 0;
+  if (repaymentIncome <= 67000) annualRepayment = 0;
+  else if (repaymentIncome <= 125000) annualRepayment = (repaymentIncome - 67000) * 0.15;
+  else if (repaymentIncome <= 179285) annualRepayment = 8700 + (repaymentIncome - 125000) * 0.17;
+  else annualRepayment = repaymentIncome * 0.10;
+  annualRepayment = Math.min(annualRepayment, helpBalance);
+
+  if (annualRepayment === 0) return 'Your income of ' + formatCurrency(repaymentIncome) + ' is below the $67,000 HELP repayment threshold — no compulsory repayment is required this year.';
+
+  let balance = helpBalance;
+  let years = 0;
+  while (balance > 0 && years < 50 && annualRepayment > 0) {
+    balance = balance * 1.035 - annualRepayment;
+    years++;
+  }
+
+  return 'On a ' + formatCurrency(repaymentIncome) + ' income, you\'ll repay ' + formatCurrency(annualRepayment) + '/year (' + formatCurrency(annualRepayment / 26) + ' per fortnight) toward your ' + formatCurrency(helpBalance) + ' HELP debt, paying it off in roughly ' + (years < 50 ? years + ' years' : '50+ years') + '.';
+}

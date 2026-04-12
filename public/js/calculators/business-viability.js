@@ -35,3 +35,24 @@ function calculate() {
 }
 
 function fmt(n) { return (n < 0 ? '-$' : '$') + Math.abs(n).toLocaleString('en-AU', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
+
+function getTLDR() {
+  var startupCosts = parseFloat(document.getElementById('input-startupCosts').value) || 0;
+  var monthlyRevenue = parseFloat(document.getElementById('input-monthlyRevenue').value) || 0;
+  var monthlyExpenses = parseFloat(document.getElementById('input-monthlyExpenses').value) || 0;
+  var growthRate = (parseFloat(document.getElementById('input-revenueGrowth').value) || 0) / 100;
+  var cumulative = -startupCosts;
+  var breakEvenMonth = null;
+  for (var m = 1; m <= 36; m++) {
+    var rev = monthlyRevenue * Math.pow(1 + growthRate, m - 1);
+    cumulative += rev - monthlyExpenses;
+    if (breakEvenMonth === null && cumulative >= 0) breakEvenMonth = m;
+  }
+  var monthlyNet = monthlyRevenue - monthlyExpenses;
+  if (breakEvenMonth) {
+    return 'At ' + fmt(monthlyRevenue) + '/month revenue and ' + fmt(monthlyExpenses) + '/month expenses, the business breaks even in month ' + breakEvenMonth + ' after recovering ' + fmt(startupCosts) + ' in startup costs.';
+  } else {
+    return 'At ' + fmt(monthlyRevenue) + '/month revenue and ' + fmt(monthlyExpenses) + '/month expenses, the business does not break even within 36 months — the ' + fmt(startupCosts) + ' startup cost is not recovered in that period.';
+  }
+}
+

@@ -26,3 +26,14 @@ function calculate() {
 function fmt(n) {
   return '$' + n.toLocaleString('en-AU', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 }
+
+function getTLDR() {
+  const distance = parseFloat(document.getElementById('input-distance').value) || 0;
+  const consumption = parseFloat(document.getElementById('input-consumption').value) || 0;
+  const fuelPrice = parseFloat(document.getElementById('input-fuelPrice').value) || 0;
+  if (distance <= 0 || consumption <= 0 || fuelPrice <= 0) return '';
+  const litresUsed = distance * (consumption / 100);
+  const totalCost = litresUsed * fuelPrice;
+  const costPerKm = totalCost / distance;
+  return 'That ' + distance.toLocaleString('en-AU') + ' km trip uses ' + litresUsed.toFixed(1) + ' L of fuel and costs ' + fmt(totalCost) + ' all up (' + fmt(costPerKm) + ' per km at ' + fmt(fuelPrice) + '/L).';
+}

@@ -109,3 +109,29 @@ function calculate() {
   document.getElementById('results-content').innerHTML = html;
   document.getElementById('calc-results').classList.remove('hidden');
 }
+
+function getTLDR() {
+  const annualIncome = parseFloat(document.getElementById('input-annualIncome').value) || 0;
+  if (annualIncome <= 0) return '';
+  const fmt = (v) => new Intl.NumberFormat('en-AU', { style: 'currency', currency: 'AUD', minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(v);
+  const mortgageOwing = parseFloat(document.getElementById('input-mortgageOwing').value) || 0;
+  const otherDebts = parseFloat(document.getElementById('input-otherDebts').value) || 0;
+  const existingCover = parseFloat(document.getElementById('input-existingCover').value) || 0;
+  const yearsOfSupport = parseFloat(document.getElementById('input-yearsOfSupport').value) || 10;
+  const hasPartnerIncome = document.getElementById('input-hasPartnerIncome').checked;
+  const partnerIncome = hasPartnerIncome ? (parseFloat(document.getElementById('input-partnerIncome').value) || 0) : 0;
+  const dependantsVal = document.getElementById('input-dependants').value;
+  let numDependants = 0;
+  if (dependantsVal === '1') numDependants = 1;
+  else if (dependantsVal === '2') numDependants = 2;
+  else if (dependantsVal === '3') numDependants = 3;
+  else if (dependantsVal === '4+') numDependants = 4;
+  const effectiveIncome = hasPartnerIncome ? Math.max(annualIncome - partnerIncome * 0.5, annualIncome * 0.5) : annualIncome;
+  const incomeReplacement = effectiveIncome * yearsOfSupport;
+  const debtClearance = mortgageOwing + otherDebts;
+  const educationFund = numDependants * 50000;
+  const funeralCosts = 12500;
+  const totalRecommended = incomeReplacement + debtClearance + educationFund + funeralCosts;
+  const netRecommended = Math.max(totalRecommended - existingCover, 0);
+  return 'Based on your income of ' + fmt(annualIncome) + ' and ' + yearsOfSupport + ' years of support needed, your recommended life insurance cover is ' + fmt(totalRecommended) + (netRecommended > 0 ? ' — you have a shortfall of ' + fmt(netRecommended) + ' after existing cover' : ' — your existing cover is sufficient') + '.';
+}

@@ -102,3 +102,28 @@ document.addEventListener('DOMContentLoaded', () => {
     updateUnits();
   }
 });
+
+function getTLDR() {
+  const category = document.getElementById('input-category').value;
+  const inputValue = parseFloat(document.getElementById('input-value').value);
+  const fromUnit = document.getElementById('input-fromUnit').value;
+  const toUnit = document.getElementById('input-toUnit').value;
+  if (isNaN(inputValue) || !category || !fromUnit || !toUnit) return '';
+
+  const conversions = {
+    length: { units: { mm: 0.001, cm: 0.01, m: 1, km: 1000, in: 0.0254, ft: 0.3048, yd: 0.9144, mi: 1609.344 } },
+    weight: { units: { mg: 0.001, g: 1, kg: 1000, t: 1000000, oz: 28.3495, lb: 453.592, st: 6350.29 } },
+    volume: { units: { ml: 1, L: 1000, 'cup (AU)': 250, tbsp: 20, tsp: 5, 'fl oz (US)': 29.5735, 'gal (US)': 3785.41, 'gal (UK)': 4546.09 } },
+    area: { units: { 'sq mm': 0.000001, 'sq cm': 0.0001, 'sq m': 1, 'sq km': 1000000, 'sq in': 0.000645, 'sq ft': 0.0929, 'sq yd': 0.8361, 'acre': 4046.86, 'hectare': 10000 } },
+    speed: { units: { 'km/h': 1, 'm/s': 3.6, 'mph': 1.60934, 'knots': 1.852, 'ft/s': 1.09728 } }
+  };
+
+  const cat = conversions[category];
+  if (!cat) return '';
+  const fromFactor = cat.units[fromUnit];
+  const toFactor = cat.units[toUnit];
+  if (fromFactor === undefined || toFactor === undefined) return '';
+
+  const result = (inputValue * fromFactor) / toFactor;
+  return inputValue.toLocaleString('en-AU') + ' ' + fromUnit + ' is equal to ' + result.toLocaleString('en-AU', { minimumFractionDigits: 2, maximumFractionDigits: 6 }) + ' ' + toUnit + '.';
+}

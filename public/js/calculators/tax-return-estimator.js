@@ -84,3 +84,40 @@ function calculate() {
     <div class="result-row font-bold text-lg"><span class="result-label">${estimatedRefund >= 0 ? 'Estimated Tax Refund' : 'Estimated Tax Bill'}</span><span class="result-value ${estimatedRefund >= 0 ? 'text-green-600' : 'text-red-600'}">${formatCurrency(Math.abs(estimatedRefund))}</span></div>
   `;
 }
+
+function getTLDR() {
+  const totalIncome = parseFloat(document.getElementById('input-totalIncome').value) || 0;
+  if (totalIncome <= 0) return '';
+
+  const totalDeductions = parseFloat(document.getElementById('input-deductions').value) || 0;
+  const taxOffsets = parseFloat(document.getElementById('input-taxWithheld').value) || 0;
+  const phiEl = document.querySelector('input[name="input-privateHealthInsurance"]:checked');
+  const hasPrivateHealth = phiEl ? phiEl.value === 'yes' : false;
+
+  const taxableIncome = Math.max(0, totalIncome - totalDeductions);
+  const grossTax = calculateTax(taxableIncome);
+
+  let lito = 0;
+  if (taxableIncome <= 37500) lito = 700;
+  else if (taxableIncome <= 45000) lito = 700 - (taxableIncome - 37500) * 0.05;
+  else if (taxableIncome <= 66667) lito = 325 - (taxableIncome - 45000) * 0.015;
+  lito = Math.max(0, lito);
+
+  let medicareLevy = 0;
+  if (taxableIncome > 34028) medicareLevy = taxableIncome * 0.02;
+  else if (taxableIncome > 27222) medicareLevy = (taxableIncome - 27222) * 0.10;
+
+  let medicareSurcharge = 0;
+  if (!hasPrivateHealth) {
+    if (taxableIncome > 144000) medicareSurcharge = taxableIncome * 0.015;
+    else if (taxableIncome > 118000) medicareSurcharge = taxableIncome * 0.0125;
+    else if (taxableIncome > 101000) medicareSurcharge = taxableIncome * 0.01;
+  }
+
+  const netTax = Math.max(0, grossTax - taxOffsets - lito);
+  const totalOwing = netTax + medicareLevy + medicareSurcharge;
+  const paygWithheld = calculateTax(totalIncome) + (totalIncome > 26000 ? totalIncome * 0.02 : 0);
+  const estimatedRefund = paygWithheld - totalOwing;
+
+  return 'On a taxable income of ' + formatCurrency(taxableIncome) + ', your total tax owing is ' + formatCurrency(totalOwing) + ' — you\'re looking at an estimated ' + (estimatedRefund >= 0 ? 'refund of ' + formatCurrency(estimatedRefund) : 'tax bill of ' + formatCurrency(Math.abs(estimatedRefund))) + '.';
+}

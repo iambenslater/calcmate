@@ -30,3 +30,17 @@ function calculate() {
 }
 
 function fmt(n) { return '$' + n.toLocaleString('en-AU', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
+
+function getTLDR() {
+  const litres = parseFloat(document.getElementById('input-litres').value) || 0;
+  const fuelType = document.getElementById('input-fuelType').value;
+  const activityType = document.getElementById('input-activity').value;
+  if (litres <= 0) return '';
+  const rates = { 'diesel': { 'heavy-vehicle': 20.1, 'machinery': 50.8, 'other': 50.8 }, 'petrol': { 'heavy-vehicle': 20.1, 'machinery': 50.8, 'other': 50.8 } };
+  const rateKey = fuelType || 'diesel';
+  const actKey = activityType || 'heavy-vehicle';
+  const centsPerLitre = (rates[rateKey] && rates[rateKey][actKey]) ? rates[rateKey][actKey] : 20.5;
+  const totalCredit = litres * (centsPerLitre / 100);
+  const actLabels = { 'heavy-vehicle': 'heavy vehicle on public roads', 'machinery': 'off-road machinery', 'other': 'other business use' };
+  return 'You can claim ' + fmt(totalCredit) + ' in fuel tax credits for ' + litres.toLocaleString('en-AU') + ' litres of ' + (fuelType === 'petrol' ? 'petrol' : 'diesel') + ' used in ' + (actLabels[actKey] || actKey) + ' at ' + centsPerLitre.toFixed(1) + 'c/litre.';
+}

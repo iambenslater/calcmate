@@ -102,3 +102,24 @@ function calculate() {
     <p class="text-sm text-gray-500 mt-3">LMI estimates are approximate and vary between insurers (Helia, QBE). Contact your lender for an exact quote.</p>
   `;
 }
+
+function getTLDR() {
+  const propertyValue = parseFloat(document.getElementById('input-propertyValue').value) || 0;
+  const loanAmount = parseFloat(document.getElementById('input-loanAmount').value) || 0;
+  if (propertyValue <= 0) return '';
+  const lvr = (loanAmount / propertyValue) * 100;
+  if (lvr <= 80) return 'Your LVR is ' + lvr.toFixed(1) + '% — no LMI required.';
+  function estimateLMI(loan, lvrPct) {
+    let rate = 0;
+    if (loan <= 300000) { rate = lvrPct <= 85 ? 0.0062 : lvrPct <= 90 ? 0.0134 : lvrPct <= 95 ? 0.0283 : 0.0412; }
+    else if (loan <= 500000) { rate = lvrPct <= 85 ? 0.0076 : lvrPct <= 90 ? 0.0181 : lvrPct <= 95 ? 0.0350 : 0.0520; }
+    else if (loan <= 700000) { rate = lvrPct <= 85 ? 0.0098 : lvrPct <= 90 ? 0.0230 : lvrPct <= 95 ? 0.0420 : 0.0620; }
+    else if (loan <= 1000000) { rate = lvrPct <= 85 ? 0.0118 : lvrPct <= 90 ? 0.0280 : lvrPct <= 95 ? 0.0515 : 0.0750; }
+    else { rate = lvrPct <= 85 ? 0.0140 : lvrPct <= 90 ? 0.0350 : lvrPct <= 95 ? 0.0600 : 0.0900; }
+    return loan * rate;
+  }
+  const lmiEstimate = estimateLMI(loanAmount, lvr);
+  const totalLMICost = lmiEstimate * 1.10;
+  const additionalNeeded = Math.max(propertyValue * 0.20 - (propertyValue - loanAmount), 0);
+  return 'With a ' + lvr.toFixed(1) + '% LVR, you\'ll pay an estimated ' + formatCurrency(totalLMICost) + ' in LMI — you\'d need ' + formatCurrency(additionalNeeded) + ' more deposit to avoid it entirely.';
+}

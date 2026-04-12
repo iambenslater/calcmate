@@ -79,3 +79,21 @@ function calculate() {
     <p class="text-xs text-gray-400 mt-3">Based on the Mifflin-St Jeor equation. Individual needs may vary. Consult a dietitian for personalised advice.</p>
   `;
 }
+
+function getTLDR() {
+  const age = parseInt(document.getElementById('input-age').value) || 0;
+  const height = parseFloat(document.getElementById('input-height').value) || 0;
+  const weight = parseFloat(document.getElementById('input-weight').value) || 0;
+  const activityLevel = document.getElementById('input-activityLevel').value || 'moderate';
+  if (age <= 0 || height <= 0 || weight <= 0) return '';
+  let gender = 'male';
+  const genderInputs = document.querySelectorAll('input[name="input-gender"]');
+  for (const input of genderInputs) { if (input.checked) { gender = input.value; break; } }
+  const bmr = gender === 'male'
+    ? 10 * weight + 6.25 * height - 5 * age + 5
+    : 10 * weight + 6.25 * height - 5 * age - 161;
+  const multipliers = { sedentary: 1.2, light: 1.375, moderate: 1.55, active: 1.725, extreme: 1.9 };
+  const tdee = bmr * (multipliers[activityLevel] || 1.55);
+  const activityLabels = { sedentary: 'sedentary', light: 'lightly active', moderate: 'moderately active', active: 'very active', extreme: 'extremely active' };
+  return 'You need roughly ' + Math.round(tdee) + ' calories per day to maintain your weight at your current activity level (' + (activityLabels[activityLevel] || activityLevel) + '), with a basal metabolic rate of ' + Math.round(bmr) + ' cal/day.';
+}

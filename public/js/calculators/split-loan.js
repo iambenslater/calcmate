@@ -90,3 +90,28 @@ function calculate() {
     <p class="text-sm text-gray-500 mt-3">Split loans give you rate certainty on the fixed portion while keeping flexibility (extra repayments, offset accounts) on the variable portion. Calculations assume rates remain constant. Variable rates can change at any time.</p>
   `;
 }
+
+function getTLDR() {
+  const loanAmount = parseFloat(document.getElementById('input-loanAmount').value) || 0;
+  const fixedRate = parseFloat(document.getElementById('input-fixedRate').value) || 6.0;
+  const variableRate = parseFloat(document.getElementById('input-variableRate').value) || 6.5;
+  const fixedPortion = parseFloat(document.getElementById('input-fixedPortion').value) || 50;
+  const loanTerm = parseFloat(document.getElementById('input-loanTerm').value) || 30;
+
+  if (loanAmount <= 0) return '';
+
+  const variablePortion = 100 - fixedPortion;
+  const fixedAmount = loanAmount * (fixedPortion / 100);
+  const variableAmount = loanAmount * (variablePortion / 100);
+
+  const fixedRepayment = monthlyRepaymentCalc(fixedAmount, fixedRate, loanTerm);
+  const variableRepayment = monthlyRepaymentCalc(variableAmount, variableRate, loanTerm);
+  const totalRepayment = fixedRepayment + variableRepayment;
+
+  const blendedRate = (fixedRate * (fixedPortion / 100)) + (variableRate * (variablePortion / 100));
+  const fixedInterest = totalInterestCalc(fixedAmount, fixedRate, loanTerm);
+  const variableInterest = totalInterestCalc(variableAmount, variableRate, loanTerm);
+  const totalInterestSplit = fixedInterest + variableInterest;
+
+  return 'A ' + formatCurrency(loanAmount) + ' split loan (' + fixedPortion + '% fixed at ' + fixedRate + '%, ' + variablePortion + '% variable at ' + variableRate + '%) has a combined monthly repayment of ' + formatCurrency(totalRepayment) + ' at a blended rate of ' + blendedRate.toFixed(2) + '% over ' + loanTerm + ' years.';
+}

@@ -55,3 +55,32 @@ function calculate() {
 }
 
 function fmt(n) { return '$' + n.toLocaleString('en-AU', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
+
+function getTLDR() {
+  const loans = [];
+  for (let i = 1; i <= 3; i++) {
+    const amount = parseFloat(document.getElementById(`input-loan${i}Amount`).value) || 0;
+    const rate = (parseFloat(document.getElementById(`input-loan${i}Rate`).value) || 0) / 100;
+    const term = parseInt(document.getElementById(`input-loan${i}Term`).value) || 0;
+    if (amount > 0 && term > 0) loans.push({ num: i, amount, rate, term });
+  }
+  if (loans.length === 0) return '';
+  function calcLoan(amount, annualRate, termYears) {
+    const n = termYears * 12;
+    const r = annualRate / 12;
+    const monthlyPayment = r > 0 ? amount * (r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1) : amount / n;
+    const totalPaid = monthlyPayment * n;
+    const totalInterest = totalPaid - amount;
+    return { monthlyPayment, totalPaid, totalInterest };
+  }
+  let lowestTotal = Infinity, bestLoan = 0, bestMonthly = 0;
+  loans.forEach(l => {
+    const c = calcLoan(l.amount, l.rate, l.term);
+    if (c.totalPaid < lowestTotal) { lowestTotal = c.totalPaid; bestLoan = l.num; bestMonthly = c.monthlyPayment; }
+  });
+  if (loans.length === 1) {
+    const c = calcLoan(loans[0].amount, loans[0].rate, loans[0].term);
+    return 'Your ' + loans[0].term + '-year loan of ' + fmt(loans[0].amount) + ' at ' + (loans[0].rate * 100).toFixed(2) + '% has a monthly repayment of ' + fmt(c.monthlyPayment) + ', with ' + fmt(c.totalInterest) + ' in total interest.';
+  }
+  return 'Loan ' + bestLoan + ' is the cheapest option at ' + fmt(lowestTotal) + ' total repaid, with monthly repayments of ' + fmt(bestMonthly) + '.';
+}

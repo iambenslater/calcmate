@@ -44,3 +44,19 @@ function calculate() {
     <p class="result-note">Based on standard concrete density of 2,400 kg/m&sup3;. 20kg premix = ~0.009 m&sup3;. Always confirm with your supplier.</p>
   `;
 }
+
+function getTLDR() {
+  var shape = document.getElementById('input-shape').value;
+  var length = parseFloat(document.getElementById('input-length').value) || 0;
+  var width = parseFloat(document.getElementById('input-width').value) || 0;
+  var depth = parseFloat(document.getElementById('input-depth').value) || 0;
+  var depthM = depth / 1000;
+  var volume = 0;
+  if (shape === 'slab' || shape === 'footing') { volume = length * width * depthM; }
+  else if (shape === 'column') { var radiusM = (width / 1000) / 2; volume = Math.PI * radiusM * radiusM * length; }
+  if (volume <= 0) return '';
+  var volumeWithWaste = volume * 1.10;
+  var bags20kg = Math.ceil(volumeWithWaste / 0.009);
+  var readyMixM3 = Math.ceil(volumeWithWaste * 5) / 5;
+  return 'Your ' + shape + ' requires ' + volumeWithWaste.toFixed(3) + ' m\u00b3 of concrete (including 10% waste) — that\'s ' + bags20kg.toLocaleString('en-AU') + ' x 20kg premix bags or a ' + readyMixM3.toFixed(1) + ' m\u00b3 ready-mix order.';
+}

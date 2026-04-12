@@ -123,3 +123,20 @@ function calculate() {
     <p class="text-sm text-gray-600 mt-3">${notes}</p>
   `;
 }
+
+function getTLDR() {
+  const landValue = parseFloat(document.getElementById('input-landValue').value) || 0;
+  if (landValue <= 0) return '';
+  const state = document.getElementById('input-state').value.toUpperCase() || 'NSW';
+  const primaryEl = document.querySelector('input[name="input-primaryResidence"]:checked');
+  const isPrimary = primaryEl ? primaryEl.value === 'yes' : false;
+  if (isPrimary) return 'Your principal place of residence is exempt from land tax in all states — no land tax applies.';
+  let landTax = 0;
+  if (state === 'NSW') { landTax = landValue <= 1075000 ? 0 : landValue <= 6571000 ? 100 + (landValue - 1075000) * 0.016 : 100 + (6571000 - 1075000) * 0.016 + (landValue - 6571000) * 0.02; }
+  else if (state === 'VIC') { landTax = landValue <= 50000 ? 0 : landValue <= 100000 ? 500 + (landValue - 50000) * 0.002 : landValue <= 300000 ? 975 + (landValue - 100000) * 0.00375 : landValue <= 600000 ? 1725 + (landValue - 300000) * 0.0065 : landValue <= 1000000 ? 3675 + (landValue - 600000) * 0.009 : landValue <= 1800000 ? 7275 + (landValue - 1000000) * 0.013 : landValue <= 3000000 ? 17675 + (landValue - 1800000) * 0.017 : 38075 + (landValue - 3000000) * 0.0225; }
+  else if (state === 'QLD') { landTax = landValue <= 600000 ? 0 : landValue <= 1000000 ? 500 + (landValue - 600000) * 0.01 : landValue <= 3000000 ? 4500 + (landValue - 1000000) * 0.0165 : 37500 + (landValue - 3000000) * 0.0125; }
+  else if (state === 'NT') { landTax = 0; return 'The Northern Territory does not charge land tax.'; }
+  else if (state === 'ACT') { landTax = landValue <= 150000 ? landValue * 0.0054 + 1326 : landValue <= 275000 ? 2136 + (landValue - 150000) * 0.0081 : landValue <= 2000000 ? 3148.50 + (landValue - 275000) * 0.0126 : 24885 + (landValue - 2000000) * 0.015; }
+  if (landTax === 0) return 'Your land value of ' + formatCurrency(landValue) + ' in ' + state + ' is below the tax-free threshold — no land tax applies.';
+  return 'Your ' + state + ' land (valued at ' + formatCurrency(landValue) + ') attracts ' + formatCurrency(landTax) + ' in annual land tax (' + formatCurrency(landTax / 12) + '/month).';
+}

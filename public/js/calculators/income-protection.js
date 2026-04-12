@@ -190,3 +190,30 @@ function calculate() {
   document.getElementById('results-content').innerHTML = html;
   document.getElementById('calc-results').classList.remove('hidden');
 }
+
+function getTLDR() {
+  const annualIncome = parseFloat(document.getElementById('input-annualIncome').value) || 0;
+  if (annualIncome <= 0) return '';
+  const coverPercentage = document.querySelector('input[name="input-coverPercentage"]:checked').value;
+  const waitingPeriod = document.getElementById('input-waitingPeriod').value;
+  const benefitPeriod = document.getElementById('input-benefitPeriod').value;
+  const age = parseFloat(document.getElementById('input-age').value) || 35;
+  const smoker = document.querySelector('input[name="input-smoker"]:checked').value;
+  const occupation = document.getElementById('input-occupation').value;
+  const fmt = (v) => new Intl.NumberFormat('en-AU', { style: 'currency', currency: 'AUD', minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(v);
+  const coverPct = coverPercentage === '85%' ? 0.85 : 0.75;
+  const monthlyBenefit = (annualIncome * coverPct) / 12;
+  const ageAdjustment = Math.max(age - 30, 0) * 0.001;
+  let basePremiumRate = 0.015 + ageAdjustment;
+  const occupationMultiplier = occupation === 'professional' ? 1.0 : occupation === 'white-collar' ? 1.2 : occupation === 'light-manual' ? 1.5 : 2.0;
+  const smokerMultiplier = smoker === 'yes' ? 1.5 : 1.0;
+  const coverMultiplier = coverPct === 0.85 ? 1.15 : 1.0;
+  const waitingDiscount = waitingPeriod === '14days' ? 1.25 : waitingPeriod === '30days' ? 1.0 : waitingPeriod === '60days' ? 0.85 : 0.75;
+  const benefitMultiplier = benefitPeriod === '2years' ? 1.0 : benefitPeriod === '5years' ? 1.4 : 2.2;
+  const waitingLabel = waitingPeriod === '14days' ? '14 days' : waitingPeriod === '30days' ? '30 days' : waitingPeriod === '60days' ? '60 days' : '90 days';
+  const benefitLabel = benefitPeriod === '2years' ? '2 years' : benefitPeriod === '5years' ? '5 years' : 'to age 65';
+  const finalPremiumRate = basePremiumRate * occupationMultiplier * smokerMultiplier * coverMultiplier * waitingDiscount * benefitMultiplier;
+  const annualPremium = annualIncome * finalPremiumRate;
+  const monthlyPremium = annualPremium / 12;
+  return 'If you can\'t work, this policy would pay you ' + fmt(monthlyBenefit) + '/month (' + coverPercentage + ' of income) after a ' + waitingLabel + ' wait, for ' + benefitLabel + ' — at an estimated cost of ' + fmt(monthlyPremium) + '/month (' + fmt(annualPremium) + '/year).';
+}

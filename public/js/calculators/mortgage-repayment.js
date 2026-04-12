@@ -95,3 +95,19 @@ function calculate() {
     </table></div>
   `;
 }
+
+function getTLDR() {
+  const loanAmount = parseFloat(document.getElementById('input-loanAmount').value) || 0;
+  const interestRate = parseFloat(document.getElementById('input-interestRate').value) || 0;
+  const loanTerm = parseFloat(document.getElementById('input-loanTerm').value) || 30;
+  const repaymentFrequency = document.getElementById('input-repaymentFrequency').value || 'monthly';
+  if (loanAmount <= 0 || interestRate <= 0) return '';
+  const periodsPerYear = { monthly: 12, fortnightly: 26, weekly: 52 };
+  const periods = periodsPerYear[repaymentFrequency] || 12;
+  const totalPeriods = loanTerm * periods;
+  const periodRate = interestRate / 100 / periods;
+  const repayment = loanAmount * (periodRate * Math.pow(1 + periodRate, totalPeriods)) / (Math.pow(1 + periodRate, totalPeriods) - 1);
+  const totalInterest = repayment * totalPeriods - loanAmount;
+  const freqLabel = { monthly: 'month', fortnightly: 'fortnight', weekly: 'week' };
+  return 'A ' + formatCurrency(loanAmount) + ' loan at ' + interestRate + '% over ' + loanTerm + ' years costs ' + formatCurrency(repayment) + ' per ' + (freqLabel[repaymentFrequency] || 'month') + ', with ' + formatCurrency(totalInterest) + ' in total interest over the life of the loan.';
+}

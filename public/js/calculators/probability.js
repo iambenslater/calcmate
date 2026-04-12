@@ -34,3 +34,18 @@ function calculate() {
 function pct(n) {
   return (n * 100).toFixed(2) + '%';
 }
+
+function getTLDR() {
+  const pA = parseFloat(document.getElementById('input-probA').value) || 0;
+  const pB = parseFloat(document.getElementById('input-probB').value) || 0;
+  const relationship = document.getElementById('input-relationship').value || 'independent';
+
+  if (pA <= 0 && pB <= 0) return '';
+
+  const pADec = pA / 100;
+  const pBDec = pB / 100;
+  const pAnd = relationship === 'independent' ? pADec * pBDec : Math.min(pADec, pBDec);
+  const pOr = pADec + pBDec - pAnd;
+
+  return 'With P(A) = ' + pct(pADec) + ' and P(B) = ' + pct(pBDec) + ', the chance of both happening is ' + pct(pAnd) + ' and at least one happening is ' + pct(pOr) + '.';
+}

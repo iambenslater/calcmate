@@ -54,3 +54,15 @@ function calculate() {
 function fmt(n) {
   return '$' + n.toLocaleString('en-AU', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 }
+
+function getTLDR() {
+  const annualSalary = parseFloat(document.getElementById('input-annualSalary').value) || 0;
+  const hoursPerWeek = parseFloat(document.getElementById('input-hoursPerWeek').value) || 38;
+  const weeksPerYear = parseFloat(document.getElementById('input-weeksPerYear').value) || 52;
+  if (annualSalary <= 0 || hoursPerWeek <= 0 || weeksPerYear <= 0) return '';
+  const totalHoursPerYear = hoursPerWeek * weeksPerYear;
+  const hourlyRate = annualSalary / totalHoursPerYear;
+  const superAmount = annualSalary * 0.12;
+  const totalPackage = annualSalary + superAmount;
+  return 'A ' + fmt(annualSalary) + ' salary works out to ' + fmt(hourlyRate) + '/hr based on ' + hoursPerWeek + ' hours a week — or ' + fmt(totalPackage / totalHoursPerYear) + '/hr including the 12% super contribution (' + fmt(totalPackage) + ' total package).';
+}

@@ -48,3 +48,25 @@ function calculate() {
     ${compRows}
   `;
 }
+
+function getTLDR() {
+  const confidenceStr = document.getElementById('input-confidence').value;
+  const marginOfError = (parseFloat(document.getElementById('input-marginOfError').value) || 5) / 100;
+  const population = parseFloat(document.getElementById('input-population').value) || 0;
+
+  const zScores = { '90%': 1.645, '95%': 1.96, '99%': 2.576 };
+  const z = zScores[confidenceStr] || 1.96;
+  const p = 0.5;
+
+  const n0 = (z * z * p * (1 - p)) / (marginOfError * marginOfError);
+  let adjustedN;
+  if (population > 0) {
+    adjustedN = n0 / (1 + ((n0 - 1) / population));
+  } else {
+    adjustedN = n0;
+  }
+
+  const sampleSize = Math.ceil(adjustedN);
+
+  return 'To achieve ' + confidenceStr + ' confidence with a ' + (marginOfError * 100).toFixed(1) + '% margin of error' + (population > 0 ? ' from a population of ' + population.toLocaleString('en-AU') : '') + ', you need a sample size of ' + sampleSize.toLocaleString('en-AU') + '.';
+}

@@ -48,3 +48,18 @@ function calculate() {
 }
 
 function fmt(n) { return '$' + n.toLocaleString('en-AU', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
+
+function getTLDR() {
+  const state = (document.getElementById('input-state').value || '').toLowerCase();
+  const householdSize = document.getElementById('input-household').value;
+  const tariffRate = parseFloat(document.getElementById('input-tariff').value) || 0;
+  if (!householdSize) return '';
+  const usageBySize = { '1': 8, '2': 14, '3': 18, '4': 22, '5+': 28 };
+  const dailyUsage = usageBySize[householdSize] || 18;
+  const supplyCharges = { nsw: 110, vic: 105, qld: 100, sa: 120, wa: 95, tas: 100, nt: 90, act: 95 };
+  const dailySupply = (supplyCharges[state] || 100) / 100;
+  const tariff = tariffRate > 0 ? tariffRate : 30;
+  const quarterlyTotal = (dailyUsage * (tariff / 100) * 91) + (dailySupply * 91);
+  const annualEstimate = quarterlyTotal * 4;
+  return 'A ' + householdSize + '-person household in ' + (state.toUpperCase() || 'your state') + ' can expect a quarterly electricity bill of roughly ' + fmt(quarterlyTotal) + ' (' + fmt(annualEstimate) + '/year), based on ' + dailyUsage + ' kWh/day at ' + tariff + 'c/kWh.';
+}

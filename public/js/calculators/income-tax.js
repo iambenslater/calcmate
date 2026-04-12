@@ -97,3 +97,34 @@ function calculate() {
     </table>
   `;
 }
+
+function getTLDR() {
+  const taxableIncome = parseFloat(document.getElementById('input-taxableIncome').value) || 0;
+  if (taxableIncome <= 0) return '';
+  const residency = document.getElementById('input-residency').value || 'resident';
+  let tax = 0;
+  if (residency === 'resident') {
+    if (taxableIncome <= 18200) tax = 0;
+    else if (taxableIncome <= 45000) tax = (taxableIncome - 18200) * 0.16;
+    else if (taxableIncome <= 135000) tax = 4288 + (taxableIncome - 45000) * 0.30;
+    else if (taxableIncome <= 190000) tax = 31288 + (taxableIncome - 135000) * 0.37;
+    else tax = 51638 + (taxableIncome - 190000) * 0.45;
+  } else if (residency === 'foreign') {
+    if (taxableIncome <= 135000) tax = taxableIncome * 0.30;
+    else if (taxableIncome <= 190000) tax = 40500 + (taxableIncome - 135000) * 0.37;
+    else tax = 60850 + (taxableIncome - 190000) * 0.45;
+  } else {
+    if (taxableIncome <= 45000) tax = taxableIncome * 0.15;
+    else if (taxableIncome <= 135000) tax = 6750 + (taxableIncome - 45000) * 0.30;
+    else if (taxableIncome <= 190000) tax = 33750 + (taxableIncome - 135000) * 0.37;
+    else tax = 54100 + (taxableIncome - 190000) * 0.45;
+  }
+  let medicare = 0;
+  if (residency === 'resident') {
+    if (taxableIncome > 34028) medicare = taxableIncome * 0.02;
+    else if (taxableIncome > 27222) medicare = (taxableIncome - 27222) * 0.10;
+  }
+  const afterTax = taxableIncome - tax - medicare;
+  const effectiveRate = ((tax + medicare) / taxableIncome * 100).toFixed(1);
+  return 'On a ' + formatCurrency(taxableIncome) + ' taxable income you\'ll pay ' + formatCurrency(tax + medicare) + ' in tax' + (medicare > 0 ? ' (including ' + formatCurrency(medicare) + ' Medicare levy)' : '') + ', leaving ' + formatCurrency(afterTax) + ' after tax — an effective rate of ' + effectiveRate + '%.';
+}

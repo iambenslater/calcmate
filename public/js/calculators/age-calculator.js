@@ -97,3 +97,22 @@ function calculate() {
     <div class="result-row"><span class="result-label">Next Birthday</span><span class="result-value">${isBirthdayToday ? 'Happy Birthday! You turn ' + years + ' today!' : 'Turning ' + nextAge + ' in ' + daysUntilBirthday + ' days'}</span></div>
   `;
 }
+
+function getTLDR() {
+  var dobVal = document.getElementById('input-dateOfBirth').value;
+  if (!dobVal) return '';
+  var dob = new Date(dobVal);
+  var today = new Date();
+  if (dob > today) return '';
+  var years = today.getFullYear() - dob.getFullYear();
+  var months = today.getMonth() - dob.getMonth();
+  var days = today.getDate() - dob.getDate();
+  if (days < 0) { months--; var prevMonth = new Date(today.getFullYear(), today.getMonth(), 0); days += prevMonth.getDate(); }
+  if (months < 0) { years--; months += 12; }
+  var totalDays = Math.floor((today - dob) / (24 * 60 * 60 * 1000));
+  var nextBirthday = new Date(today.getFullYear(), dob.getMonth(), dob.getDate());
+  if (nextBirthday <= today) nextBirthday = new Date(today.getFullYear() + 1, dob.getMonth(), dob.getDate());
+  var daysUntilBirthday = Math.ceil((nextBirthday - today) / (24 * 60 * 60 * 1000));
+  var nextAge = nextBirthday.getFullYear() - dob.getFullYear();
+  return 'You are ' + years + ' years, ' + months + ' months and ' + days + ' days old — that\'s ' + totalDays.toLocaleString('en-AU') + ' days alive in total. Your next birthday is in ' + daysUntilBirthday + ' days, when you\'ll turn ' + nextAge + '.';
+}

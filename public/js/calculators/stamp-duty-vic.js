@@ -71,3 +71,35 @@ function calculate() {
     ` : ''}
   `;
 }
+
+function getTLDR() {
+  const propertyValue = parseFloat(document.getElementById('input-propertyValue').value) || 0;
+  if (propertyValue <= 0) return '';
+
+  const firstHomeEl = document.querySelector('input[name="input-firstHomeBuyer"]:checked');
+  const isFirstHome = firstHomeEl ? firstHomeEl.value === 'yes' : false;
+  const foreignEl = document.querySelector('input[name="input-foreignBuyer"]:checked');
+  const isForeign = foreignEl ? foreignEl.value === 'yes' : false;
+
+  function vicDuty(value) {
+    if (value <= 25000) return value * 0.014;
+    if (value <= 130000) return 350 + (value - 25000) * 0.024;
+    if (value <= 960000) return 2870 + (value - 130000) * 0.06;
+    if (value <= 2000000) return 52670 + (value - 960000) * 0.055;
+    return 110000 + (value - 2000000) * 0.065;
+  }
+
+  let duty = vicDuty(propertyValue);
+  let fhbDiscount = 0;
+  if (isFirstHome) {
+    if (propertyValue <= 600000) fhbDiscount = duty;
+    else if (propertyValue <= 750000) fhbDiscount = duty * (1 - ((propertyValue - 600000) / 150000));
+  }
+  duty -= fhbDiscount;
+
+  const foreignSurcharge = isForeign ? propertyValue * 0.08 : 0;
+  const totalDuty = duty + foreignSurcharge;
+
+  const context = isFirstHome && fhbDiscount > 0 ? ' with first home buyer concession applied' : '';
+  return 'Buying a ' + formatCurrency(propertyValue) + ' property in VIC will cost ' + formatCurrency(totalDuty) + ' in stamp duty' + context + ', which is ' + (totalDuty / propertyValue * 100).toFixed(2) + '% of the purchase price.';
+}

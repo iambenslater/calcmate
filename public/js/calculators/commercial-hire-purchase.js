@@ -204,3 +204,24 @@ function calculate() {
   document.getElementById('results-content').innerHTML = html;
   document.getElementById('calc-results').classList.remove('hidden');
 }
+
+function getTLDR() {
+  var assetPrice = parseFloat(document.getElementById('input-assetPrice').value);
+  var depositPct = parseFloat(document.getElementById('input-deposit').value);
+  var interestRate = parseFloat(document.getElementById('input-interestRate').value);
+  var termYears = parseInt(document.getElementById('input-term').value);
+  var balloonPct = parseFloat(document.getElementById('input-balloonPayment').value);
+  var gstRegistered = document.getElementById('input-gstRegistered').checked;
+  if (isNaN(assetPrice) || assetPrice <= 0 || isNaN(interestRate) || interestRate <= 0) return '';
+  var depositAmt = assetPrice * (depositPct / 100);
+  var financeAmount = assetPrice - depositAmt;
+  var balloonAmount = financeAmount * (balloonPct / 100);
+  var months = termYears * 12;
+  var monthlyRate = (interestRate / 100) / 12;
+  var pvBalloon = balloonAmount / Math.pow(1 + monthlyRate, months);
+  var monthlyWithBalloon = (financeAmount - pvBalloon) * (monthlyRate * Math.pow(1 + monthlyRate, months)) / (Math.pow(1 + monthlyRate, months) - 1);
+  var totalInterest = (monthlyWithBalloon * months + balloonAmount) - financeAmount;
+  var gstOnAsset = assetPrice - (assetPrice / 1.1);
+  var fmt2 = function(v) { return new Intl.NumberFormat('en-AU', { style: 'currency', currency: 'AUD', minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(v); };
+  return 'Financing ' + fmt2(assetPrice) + ' via CHP with a ' + depositPct + '% deposit gives you monthly repayments of ' + fmt2(monthlyWithBalloon) + ' over ' + termYears + ' years, with ' + fmt2(totalInterest) + ' in total interest' + (gstRegistered ? ' and a ' + fmt2(gstOnAsset) + ' GST input credit claimable on your BAS' : '') + '.';
+}

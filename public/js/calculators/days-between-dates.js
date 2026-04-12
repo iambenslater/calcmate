@@ -56,3 +56,23 @@ function calculate() {
     <p class="text-sm text-gray-500 mt-4">Business days exclude Saturdays and Sundays only. Public holidays are not excluded from the business day count.</p>
   `;
 }
+
+function getTLDR() {
+  const startStr = document.getElementById('input-startDate').value;
+  const endStr = document.getElementById('input-endDate').value;
+  const includeEndDate = document.getElementById('input-includeEndDate')?.checked || false;
+  if (!startStr || !endStr) return '';
+  const start = new Date(startStr + 'T00:00:00');
+  const end = new Date(endStr + 'T00:00:00');
+  if (end < start) return '';
+  let totalDays = Math.round((end - start) / 86400000);
+  if (includeEndDate) totalDays += 1;
+  let businessDays = 0;
+  let current = new Date(start);
+  const endCheck = new Date(end);
+  if (includeEndDate) endCheck.setDate(endCheck.getDate() + 1);
+  while (current < endCheck) { const day = current.getDay(); if (day !== 0 && day !== 6) businessDays++; current.setDate(current.getDate() + 1); }
+  const weeks = Math.floor(totalDays / 7);
+  const remainingDays = totalDays % 7;
+  return 'There are ' + totalDays.toLocaleString('en-AU') + ' days between those two dates (' + businessDays.toLocaleString('en-AU') + ' business days), which works out to ' + weeks + ' week' + (weeks !== 1 ? 's' : '') + (remainingDays > 0 ? ' and ' + remainingDays + ' day' + (remainingDays !== 1 ? 's' : '') : '') + '.';
+}

@@ -50,3 +50,28 @@ function calculate() {
     <p class="text-sm text-gray-500 mt-4">The US Navy method estimates body fat using circumference measurements. For best accuracy, measure in centimetres at the narrowest point (neck), navel level (waist), and widest point (hips, females only).</p>
   `;
 }
+
+function getTLDR() {
+  var gender = document.querySelector('input[name="input-gender"]:checked')?.value || document.getElementById('input-gender')?.value || 'male';
+  var height = parseFloat(document.getElementById('input-height').value) || 0;
+  var neck = parseFloat(document.getElementById('input-neck').value) || 0;
+  var waist = parseFloat(document.getElementById('input-waist').value) || 0;
+  var hip = parseFloat(document.getElementById('input-hip').value) || 0;
+  if (height <= 0 || neck <= 0 || waist <= 0) return '';
+  var bodyFat;
+  if (gender === 'male') {
+    if (waist - neck <= 0) return '';
+    bodyFat = 86.010 * Math.log10(waist - neck) - 70.041 * Math.log10(height) + 36.76;
+  } else {
+    if (waist + hip - neck <= 0) return '';
+    bodyFat = 163.205 * Math.log10(waist + hip - neck) - 97.684 * Math.log10(height) - 78.387;
+  }
+  bodyFat = Math.max(0, bodyFat);
+  var category;
+  if (gender === 'male') {
+    if (bodyFat < 6) category = 'Essential Fat'; else if (bodyFat < 14) category = 'Athletes'; else if (bodyFat < 18) category = 'Fitness'; else if (bodyFat < 25) category = 'Average'; else category = 'Above Average';
+  } else {
+    if (bodyFat < 14) category = 'Essential Fat'; else if (bodyFat < 21) category = 'Athletes'; else if (bodyFat < 25) category = 'Fitness'; else if (bodyFat < 32) category = 'Average'; else category = 'Above Average';
+  }
+  return 'Using the US Navy method, your estimated body fat is ' + bodyFat.toFixed(1) + '% — placing you in the ' + category + ' category for ' + (gender === 'male' ? 'men' : 'women') + '.';
+}

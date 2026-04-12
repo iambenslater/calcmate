@@ -54,3 +54,29 @@ function calculate() {
 }
 
 function fmt(n) { return '$' + n.toLocaleString('en-AU', {minimumFractionDigits:2, maximumFractionDigits:2}); }
+
+function getTLDR() {
+  const systemSize = parseFloat(document.getElementById('input-systemSize').value) || 0;
+  const state = document.getElementById('input-state').value;
+  const tariffRate = parseFloat(document.getElementById('input-usageTariff').value) || 0;
+  const feedInTariff = parseFloat(document.getElementById('input-feedInTariff').value) || 0;
+
+  if (systemSize <= 0) return '';
+
+  const sunHours = { 'QLD': 5.2, 'NSW': 4.6, 'VIC': 3.9, 'SA': 4.6, 'WA': 5.0, 'TAS': 3.5 };
+  const hours = sunHours[state] || 4.5;
+
+  const dailyKwh = systemSize * hours;
+  const yearlyKwh = dailyKwh * 365;
+  const selfConsumedKwh = yearlyKwh * 0.70;
+  const exportedKwh = yearlyKwh * 0.30;
+
+  const savingsFromSelfUse = selfConsumedKwh * (tariffRate / 100);
+  const feedInEarnings = exportedKwh * (feedInTariff / 100);
+  const totalYearlySaving = savingsFromSelfUse + feedInEarnings;
+
+  const estimatedCost = systemSize * 1100;
+  const paybackYears = totalYearlySaving > 0 ? (estimatedCost / totalYearlySaving).toFixed(1) : 'N/A';
+
+  return 'A ' + systemSize + 'kW system in ' + state + ' generates about ' + yearlyKwh.toFixed(0) + ' kWh/year, saving you ' + fmt(totalYearlySaving) + '/year on your power bills with an estimated payback period of ' + paybackYears + ' years.';
+}

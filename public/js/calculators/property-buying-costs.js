@@ -177,3 +177,32 @@ function calculate() {
     <p class="text-sm text-gray-500 mt-3">Costs are estimates. Stamp duty rates are 2024–25. Always confirm with your solicitor and lender.</p>
   `;
 }
+
+function getTLDR() {
+  const price = parseFloat(document.getElementById('input-propertyPrice').value) || 0;
+  const state = document.getElementById('input-state').value;
+  const firstHome = document.getElementById('input-firstHomeBuyer').checked;
+  const propertyType = document.querySelector('input[name="input-propertyType"]:checked')
+    ? document.querySelector('input[name="input-propertyType"]:checked').value
+    : 'established';
+
+  if (price <= 0) return '';
+
+  const stampDuty = calcStampDuty(price, state, firstHome, propertyType);
+  const legalFee = price > 700000 ? 2500 : 1500;
+  const buildingInspection = propertyType === 'vacant-land' ? 0 : 500;
+  const pestInspection = propertyType === 'vacant-land' ? 0 : 300;
+  const loanApplicationFee = 400;
+  const assumedDeposit = price * 0.10;
+  const lvr = ((price - assumedDeposit) / price) * 100;
+  let lmiEstimate = 0;
+  if (lvr > 80) {
+    const loanAmt = price - assumedDeposit;
+    lmiEstimate = loanAmt * (lvr > 90 ? 0.025 : 0.015);
+  }
+
+  const totalCosts = stampDuty + legalFee + buildingInspection + pestInspection + loanApplicationFee + lmiEstimate;
+  const totalRequired = price + totalCosts;
+
+  return 'Buying a ' + formatCurrency(price) + ' property in ' + state + (firstHome ? ' as a first home buyer' : '') + ' will cost around ' + formatCurrency(totalCosts) + ' in on-top costs (including ' + (stampDuty === 0 ? '$0 stamp duty' : formatCurrency(stampDuty) + ' stamp duty') + '), so you\'ll need about ' + formatCurrency(totalRequired) + ' all up.';
+}

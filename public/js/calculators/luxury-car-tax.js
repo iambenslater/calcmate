@@ -104,3 +104,17 @@ function calculate() {
   document.getElementById('results-content').innerHTML = html;
   document.getElementById('calc-results').classList.remove('hidden');
 }
+
+function getTLDR() {
+  const priceRaw = parseFloat(document.getElementById('input-carPrice').value);
+  if (isNaN(priceRaw) || priceRaw <= 0) return '';
+  const fuelType = document.querySelector('input[name="input-fuelType"]:checked').value;
+  const gstIncluded = document.querySelector('input[name="input-gstIncluded"]:checked').value;
+  const fmt = v => new Intl.NumberFormat('en-AU', { style: 'currency', currency: 'AUD', minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(v);
+  const isFuelEfficient = fuelType === 'electric-hybrid';
+  const threshold = isFuelEfficient ? 89332 : 76950;
+  const priceGSTInclusive = gstIncluded === 'yes' ? priceRaw : priceRaw * 1.1;
+  if (priceGSTInclusive <= threshold) return 'Your ' + (isFuelEfficient ? 'fuel-efficient' : 'standard') + ' vehicle at ' + fmt(priceGSTInclusive) + ' is below the LCT threshold of ' + fmt(threshold) + ' — no Luxury Car Tax applies.';
+  const lctPayable = (priceGSTInclusive - threshold) * (0.33 / 1.33);
+  return 'Your vehicle at ' + fmt(priceGSTInclusive) + ' is ' + fmt(priceGSTInclusive - threshold) + ' above the LCT threshold, attracting ' + fmt(lctPayable) + ' in Luxury Car Tax — bringing the total to ' + fmt(priceGSTInclusive + lctPayable) + '.';
+}

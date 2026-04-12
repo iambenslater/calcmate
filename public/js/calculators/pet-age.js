@@ -73,3 +73,26 @@ function calculate() {
     <p class="result-note">Age conversion is approximate. Actual aging depends on breed, diet, health, and lifestyle. Large breed dogs tend to age faster than small breeds.</p>
   `;
 }
+
+function getTLDR() {
+  const petType = document.getElementById('input-petType').value;
+  const breedSize = document.getElementById('input-breedSize').value;
+  const petAge = parseFloat(document.getElementById('input-petAge').value) || 0;
+
+  if (petAge <= 0) return '';
+
+  let humanAge = 0;
+  if (petType === 'cat') {
+    if (petAge <= 1) humanAge = petAge * 15;
+    else if (petAge <= 2) humanAge = 15 + (petAge - 1) * 9;
+    else humanAge = 15 + 9 + (petAge - 2) * 4;
+  } else {
+    const agingRates = { 'small': { first2: 10.5, after: 4.0 }, 'medium': { first2: 10.5, after: 5.0 }, 'large': { first2: 10.5, after: 6.0 } };
+    const rate = agingRates[breedSize] || agingRates['medium'];
+    if (petAge <= 2) humanAge = petAge * rate.first2;
+    else humanAge = 2 * rate.first2 + (petAge - 2) * rate.after;
+  }
+
+  const animal = petType === 'cat' ? 'cat' : breedSize + ' dog';
+  return 'Your ' + petAge + '-year-old ' + animal + ' is equivalent to about ' + Math.round(humanAge) + ' in human years.';
+}

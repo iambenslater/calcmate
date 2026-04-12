@@ -103,3 +103,40 @@ function calculate() {
     <div class="result-row"><span class="result-label">Effective Tax Rate</span><span class="result-value">${(totalDeductions / annualGross * 100).toFixed(1)}%</span></div>
   `;
 }
+
+function getTLDR() {
+  const grossSalary = parseFloat(document.getElementById('input-grossSalary').value) || 0;
+  if (grossSalary <= 0) return '';
+
+  const payFrequency = document.getElementById('input-payFrequency').value || 'annual';
+  const hasHELP = (document.querySelector('input[name="input-helpDebt"]:checked') || document.getElementById('input-helpDebt') || {value: 'no'}).value === 'yes' ||
+    (document.getElementById('input-helpDebt') && document.getElementById('input-helpDebt').checked);
+  const hasPrivateHealth = (document.querySelector('input[name="input-privateHealth"]:checked') || {value: 'no'}).value === 'yes';
+  const includesSuper = (document.querySelector('input[name="input-includesSuper"]:checked') || {value: 'no'}).value === 'yes';
+
+  let annualGross = grossSalary;
+  if (payFrequency === 'monthly') annualGross = grossSalary * 12;
+  else if (payFrequency === 'fortnightly') annualGross = grossSalary * 26;
+  else if (payFrequency === 'weekly') annualGross = grossSalary * 52;
+
+  if (includesSuper) annualGross = annualGross / 1.12;
+
+  const incomeTax = calculateIncomeTax(annualGross);
+  let medicareLevy = 0;
+  if (annualGross <= 27222) medicareLevy = 0;
+  else if (annualGross <= 34028) medicareLevy = (annualGross - 27222) * 0.10;
+  else medicareLevy = annualGross * 0.02;
+
+  let medicareSurcharge = 0;
+  if (!hasPrivateHealth) {
+    if (annualGross > 144000) medicareSurcharge = annualGross * 0.015;
+    else if (annualGross > 118000) medicareSurcharge = annualGross * 0.0125;
+    else if (annualGross > 101000) medicareSurcharge = annualGross * 0.01;
+  }
+
+  const helpRepayment = hasHELP ? calculateHELPRepayment(annualGross) : 0;
+  const totalDeductions = incomeTax + medicareLevy + medicareSurcharge + helpRepayment;
+  const annualTakeHome = annualGross - totalDeductions;
+
+  return 'On a ' + formatCurrency(annualGross) + ' salary, you\'ll take home ' + formatCurrency(annualTakeHome) + '/year (' + formatCurrency(annualTakeHome / 26) + ' per fortnight) after ' + formatCurrency(totalDeductions) + ' in tax and deductions.';
+}

@@ -61,3 +61,22 @@ function calculate() {
     el.textContent = secs.toLocaleString('en-AU');
   }, 1000);
 }
+
+function getTLDR() {
+  var dobStr = document.getElementById('input-dateOfBirth').value;
+  if (!dobStr) return '';
+  var dob = new Date(dobStr + 'T00:00:00');
+  var now = new Date();
+  if (dob > now) return '';
+  var totalDays = Math.floor((now - dob) / 86400000);
+  var totalWeeks = Math.floor(totalDays / 7);
+  var years = now.getFullYear() - dob.getFullYear();
+  var months = now.getMonth() - dob.getMonth();
+  var days = now.getDate() - dob.getDate();
+  if (days < 0) { months--; var prevMonth = new Date(now.getFullYear(), now.getMonth(), 0); days += prevMonth.getDate(); }
+  if (months < 0) { years--; months += 12; }
+  var nextBirthday = new Date(now.getFullYear(), dob.getMonth(), dob.getDate());
+  if (nextBirthday <= now) nextBirthday = new Date(now.getFullYear() + 1, dob.getMonth(), dob.getDate());
+  var daysUntilBirthday = Math.ceil((nextBirthday - now) / 86400000);
+  return 'You\'ve been alive for ' + totalDays.toLocaleString('en-AU') + ' days (' + totalWeeks.toLocaleString('en-AU') + ' weeks), or ' + years + ' years, ' + months + ' months and ' + days + ' days. Your next birthday is in ' + daysUntilBirthday + ' day' + (daysUntilBirthday !== 1 ? 's' : '') + '.';
+}

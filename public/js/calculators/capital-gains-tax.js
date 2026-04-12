@@ -34,3 +34,22 @@ function calculate() {
 }
 
 function fmt(n) { return (n < 0 ? '-$' : '$') + Math.abs(n).toLocaleString('en-AU', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
+
+function getTLDR() {
+  var purchasePrice = parseFloat(document.getElementById('input-purchasePrice').value) || 0;
+  var salePrice = parseFloat(document.getElementById('input-salePrice').value) || 0;
+  var sellingCosts = parseFloat(document.getElementById('input-sellingCosts').value) || 0;
+  var holdingPeriod = document.getElementById('input-holdingPeriod').value;
+  var marginalRate = parseFloat(document.getElementById('input-taxBracket').value) / 100 || 0;
+  var capitalGain = (salePrice - sellingCosts) - purchasePrice;
+  var isLoss = capitalGain < 0;
+  var eligible50Discount = (holdingPeriod === 'over12' || holdingPeriod === 'more-than-12-months') && !isLoss;
+  var discountedGain = eligible50Discount ? capitalGain * 0.5 : capitalGain;
+  var taxPayable = isLoss ? 0 : discountedGain * marginalRate;
+  var netProfit = capitalGain - taxPayable;
+  if (isLoss) {
+    return 'This asset was sold at a loss of ' + fmt(Math.abs(capitalGain)) + ' — no CGT is payable, and this loss can be carried forward to offset future capital gains.';
+  }
+  return 'Your capital gain of ' + fmt(capitalGain) + (eligible50Discount ? ' (reduced to ' + fmt(discountedGain) + ' with the 50% discount for holding 12+ months)' : '') + ' results in estimated CGT of ' + fmt(taxPayable) + ', leaving a net profit of ' + fmt(netProfit) + ' after tax.';
+}
+

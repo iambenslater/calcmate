@@ -89,3 +89,39 @@ function calculate() {
     ` : ''}
   `;
 }
+
+function getTLDR() {
+  const propertyValue = parseFloat(document.getElementById('input-propertyValue').value) || 0;
+  if (propertyValue <= 0) return '';
+
+  const propertyType = document.getElementById('input-propertyType').value || 'existing';
+  const firstHomeEl = document.querySelector('input[name="input-firstHomeBuyer"]:checked');
+  const isFirstHome = firstHomeEl ? firstHomeEl.value === 'yes' : false;
+  const foreignEl = document.querySelector('input[name="input-foreignBuyer"]:checked');
+  const isForeign = foreignEl ? foreignEl.value === 'yes' : false;
+
+  function nswDuty(value) {
+    if (value <= 16000) return value * 0.015;
+    if (value <= 35000) return 240 + (value - 16000) * 0.0175;
+    if (value <= 93000) return 572.50 + (value - 35000) * 0.0175;
+    if (value <= 351000) return 1587.50 + (value - 93000) * 0.035;
+    if (value <= 1168000) return 10617.50 + (value - 351000) * 0.045;
+    return 47382.50 + (value - 1168000) * 0.055;
+  }
+
+  let duty = nswDuty(propertyValue);
+  if (propertyValue > 3505000) duty = nswDuty(3505000) + (propertyValue - 3505000) * 0.07;
+
+  let fhbDiscount = 0;
+  if (isFirstHome) {
+    if (propertyValue <= 800000) fhbDiscount = duty;
+    else if (propertyValue <= 1000000) fhbDiscount = duty * (1 - ((propertyValue - 800000) / 200000));
+  }
+  duty -= fhbDiscount;
+
+  const foreignSurcharge = isForeign ? propertyValue * 0.09 : 0;
+  const totalDuty = duty + foreignSurcharge;
+
+  const context = isFirstHome && fhbDiscount > 0 ? ' (first home buyer concession applied)' : '';
+  return 'Buying a ' + formatCurrency(propertyValue) + ' property in NSW will cost ' + formatCurrency(totalDuty) + ' in stamp duty' + context + ', which is ' + (totalDuty / propertyValue * 100).toFixed(2) + '% of the purchase price.';
+}

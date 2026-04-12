@@ -59,3 +59,17 @@ function calculate() {
     </table>
   `;
 }
+
+function getTLDR() {
+  const grossSalary = parseFloat(document.getElementById('input-grossSalary').value) || 0;
+  if (grossSalary <= 0) return '';
+
+  const payFrequency = document.getElementById('input-payFrequency').value || 'annual';
+  const multipliers = { annual: 1, monthly: 12, fortnightly: 26, weekly: 52 };
+  const annualGross = grossSalary * (multipliers[payFrequency] || 1);
+  const sgRate = 0.12;
+  const annualMaxBase = 62500 * 4;
+  const annualSuper = Math.min(annualGross, annualMaxBase) * sgRate;
+
+  return 'On a ' + formatCurrency(annualGross) + '/year salary, your employer must pay ' + formatCurrency(annualSuper) + ' in super guarantee contributions for 2025-26 (' + formatCurrency(annualSuper / 4) + ' per quarter at 12%).';
+}

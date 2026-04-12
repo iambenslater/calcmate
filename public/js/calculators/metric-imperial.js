@@ -87,3 +87,22 @@ function calculate() {
     <div class="result-row"><span class="result-label">Direction</span><span class="result-value">${toMetric ? 'Imperial to Metric' : 'Metric to Imperial'}</span></div>
   `;
 }
+
+function getTLDR() {
+  const inputValue = parseFloat(document.getElementById('input-value').value);
+  if (isNaN(inputValue)) return '';
+  const unitType = document.getElementById('input-category').value;
+  const fromUnit = document.getElementById('input-fromUnit').value;
+  if (!unitType) return '';
+  const toMetric = fromUnit ? fromUnit.includes('imperial') || ['in','ft','lb','mi','gal','F'].includes(fromUnit) : false;
+  let result, fromLabel, toLabel;
+  switch (unitType) {
+    case 'length': result = toMetric ? inputValue * 2.54 : inputValue / 2.54; fromLabel = toMetric ? 'inches' : 'centimetres'; toLabel = toMetric ? 'centimetres' : 'inches'; break;
+    case 'weight': result = toMetric ? inputValue * 0.453592 : inputValue * 2.20462; fromLabel = toMetric ? 'pounds' : 'kilograms'; toLabel = toMetric ? 'kilograms' : 'pounds'; break;
+    case 'distance': result = toMetric ? inputValue * 1.60934 : inputValue / 1.60934; fromLabel = toMetric ? 'miles' : 'kilometres'; toLabel = toMetric ? 'kilometres' : 'miles'; break;
+    case 'temperature': result = toMetric ? (inputValue - 32) * 5 / 9 : inputValue * 9 / 5 + 32; fromLabel = toMetric ? 'Fahrenheit' : 'Celsius'; toLabel = toMetric ? 'Celsius' : 'Fahrenheit'; break;
+    case 'volume': result = toMetric ? inputValue * 3.78541 : inputValue / 3.78541; fromLabel = toMetric ? 'US gallons' : 'litres'; toLabel = toMetric ? 'litres' : 'US gallons'; break;
+    default: return '';
+  }
+  return inputValue + ' ' + fromLabel + ' = ' + result.toFixed(4) + ' ' + toLabel + '.';
+}

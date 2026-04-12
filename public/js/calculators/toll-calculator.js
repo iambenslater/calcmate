@@ -42,3 +42,25 @@ function calculate() {
 function fmt(n) {
   return '$' + n.toLocaleString('en-AU', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 }
+
+function getTLDR() {
+  const tollRoad = (document.getElementById('input-route').value || '').toUpperCase();
+  const vehicleType = document.getElementById('input-vehicleType').value;
+  const tripsPerWeek = parseFloat(document.getElementById('input-tripsPerWeek').value) || 0;
+  if (!tollRoad || !vehicleType || tripsPerWeek <= 0) return '';
+
+  const tolls = {
+    'M2': { car: 8.41, truck: 16.82 }, 'M4': { car: 5.61, truck: 11.22 },
+    'M5': { car: 5.15, truck: 10.30 }, 'M7': { car: 9.30, truck: 18.60 },
+    'Eastern Distributor': { car: 8.45, truck: 12.68 }, 'Sydney Harbour': { car: 4.00, truck: 8.00 },
+    'Cross City': { car: 6.72, truck: 13.44 }
+  };
+
+  const tollPerTrip = tolls[tollRoad]?.[vehicleType] || 0;
+  if (tollPerTrip === 0) return '';
+
+  const weeklyCost = tollPerTrip * tripsPerWeek;
+  const annualCost = weeklyCost * 52;
+
+  return 'Using the ' + tollRoad + ' ' + tripsPerWeek + ' times per week costs ' + fmt(weeklyCost) + '/week — that adds up to ' + fmt(annualCost) + ' a year in tolls.';
+}

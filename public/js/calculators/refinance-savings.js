@@ -49,3 +49,37 @@ function calculate() {
 }
 
 function fmt(n) { return (n < 0 ? '-$' : '$') + Math.abs(n).toLocaleString('en-AU', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
+
+function getTLDR() {
+  const balance = parseFloat(document.getElementById('input-currentBalance').value) || 0;
+  const currentRate = (parseFloat(document.getElementById('input-currentRate').value) || 0) / 100;
+  const currentTermRemaining = parseInt(document.getElementById('input-currentTerm').value) || 0;
+  const newRate = (parseFloat(document.getElementById('input-newRate').value) || 0) / 100;
+  const newTerm = parseInt(document.getElementById('input-newTerm').value) || 0;
+  const switchingCosts = parseFloat(document.getElementById('input-switchingCosts').value) || 0;
+
+  if (balance <= 0) return '';
+
+  function calcRepayment(principal, annualRate, termYears) {
+    const n = termYears * 12;
+    const r = annualRate / 12;
+    if (r <= 0 || n <= 0) return principal / Math.max(n, 1);
+    return principal * (r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+  }
+
+  const currentMonthly = calcRepayment(balance, currentRate, currentTermRemaining);
+  const currentTotal = currentMonthly * currentTermRemaining * 12;
+
+  const newMonthly = calcRepayment(balance + switchingCosts, newRate, newTerm);
+  const newTotal = newMonthly * newTerm * 12;
+
+  const monthlySaving = currentMonthly - newMonthly;
+  const totalSaving = currentTotal - newTotal;
+  const breakEvenMonths = monthlySaving > 0 && switchingCosts > 0 ? Math.ceil(switchingCosts / monthlySaving) : 0;
+
+  if (totalSaving > 0) {
+    return 'Refinancing saves you ' + fmt(monthlySaving) + '/month and ' + fmt(totalSaving) + ' overall' + (breakEvenMonths > 0 ? ', breaking even in ' + breakEvenMonths + ' months' : '') + '.';
+  } else {
+    return 'Refinancing would cost you ' + fmt(Math.abs(totalSaving)) + ' more overall — staying with your current loan is cheaper.';
+  }
+}

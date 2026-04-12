@@ -58,3 +58,27 @@ function calculate() {
     <div class="result-row"><span class="result-label">Tax-Free Threshold</span><span class="result-value">${claimTaxFree ? 'Claimed' : 'Not Claimed'}</span></div>
   `;
 }
+
+function getTLDR() {
+  const grossPay = parseFloat(document.getElementById('input-grossPay').value) || 0;
+  if (grossPay <= 0) return '';
+
+  const payFrequency = document.getElementById('input-payFrequency').value || 'weekly';
+  const claimTaxFreeEl = document.querySelector('input[name="input-claimTaxFreeThreshold"]:checked');
+  const claimTaxFree = claimTaxFreeEl ? claimTaxFreeEl.value === 'yes' : true;
+
+  const multipliers = { weekly: 52, fortnightly: 26, monthly: 12, annual: 1 };
+  const labels = { weekly: 'week', fortnightly: 'fortnight', monthly: 'month', annual: 'year' };
+  const multiplier = multipliers[payFrequency] || 52;
+
+  const annualGross = grossPay * multiplier;
+  const annualTax = calculateAnnualTax(annualGross, claimTaxFree);
+  let annualMedicare = 0;
+  if (annualGross > 34028) annualMedicare = annualGross * 0.02;
+  else if (annualGross > 27222) annualMedicare = (annualGross - 27222) * 0.10;
+
+  const totalWithheld = (annualTax + annualMedicare) / multiplier;
+  const netPay = grossPay - totalWithheld;
+
+  return 'From your ' + formatCurrency(grossPay) + ' per ' + labels[payFrequency] + ' pay, ' + formatCurrency(totalWithheld) + ' will be withheld in PAYG tax and Medicare, leaving you with ' + formatCurrency(netPay) + ' in hand.';
+}

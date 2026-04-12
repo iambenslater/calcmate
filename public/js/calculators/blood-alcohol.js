@@ -49,3 +49,23 @@ function calculate() {
     <p class="result-note"><strong>Disclaimer:</strong> This is an estimate only and should NOT be used to determine fitness to drive. BAC varies based on many factors including food intake, metabolism, medications, and hydration. When in doubt, don't drive. AU legal limit is 0.05% (0.00% for learners and P-platers).</p>
   `;
 }
+
+function getTLDR() {
+  var genderRadios = document.getElementsByName('input-gender');
+  var gender = 'male';
+  for (var i = 0; i < genderRadios.length; i++) { if (genderRadios[i].checked) gender = genderRadios[i].value; }
+  var bodyWeight = parseFloat(document.getElementById('input-weight').value) || 0;
+  var standardDrinks = parseFloat(document.getElementById('input-drinks').value) || 0;
+  var drinkingHours = parseFloat(document.getElementById('input-hours').value) || 0;
+  if (bodyWeight <= 0) return '';
+  var alcoholGrams = standardDrinks * 10;
+  var r = gender === 'male' ? 0.68 : 0.55;
+  var bac = Math.max(0, (alcoholGrams / (bodyWeight * 1000 * r)) * 100 - (0.015 * drinkingHours));
+  var hoursToLegal = bac > 0.05 ? (bac - 0.05) / 0.015 : 0;
+  var hoursToZero = bac > 0 ? bac / 0.015 : 0;
+  if (bac === 0) return 'Based on ' + standardDrinks + ' standard drink' + (standardDrinks !== 1 ? 's' : '') + ' over ' + drinkingHours + ' hour' + (drinkingHours !== 1 ? 's' : '') + ', your estimated BAC is 0.000% — you\'re within the legal limit.';
+  if (bac > 0.05) {
+    return 'Your estimated BAC is ' + bac.toFixed(3) + '% — over the Australian legal limit of 0.050%. You\'ll need about ' + hoursToLegal.toFixed(1) + ' more hour' + (hoursToLegal.toFixed(1) !== '1.0' ? 's' : '') + ' to reach the limit, and ' + hoursToZero.toFixed(1) + ' hours to reach zero. Do not drive.';
+  }
+  return 'Your estimated BAC is ' + bac.toFixed(3) + '% — under the Australian legal limit of 0.050%, but you\'ll be fully clear in about ' + hoursToZero.toFixed(1) + ' hour' + (hoursToZero.toFixed(1) !== '1.0' ? 's' : '') + '. This is an estimate only — when in doubt, don\'t drive.';
+}

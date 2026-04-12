@@ -80,3 +80,25 @@ function calculate() {
 function fmt(n) {
   return '$' + n.toLocaleString('en-AU', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 }
+
+function getTLDR() {
+  const state = (document.getElementById('input-state').value || '').toUpperCase();
+  const vehicleType = document.getElementById('input-vehicleType').value;
+  const driverAge = parseInt(document.getElementById('input-driverAge').value) || 0;
+  const claimsHistory = document.getElementById('input-claimHistory').value;
+  if (!state || !vehicleType || driverAge <= 0 || vehicleType === 'trailer') return '';
+  const basePremiums = {
+    NSW: { car: 550, motorcycle: 420 }, VIC: { car: 520, motorcycle: 390 },
+    QLD: { car: 370, motorcycle: 290 }, SA:  { car: 410, motorcycle: 310 },
+    WA:  { car: 430, motorcycle: 330 }, TAS: { car: 390, motorcycle: 300 },
+    NT:  { car: 480, motorcycle: 360 }, ACT: { car: 500, motorcycle: 380 },
+  };
+  const basePremium = basePremiums[state]?.[vehicleType] || 0;
+  if (!basePremium) return '';
+  let ageFactor = driverAge < 21 ? 1.6 : driverAge < 25 ? 1.35 : driverAge < 30 ? 1.15 : driverAge < 55 ? 1.0 : driverAge < 65 ? 1.05 : 1.15;
+  let claimsFactor = claimsHistory === '1' ? 1.2 : claimsHistory === '2+' ? 1.5 : 1.0;
+  const adjustedPremium = basePremium * ageFactor * claimsFactor;
+  const total = adjustedPremium * 1.15; // +GST and stamp duty
+  const stateNames = { NSW: 'New South Wales', VIC: 'Victoria', QLD: 'Queensland', SA: 'South Australia', WA: 'Western Australia', TAS: 'Tasmania', NT: 'Northern Territory', ACT: 'ACT' };
+  return 'Your estimated annual CTP premium in ' + (stateNames[state] || state) + ' is ' + fmt(total) + ' (including GST and stamp duty), based on a ' + driverAge + '-year-old ' + vehicleType + ' driver with ' + (claimsHistory === '0' ? 'no' : claimsHistory) + ' prior claims.';
+}

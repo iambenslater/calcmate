@@ -28,3 +28,22 @@ function calculate() {
 }
 
 function fmt(n) { return '$' + n.toLocaleString('en-AU', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
+
+function getTLDR() {
+  const principal = parseFloat(document.getElementById('input-principal').value) || 0;
+  const annualRate = (parseFloat(document.getElementById('input-rate').value) || 0) / 100;
+  const timeValue = parseFloat(document.getElementById('input-time').value) || 0;
+  const timeUnit = document.getElementById('input-timeUnit').value;
+
+  if (principal <= 0 || timeValue <= 0) return '';
+
+  let years;
+  if (timeUnit === 'months') years = timeValue / 12;
+  else if (timeUnit === 'days') years = timeValue / 365;
+  else years = timeValue;
+
+  const interest = principal * annualRate * years;
+  const totalAmount = principal + interest;
+
+  return 'On a principal of ' + fmt(principal) + ' at ' + (annualRate * 100).toFixed(2) + '% for ' + timeValue + ' ' + timeUnit + ', you\'ll earn ' + fmt(interest) + ' in simple interest, giving a total of ' + fmt(totalAmount) + '.';
+}

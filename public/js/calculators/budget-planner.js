@@ -94,3 +94,23 @@ function calculate() {
     </table>
   `;
 }
+
+function getTLDR() {
+  var netIncome = parseFloat(document.getElementById('input-netIncome').value) || 0;
+  var otherIncome = parseFloat(document.getElementById('input-otherIncome').value) || 0;
+  var income = netIncome + otherIncome;
+  var housing = parseFloat(document.getElementById('input-housing').value) || 0;
+  var transport = parseFloat(document.getElementById('input-transport').value) || 0;
+  var food = parseFloat(document.getElementById('input-groceries').value) || 0;
+  var utilities = parseFloat(document.getElementById('input-utilities').value) || 0;
+  var entertainment = parseFloat(document.getElementById('input-entertainment').value) || 0;
+  var insurance = parseFloat(document.getElementById('input-insurance').value) || 0;
+  var subscriptions = parseFloat(document.getElementById('input-subscriptions').value) || 0;
+  var personalCare = parseFloat(document.getElementById('input-personalCare').value) || 0;
+  var other = parseFloat(document.getElementById('input-otherExpenses').value) || 0;
+  var totalExpenses = housing + transport + food + utilities + entertainment + insurance + subscriptions + personalCare + other;
+  var remaining = income - totalExpenses;
+  if (income <= 0) return '';
+  var status = remaining >= 0 ? 'a surplus of ' + formatCurrency(remaining) : 'a deficit of ' + formatCurrency(Math.abs(remaining));
+  return 'On ' + formatCurrency(income) + '/month income with ' + formatCurrency(totalExpenses) + ' in expenses, you have ' + status + ' each month. Housing takes ' + (income > 0 ? ((housing / income) * 100).toFixed(0) : 0) + '% of your income.';
+}

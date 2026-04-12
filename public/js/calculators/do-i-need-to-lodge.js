@@ -76,3 +76,18 @@ function calculate() {
 }
 
 function fmt(n) { return '$' + n.toLocaleString('en-AU', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
+
+function getTLDR() {
+  const totalIncome = parseFloat(document.getElementById('input-totalIncome').value) || 0;
+  const incomeType = document.getElementById('input-incomeSource').value;
+  const residency = document.getElementById('input-residency').value;
+  const age = document.getElementById('input-age').value;
+  if (totalIncome <= 0 && incomeType !== 'business') return '';
+  const resKey = residency || 'resident';
+  const ageKey = age || 'under-65';
+  const thresholds = { 'resident': { 'under-65': 18200, '65-plus': 32279 }, 'foreign-resident': { 'under-65': 1, '65-plus': 1 }, 'working-holiday': { 'under-65': 1, '65-plus': 1 } };
+  const threshold = (thresholds[resKey] && thresholds[resKey][ageKey]) || 18200;
+  const mustLodge = totalIncome >= threshold || incomeType === 'business' || incomeType === 'foreign' || resKey === 'foreign-resident';
+  const resLabels = { 'resident': 'Australian resident', 'foreign-resident': 'foreign resident', 'working-holiday': 'working holiday maker' };
+  return 'Based on your income of ' + fmt(totalIncome) + ' as a' + (resKey === 'foreign-resident' ? '' : 'n') + ' ' + (resLabels[resKey] || resKey) + ', you ' + (mustLodge ? 'likely need to lodge a tax return' : 'probably don\'t need to lodge a tax return') + ' (the tax-free threshold is ' + fmt(threshold) + ').';
+}

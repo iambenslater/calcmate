@@ -85,3 +85,30 @@ function fmt(n) {
 function fmtD(n) {
   return new Intl.NumberFormat('en-AU', { style: 'currency', currency: 'AUD', minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(n);
 }
+
+function getTLDR() {
+  const loanAmount = parseFloat(document.getElementById('input-loanAmount').value) || 0;
+  const annualRate = (parseFloat(document.getElementById('input-interestRate').value) || 8.5) / 100;
+  const termYears = parseInt(document.getElementById('input-loanTerm').value) || 3;
+  const frequency = document.querySelector('input[name="input-repaymentFrequency"]:checked').value;
+
+  if (loanAmount <= 0) return '';
+
+  const freqMap = { weekly: 52, fortnightly: 26, monthly: 12 };
+  const paymentsPerYear = freqMap[frequency] || 12;
+  const totalPayments = termYears * paymentsPerYear;
+  const ratePerPeriod = annualRate / paymentsPerYear;
+
+  let repayment;
+  if (ratePerPeriod === 0) {
+    repayment = loanAmount / totalPayments;
+  } else {
+    repayment = loanAmount * ratePerPeriod / (1 - Math.pow(1 + ratePerPeriod, -totalPayments));
+  }
+
+  const totalRepaid = repayment * totalPayments;
+  const totalInterest = totalRepaid - loanAmount;
+  const freqLabel = frequency.charAt(0).toUpperCase() + frequency.slice(1);
+
+  return 'A ' + fmt(loanAmount) + ' loan at ' + (annualRate * 100).toFixed(2) + '% over ' + termYears + ' year' + (termYears !== 1 ? 's' : '') + ' costs ' + fmtD(repayment) + ' ' + frequency + ', with ' + fmt(totalInterest) + ' in total interest paid (' + fmt(totalRepaid) + ' repaid overall).';
+}

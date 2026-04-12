@@ -155,3 +155,21 @@ function calculate() {
   document.getElementById('results-content').innerHTML = html;
   document.getElementById('calc-results').classList.remove('hidden');
 }
+
+function getTLDR() {
+  var caravanPrice = parseFloat(document.getElementById('input-caravanPrice').value);
+  var deposit = parseFloat(document.getElementById('input-deposit').value) || 0;
+  var interestRate = parseFloat(document.getElementById('input-interestRate').value);
+  var loanTermYears = parseInt(document.getElementById('input-loanTerm').value);
+  var includeInsurance = document.getElementById('input-includeInsurance').checked;
+  if (isNaN(caravanPrice) || caravanPrice <= 0 || isNaN(interestRate) || interestRate <= 0) return '';
+  var loanAmount = caravanPrice - deposit;
+  var months = loanTermYears * 12;
+  var monthlyRate = (interestRate / 100) / 12;
+  var baseMonthly = monthlyRate === 0 ? loanAmount / months : loanAmount * (monthlyRate * Math.pow(1 + monthlyRate, months)) / (Math.pow(1 + monthlyRate, months) - 1);
+  var totalInterest = baseMonthly * months - loanAmount;
+  var insuranceMonthly = includeInsurance ? 1200 / 12 : 0;
+  var totalMonthly = baseMonthly + insuranceMonthly;
+  var fmt2 = function(v) { return new Intl.NumberFormat('en-AU', { style: 'currency', currency: 'AUD', minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(v); };
+  return 'A ' + fmt2(caravanPrice) + ' caravan with a ' + fmt2(deposit) + ' deposit means ' + fmt2(loanAmount) + ' financed over ' + loanTermYears + ' years at ' + interestRate + '% p.a. — your monthly repayments are ' + fmt2(totalMonthly) + (includeInsurance ? ' (including insurance)' : '') + ', with ' + fmt2(totalInterest) + ' in total interest.';
+}

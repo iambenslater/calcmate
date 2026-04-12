@@ -50,3 +50,21 @@ function calculate() {
 }
 
 function fmt(n) { return '$' + n.toLocaleString('en-AU', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
+
+function getTLDR() {
+  const income = parseFloat(document.getElementById('input-grossIncome').value) || 0;
+  const expenses = parseFloat(document.getElementById('input-monthlyExpenses').value) || 0;
+  const deposit = parseFloat(document.getElementById('input-deposit').value) || 0;
+  const rate = (parseFloat(document.getElementById('input-interestRate').value) || 0) / 100;
+  if (income <= 0 || rate <= 0) return '';
+  const bufferRate = rate + 0.03;
+  const availableForRepayment = (income / 12) - expenses;
+  if (availableForRepayment <= 0) return '';
+  const n = 360;
+  const r = bufferRate / 12;
+  const maxLoan = r > 0 ? availableForRepayment * ((1 - Math.pow(1 + r, -n)) / r) : availableForRepayment * n;
+  const maxPurchase = maxLoan + deposit;
+  const actualR = rate / 12;
+  const actualRepayment = actualR > 0 ? maxLoan * (actualR * Math.pow(1 + actualR, n)) / (Math.pow(1 + actualR, n) - 1) : maxLoan / n;
+  return 'Based on your income and expenses, you could borrow up to ' + fmt(maxLoan) + ' and buy a property worth around ' + fmt(maxPurchase) + ', with estimated monthly repayments of ' + fmt(actualRepayment) + '.';
+}

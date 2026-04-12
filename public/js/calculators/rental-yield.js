@@ -33,3 +33,18 @@ function calculate() {
 }
 
 function fmt(n) { return '$' + n.toLocaleString('en-AU', {minimumFractionDigits:2, maximumFractionDigits:2}); }
+
+function getTLDR() {
+  const propertyValue = parseFloat(document.getElementById('input-propertyValue').value) || 0;
+  const weeklyRent = parseFloat(document.getElementById('input-weeklyRent').value) || 0;
+  const annualExpenses = parseFloat(document.getElementById('input-annualExpenses').value) || 0;
+
+  if (propertyValue <= 0 || weeklyRent <= 0) return '';
+
+  const annualRent = weeklyRent * 52;
+  const grossYield = (annualRent / propertyValue) * 100;
+  const netIncome = annualRent - annualExpenses;
+  const netYield = (netIncome / propertyValue) * 100;
+
+  return 'Your ' + fmt(propertyValue) + ' property returning ' + fmt(weeklyRent) + '/week has a gross yield of ' + grossYield.toFixed(2) + '% and a net yield of ' + netYield.toFixed(2) + '% after expenses, generating ' + fmt(netIncome) + '/year net.';
+}

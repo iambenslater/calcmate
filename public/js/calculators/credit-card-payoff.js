@@ -62,3 +62,30 @@ function calculate() {
 }
 
 function fmt(n) { return '$' + n.toLocaleString('en-AU', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
+
+function getTLDR() {
+  var startBalance = parseFloat(document.getElementById('input-balance').value) || 0;
+  var annualRate = (parseFloat(document.getElementById('input-rate').value) || 0) / 100;
+  var minPayPct = (parseFloat(document.getElementById('input-minPayment').value) || 2) / 100;
+  var extraPayment = parseFloat(document.getElementById('input-extraPayment').value) || 0;
+  if (startBalance <= 0) return '';
+  var monthlyRate = annualRate / 12;
+  var balance = startBalance, totalInterest = 0, months = 0;
+  var maxMonths = 600;
+  while (balance > 0.01 && months < maxMonths) {
+    var interest = balance * monthlyRate;
+    var minPayment = Math.max(balance * minPayPct, 25);
+    var payment = Math.min(balance + interest, minPayment + extraPayment);
+    balance = Math.max(0, balance + interest - payment);
+    totalInterest += interest;
+    months++;
+  }
+  var years = Math.floor(months / 12);
+  var remMonths = months % 12;
+  var timeStr = years > 0 ? years + ' year' + (years !== 1 ? 's' : '') + ' ' + remMonths + ' month' + (remMonths !== 1 ? 's' : '') : remMonths + ' month' + (remMonths !== 1 ? 's' : '');
+  if (months >= maxMonths) {
+    return 'At minimum payments only, your ' + fmt(startBalance) + ' balance at ' + (annualRate * 100).toFixed(2) + '% p.a. will take over 50 years to pay off — adding extra repayments makes a big difference.';
+  }
+  return 'Your ' + fmt(startBalance) + ' credit card balance at ' + (annualRate * 100).toFixed(2) + '% p.a. will be paid off in ' + timeStr + ', costing ' + fmt(totalInterest) + ' in interest' + (extraPayment > 0 ? ' with ' + fmt(extraPayment) + '/month in extra repayments' : ' on minimum payments only') + '.';
+}
+

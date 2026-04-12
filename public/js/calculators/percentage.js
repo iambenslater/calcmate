@@ -60,3 +60,31 @@ function calculate() {
     ${extraInfo}
   `;
 }
+
+function getTLDR() {
+  const mode = document.getElementById('input-mode').value;
+  const valueA = parseFloat(document.getElementById('input-valueX').value);
+  const valueB = parseFloat(document.getElementById('input-valueY').value);
+
+  if (isNaN(valueA) || isNaN(valueB)) return '';
+
+  switch (mode) {
+    case 'of': {
+      const result = (valueA / 100) * valueB;
+      return valueA + '% of ' + valueB + ' is ' + result.toLocaleString('en-AU', { minimumFractionDigits: 2, maximumFractionDigits: 4 }) + '.';
+    }
+    case 'is': {
+      if (valueB === 0) return '';
+      const result = (valueA / valueB) * 100;
+      return valueA + ' is ' + result.toFixed(2) + '% of ' + valueB + '.';
+    }
+    case 'change': {
+      if (valueA === 0) return '';
+      const result = ((valueB - valueA) / Math.abs(valueA)) * 100;
+      const direction = result >= 0 ? 'increase' : 'decrease';
+      return 'From ' + valueA + ' to ' + valueB + ' is a ' + Math.abs(result).toFixed(2) + '% ' + direction + ' (absolute difference: ' + Math.abs(valueB - valueA).toLocaleString('en-AU', { minimumFractionDigits: 2, maximumFractionDigits: 4 }) + ').';
+    }
+    default:
+      return '';
+  }
+}

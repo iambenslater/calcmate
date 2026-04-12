@@ -140,3 +140,30 @@ function fmtD(n) {
 function pct(r) {
   return (r * 100).toFixed(2) + '% p.a.';
 }
+
+function getTLDR() {
+  var advertisedRate = (parseFloat(document.getElementById('input-advertisedRate').value) || 6.0) / 100;
+  var loanAmount = parseFloat(document.getElementById('input-loanAmount').value) || 500000;
+  var loanTermYears = parseInt(document.getElementById('input-loanTerm').value) || 30;
+  var applicationFee = parseFloat(document.getElementById('input-applicationFee').value) || 0;
+  var annualFee = parseFloat(document.getElementById('input-annualFee').value) || 0;
+  var monthlyFee = parseFloat(document.getElementById('input-monthlyFee').value) || 0;
+  var valuationFee = parseFloat(document.getElementById('input-valuationFee').value) || 0;
+  var otherUpfront = parseFloat(document.getElementById('input-otherUpfrontFees').value) || 0;
+  if (loanAmount <= 0) return '';
+  var n = loanTermYears * 12;
+  var monthlyAdv = advertisedRate / 12;
+  var repayment = monthlyAdv > 0 ? loanAmount * monthlyAdv / (1 - Math.pow(1 + monthlyAdv, -n)) : loanAmount / n;
+  var upfrontFees = applicationFee + valuationFee + otherUpfront;
+  var totalFees = upfrontFees + (annualFee * loanTermYears) + (monthlyFee * n);
+  function npv(monthlyRate) {
+    var pv = 0;
+    for (var t = 1; t <= n; t++) { var disc = Math.pow(1 + monthlyRate, -t); pv += (repayment + monthlyFee) * disc; if (t % 12 === 0) pv += annualFee * disc; }
+    return pv - upfrontFees - loanAmount;
+  }
+  var lo = 0.00001, hi = 0.10;
+  for (var i = 0; i < 200; i++) { var mid = (lo + hi) / 2; if (npv(mid) > 0) lo = mid; else hi = mid; if (hi - lo < 1e-10) break; }
+  var compRateAnnual = ((lo + hi) / 2) * 12;
+  return 'Your ' + fmt(loanAmount) + ' loan advertised at ' + pct(advertisedRate) + ' has a true comparison rate of ' + pct(compRateAnnual) + ' once ' + fmt(totalFees) + ' in fees are included — monthly repayments are ' + fmtD(repayment) + '.';
+}
+

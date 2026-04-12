@@ -40,3 +40,23 @@ function calculate() {
 }
 
 function fmt(n) { return '$' + n.toLocaleString('en-AU', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
+
+function getTLDR() {
+  var principal = parseFloat(document.getElementById('input-principal').value) || 0;
+  var annualRate = (parseFloat(document.getElementById('input-rate').value) || 0) / 100;
+  var frequency = document.getElementById('input-compounding').value;
+  var years = parseFloat(document.getElementById('input-years').value) || 0;
+  var monthlyContribution = parseFloat(document.getElementById('input-contribution').value) || 0;
+  var freqMap = { 'daily': 365, 'monthly': 12, 'quarterly': 4, 'annually': 1 };
+  var n = freqMap[frequency] || 12;
+  var compoundAmount = principal * Math.pow(1 + annualRate / n, n * years);
+  var periodsTotal = n * years;
+  var ratePerPeriod = annualRate / n;
+  var contributionPerPeriod = monthlyContribution * (12 / n);
+  var fvContributions = ratePerPeriod > 0 ? contributionPerPeriod * ((Math.pow(1 + ratePerPeriod, periodsTotal) - 1) / ratePerPeriod) : contributionPerPeriod * periodsTotal;
+  var totalValue = compoundAmount + fvContributions;
+  var totalContributions = principal + (monthlyContribution * 12 * years);
+  var totalInterest = totalValue - totalContributions;
+  return fmt(principal) + ' invested at ' + (annualRate * 100).toFixed(2) + '% p.a. (' + frequency + ' compounding)' + (monthlyContribution > 0 ? ' with ' + fmt(monthlyContribution) + '/month contributions' : '') + ' grows to ' + fmt(totalValue) + ' after ' + years + ' years — ' + fmt(totalInterest) + ' in interest on ' + fmt(totalContributions) + ' total contributions.';
+}
+

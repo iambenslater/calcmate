@@ -43,3 +43,13 @@ function calculate() {
 }
 
 function fmt(n) { return '$' + n.toLocaleString('en-AU', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
+
+function getTLDR() {
+  const carValue = parseFloat(document.getElementById('input-carValue').value) || 0;
+  const daysAvailable = parseInt(document.getElementById('input-daysAvailable').value) || 365;
+  const employeeContribution = parseFloat(document.getElementById('input-employeeContrib').value) || 0;
+  if (carValue <= 0) return '';
+  const taxableValue = Math.max(0, (carValue * 0.20 * (daysAvailable / 365)) - employeeContribution);
+  const fbtPayable = taxableValue * 2.0802 * 0.47;
+  return 'The FBT payable on a ' + fmt(carValue) + ' car available for ' + daysAvailable + ' days is ' + fmt(fbtPayable) + ' (Type 1, statutory method), based on a taxable value of ' + fmt(taxableValue) + ' after ' + fmt(employeeContribution) + ' employee contribution.';
+}

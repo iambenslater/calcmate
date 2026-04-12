@@ -96,3 +96,51 @@ function calculate() {
     ` : ''}
   `;
 }
+
+function getTLDR() {
+  const propertyValue = parseFloat(document.getElementById('input-propertyValue').value) || 0;
+  if (propertyValue <= 0) return '';
+
+  const propertyType = document.getElementById('input-propertyType').value || 'existing';
+  const firstHomeEl = document.querySelector('input[name="input-firstHomeBuyer"]:checked');
+  const isFirstHome = firstHomeEl ? firstHomeEl.value === 'yes' : false;
+  const foreignEl = document.querySelector('input[name="input-foreignBuyer"]:checked');
+  const isForeign = foreignEl ? foreignEl.value === 'yes' : false;
+
+  function qldDuty(value) {
+    if (value <= 5000) return 0;
+    if (value <= 75000) return (value - 5000) * 0.015;
+    if (value <= 540000) return 1050 + (value - 75000) * 0.035;
+    if (value <= 1000000) return 17325 + (value - 540000) * 0.045;
+    return 38025 + (value - 1000000) * 0.0575;
+  }
+
+  function qldHomeConcessionDuty(value) {
+    if (value <= 350000) return value * 0.01;
+    if (value <= 540000) return 3500 + (value - 350000) * 0.035;
+    if (value <= 1000000) return 10150 + (value - 540000) * 0.045;
+    return 30850 + (value - 1000000) * 0.0575;
+  }
+
+  let duty = qldDuty(propertyValue);
+  let fhbDiscount = 0;
+  if (isFirstHome) {
+    if (propertyType === 'new') {
+      fhbDiscount = Math.max(0, duty - qldHomeConcessionDuty(propertyValue));
+    } else if (propertyValue <= 700000) {
+      fhbDiscount = Math.max(0, duty - qldHomeConcessionDuty(propertyValue));
+    } else if (propertyValue <= 800000) {
+      const fullConcession = duty - qldHomeConcessionDuty(propertyValue);
+      fhbDiscount = Math.max(0, fullConcession * (1 - (propertyValue - 700000) / 100000));
+    }
+  } else if (propertyValue <= 700000 && propertyType !== 'vacant') {
+    fhbDiscount = Math.max(0, duty - qldHomeConcessionDuty(propertyValue));
+  }
+  duty -= fhbDiscount;
+
+  const foreignSurcharge = isForeign ? propertyValue * 0.08 : 0;
+  const totalDuty = duty + foreignSurcharge;
+
+  const context = isFirstHome && fhbDiscount > 0 ? ' with first home concession applied' : '';
+  return 'Buying a ' + formatCurrency(propertyValue) + ' property in QLD will cost ' + formatCurrency(totalDuty) + ' in transfer duty' + context + ', which is ' + (totalDuty / propertyValue * 100).toFixed(2) + '% of the purchase price.';
+}

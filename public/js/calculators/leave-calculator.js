@@ -54,3 +54,21 @@ function calculate() {
     <p class="text-sm text-gray-500 mt-4">Under the National Employment Standards (NES), full-time employees accrue 4 weeks of paid annual leave per year. Part-time employees accrue pro-rata. Leave loading of 17.5% is common but depends on your award or agreement. Personal/carer's leave accrues at 10 days per year for full-time employees.</p>
   `;
 }
+
+function getTLDR() {
+  const startStr = document.getElementById('input-startDate').value;
+  const endStr = document.getElementById('input-endDate').value;
+  if (!startStr || !endStr) return '';
+  const start = new Date(startStr + 'T00:00:00');
+  const end = new Date(endStr + 'T00:00:00');
+  if (end <= start) return '';
+  const hoursPerWeek = parseFloat(document.getElementById('input-hoursPerWeek').value) || 38;
+  const totalDays = (end - start) / 86400000;
+  const totalWeeks = totalDays / 7;
+  const yearsOfService = totalWeeks / 52;
+  const ftRatio = hoursPerWeek / 38;
+  const annualLeaveWeeks = 4 * yearsOfService * ftRatio;
+  const annualLeaveDays = annualLeaveWeeks * 5;
+  const personalLeaveDays = 10 * yearsOfService * ftRatio;
+  return 'Over ' + yearsOfService.toFixed(2) + ' years of service you\'ve accrued ' + annualLeaveDays.toFixed(1) + ' days of annual leave (' + annualLeaveWeeks.toFixed(2) + ' weeks) and ' + personalLeaveDays.toFixed(1) + ' days of personal/carer\'s leave.';
+}

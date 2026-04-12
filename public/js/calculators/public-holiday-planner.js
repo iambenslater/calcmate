@@ -137,3 +137,19 @@ function calculate() {
     <p class="text-sm text-gray-500 mt-4">Past holidays shown dimmed. Some regional holidays (e.g., show days) vary by locality. Dates are approximate and should be confirmed with your state government.</p>
   `;
 }
+
+function getTLDR() {
+  const year = document.getElementById('input-year').value;
+  const state = (document.getElementById('input-state').value || '').toUpperCase();
+
+  if (!year || !state) return '';
+
+  const stateName = { NSW:'New South Wales', VIC:'Victoria', QLD:'Queensland', SA:'South Australia', WA:'Western Australia', TAS:'Tasmania', NT:'Northern Territory', ACT:'Australian Capital Territory' }[state] || state;
+
+  // Count approximate total holidays (national + state)
+  const nationalCounts = { '2025': 9, '2026': 9, '2027': 9 };
+  const stateExtras = { '2025': { NSW: 0, VIC: 1, QLD: 2, SA: 1, WA: 1, TAS: 1, NT: 1, ACT: 2 }, '2026': { NSW: 1, VIC: 2, QLD: 3, SA: 4, WA: 3, TAS: 3, NT: 3, ACT: 2 }, '2027': { NSW: 0, VIC: 1, QLD: 2, SA: 1, WA: 1, TAS: 1, NT: 1, ACT: 2 } };
+  const total = (nationalCounts[year] || 9) + ((stateExtras[year] || {})[state] || 0);
+
+  return year + ' has ' + total + ' public holidays in ' + stateName + '. Plan your long weekends early — that\'s ' + total + ' days you can\'t be expected to answer emails.';
+}

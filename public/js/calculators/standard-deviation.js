@@ -77,3 +77,18 @@ function calculate() {
 }
 
 function fmtNum(n) { return n.toLocaleString('en-AU', { minimumFractionDigits: 2, maximumFractionDigits: 4 }); }
+
+function getTLDR() {
+  const raw = document.getElementById('input-dataSet').value || '';
+  const numbers = raw.split(',').map(s => s.trim()).filter(s => s !== '' && !isNaN(s)).map(Number);
+  if (numbers.length === 0) return '';
+
+  const n = numbers.length;
+  const mean = numbers.reduce((a, b) => a + b, 0) / n;
+  const variancePop = numbers.reduce((acc, val) => acc + Math.pow(val - mean, 2), 0) / n;
+  const sdPop = Math.sqrt(variancePop);
+  const sorted = [...numbers].sort((a, b) => a - b);
+  const median = n % 2 === 0 ? (sorted[n / 2 - 1] + sorted[n / 2]) / 2 : sorted[Math.floor(n / 2)];
+
+  return 'Across ' + n + ' values, the mean is ' + fmtNum(mean) + ', the median is ' + fmtNum(median) + ', and the standard deviation is ' + fmtNum(sdPop) + ' — indicating ' + (sdPop / Math.abs(mean) < 0.2 ? 'low' : sdPop / Math.abs(mean) < 0.5 ? 'moderate' : 'high') + ' spread around the average.';
+}

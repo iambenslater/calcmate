@@ -57,3 +57,29 @@ function calculate() {
 }
 
 function fmt(n) { return '$' + n.toLocaleString('en-AU', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
+
+function getTLDR() {
+  const loanBalance = parseFloat(document.getElementById('input-loanBalance').value) || 0;
+  const rate = (parseFloat(document.getElementById('input-interestRate').value) || 0) / 100;
+  const loanTerm = parseInt(document.getElementById('input-loanTerm').value) || 30;
+  const offset = parseFloat(document.getElementById('input-offsetBalance').value) || 0;
+  if (loanBalance <= 0 || rate <= 0) return '';
+  const monthlyRate = rate / 12;
+  const totalMonths = loanTerm * 12;
+  const monthlyPayment = loanBalance * (monthlyRate * Math.pow(1 + monthlyRate, totalMonths)) / (Math.pow(1 + monthlyRate, totalMonths) - 1);
+  const interestNoOffset = monthlyPayment * totalMonths - loanBalance;
+  let balWithOffset = loanBalance, totalInterestOffset = 0, monthsWithOffset = 0;
+  while (balWithOffset > 0.01 && monthsWithOffset < totalMonths * 2) {
+    const effectiveBalance = Math.max(0, balWithOffset - offset);
+    const interest = effectiveBalance * monthlyRate;
+    const principalPaid = monthlyPayment - interest;
+    if (principalPaid <= 0) break;
+    balWithOffset -= principalPaid; totalInterestOffset += interest; monthsWithOffset++;
+    if (balWithOffset < 0) balWithOffset = 0;
+  }
+  const interestSaved = interestNoOffset - totalInterestOffset;
+  const timeSavedMonths = totalMonths - monthsWithOffset;
+  const timeSavedYears = Math.floor(timeSavedMonths / 12), timeSavedRemMonths = timeSavedMonths % 12;
+  const timeSavedStr = (timeSavedYears > 0 ? timeSavedYears + ' year' + (timeSavedYears !== 1 ? 's' : '') + ' ' : '') + (timeSavedRemMonths > 0 ? timeSavedRemMonths + ' month' + (timeSavedRemMonths !== 1 ? 's' : '') : '');
+  return 'Keeping ' + fmt(offset) + ' in your offset account saves ' + fmt(interestSaved) + ' in interest and cuts ' + timeSavedStr.trim() + ' off your loan term.';
+}

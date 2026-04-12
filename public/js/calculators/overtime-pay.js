@@ -23,3 +23,15 @@ function calculate() {
 }
 
 function fmt(n) { return '$' + n.toLocaleString('en-AU', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
+
+function getTLDR() {
+  const base = parseFloat(document.getElementById('input-baseRate').value) || 0;
+  if (base <= 0) return '';
+  const hours15 = parseFloat(document.getElementById('input-otHours150').value) || 0;
+  const hours20 = parseFloat(document.getElementById('input-otHours200').value) || 0;
+  const phHours = parseFloat(document.getElementById('input-pubHolHours').value) || 0;
+  const totalOT = base * 1.5 * hours15 + base * 2.0 * hours20 + base * 2.5 * phHours;
+  const totalHours = hours15 + hours20 + phHours;
+  if (totalHours === 0) return '';
+  return 'For ' + totalHours.toFixed(1) + ' hours of overtime at a base rate of ' + fmt(base) + '/hr, you\'ll earn ' + fmt(totalOT) + ' in overtime pay (effective rate: ' + fmt(totalOT / totalHours) + '/hr).';
+}

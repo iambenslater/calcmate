@@ -52,3 +52,23 @@ function calculate() {
 }
 
 function fmt(n) { return '$' + n.toLocaleString('en-AU', {minimumFractionDigits:2, maximumFractionDigits:2}); }
+
+function getTLDR() {
+  const propertyValue = parseFloat(document.getElementById('input-propertyValue').value) || 0;
+  const loanAmount = parseFloat(document.getElementById('input-loanAmount').value) || 0;
+  const interestRate = parseFloat(document.getElementById('input-interestRate').value) || 0;
+  const weeklyRent = parseFloat(document.getElementById('input-weeklyRent').value) || 0;
+  const annualExpenses = parseFloat(document.getElementById('input-annualExpenses').value) || 0;
+  const marginalTaxRate = parseFloat(document.getElementById('input-marginalRate').value) / 100;
+  if (propertyValue <= 0 || weeklyRent <= 0) return '';
+  const annualRent = weeklyRent * 52;
+  const annualInterest = loanAmount * (interestRate / 100);
+  const totalDepreciation = propertyValue * 0.60 * 0.025 + 2000;
+  const totalDeductions = annualInterest + annualExpenses + totalDepreciation;
+  const annualLoss = totalDeductions - annualRent;
+  const isNegativelyGeared = annualLoss > 0;
+  if (!isNegativelyGeared) return 'Your property is positively geared — rental income of ' + fmt(annualRent) + ' exceeds your total deductions of ' + fmt(totalDeductions) + '.';
+  const taxBenefit = annualLoss * marginalTaxRate;
+  const afterTaxCost = annualLoss - taxBenefit;
+  return 'Your property is negatively geared with an annual loss of ' + fmt(annualLoss) + ' — the ' + (marginalTaxRate * 100).toFixed(0) + '% tax benefit of ' + fmt(taxBenefit) + ' brings your after-tax out-of-pocket cost to ' + fmt(afterTaxCost) + '/year (' + fmt(afterTaxCost / 52) + '/week).';
+}

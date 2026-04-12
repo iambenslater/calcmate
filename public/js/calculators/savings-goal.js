@@ -94,3 +94,32 @@ function calculate() {
     ` : ''}
   `;
 }
+
+function getTLDR() {
+  const targetAmount = parseFloat(document.getElementById('input-target').value) || 0;
+  const currentSavings = parseFloat(document.getElementById('input-currentSavings').value) || 0;
+  const monthlyContribution = parseFloat(document.getElementById('input-monthlyContribution').value) || 0;
+  const annualRate = parseFloat(document.getElementById('input-annualRate').value) || 0;
+
+  if (targetAmount <= 0 || monthlyContribution <= 0) return '';
+
+  const monthlyRate = annualRate / 100 / 12;
+  let balance = currentSavings;
+  let months = 0;
+  const maxMonths = 600;
+
+  while (balance < targetAmount && months < maxMonths) {
+    const interest = balance * monthlyRate;
+    balance += interest + monthlyContribution;
+    months++;
+  }
+
+  if (balance >= targetAmount) {
+    const years = Math.floor(months / 12);
+    const remainingMonths = months % 12;
+    const timeStr = (years > 0 ? years + ' year' + (years !== 1 ? 's' : '') + ' ' : '') + (remainingMonths > 0 ? remainingMonths + ' month' + (remainingMonths !== 1 ? 's' : '') : '');
+    return 'Saving ' + formatCurrency(monthlyContribution) + '/month at ' + annualRate + '% interest, you\'ll reach your ' + formatCurrency(targetAmount) + ' goal in ' + timeStr.trim() + '.';
+  } else {
+    return 'At ' + formatCurrency(monthlyContribution) + '/month, you won\'t reach your ' + formatCurrency(targetAmount) + ' goal within 50 years — consider increasing your monthly contribution or interest rate.';
+  }
+}

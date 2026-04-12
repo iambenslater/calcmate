@@ -137,6 +137,9 @@
               </div>
               <span class="text-xs text-gray-400 font-medium">Rates current as of April 2026</span>
             </div>
+            <div id="result-tldr" class="hidden mb-5 bg-navy/5 rounded-xl px-5 py-4 border border-navy/10">
+              <p id="tldr-text" class="text-sm text-gray-700 leading-relaxed"></p>
+            </div>
             <div id="results-content"></div>
           </div>
         </div>
@@ -281,10 +284,29 @@
 <script src="/js/calcmate-results.js"></script>
 
 <script>
+  // TLDR rendering
+  function renderTLDR() {
+    var tldrBox = document.getElementById('result-tldr');
+    var tldrText = document.getElementById('tldr-text');
+    if (!tldrBox || !tldrText) return;
+    if (typeof getTLDR === 'function') {
+      try {
+        var text = getTLDR();
+        if (text) {
+          tldrText.textContent = text;
+          tldrBox.classList.remove('hidden');
+          return;
+        }
+      } catch(e) {}
+    }
+    tldrBox.classList.add('hidden');
+  }
+
   // Calculate button
   document.getElementById('calc-btn').addEventListener('click', function() {
     if (typeof calculate === 'function') {
       calculate();
+      renderTLDR();
       if (typeof window.onCalculateComplete === 'function') window.onCalculateComplete();
       setTimeout(function() {
         var r = document.getElementById('calc-results');
@@ -303,6 +325,7 @@
       debounceTimer = setTimeout(function() {
         if (typeof calculate === 'function' && !document.getElementById('calc-results').classList.contains('hidden')) {
           calculate();
+          renderTLDR();
           if (typeof window.onCalculateComplete === 'function') window.onCalculateComplete();
         }
       }, 400);
@@ -311,6 +334,7 @@
       if (e.target.tagName === 'SELECT' || e.target.type === 'radio' || e.target.type === 'checkbox') {
         if (typeof calculate === 'function' && !document.getElementById('calc-results').classList.contains('hidden')) {
           calculate();
+          renderTLDR();
           if (typeof window.onCalculateComplete === 'function') window.onCalculateComplete();
         }
       }

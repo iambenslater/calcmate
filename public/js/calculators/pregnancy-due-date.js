@@ -100,3 +100,35 @@ function calculate() {
     <p class="text-xs text-gray-400 mt-3">Due dates are estimates. Only about 5% of babies arrive on their due date. A normal full-term delivery ranges from 37 to 42 weeks. Consult your healthcare provider for personalised care.</p>
   `;
 }
+
+function getTLDR() {
+  const lmpDateStr = document.getElementById('input-date').value;
+  if (!lmpDateStr) return '';
+
+  let method = 'lmp';
+  const methodInputs = document.querySelectorAll('input[name="input-method"]');
+  for (const input of methodInputs) {
+    if (input.checked) { method = input.value; break; }
+  }
+
+  const startDate = new Date(lmpDateStr);
+  const daysToAdd = method === 'lmp' ? 280 : 266;
+  const dueDate = new Date(startDate);
+  dueDate.setDate(dueDate.getDate() + daysToAdd);
+
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  const referenceDate = method === 'lmp' ? startDate : new Date(startDate.getTime() - 14 * 24 * 60 * 60 * 1000);
+  const daysSinceRef = Math.floor((today - referenceDate) / (1000 * 60 * 60 * 24));
+  const gestWeeks = Math.floor(daysSinceRef / 7);
+  const gestDays = daysSinceRef % 7;
+  const daysUntilDue = Math.floor((dueDate - today) / (1000 * 60 * 60 * 24));
+
+  const formatShort = (d) => d.toLocaleDateString('en-AU', { day: 'numeric', month: 'long', year: 'numeric' });
+
+  if (daysSinceRef < 0) {
+    return 'Your estimated due date is ' + formatShort(dueDate) + '.';
+  }
+  return 'You are currently ' + gestWeeks + ' weeks and ' + gestDays + ' day' + (gestDays !== 1 ? 's' : '') + ' pregnant, with an estimated due date of ' + formatShort(dueDate) + ' (' + (daysUntilDue > 0 ? daysUntilDue + ' days to go' : 'past due date') + ').';
+}

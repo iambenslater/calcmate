@@ -124,3 +124,26 @@ function calculate() {
     <p class="text-xs text-gray-400 mt-3">Based on the Mifflin-St Jeor equation. Results are estimates and individual metabolism varies. Consult a healthcare professional before making significant dietary changes.</p>
   `;
 }
+
+function getTLDR() {
+  var age = parseInt(document.getElementById('input-age').value) || 0;
+  var height = parseFloat(document.getElementById('input-height').value) || 0;
+  var weight = parseFloat(document.getElementById('input-weight').value) || 0;
+  var activityLevel = document.getElementById('input-activityLevel').value || 'moderate';
+  var goal = document.getElementById('input-goal').value || 'maintain';
+  var gender = 'male';
+  var genderInputs = document.querySelectorAll('input[name="input-gender"]');
+  for (var i = 0; i < genderInputs.length; i++) { if (genderInputs[i].checked) { gender = genderInputs[i].value; break; } }
+  if (age <= 0 || height <= 0 || weight <= 0) return '';
+  var bmr = gender === 'male' ? 10 * weight + 6.25 * height - 5 * age + 5 : 10 * weight + 6.25 * height - 5 * age - 161;
+  var activityMultipliers = { sedentary: 1.2, light: 1.375, moderate: 1.55, active: 1.725, extreme: 1.9 };
+  var tdee = bmr * (activityMultipliers[activityLevel] || 1.55);
+  var targetCalories = tdee;
+  var goalLabel = 'maintain weight';
+  var weeklyChange = '';
+  if (goal === 'lose') { targetCalories = tdee - 500; goalLabel = 'lose weight'; weeklyChange = ' (roughly 0.5 kg/week loss)'; }
+  if (goal === 'gain') { targetCalories = tdee + 400; goalLabel = 'gain weight'; weeklyChange = ' (roughly 0.35 kg/week gain)'; }
+  var safeMin = gender === 'male' ? 1500 : 1200;
+  if (targetCalories < safeMin) targetCalories = safeMin;
+  return 'To ' + goalLabel + ', your daily calorie target is ' + Math.round(targetCalories) + ' calories (maintenance is ' + Math.round(tdee) + ' cal/day)' + weeklyChange + '.';
+}

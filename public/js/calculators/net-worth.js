@@ -100,3 +100,31 @@ function calculate() {
 function fmt(n) {
   return new Intl.NumberFormat('en-AU', { style: 'currency', currency: 'AUD', minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(n);
 }
+
+function getTLDR() {
+  const cash        = parseFloat(document.getElementById('input-cash').value)            || 0;
+  const super_      = parseFloat(document.getElementById('input-superBalance').value)    || 0;
+  const property    = parseFloat(document.getElementById('input-propertyValue').value)   || 0;
+  const vehicle     = parseFloat(document.getElementById('input-vehicleValue').value)    || 0;
+  const investments = parseFloat(document.getElementById('input-investmentValue').value) || 0;
+  const otherAssets = parseFloat(document.getElementById('input-otherAssets').value)     || 0;
+  const mortgage    = parseFloat(document.getElementById('input-mortgageOwing').value)   || 0;
+  const carLoan     = parseFloat(document.getElementById('input-carLoan').value)         || 0;
+  const creditCard  = parseFloat(document.getElementById('input-creditCardDebt').value)  || 0;
+  const studentDebt = parseFloat(document.getElementById('input-studentDebt').value)     || 0;
+  const otherDebts  = parseFloat(document.getElementById('input-otherDebts').value)      || 0;
+  const age         = parseInt(document.getElementById('input-age').value)               || 30;
+  const totalAssets = cash + super_ + property + vehicle + investments + otherAssets;
+  const totalLiabilities = mortgage + carLoan + creditCard + studentDebt + otherDebts;
+  if (totalAssets === 0 && totalLiabilities === 0) return '';
+  const netWorth = totalAssets - totalLiabilities;
+  const medianData = [
+    { min: 0,  max: 24,  median: 35000 }, { min: 25, max: 34, median: 150000 },
+    { min: 35, max: 44,  median: 500000 }, { min: 45, max: 54, median: 850000 },
+    { min: 55, max: 64,  median: 1100000 }, { min: 65, max: 999, median: 1000000 },
+  ];
+  const bracket = medianData.find(b => age >= b.min && age <= b.max) || medianData[1];
+  const vsMedian = netWorth - bracket.median;
+  const comparison = vsMedian >= 0 ? fmt(vsMedian) + ' above' : fmt(Math.abs(vsMedian)) + ' below';
+  return 'Your net worth is ' + fmt(netWorth) + ' (' + fmt(totalAssets) + ' in assets minus ' + fmt(totalLiabilities) + ' in liabilities) — ' + comparison + ' the Australian median for your age group.';
+}

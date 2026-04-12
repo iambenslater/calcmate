@@ -88,3 +88,37 @@ function calculate() {
 function fmt(n) {
   return '$' + n.toLocaleString('en-AU', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 }
+
+function getTLDR() {
+  const yearsOfService = parseFloat(document.getElementById('input-yearsService').value) || 0;
+  const baseWeeklyPay = parseFloat(document.getElementById('input-basePay').value) || 0;
+
+  if (yearsOfService <= 0 || baseWeeklyPay <= 0) return '';
+
+  const scale = [
+    { min: 0, max: 1, weeks: 0 }, { min: 1, max: 2, weeks: 4 }, { min: 2, max: 3, weeks: 6 },
+    { min: 3, max: 4, weeks: 7 }, { min: 4, max: 5, weeks: 8 }, { min: 5, max: 6, weeks: 10 },
+    { min: 6, max: 7, weeks: 11 }, { min: 7, max: 8, weeks: 13 }, { min: 8, max: 9, weeks: 14 },
+    { min: 9, max: 10, weeks: 16 }, { min: 10, max: 999, weeks: 12 },
+  ];
+
+  let redundancyWeeks = 0;
+  for (const bracket of scale) {
+    if (yearsOfService >= bracket.min && (yearsOfService < bracket.max || bracket.max === 999)) {
+      redundancyWeeks = bracket.weeks;
+      break;
+    }
+  }
+
+  let noticeWeeks;
+  if (yearsOfService < 1) noticeWeeks = 1;
+  else if (yearsOfService < 3) noticeWeeks = 2;
+  else if (yearsOfService < 5) noticeWeeks = 3;
+  else noticeWeeks = 4;
+
+  const redundancyPay = redundancyWeeks * baseWeeklyPay;
+  const noticePay = noticeWeeks * baseWeeklyPay;
+  const totalPayout = redundancyPay + noticePay;
+
+  return 'After ' + yearsOfService + ' year' + (yearsOfService !== 1 ? 's' : '') + ' of service at ' + fmt(baseWeeklyPay) + '/week, you\'re entitled to ' + fmt(redundancyPay) + ' redundancy pay (' + redundancyWeeks + ' weeks) plus ' + fmt(noticePay) + ' notice pay (' + noticeWeeks + ' weeks), totalling ' + fmt(totalPayout) + '.';
+}

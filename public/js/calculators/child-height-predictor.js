@@ -41,3 +41,18 @@ function calculate() {
     <p style="margin-top:12px;font-size:0.85rem;color:var(--text-muted)">Based on the mid-parental height method. Actual height depends on nutrition, health, and other factors. Accuracy is approximately +/- 8.5cm.</p>
   `;
 }
+
+function getTLDR() {
+  var motherHeight = parseFloat(document.getElementById('input-motherHeight').value) || 0;
+  var fatherHeight = parseFloat(document.getElementById('input-fatherHeight').value) || 0;
+  var genderRadios = document.querySelectorAll('input[name="input-childGender"]');
+  var gender = 'male';
+  genderRadios.forEach(function(r) { if (r.checked) gender = r.value; });
+  if (motherHeight === 0 || fatherHeight === 0) return '';
+  var adjustment = gender === 'male' ? 13 : -13;
+  var predicted = (motherHeight + fatherHeight + adjustment) / 2;
+  var rangeLow = (predicted - 8.5).toFixed(1);
+  var rangeHigh = (predicted + 8.5).toFixed(1);
+  function cmToFtIn(cm) { var totalInches = cm / 2.54; var feet = Math.floor(totalInches / 12); var inches = Math.round(totalInches % 12); return feet + '\'' + inches + '"'; }
+  return 'Based on parent heights, your ' + (gender === 'male' ? 'son' : 'daughter') + '\'s predicted adult height is ' + predicted.toFixed(1) + ' cm (' + cmToFtIn(predicted) + '), with a likely range of ' + rangeLow + '–' + rangeHigh + ' cm.';
+}

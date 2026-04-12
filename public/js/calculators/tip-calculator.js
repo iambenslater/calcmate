@@ -38,3 +38,19 @@ function calculate() {
 function fmt(n) {
   return '$' + n.toLocaleString('en-AU', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 }
+
+function getTLDR() {
+  const billAmount = parseFloat(document.getElementById('input-billAmount').value) || 0;
+  const tipPercent = parseFloat(document.getElementById('input-tipPercent').value) || 0;
+  const splitBetween = parseInt(document.getElementById('input-splitBetween').value) || 1;
+  if (billAmount <= 0) return '';
+
+  const tipAmount = billAmount * (tipPercent / 100);
+  const totalBill = billAmount + tipAmount;
+  const perPerson = totalBill / splitBetween;
+
+  if (splitBetween > 1) {
+    return 'A ' + tipPercent + '% tip on a ' + fmt(billAmount) + ' bill comes to ' + fmt(tipAmount) + ', making the total ' + fmt(totalBill) + ' — that\'s ' + fmt(perPerson) + ' each split between ' + splitBetween + ' people.';
+  }
+  return 'A ' + tipPercent + '% tip on a ' + fmt(billAmount) + ' bill comes to ' + fmt(tipAmount) + ', bringing the total to ' + fmt(totalBill) + '.';
+}

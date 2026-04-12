@@ -36,3 +36,22 @@ function calculate() {
 }
 
 function fmt(n) { return '$' + n.toLocaleString('en-AU', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
+
+function getTLDR() {
+  const currentBalance = parseFloat(document.getElementById('input-currentBalance').value) || 0;
+  const annualSalary = parseFloat(document.getElementById('input-annualSalary').value) || 0;
+  const superRate = (parseFloat(document.getElementById('input-superRate').value) || 12) / 100;
+  const investmentReturn = (parseFloat(document.getElementById('input-investmentReturn').value) || 0) / 100;
+  const currentAge = parseInt(document.getElementById('input-currentAge').value) || 30;
+  const retirementAge = parseInt(document.getElementById('input-retireAge').value) || 67;
+  if (annualSalary <= 0) return '';
+
+  const annualContribution = annualSalary * superRate;
+  const years = Math.max(0, retirementAge - currentAge);
+  let balance = currentBalance;
+  for (let y = 1; y <= years; y++) {
+    balance = (balance + annualContribution) * (1 + investmentReturn);
+  }
+
+  return 'Starting with ' + fmt(currentBalance) + ' and contributing ' + fmt(annualContribution) + '/year, your super is projected to reach ' + fmt(balance) + ' by age ' + retirementAge + ' (' + years + ' years away).';
+}

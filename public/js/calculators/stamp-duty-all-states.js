@@ -146,3 +146,31 @@ function calculate() {
     ${isFirstHome ? '<p class="text-sm text-gray-600 mt-3">Note: First home buyer concessions vary by state and are not reflected in this comparison table. See individual state calculators for concession details.</p>' : ''}
   `;
 }
+
+function getTLDR() {
+  const propertyValue = parseFloat(document.getElementById('input-propertyValue').value) || 0;
+  if (propertyValue <= 0) return '';
+
+  const foreignEl = document.querySelector('input[name="input-foreignBuyer"]:checked');
+  const isForeign = foreignEl ? foreignEl.value === 'yes' : false;
+
+  const foreignSurcharges = { NSW: 0.09, VIC: 0.08, QLD: 0.08, SA: 0.07, WA: 0.07, TAS: 0.08, ACT: 0, NT: 0 };
+  const states = [
+    { name: 'NSW', fn: nswDuty }, { name: 'VIC', fn: vicDuty }, { name: 'QLD', fn: qldDuty },
+    { name: 'SA', fn: saDuty }, { name: 'WA', fn: waDuty }, { name: 'TAS', fn: tasDuty },
+    { name: 'ACT', fn: actDuty }, { name: 'NT', fn: ntDuty }
+  ];
+
+  let cheapest = { name: '', duty: Infinity };
+  let mostExpensive = { name: '', duty: 0 };
+
+  for (const state of states) {
+    const duty = state.fn(propertyValue);
+    const foreign = isForeign ? propertyValue * (foreignSurcharges[state.name] || 0) : 0;
+    const total = duty + foreign;
+    if (total < cheapest.duty) cheapest = { name: state.name, duty: total };
+    if (total > mostExpensive.duty) mostExpensive = { name: state.name, duty: total };
+  }
+
+  return 'For a ' + formatCurrency(propertyValue) + ' property, stamp duty ranges from ' + formatCurrency(cheapest.duty) + ' in ' + cheapest.name + ' to ' + formatCurrency(mostExpensive.duty) + ' in ' + mostExpensive.name + ' — a difference of ' + formatCurrency(mostExpensive.duty - cheapest.duty) + ' depending on which state you buy in.';
+}

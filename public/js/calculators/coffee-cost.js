@@ -68,3 +68,15 @@ function calculate() {
 }
 
 function fmt(n) { return '$' + n.toLocaleString('en-AU', {minimumFractionDigits:2, maximumFractionDigits:2}); }
+
+function getTLDR() {
+  var dailyCoffees = parseFloat(document.getElementById('input-coffeesPerDay').value) || 0;
+  var pricePerCoffee = parseFloat(document.getElementById('input-pricePerCoffee').value) || 0;
+  var workDaysPerWeek = parseInt(document.getElementById('input-workDaysPerWeek').value) || 5;
+  var workDaysPerYear = workDaysPerWeek * 52;
+  var yearlyCost = dailyCoffees * pricePerCoffee * workDaysPerYear;
+  function investedValue(annual, years, returnRate) { var total = 0; for (var y = 0; y < years; y++) { total = (total + annual) * (1 + returnRate); } return total; }
+  var invested10yr = investedValue(yearlyCost, 10, 0.07);
+  return 'Your coffee habit costs ' + fmt(yearlyCost) + '/year. If you invested that instead at 7% return, you\'d have ' + fmt(invested10yr) + ' after 10 years — but honestly, you probably deserve the coffee.';
+}
+

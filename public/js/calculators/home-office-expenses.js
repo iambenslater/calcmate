@@ -66,3 +66,22 @@ function calculate() {
     <div class="result-row"><span class="result-label">At 37% marginal rate</span><span class="result-value text-green-600">${formatCurrency(taxSaving37)}</span></div>
   `;
 }
+
+function getTLDR() {
+  const hoursPerWeek = parseFloat(document.getElementById('input-hoursPerWeek').value) || 0;
+  const weeksWorked = parseFloat(document.getElementById('input-weeksPerYear').value) || 0;
+  if (hoursPerWeek <= 0 || weeksWorked <= 0) return '';
+  const methodInputs = document.querySelectorAll('input[name="input-method"]');
+  let method = 'fixed';
+  for (const input of methodInputs) { if (input.checked) { method = input.value; break; } }
+  const totalHours = hoursPerWeek * weeksWorked;
+  const fixedDeduction = totalHours * 0.67;
+  const estimatedElectricity = totalHours * 0.35;
+  const estimatedInternet = totalHours * 0.15;
+  const estimatedPhoneUsage = totalHours * 0.10;
+  const estimatedDepreciation = weeksWorked * 5;
+  const actualEstimate = estimatedElectricity + estimatedInternet + estimatedPhoneUsage + estimatedDepreciation;
+  const deduction = method === 'fixed' ? fixedDeduction : actualEstimate;
+  const taxSaving = deduction * 0.30;
+  return 'Working from home for ' + totalHours.toFixed(0) + ' hours a year (' + hoursPerWeek + ' hrs/week) gives you a ' + (method === 'fixed' ? 'fixed rate' : 'actual cost') + ' deduction of ' + formatCurrency(deduction) + ', saving roughly ' + formatCurrency(taxSaving) + ' in tax at the 30% marginal rate.';
+}

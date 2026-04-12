@@ -53,3 +53,26 @@ function calculate() {
 function fmt(n) {
   return parseFloat(n.toFixed(6)).toString();
 }
+
+function getTLDR() {
+  const a = parseFloat(document.getElementById('input-a').value) || 0;
+  const b = parseFloat(document.getElementById('input-b').value) || 0;
+  const c = parseFloat(document.getElementById('input-c').value) || 0;
+
+  if (a === 0) return '';
+
+  const discriminant = b * b - 4 * a * c;
+
+  if (discriminant > 0) {
+    const r1 = (-b + Math.sqrt(discriminant)) / (2 * a);
+    const r2 = (-b - Math.sqrt(discriminant)) / (2 * a);
+    return 'The equation ' + a + 'x\u00B2 + ' + b + 'x + ' + c + ' = 0 has two real roots: x\u2081 = ' + fmt(r1) + ' and x\u2082 = ' + fmt(r2) + '.';
+  } else if (discriminant === 0) {
+    const r = -b / (2 * a);
+    return 'The equation ' + a + 'x\u00B2 + ' + b + 'x + ' + c + ' = 0 has one repeated root: x = ' + fmt(r) + '.';
+  } else {
+    const realPart = -b / (2 * a);
+    const imagPart = Math.sqrt(Math.abs(discriminant)) / (2 * a);
+    return 'The equation ' + a + 'x\u00B2 + ' + b + 'x + ' + c + ' = 0 has two complex roots: ' + fmt(realPart) + ' \u00B1 ' + fmt(Math.abs(imagPart)) + 'i (no real solutions).';
+  }
+}

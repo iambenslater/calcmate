@@ -73,3 +73,19 @@ function calculate() {
 function fmt(n) {
   return '$' + n.toLocaleString('en-AU', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 }
+
+function getTLDR() {
+  const yearsOfService = parseFloat(document.getElementById('input-yearsService').value) || 0;
+  const weeklyPay = parseFloat(document.getElementById('input-weeklyPay').value) || 0;
+  if (weeklyPay <= 0) return '';
+  const over45 = document.getElementById('input-over45')?.checked || false;
+  let baseNotice;
+  if (yearsOfService < 1) baseNotice = 1;
+  else if (yearsOfService < 3) baseNotice = 2;
+  else if (yearsOfService < 5) baseNotice = 3;
+  else baseNotice = 4;
+  const over45Bonus = (over45 && yearsOfService >= 2) ? 1 : 0;
+  const totalNotice = baseNotice + over45Bonus;
+  const noticePay = totalNotice * weeklyPay;
+  return 'After ' + yearsOfService + ' years of service, your minimum notice period is ' + totalNotice + ' week' + (totalNotice !== 1 ? 's' : '') + (over45Bonus ? ' (including the over-45 bonus week)' : '') + ', equivalent to ' + fmt(noticePay) + ' in payment in lieu of notice.';
+}

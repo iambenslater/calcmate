@@ -57,3 +57,19 @@ function calculate() {
 function capitalise(s) {
   return s.charAt(0).toUpperCase() + s.slice(1);
 }
+
+function getTLDR() {
+  const name1 = (document.getElementById('input-name1').value || '').trim().toLowerCase();
+  const name2 = (document.getElementById('input-name2').value || '').trim().toLowerCase();
+  if (!name1 || !name2) return '';
+  const combined = [name1, name2].sort().join('');
+  let hash = 0;
+  for (let i = 0; i < combined.length; i++) {
+    const ch = combined.charCodeAt(i);
+    hash = ((hash << 5) - hash) + ch;
+    hash = hash & hash;
+  }
+  const score = Math.abs(hash % 100) + 1;
+  const verdict = score >= 90 ? 'a match made in heaven' : score >= 75 ? 'a strong connection' : score >= 60 ? 'real potential' : score >= 40 ? 'a 50/50 shot' : score >= 25 ? 'a bit of a stretch' : 'not looking great';
+  return capitalise(name1) + ' and ' + capitalise(name2) + ' score ' + score + '% compatibility — ' + verdict + '. (This is purely for fun and has zero scientific basis.)';
+}

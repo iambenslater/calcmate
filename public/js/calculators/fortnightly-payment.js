@@ -88,3 +88,24 @@ function calculate() {
     <p class="text-sm text-gray-500">How it works: by paying half your monthly repayment every fortnight, you make 26 half-payments per year — equivalent to 13 full monthly payments. That extra month's payment each year chips away at principal faster, saving you years of interest.</p>
   `;
 }
+
+function getTLDR() {
+  const loanAmount = parseFloat(document.getElementById('input-loanAmount').value) || 0;
+  const annualRate = parseFloat(document.getElementById('input-interestRate').value) || 6.5;
+  const loanTerm = parseFloat(document.getElementById('input-loanTerm').value) || 30;
+  if (loanAmount <= 0) return '';
+  const monthlyRate = (annualRate / 100) / 12;
+  const totalMonths = loanTerm * 12;
+  const monthlyRepayment = loanAmount * (monthlyRate * Math.pow(1 + monthlyRate, totalMonths)) / (Math.pow(1 + monthlyRate, totalMonths) - 1);
+  const fortnightlyPayment = monthlyRepayment / 2;
+  const fortnightlyRate = Math.pow(1 + annualRate / 100, 1 / 26) - 1;
+  let balFn = loanAmount, totalInterestFn = 0, fortnights = 0;
+  while (balFn > 0.01 && fortnights < 1400) { const i = balFn * fortnightlyRate; totalInterestFn += i; balFn -= Math.min(fortnightlyPayment - i, balFn); fortnights++; }
+  let balM = loanAmount, totalInterestM = 0, monthsM = 0;
+  while (balM > 0.01 && monthsM < 600) { const i = balM * monthlyRate; totalInterestM += i; balM -= Math.min(monthlyRepayment - i, balM); monthsM++; }
+  const interestSaved = totalInterestM - totalInterestFn;
+  const timeSavedYears = loanTerm - (fortnights / 26);
+  const tsy = Math.floor(timeSavedYears);
+  const tsm = Math.round((timeSavedYears - tsy) * 12);
+  return 'Switching to fortnightly payments of ' + formatCurrency(fortnightlyPayment) + ' saves you ' + formatCurrency(interestSaved) + ' in interest and pays off the loan ' + (tsy > 0 ? tsy + ' yr' + (tsy !== 1 ? 's' : '') : '') + (tsm > 0 ? ' ' + tsm + ' mo' : '') + ' sooner.';
+}
