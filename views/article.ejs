@@ -8,8 +8,8 @@
     <% article.faq.forEach((f, i) => { %>
     {
       "@type": "Question",
-      "name": "<%- (f.q || '').replace(/"/g, '\\"') %>",
-      "acceptedAnswer": { "@type": "Answer", "text": "<%- (f.a || '').replace(/"/g, '\\"') %>" }
+      "name": "<%- (f.q || f.question || '').replace(/"/g, '\\"') %>",
+      "acceptedAnswer": { "@type": "Answer", "text": "<%- (f.a || f.answer || '').replace(/"/g, '\\"') %>" }
     }<%= i < article.faq.length - 1 ? ',' : '' %>
     <% }) %>
   ]
@@ -108,12 +108,12 @@
           <h2 class="text-xl font-bold text-navy mb-4">Frequently Asked Questions</h2>
           <div class="space-y-4">
             <% article.faq.forEach((f, fIdx) => { %>
-              <details class="group">
-                <summary class="cursor-pointer font-medium text-navy hover:text-gold transition flex items-center justify-between">
-                  <span><%= f.q %></span>
-                  <svg class="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform shrink-0 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+              <details class="group border-b border-gray-100 pb-3">
+                <summary class="cursor-pointer font-medium hover:text-gold transition flex justify-between gap-2 text-sm sm:text-base leading-snug py-1" style="color: #00205B;">
+                  <span class="flex-1" style="color: #00205B;"><%= f.q || f.question || '' %></span>
+                  <svg class="w-5 h-5 shrink-0 mt-0.5" style="color: #9ca3af;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
                 </summary>
-                <p class="mt-2 text-gray-600 text-sm leading-relaxed"><%= f.a %></p>
+                <p class="mt-2 text-sm leading-relaxed" style="color: #4b5563;"><%= f.a || f.answer || '' %></p>
               </details>
               <% if (fIdx === 1) { %>
                 <div class="my-2"><%- include('partials/ad-leaderboard', { adSlot: adSlotNum++ }) %></div>
