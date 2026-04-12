@@ -148,7 +148,11 @@
       "super-guarantee",
       "budget-planner",
       "tax-return-estimator"
-    ]
+    ],
+    "chartConfig": {
+      "type": "doughnut",
+      "dataLabels": ["Income Tax", "Medicare Levy", "Medicare Surcharge (no PHI)", "HELP Repayment", "Annual Take-Home Pay"]
+    }
   },
   {
     "slug": "income-tax",
@@ -1058,7 +1062,11 @@
       "savings-goal",
       "mortgage-repayment",
       "fuel-cost"
-    ]
+    ],
+    "chartConfig": {
+      "type": "doughnut",
+      "dataLabels": ["Housing", "Transport", "Food & Groceries", "Utilities", "Entertainment", "Savings", "Other"]
+    }
   },
   {
     "slug": "savings-goal",
@@ -1446,7 +1454,11 @@
       "stamp-duty-all-states",
       "first-home-buyer-costs",
       "lvr"
-    ]
+    ],
+    "chartConfig": {
+      "type": "doughnut",
+      "dataLabels": ["Estimated Borrowing Power", "Living Expenses (assessed)", "Existing Debt Repayments"]
+    }
   },
   {
     "slug": "stamp-duty-nsw",
@@ -1948,7 +1960,11 @@
       "stamp-duty-vic",
       "stamp-duty-qld",
       "first-home-buyer-costs"
-    ]
+    ],
+    "chartConfig": {
+      "type": "bar",
+      "dataLabels": ["NSW", "VIC", "QLD", "SA", "WA", "TAS", "ACT", "NT"]
+    }
   },
   {
     "slug": "land-tax",
@@ -2809,7 +2825,11 @@
       "bmi",
       "body-fat",
       "ideal-weight"
-    ]
+    ],
+    "chartConfig": {
+      "type": "doughnut",
+      "dataLabels": ["Protein", "Carbohydrates", "Fat"]
+    }
   },
   {
     "slug": "pregnancy-due-date",
@@ -4921,7 +4941,11 @@
       "budget-planner",
       "hourly-rate",
       "leave-calculator"
-    ]
+    ],
+    "chartConfig": {
+      "type": "doughnut",
+      "dataLabels": ["GST Amount", "Price Excluding GST"]
+    }
   },
   {
     "slug": "percentage",
@@ -6986,7 +7010,11 @@
       "compound-interest",
       "refinance-savings",
       "simple-interest"
-    ]
+    ],
+    "chartConfig": {
+      "type": "doughnut",
+      "dataLabels": ["Starting Balance", "Total Interest Paid"]
+    }
   },
   {
     "slug": "home-loan-affordability",
@@ -7747,7 +7775,11 @@
       "loan-comparison",
       "credit-card-payoff",
       "mortgage-repayment"
-    ]
+    ],
+    "chartConfig": {
+      "type": "doughnut",
+      "dataLabels": ["Principal", "Total Interest"]
+    }
   },
   {
     "slug": "loan-comparison",
@@ -10774,7 +10806,11 @@
       "capital-gains-tax",
       "stamp-duty-all-states",
       "mortgage-repayment"
-    ]
+    ],
+    "chartConfig": {
+      "type": "doughnut",
+      "dataLabels": ["Annual Rent", "Annual Expenses", "Net Annual Income"]
+    }
   },
   {
     "slug": "negative-gearing",
