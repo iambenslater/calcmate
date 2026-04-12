@@ -5,11 +5,11 @@
   "@context": "https://schema.org",
   "@type": "Organization",
   "name": "CalculatorMate",
-  "url": "<%= siteUrl %>",
+  "url": "<%- siteUrl %>",
   "description": "100+ free online calculators built for Australians. Tax, mortgage, health, business calculators with current ATO rates and state-specific data.",
   "logo": {
     "@type": "ImageObject",
-    "url": "<%= siteUrl %>/images/og-default.png",
+    "url": "<%- siteUrl %>/images/og-default.png",
     "width": 1200,
     "height": 630
   },
@@ -21,10 +21,10 @@
   "@context": "https://schema.org",
   "@type": "WebSite",
   "name": "CalculatorMate Australia",
-  "url": "<%= siteUrl %>",
+  "url": "<%- siteUrl %>",
   "potentialAction": {
     "@type": "SearchAction",
-    "target": "<%= siteUrl %>/api/search?q={search_term_string}",
+    "target": "<%- siteUrl %>/api/search?q={search_term_string}",
     "query-input": "required name=search_term_string"
   }
 }

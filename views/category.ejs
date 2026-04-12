@@ -6,13 +6,13 @@
   "@type": "CollectionPage",
   "name": "<%- categoryName.replace(/"/g, '\\"') %> Calculators",
   "description": "<%- categoryDescription.replace(/"/g, '\\"') %>",
-  "url": "<%= siteUrl %>/<%= category %>",
-  "isPartOf": { "@type": "WebSite", "name": "CalculatorMate Australia", "url": "<%= siteUrl %>" },
+  "url": "<%- siteUrl %>/<%- category %>",
+  "isPartOf": { "@type": "WebSite", "name": "CalculatorMate Australia", "url": "<%- siteUrl %>" },
   "breadcrumb": {
     "@type": "BreadcrumbList",
     "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Home", "item": "<%= siteUrl %>" },
-      { "@type": "ListItem", "position": 2, "name": "<%- categoryName.replace(/"/g, '\\"') %>", "item": "<%= siteUrl %>/<%= category %>" }
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "<%- siteUrl %>" },
+      { "@type": "ListItem", "position": 2, "name": "<%- categoryName.replace(/"/g, '\\"') %>", "item": "<%- siteUrl %>/<%- category %>" }
     ]
   }
 }

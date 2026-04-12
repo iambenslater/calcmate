@@ -4,12 +4,12 @@
   "@context": "https://schema.org",
   "@type": "AboutPage",
   "name": "About CalculatorMate",
-  "description": "<%= metaDescription %>",
-  "url": "<%= siteUrl %>/about",
+  "description": "<%- (metaDescription || '').replace(/"/g, '\\"') %>",
+  "url": "<%- siteUrl %>/about",
   "mainEntity": {
     "@type": "Organization",
     "name": "CalculatorMate",
-    "url": "<%= siteUrl %>",
+    "url": "<%- siteUrl %>",
     "founder": {
       "@type": "Person",
       "name": "Ben Slater",
