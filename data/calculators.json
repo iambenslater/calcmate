@@ -151,7 +151,13 @@
     ],
     "chartConfig": {
       "type": "doughnut",
-      "dataLabels": ["Income Tax", "Medicare Levy", "Medicare Surcharge (no PHI)", "HELP Repayment", "Annual Take-Home Pay"]
+      "dataLabels": [
+        "Income Tax",
+        "Medicare Levy",
+        "Medicare Surcharge (no PHI)",
+        "HELP Repayment",
+        "Annual Take-Home Pay"
+      ]
     }
   },
   {
@@ -1065,7 +1071,15 @@
     ],
     "chartConfig": {
       "type": "doughnut",
-      "dataLabels": ["Housing", "Transport", "Food & Groceries", "Utilities", "Entertainment", "Savings", "Other"]
+      "dataLabels": [
+        "Housing",
+        "Transport",
+        "Food & Groceries",
+        "Utilities",
+        "Entertainment",
+        "Savings",
+        "Other"
+      ]
     }
   },
   {
@@ -1457,7 +1471,11 @@
     ],
     "chartConfig": {
       "type": "doughnut",
-      "dataLabels": ["Estimated Borrowing Power", "Living Expenses (assessed)", "Existing Debt Repayments"]
+      "dataLabels": [
+        "Estimated Borrowing Power",
+        "Living Expenses (assessed)",
+        "Existing Debt Repayments"
+      ]
     }
   },
   {
@@ -1963,7 +1981,16 @@
     ],
     "chartConfig": {
       "type": "bar",
-      "dataLabels": ["NSW", "VIC", "QLD", "SA", "WA", "TAS", "ACT", "NT"]
+      "dataLabels": [
+        "NSW",
+        "VIC",
+        "QLD",
+        "SA",
+        "WA",
+        "TAS",
+        "ACT",
+        "NT"
+      ]
     }
   },
   {
@@ -2828,7 +2855,11 @@
     ],
     "chartConfig": {
       "type": "doughnut",
-      "dataLabels": ["Protein", "Carbohydrates", "Fat"]
+      "dataLabels": [
+        "Protein",
+        "Carbohydrates",
+        "Fat"
+      ]
     }
   },
   {
@@ -4944,7 +4975,10 @@
     ],
     "chartConfig": {
       "type": "doughnut",
-      "dataLabels": ["GST Amount", "Price Excluding GST"]
+      "dataLabels": [
+        "GST Amount",
+        "Price Excluding GST"
+      ]
     }
   },
   {
@@ -7013,7 +7047,10 @@
     ],
     "chartConfig": {
       "type": "doughnut",
-      "dataLabels": ["Starting Balance", "Total Interest Paid"]
+      "dataLabels": [
+        "Starting Balance",
+        "Total Interest Paid"
+      ]
     }
   },
   {
@@ -7778,7 +7815,10 @@
     ],
     "chartConfig": {
       "type": "doughnut",
-      "dataLabels": ["Principal", "Total Interest"]
+      "dataLabels": [
+        "Principal",
+        "Total Interest"
+      ]
     }
   },
   {
@@ -10809,7 +10849,11 @@
     ],
     "chartConfig": {
       "type": "doughnut",
-      "dataLabels": ["Annual Rent", "Annual Expenses", "Net Annual Income"]
+      "dataLabels": [
+        "Annual Rent",
+        "Annual Expenses",
+        "Net Annual Income"
+      ]
     }
   },
   {
@@ -11443,14 +11487,38 @@
         "type": "select",
         "default": "NSW",
         "options": [
-          { "value": "NSW", "label": "New South Wales" },
-          { "value": "VIC", "label": "Victoria" },
-          { "value": "QLD", "label": "Queensland" },
-          { "value": "SA", "label": "South Australia" },
-          { "value": "WA", "label": "Western Australia" },
-          { "value": "TAS", "label": "Tasmania" },
-          { "value": "NT", "label": "Northern Territory" },
-          { "value": "ACT", "label": "Australian Capital Territory" }
+          {
+            "value": "NSW",
+            "label": "New South Wales"
+          },
+          {
+            "value": "VIC",
+            "label": "Victoria"
+          },
+          {
+            "value": "QLD",
+            "label": "Queensland"
+          },
+          {
+            "value": "SA",
+            "label": "South Australia"
+          },
+          {
+            "value": "WA",
+            "label": "Western Australia"
+          },
+          {
+            "value": "TAS",
+            "label": "Tasmania"
+          },
+          {
+            "value": "NT",
+            "label": "Northern Territory"
+          },
+          {
+            "value": "ACT",
+            "label": "Australian Capital Territory"
+          }
         ]
       },
       {
@@ -11466,9 +11534,18 @@
         "type": "radio",
         "default": "established",
         "options": [
-          { "value": "established", "label": "Established Home" },
-          { "value": "new", "label": "New Build" },
-          { "value": "vacant-land", "label": "Vacant Land" }
+          {
+            "value": "established",
+            "label": "Established Home"
+          },
+          {
+            "value": "new",
+            "label": "New Build"
+          },
+          {
+            "value": "vacant-land",
+            "label": "Vacant Land"
+          }
         ]
       }
     ],
@@ -11532,7 +11609,7 @@
         "id": "agentCommission",
         "label": "Agent Commission (%)",
         "type": "number",
-        "default": 2.0,
+        "default": 2,
         "placeholder": "e.g. 2.0",
         "suffix": "%",
         "min": 0,
@@ -11570,14 +11647,38 @@
         "type": "select",
         "default": "NSW",
         "options": [
-          { "value": "NSW", "label": "New South Wales" },
-          { "value": "VIC", "label": "Victoria" },
-          { "value": "QLD", "label": "Queensland" },
-          { "value": "SA", "label": "South Australia" },
-          { "value": "WA", "label": "Western Australia" },
-          { "value": "TAS", "label": "Tasmania" },
-          { "value": "NT", "label": "Northern Territory" },
-          { "value": "ACT", "label": "Australian Capital Territory" }
+          {
+            "value": "NSW",
+            "label": "New South Wales"
+          },
+          {
+            "value": "VIC",
+            "label": "Victoria"
+          },
+          {
+            "value": "QLD",
+            "label": "Queensland"
+          },
+          {
+            "value": "SA",
+            "label": "South Australia"
+          },
+          {
+            "value": "WA",
+            "label": "Western Australia"
+          },
+          {
+            "value": "TAS",
+            "label": "Tasmania"
+          },
+          {
+            "value": "NT",
+            "label": "Northern Territory"
+          },
+          {
+            "value": "ACT",
+            "label": "Australian Capital Territory"
+          }
         ]
       },
       {
@@ -11984,7 +12085,7 @@
         "id": "fixedRate",
         "label": "Fixed Interest Rate",
         "type": "number",
-        "default": 6.0,
+        "default": 6,
         "placeholder": "e.g. 6.0",
         "suffix": "% p.a.",
         "min": 0.1,
@@ -12084,8 +12185,14 @@
         "type": "radio",
         "default": "standard",
         "options": [
-          { "value": "standard", "label": "Standard (petrol, diesel)" },
-          { "value": "electric-hybrid", "label": "Fuel-efficient (electric, hybrid)" }
+          {
+            "value": "standard",
+            "label": "Standard (petrol, diesel)"
+          },
+          {
+            "value": "electric-hybrid",
+            "label": "Fuel-efficient (electric, hybrid)"
+          }
         ]
       },
       {
@@ -12094,8 +12201,14 @@
         "type": "radio",
         "default": "yes",
         "options": [
-          { "value": "yes", "label": "Yes — price is GST-inclusive" },
-          { "value": "no", "label": "No — price is ex-GST" }
+          {
+            "value": "yes",
+            "label": "Yes — price is GST-inclusive"
+          },
+          {
+            "value": "no",
+            "label": "No — price is ex-GST"
+          }
         ]
       }
     ],
@@ -12167,11 +12280,26 @@
         "type": "select",
         "default": "3",
         "options": [
-          { "value": "1", "label": "1 year" },
-          { "value": "2", "label": "2 years" },
-          { "value": "3", "label": "3 years" },
-          { "value": "4", "label": "4 years" },
-          { "value": "5", "label": "5 years" }
+          {
+            "value": "1",
+            "label": "1 year"
+          },
+          {
+            "value": "2",
+            "label": "2 years"
+          },
+          {
+            "value": "3",
+            "label": "3 years"
+          },
+          {
+            "value": "4",
+            "label": "4 years"
+          },
+          {
+            "value": "5",
+            "label": "5 years"
+          }
         ]
       },
       {
@@ -12180,11 +12308,26 @@
         "type": "select",
         "default": "15000",
         "options": [
-          { "value": "10000", "label": "10,000 km" },
-          { "value": "15000", "label": "15,000 km" },
-          { "value": "20000", "label": "20,000 km" },
-          { "value": "25000", "label": "25,000 km" },
-          { "value": "30000", "label": "30,000 km" }
+          {
+            "value": "10000",
+            "label": "10,000 km"
+          },
+          {
+            "value": "15000",
+            "label": "15,000 km"
+          },
+          {
+            "value": "20000",
+            "label": "20,000 km"
+          },
+          {
+            "value": "25000",
+            "label": "25,000 km"
+          },
+          {
+            "value": "30000",
+            "label": "30,000 km"
+          }
         ]
       },
       {
@@ -12193,10 +12336,22 @@
         "type": "radio",
         "default": "petrol",
         "options": [
-          { "value": "petrol", "label": "Petrol" },
-          { "value": "diesel", "label": "Diesel" },
-          { "value": "hybrid", "label": "Hybrid" },
-          { "value": "electric", "label": "Electric" }
+          {
+            "value": "petrol",
+            "label": "Petrol"
+          },
+          {
+            "value": "diesel",
+            "label": "Diesel"
+          },
+          {
+            "value": "hybrid",
+            "label": "Hybrid"
+          },
+          {
+            "value": "electric",
+            "label": "Electric"
+          }
         ]
       }
     ],
@@ -12283,10 +12438,22 @@
         "type": "select",
         "default": "5",
         "options": [
-          { "value": "3", "label": "3 years" },
-          { "value": "5", "label": "5 years" },
-          { "value": "7", "label": "7 years" },
-          { "value": "10", "label": "10 years" }
+          {
+            "value": "3",
+            "label": "3 years"
+          },
+          {
+            "value": "5",
+            "label": "5 years"
+          },
+          {
+            "value": "7",
+            "label": "7 years"
+          },
+          {
+            "value": "10",
+            "label": "10 years"
+          }
         ]
       },
       {
@@ -12376,12 +12543,30 @@
         "type": "select",
         "default": "5",
         "options": [
-          { "value": "1", "label": "1 year" },
-          { "value": "2", "label": "2 years" },
-          { "value": "3", "label": "3 years" },
-          { "value": "4", "label": "4 years" },
-          { "value": "5", "label": "5 years" },
-          { "value": "7", "label": "7 years" }
+          {
+            "value": "1",
+            "label": "1 year"
+          },
+          {
+            "value": "2",
+            "label": "2 years"
+          },
+          {
+            "value": "3",
+            "label": "3 years"
+          },
+          {
+            "value": "4",
+            "label": "4 years"
+          },
+          {
+            "value": "5",
+            "label": "5 years"
+          },
+          {
+            "value": "7",
+            "label": "7 years"
+          }
         ]
       },
       {
@@ -12459,7 +12644,7 @@
         "id": "currentRate",
         "label": "Current Card Interest Rate",
         "type": "number",
-        "default": 20.0,
+        "default": 20,
         "placeholder": "e.g. 20.0",
         "suffix": "% p.a.",
         "min": 0,
@@ -12586,11 +12771,26 @@
         "type": "select",
         "default": "3",
         "options": [
-          { "value": "1", "label": "1 year" },
-          { "value": "2", "label": "2 years" },
-          { "value": "3", "label": "3 years" },
-          { "value": "5", "label": "5 years" },
-          { "value": "7", "label": "7 years" }
+          {
+            "value": "1",
+            "label": "1 year"
+          },
+          {
+            "value": "2",
+            "label": "2 years"
+          },
+          {
+            "value": "3",
+            "label": "3 years"
+          },
+          {
+            "value": "5",
+            "label": "5 years"
+          },
+          {
+            "value": "7",
+            "label": "7 years"
+          }
         ]
       },
       {
@@ -12599,9 +12799,18 @@
         "type": "radio",
         "default": "monthly",
         "options": [
-          { "value": "weekly", "label": "Weekly" },
-          { "value": "fortnightly", "label": "Fortnightly" },
-          { "value": "monthly", "label": "Monthly" }
+          {
+            "value": "weekly",
+            "label": "Weekly"
+          },
+          {
+            "value": "fortnightly",
+            "label": "Fortnightly"
+          },
+          {
+            "value": "monthly",
+            "label": "Monthly"
+          }
         ]
       }
     ],
@@ -12649,7 +12858,7 @@
         "id": "advertisedRate",
         "label": "Advertised Interest Rate",
         "type": "number",
-        "default": 6.0,
+        "default": 6,
         "placeholder": "e.g. 6.0",
         "suffix": "% p.a.",
         "min": 0.1,
@@ -12976,11 +13185,26 @@
         "type": "select",
         "default": "0",
         "options": [
-          { "value": "0", "label": "None" },
-          { "value": "1", "label": "1" },
-          { "value": "2", "label": "2" },
-          { "value": "3", "label": "3" },
-          { "value": "4+", "label": "4 or more" }
+          {
+            "value": "0",
+            "label": "None"
+          },
+          {
+            "value": "1",
+            "label": "1"
+          },
+          {
+            "value": "2",
+            "label": "2"
+          },
+          {
+            "value": "3",
+            "label": "3"
+          },
+          {
+            "value": "4+",
+            "label": "4 or more"
+          }
         ]
       },
       {
@@ -13106,8 +13330,14 @@
         "type": "radio",
         "default": "75%",
         "options": [
-          { "value": "75%", "label": "75% of income" },
-          { "value": "85%", "label": "85% of income" }
+          {
+            "value": "75%",
+            "label": "75% of income"
+          },
+          {
+            "value": "85%",
+            "label": "85% of income"
+          }
         ]
       },
       {
@@ -13116,10 +13346,22 @@
         "type": "select",
         "default": "30days",
         "options": [
-          { "value": "14days", "label": "14 days" },
-          { "value": "30days", "label": "30 days" },
-          { "value": "60days", "label": "60 days" },
-          { "value": "90days", "label": "90 days" }
+          {
+            "value": "14days",
+            "label": "14 days"
+          },
+          {
+            "value": "30days",
+            "label": "30 days"
+          },
+          {
+            "value": "60days",
+            "label": "60 days"
+          },
+          {
+            "value": "90days",
+            "label": "90 days"
+          }
         ]
       },
       {
@@ -13128,9 +13370,18 @@
         "type": "select",
         "default": "2years",
         "options": [
-          { "value": "2years", "label": "2 years" },
-          { "value": "5years", "label": "5 years" },
-          { "value": "to-65", "label": "To age 65" }
+          {
+            "value": "2years",
+            "label": "2 years"
+          },
+          {
+            "value": "5years",
+            "label": "5 years"
+          },
+          {
+            "value": "to-65",
+            "label": "To age 65"
+          }
         ]
       },
       {
@@ -13150,8 +13401,14 @@
         "type": "radio",
         "default": "no",
         "options": [
-          { "value": "no", "label": "Non-smoker" },
-          { "value": "yes", "label": "Smoker" }
+          {
+            "value": "no",
+            "label": "Non-smoker"
+          },
+          {
+            "value": "yes",
+            "label": "Smoker"
+          }
         ]
       },
       {
@@ -13160,10 +13417,22 @@
         "type": "select",
         "default": "professional",
         "options": [
-          { "value": "professional", "label": "Professional (doctor, lawyer, accountant)" },
-          { "value": "white-collar", "label": "White collar (office / admin)" },
-          { "value": "light-manual", "label": "Light manual (trades support, retail)" },
-          { "value": "heavy-manual", "label": "Heavy manual (tradesperson, labourer)" }
+          {
+            "value": "professional",
+            "label": "Professional (doctor, lawyer, accountant)"
+          },
+          {
+            "value": "white-collar",
+            "label": "White collar (office / admin)"
+          },
+          {
+            "value": "light-manual",
+            "label": "Light manual (trades support, retail)"
+          },
+          {
+            "value": "heavy-manual",
+            "label": "Heavy manual (tradesperson, labourer)"
+          }
         ]
       }
     ],
@@ -13227,8 +13496,14 @@
         "type": "radio",
         "default": "male",
         "options": [
-          { "value": "male", "label": "Male" },
-          { "value": "female", "label": "Female" }
+          {
+            "value": "male",
+            "label": "Male"
+          },
+          {
+            "value": "female",
+            "label": "Female"
+          }
         ]
       },
       {
@@ -13259,11 +13534,26 @@
         "type": "select",
         "default": "moderate",
         "options": [
-          { "value": "sedentary", "label": "Sedentary (desk job, little exercise)" },
-          { "value": "light", "label": "Lightly Active (1-3 days/week)" },
-          { "value": "moderate", "label": "Moderately Active (3-5 days/week)" },
-          { "value": "active", "label": "Very Active (6-7 days/week)" },
-          { "value": "extreme", "label": "Extremely Active (athlete/physical job)" }
+          {
+            "value": "sedentary",
+            "label": "Sedentary (desk job, little exercise)"
+          },
+          {
+            "value": "light",
+            "label": "Lightly Active (1-3 days/week)"
+          },
+          {
+            "value": "moderate",
+            "label": "Moderately Active (3-5 days/week)"
+          },
+          {
+            "value": "active",
+            "label": "Very Active (6-7 days/week)"
+          },
+          {
+            "value": "extreme",
+            "label": "Extremely Active (athlete/physical job)"
+          }
         ]
       },
       {
@@ -13272,9 +13562,18 @@
         "type": "select",
         "default": "maintain",
         "options": [
-          { "value": "lose", "label": "Lose Weight" },
-          { "value": "maintain", "label": "Maintain Weight" },
-          { "value": "gain", "label": "Build Muscle / Gain Weight" }
+          {
+            "value": "lose",
+            "label": "Lose Weight"
+          },
+          {
+            "value": "maintain",
+            "label": "Maintain Weight"
+          },
+          {
+            "value": "gain",
+            "label": "Build Muscle / Gain Weight"
+          }
         ]
       }
     ],
@@ -13338,8 +13637,14 @@
         "type": "radio",
         "default": "male",
         "options": [
-          { "value": "male", "label": "Male" },
-          { "value": "female", "label": "Female" }
+          {
+            "value": "male",
+            "label": "Male"
+          },
+          {
+            "value": "female",
+            "label": "Female"
+          }
         ]
       },
       {
@@ -13348,8 +13653,14 @@
         "type": "radio",
         "default": "no",
         "options": [
-          { "value": "yes", "label": "Yes" },
-          { "value": "no", "label": "No" }
+          {
+            "value": "yes",
+            "label": "Yes"
+          },
+          {
+            "value": "no",
+            "label": "No"
+          }
         ],
         "help": "Are you currently pregnant? (Applies to females only)"
       },
@@ -13359,8 +13670,14 @@
         "type": "radio",
         "default": "no",
         "options": [
-          { "value": "yes", "label": "Yes" },
-          { "value": "no", "label": "No" }
+          {
+            "value": "yes",
+            "label": "Yes"
+          },
+          {
+            "value": "no",
+            "label": "No"
+          }
         ],
         "help": "Are you currently breastfeeding? (Applies to females only)"
       }
@@ -13567,9 +13884,18 @@
         "type": "radio",
         "default": "moderate",
         "options": [
-          { "value": "thrifty", "label": "Budget-Conscious" },
-          { "value": "moderate", "label": "Moderate" },
-          { "value": "comfortable", "label": "Comfortable" }
+          {
+            "value": "thrifty",
+            "label": "Budget-Conscious"
+          },
+          {
+            "value": "moderate",
+            "label": "Moderate"
+          },
+          {
+            "value": "comfortable",
+            "label": "Comfortable"
+          }
         ]
       },
       {
@@ -13578,10 +13904,22 @@
         "type": "select",
         "default": "standard",
         "options": [
-          { "value": "standard", "label": "Standard" },
-          { "value": "vegetarian", "label": "Vegetarian" },
-          { "value": "vegan", "label": "Vegan" },
-          { "value": "gluten-free", "label": "Gluten-Free" }
+          {
+            "value": "standard",
+            "label": "Standard"
+          },
+          {
+            "value": "vegetarian",
+            "label": "Vegetarian"
+          },
+          {
+            "value": "vegan",
+            "label": "Vegan"
+          },
+          {
+            "value": "gluten-free",
+            "label": "Gluten-Free"
+          }
         ]
       },
       {
@@ -13590,9 +13928,18 @@
         "type": "select",
         "default": "metro",
         "options": [
-          { "value": "metro", "label": "Metro / Capital City" },
-          { "value": "regional", "label": "Regional" },
-          { "value": "remote", "label": "Remote" }
+          {
+            "value": "metro",
+            "label": "Metro / Capital City"
+          },
+          {
+            "value": "regional",
+            "label": "Regional"
+          },
+          {
+            "value": "remote",
+            "label": "Remote"
+          }
         ]
       }
     ],
@@ -13624,6 +13971,798 @@
       "budget-planner",
       "daily-serves",
       "macro-calculator"
+    ]
+  },
+  {
+    "slug": "what-are-the-odds",
+    "title": "What Are The Odds Calculator",
+    "category": "fun",
+    "description": "Calculate the probability of random events, from winning a bet to getting struck by lightning.",
+    "metaDescription": "What are the odds calculator — find the probability of everyday and ridiculous events happening. Fun probability calculator for bets, trivia, and curiosity.",
+    "keywords": [
+      "what are the odds calculator",
+      "odds calculator",
+      "probability calculator fun",
+      "chances of",
+      "what are the chances"
+    ],
+    "inputs": [
+      {
+        "id": "eventType",
+        "label": "Choose an Event",
+        "type": "select",
+        "options": [
+          {
+            "value": "custom",
+            "label": "🎯 Custom — enter your own odds",
+            "default": true
+          },
+          {
+            "value": "coin-heads-10",
+            "label": "🪙 Flip 10 heads in a row"
+          },
+          {
+            "value": "lottery",
+            "label": "🎰 Win Oz Lotto jackpot"
+          },
+          {
+            "value": "lightning",
+            "label": "⚡ Get struck by lightning (1 year)"
+          },
+          {
+            "value": "shark",
+            "label": "🦈 Shark attack (lifetime)"
+          },
+          {
+            "value": "royal-flush",
+            "label": "🃏 Royal flush in poker"
+          },
+          {
+            "value": "hole-in-one",
+            "label": "⛳ Hole in one (per hole)"
+          },
+          {
+            "value": "same-birthday",
+            "label": "🎂 2 people in room of 23 share birthday"
+          },
+          {
+            "value": "meteor",
+            "label": "☄️ Hit by a meteorite (lifetime)"
+          },
+          {
+            "value": "perfect-bracket",
+            "label": "📋 Perfect AFL tipping round (9 games)"
+          }
+        ]
+      },
+      {
+        "id": "customOdds",
+        "label": "Custom: 1 in X chance",
+        "type": "number",
+        "default": 100,
+        "min": 1,
+        "max": 999999999999,
+        "placeholder": "e.g. 100",
+        "help": "Enter the denominator — e.g. 100 for a 1-in-100 chance"
+      },
+      {
+        "id": "attempts",
+        "label": "Number of Attempts",
+        "type": "number",
+        "default": 1,
+        "min": 1,
+        "max": 10000,
+        "placeholder": "e.g. 10",
+        "help": "How many times will you try?"
+      }
+    ],
+    "faq": [
+      {
+        "q": "How does this calculator work?",
+        "a": "For a single attempt, the probability is simply 1/X. For multiple attempts, it calculates 1 minus the probability of failing every time: 1 - ((X-1)/X)^n, where n is the number of attempts."
+      },
+      {
+        "q": "What are the odds of winning Oz Lotto?",
+        "a": "About 1 in 45 million for the jackpot (Division 1). You are roughly 10 times more likely to be struck by lightning in your lifetime than to win the jackpot from a single ticket."
+      },
+      {
+        "q": "Does trying more times guarantee success?",
+        "a": "No. More attempts improve your cumulative probability, but each individual attempt has the same odds. Even with 1000 lottery tickets, your overall chance is still tiny."
+      }
+    ],
+    "howItWorks": "<p>Uses probability theory. Single event: P = 1/X. Multiple independent events: P(at least once) = 1 - (1 - 1/X)^n. Also shows how many attempts you would need for a 50% and 95% cumulative chance.</p>",
+    "affiliateContext": "general",
+    "relatedSlugs": [
+      "love-calculator",
+      "how-many-calculator",
+      "days-until"
+    ]
+  },
+  {
+    "slug": "how-many-calculator",
+    "title": "How Many Times Have I... Calculator",
+    "category": "fun",
+    "description": "How many times have you blinked, breathed, or had your heart beat? Enter your age and find out.",
+    "metaDescription": "How many times have I blinked, breathed, eaten, slept, or had my heart beat? Enter your age and discover your life in numbers.",
+    "keywords": [
+      "how many times have i blinked",
+      "how many breaths in a lifetime",
+      "how many heartbeats",
+      "life in numbers calculator",
+      "how many times calculator"
+    ],
+    "inputs": [
+      {
+        "id": "age",
+        "label": "Your Age",
+        "type": "number",
+        "default": 30,
+        "min": 1,
+        "max": 120,
+        "placeholder": "e.g. 30"
+      }
+    ],
+    "faq": [
+      {
+        "q": "How many times do you blink per day?",
+        "a": "The average person blinks about 15-20 times per minute while awake, which works out to around 15,000-20,000 blinks per day (assuming 16 waking hours)."
+      },
+      {
+        "q": "How many breaths does a person take in a lifetime?",
+        "a": "At an average of 12-20 breaths per minute, a person who lives to 80 takes roughly 672 million to 1.12 billion breaths in their lifetime."
+      },
+      {
+        "q": "Are these numbers accurate?",
+        "a": "These are estimates based on medical averages. Individual numbers vary based on fitness, activity level, health, and lifestyle. They are fun approximations, not precise measurements."
+      }
+    ],
+    "howItWorks": "<p>Multiplies your age by scientifically-backed daily averages: ~17,000 blinks/day (awake hours), ~22,000 breaths/day, ~100,000 heartbeats/day, ~3 meals/day, ~2,600 days slept (8hrs/day), ~3,000 litres of water/year, and more.</p>",
+    "affiliateContext": "general",
+    "relatedSlugs": [
+      "what-are-the-odds",
+      "days-until",
+      "pet-age"
+    ]
+  },
+  {
+    "slug": "days-until",
+    "title": "Days Until Calculator",
+    "category": "fun",
+    "description": "How many days until Christmas, your birthday, retirement, or any date? Countdown to anything.",
+    "metaDescription": "Days until calculator — count down to Christmas, holidays, birthdays, retirement, or any date. Shows days, hours, minutes, and seconds remaining.",
+    "keywords": [
+      "days until christmas",
+      "how many days until",
+      "countdown calculator",
+      "days until birthday",
+      "days until calculator",
+      "how long until"
+    ],
+    "inputs": [
+      {
+        "id": "quickPick",
+        "label": "Quick Pick",
+        "type": "select",
+        "options": [
+          {
+            "value": "custom",
+            "label": "📅 Custom date",
+            "default": true
+          },
+          {
+            "value": "christmas",
+            "label": "🎄 Christmas"
+          },
+          {
+            "value": "new-year",
+            "label": "🎆 New Year's Eve"
+          },
+          {
+            "value": "australia-day",
+            "label": "🇦🇺 Australia Day"
+          },
+          {
+            "value": "easter",
+            "label": "🐣 Easter Sunday"
+          },
+          {
+            "value": "eofy",
+            "label": "💰 End of Financial Year"
+          },
+          {
+            "value": "anzac",
+            "label": "🌺 ANZAC Day"
+          },
+          {
+            "value": "halloween",
+            "label": "🎃 Halloween"
+          },
+          {
+            "value": "valentines",
+            "label": "💝 Valentine's Day"
+          }
+        ]
+      },
+      {
+        "id": "targetDate",
+        "label": "Target Date",
+        "type": "date",
+        "default": ""
+      }
+    ],
+    "faq": [
+      {
+        "q": "How many days until Christmas?",
+        "a": "This calculator counts down to December 25 of the current year. If Christmas has already passed this year, it counts down to next year's Christmas."
+      },
+      {
+        "q": "Does this account for leap years?",
+        "a": "Yes. The calculator uses actual calendar dates, so leap years are handled automatically."
+      },
+      {
+        "q": "Can I count down to any date?",
+        "a": "Yes. Select \"Custom date\" and enter any future date. You can count down to weddings, holidays, retirement, exams, or anything else."
+      }
+    ],
+    "howItWorks": "<p>Calculates the exact difference between now and your target date in days, hours, minutes, and seconds. For quick picks, it automatically determines the next upcoming occurrence of that event.</p>",
+    "affiliateContext": "general",
+    "relatedSlugs": [
+      "how-many-calculator",
+      "what-are-the-odds",
+      "love-calculator"
+    ]
+  },
+  {
+    "slug": "caffeine-calculator",
+    "title": "Death by Caffeine Calculator",
+    "category": "fun",
+    "description": "How many coffees, energy drinks, or cans of cola would it take? Dark humour meets science.",
+    "metaDescription": "Death by caffeine calculator — how many coffees, Red Bulls, or Cokes would it theoretically take to reach a lethal dose? Fun (and morbid) caffeine calculator.",
+    "keywords": [
+      "death by caffeine",
+      "caffeine calculator",
+      "how much coffee is too much",
+      "lethal dose caffeine",
+      "caffeine overdose calculator"
+    ],
+    "inputs": [
+      {
+        "id": "weight",
+        "label": "Your Weight",
+        "type": "number",
+        "default": 75,
+        "min": 20,
+        "max": 300,
+        "suffix": "kg",
+        "placeholder": "e.g. 75"
+      },
+      {
+        "id": "drink",
+        "label": "Choose Your Poison",
+        "type": "select",
+        "options": [
+          {
+            "value": "espresso",
+            "label": "☕ Espresso shot (63mg)",
+            "default": true
+          },
+          {
+            "value": "drip",
+            "label": "☕ Drip coffee (95mg)"
+          },
+          {
+            "value": "latte",
+            "label": "☕ Latte / flat white (130mg)"
+          },
+          {
+            "value": "redbull",
+            "label": "🥤 Red Bull 250ml (80mg)"
+          },
+          {
+            "value": "monster",
+            "label": "🥤 Monster 500ml (160mg)"
+          },
+          {
+            "value": "coke",
+            "label": "🥤 Coca-Cola 375ml (36mg)"
+          },
+          {
+            "value": "tea",
+            "label": "🍵 Black tea (47mg)"
+          },
+          {
+            "value": "matcha",
+            "label": "🍵 Matcha latte (70mg)"
+          },
+          {
+            "value": "chocolate",
+            "label": "🍫 Dark chocolate bar 100g (43mg)"
+          }
+        ]
+      }
+    ],
+    "faq": [
+      {
+        "q": "What is the lethal dose of caffeine?",
+        "a": "The commonly cited lethal dose (LD50) is approximately 150-200mg per kilogram of body weight. For a 75kg person, that is roughly 11,250-15,000mg. However, serious side effects can occur at much lower doses (around 400-500mg for some people)."
+      },
+      {
+        "q": "Can you actually die from caffeine?",
+        "a": "Caffeine overdose deaths are extremely rare but have occurred, usually from caffeine pills or powder, not beverages. Your stomach would likely reject the volume of liquid long before you reached a dangerous dose from coffee or energy drinks."
+      },
+      {
+        "q": "How much caffeine is safe per day?",
+        "a": "Health authorities generally recommend no more than 400mg per day for healthy adults — roughly 3-4 cups of coffee. Pregnant women are advised to stay under 200mg. Children and teenagers should consume significantly less."
+      }
+    ],
+    "howItWorks": "<p>Calculates based on the LD50 (median lethal dose) of caffeine: approximately 150mg per kilogram of body weight. Divides your theoretical lethal dose by the caffeine content of your chosen drink. This is purely educational and entertaining — please do not attempt to verify.</p>",
+    "affiliateContext": "kitchen",
+    "relatedSlugs": [
+      "coffee-cost",
+      "how-many-calculator",
+      "what-are-the-odds"
+    ]
+  },
+  {
+    "slug": "friendship-calculator",
+    "title": "Friendship Calculator",
+    "category": "fun",
+    "description": "Enter two names to calculate your friendship compatibility score. How strong is your bond?",
+    "metaDescription": "Friendship compatibility calculator — enter two names and get a fun friendship score. See how compatible you are as mates. For entertainment only!",
+    "keywords": [
+      "friendship calculator",
+      "friendship compatibility",
+      "best friend calculator",
+      "name compatibility friend",
+      "friendship score"
+    ],
+    "inputs": [
+      {
+        "id": "name1",
+        "label": "Your Name",
+        "type": "text",
+        "default": "",
+        "placeholder": "Enter your name"
+      },
+      {
+        "id": "name2",
+        "label": "Friend's Name",
+        "type": "text",
+        "default": "",
+        "placeholder": "Enter their name"
+      }
+    ],
+    "faq": [
+      {
+        "q": "How is the friendship score calculated?",
+        "a": "It uses a fun algorithm that combines the letters of both names to generate a deterministic score. The same two names always produce the same result. This is purely for entertainment!"
+      },
+      {
+        "q": "Is this calculator accurate?",
+        "a": "Absolutely not. Real friendship is built on trust, shared experiences, and being there for each other — not a name algorithm. But it is fun to share with your mates."
+      }
+    ],
+    "howItWorks": "<p>Similar to the love calculator, but uses a different hash seed based on the word \"MATES\" and \"BEST\" to produce a friendship-specific percentage between 1-99%.</p>",
+    "affiliateContext": "general",
+    "relatedSlugs": [
+      "love-calculator",
+      "what-are-the-odds",
+      "angel-number"
+    ]
+  },
+  {
+    "slug": "angel-number",
+    "title": "Angel Number Calculator",
+    "category": "fun",
+    "description": "Enter your birth date to discover your angel number and its meaning. Numerology made simple.",
+    "metaDescription": "Angel number calculator — discover your angel number from your birth date. Find out what 111, 222, 333, 444, and other angel numbers mean for you.",
+    "keywords": [
+      "angel number calculator",
+      "what is my angel number",
+      "angel numbers meaning",
+      "numerology calculator",
+      "life path number calculator"
+    ],
+    "inputs": [
+      {
+        "id": "birthDate",
+        "label": "Your Birth Date",
+        "type": "date",
+        "default": "1990-01-15"
+      }
+    ],
+    "faq": [
+      {
+        "q": "What is an angel number?",
+        "a": "Angel numbers are repeating number sequences (like 111, 222, 333) that some people believe carry spiritual significance. In numerology, your personal angel number is derived from your birth date by reducing it to a single digit or master number (11, 22, 33)."
+      },
+      {
+        "q": "How is the angel number calculated?",
+        "a": "All digits of your birth date are added together repeatedly until a single digit remains (or a master number 11, 22, or 33). For example: 15/03/1990 → 1+5+0+3+1+9+9+0 = 28 → 2+8 = 10 → 1+0 = 1. Your angel number would be 1."
+      },
+      {
+        "q": "Is numerology real?",
+        "a": "Numerology is considered a pseudoscience with no scientific evidence supporting it. This calculator is for entertainment and curiosity purposes only. Have fun with it, but don't make life decisions based on the results!"
+      }
+    ],
+    "howItWorks": "<p>Reduces your birth date to a single digit (or master number 11, 22, 33) using numerological digit summing. Each number has traditional meanings: 1 = leadership, 2 = partnership, 3 = creativity, etc. Also identifies your repeating angel number sequence (111, 222, etc.).</p>",
+    "affiliateContext": "general",
+    "relatedSlugs": [
+      "love-calculator",
+      "friendship-calculator",
+      "how-many-calculator"
+    ]
+  },
+  {
+    "slug": "egg-timer",
+    "title": "Egg Boiling Calculator",
+    "category": "fun",
+    "description": "Get the perfect boiled egg every time. Soft, medium, or hard — adjusted for egg size and altitude.",
+    "metaDescription": "Perfect egg boiling time calculator. Soft, medium, or hard boiled — adjusted for egg size, starting temperature, and altitude. Never over-boil again.",
+    "keywords": [
+      "egg boiling time",
+      "how long to boil an egg",
+      "perfect boiled egg",
+      "egg timer calculator",
+      "soft boiled egg time"
+    ],
+    "inputs": [
+      {
+        "id": "doneness",
+        "label": "How Do You Like It?",
+        "type": "radio",
+        "options": [
+          {
+            "value": "soft",
+            "label": "🥚 Soft (runny yolk)"
+          },
+          {
+            "value": "medium",
+            "label": "🥚 Medium (jammy yolk)",
+            "default": true
+          },
+          {
+            "value": "hard",
+            "label": "🥚 Hard (fully set)"
+          }
+        ]
+      },
+      {
+        "id": "eggSize",
+        "label": "Egg Size",
+        "type": "select",
+        "options": [
+          {
+            "value": "small",
+            "label": "Small (under 53g)"
+          },
+          {
+            "value": "medium",
+            "label": "Medium (53-63g)",
+            "default": true
+          },
+          {
+            "value": "large",
+            "label": "Large (63-73g)"
+          },
+          {
+            "value": "xl",
+            "label": "Extra Large (over 73g)"
+          }
+        ]
+      },
+      {
+        "id": "startTemp",
+        "label": "Starting Temperature",
+        "type": "radio",
+        "options": [
+          {
+            "value": "fridge",
+            "label": "❄️ From fridge",
+            "default": true
+          },
+          {
+            "value": "room",
+            "label": "🌡️ Room temp"
+          }
+        ]
+      },
+      {
+        "id": "altitude",
+        "label": "Altitude",
+        "type": "select",
+        "options": [
+          {
+            "value": "0",
+            "label": "Sea level (most of Australia)",
+            "default": true
+          },
+          {
+            "value": "500",
+            "label": "500m+"
+          },
+          {
+            "value": "1000",
+            "label": "1000m+ (Canberra, Blue Mountains)"
+          },
+          {
+            "value": "1500",
+            "label": "1500m+ (Snowy Mountains)"
+          }
+        ]
+      }
+    ],
+    "faq": [
+      {
+        "q": "Why does altitude affect boiling time?",
+        "a": "Water boils at a lower temperature at higher altitudes (about 1°C less per 300m). This means eggs cook slower because the water is cooler, so you need to add extra time."
+      },
+      {
+        "q": "Should I start with cold or boiling water?",
+        "a": "This calculator assumes you are lowering eggs into already-boiling water, which gives the most consistent results. If you start in cold water and bring to a boil, timing is less predictable."
+      },
+      {
+        "q": "How do I get the perfect soft-boiled egg?",
+        "a": "Use a medium egg from the fridge, lower gently into rapidly boiling water, and cook for exactly 6 minutes 30 seconds. Transfer immediately to an ice bath to stop the cooking."
+      }
+    ],
+    "howItWorks": "<p>Base times: soft 6min, medium 8min, hard 12min for a medium room-temp egg at sea level. Adjusts +30s for fridge-cold eggs, ±15-30s for egg size, and +30s per 500m altitude. Times assume eggs lowered into already-boiling water.</p>",
+    "affiliateContext": "kitchen",
+    "relatedSlugs": [
+      "pizza-split",
+      "caffeine-calculator",
+      "how-many-calculator"
+    ]
+  },
+  {
+    "slug": "lost-socks",
+    "title": "Lost Socks Calculator",
+    "category": "fun",
+    "description": "How many socks have you lost to the washing machine in your lifetime? The numbers are devastating.",
+    "metaDescription": "Lost socks calculator — find out how many socks you've probably lost to the washing machine over your lifetime. The answer will horrify you.",
+    "keywords": [
+      "lost socks calculator",
+      "how many socks lost",
+      "washing machine socks",
+      "missing socks calculator",
+      "sock loss"
+    ],
+    "inputs": [
+      {
+        "id": "age",
+        "label": "Your Age",
+        "type": "number",
+        "default": 30,
+        "min": 1,
+        "max": 100,
+        "placeholder": "e.g. 30"
+      },
+      {
+        "id": "laundryFreq",
+        "label": "Loads of Washing Per Week",
+        "type": "number",
+        "default": 4,
+        "min": 1,
+        "max": 20,
+        "placeholder": "e.g. 4"
+      },
+      {
+        "id": "household",
+        "label": "People in Household",
+        "type": "number",
+        "default": 2,
+        "min": 1,
+        "max": 10,
+        "placeholder": "e.g. 2"
+      }
+    ],
+    "faq": [
+      {
+        "q": "Where do lost socks actually go?",
+        "a": "Research suggests socks get stuck behind the drum, sucked into the drain pump filter, trapped in fitted sheets or duvet covers, or kicked under/behind the machine. A Samsung study found the average person loses 1.3 socks per month."
+      },
+      {
+        "q": "How much money do lost socks cost?",
+        "a": "At roughly -3 per pair, if you lose 15 socks per year that is about -45 annually in replacement socks. Over a lifetime, it adds up to hundreds of dollars."
+      },
+      {
+        "q": "How can I stop losing socks?",
+        "a": "Use mesh laundry bags, pair socks before washing, use clips or sock locks, and always check inside fitted sheets and duvet covers before drying."
+      }
+    ],
+    "howItWorks": "<p>Based on research showing the average person loses 1.3 socks per month (about 15 per year). Adjusts for household size and laundry frequency. Also calculates the estimated cost in replacement socks and the total orphaned socks sitting in your drawer.</p>",
+    "affiliateContext": "general",
+    "relatedSlugs": [
+      "how-many-calculator",
+      "coffee-cost",
+      "what-are-the-odds"
+    ]
+  },
+  {
+    "slug": "donut-calculator",
+    "title": "Donut Calculator",
+    "category": "fun",
+    "description": "How many donuts should you buy for your office, party, or event? Never under-order again.",
+    "metaDescription": "Donut calculator — work out exactly how many donuts to buy for your office, party, or event. Accounts for donut lovers, light eaters, and dietary needs.",
+    "keywords": [
+      "how many donuts to buy",
+      "donut calculator",
+      "donuts for office",
+      "donut order calculator",
+      "party donut calculator"
+    ],
+    "inputs": [
+      {
+        "id": "people",
+        "label": "Number of People",
+        "type": "number",
+        "default": 12,
+        "min": 1,
+        "max": 500,
+        "placeholder": "e.g. 12"
+      },
+      {
+        "id": "occasion",
+        "label": "Occasion",
+        "type": "select",
+        "options": [
+          {
+            "value": "office",
+            "label": "🏢 Office morning tea",
+            "default": true
+          },
+          {
+            "value": "party",
+            "label": "🎉 Party"
+          },
+          {
+            "value": "kids",
+            "label": "🧒 Kids birthday"
+          },
+          {
+            "value": "breakfast",
+            "label": "🌅 Breakfast meeting"
+          },
+          {
+            "value": "friday",
+            "label": "🍩 Friday treat"
+          }
+        ]
+      },
+      {
+        "id": "appetite",
+        "label": "General Appetite Level",
+        "type": "radio",
+        "options": [
+          {
+            "value": "light",
+            "label": "Light eaters"
+          },
+          {
+            "value": "normal",
+            "label": "Normal",
+            "default": true
+          },
+          {
+            "value": "hungry",
+            "label": "Hungry crew"
+          }
+        ]
+      }
+    ],
+    "faq": [
+      {
+        "q": "How many donuts per person?",
+        "a": "The general rule is 1.5-2 donuts per adult for a casual setting. For a kids party, 1-1.5 each. For a breakfast meeting where donuts are the main event, 2-2.5 each."
+      },
+      {
+        "q": "Should I get a variety?",
+        "a": "Absolutely. A good rule is 50% classic/glazed, 30% filled or specialty, and 20% chocolate. Always include at least one plain option for fussy eaters."
+      },
+      {
+        "q": "How many dozen should I order?",
+        "a": "The calculator rounds up to the nearest half-dozen, because showing up with too many donuts is always better than too few. Nobody has ever complained about leftover donuts."
+      }
+    ],
+    "howItWorks": "<p>Base rate of 1.5 donuts per person, adjusted for occasion (kids = 1.2x, breakfast meeting = 1.5x) and appetite level (+/- 25%). Rounds up to nearest half-dozen. Also suggests variety split and estimates cost at ~ per donut (Australian bakery average).</p>",
+    "affiliateContext": "kitchen",
+    "relatedSlugs": [
+      "pizza-split",
+      "egg-timer",
+      "caffeine-calculator"
+    ]
+  },
+  {
+    "slug": "beer-loss",
+    "title": "Beer Loss Calculator",
+    "category": "fun",
+    "description": "How much beer is lost to foam, spillage, and mates who \"forgot their wallet\"? The ugly truth.",
+    "metaDescription": "Beer loss calculator — calculate how much beer you lose to foam, spillage, warm dregs, and mates who never shout. Australian pub maths at its finest.",
+    "keywords": [
+      "beer loss calculator",
+      "beer waste calculator",
+      "how much beer wasted",
+      "pub calculator",
+      "beer foam loss"
+    ],
+    "inputs": [
+      {
+        "id": "beersPerWeek",
+        "label": "Beers Per Week",
+        "type": "number",
+        "default": 6,
+        "min": 0,
+        "max": 100,
+        "placeholder": "e.g. 6"
+      },
+      {
+        "id": "drinkingYears",
+        "label": "Years of Drinking",
+        "type": "number",
+        "default": 10,
+        "min": 1,
+        "max": 60,
+        "placeholder": "e.g. 10"
+      },
+      {
+        "id": "beerType",
+        "label": "Usual Format",
+        "type": "select",
+        "options": [
+          {
+            "value": "schooner",
+            "label": "🍺 Schooner (425ml)",
+            "default": true
+          },
+          {
+            "value": "pint",
+            "label": "🍺 Pint (570ml)"
+          },
+          {
+            "value": "stubby",
+            "label": "🍺 Stubby/can (375ml)"
+          },
+          {
+            "value": "tinny",
+            "label": "🍺 Tinny at home (375ml)"
+          },
+          {
+            "value": "midi",
+            "label": "🍺 Midi/pot (285ml)"
+          }
+        ]
+      },
+      {
+        "id": "pricePerBeer",
+        "label": "Average Price Per Beer",
+        "type": "number",
+        "default": 10,
+        "min": 1,
+        "max": 30,
+        "prefix": "$",
+        "placeholder": "e.g. 10"
+      }
+    ],
+    "faq": [
+      {
+        "q": "How much beer is lost to foam?",
+        "a": "A properly poured beer loses about 5-10% of volume to the head. Over-poured tap beers can lose up to 15%. A bad pour at a busy pub on a Friday night? Could be 20%."
+      },
+      {
+        "q": "What about warm dregs?",
+        "a": "Research suggests the average drinker leaves about 5% of each beer unfinished — the warm, flat bit at the bottom. Across a lifetime of drinking, this adds up to an alarming amount."
+      },
+      {
+        "q": "How much do Aussies spend on beer?",
+        "a": "Australia is one of the most expensive countries in the world for beer. The average Australian adult drinks about 75 litres of beer per year, spending roughly ,000-3,000 annually."
+      }
+    ],
+    "howItWorks": "<p>Calculates total beers consumed over your drinking career, then applies real loss rates: ~8% foam (tap), ~5% warm dregs left in glass, ~3% spillage, and a cheeky estimate for beers bought for mates who never shout back. Converts to litres, bathtubs, and swimming pools.</p>",
+    "affiliateContext": "general",
+    "relatedSlugs": [
+      "caffeine-calculator",
+      "how-many-calculator",
+      "lost-socks"
     ]
   }
 ]
