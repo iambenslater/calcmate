@@ -101,12 +101,4 @@
   setupSearch('search-input-mobile', 'search-results-mobile');
   setupSearch('hero-search', 'hero-search-results');
 
-  // Keyboard shortcut: Cmd+K or Ctrl+K focuses hero search
-  document.addEventListener('keydown', function(e) {
-    if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
-      e.preventDefault();
-      var heroInput = document.getElementById('hero-search');
-      if (heroInput) { heroInput.focus(); heroInput.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
-    }
-  });
 })();

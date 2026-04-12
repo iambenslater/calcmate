@@ -39,15 +39,15 @@
     <p class="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">131 free online calculators built for Australians. Tax, mortgage, health, business — all with current rates and state-specific data.</p>
     <div class="max-w-2xl mx-auto relative">
       <div class="relative">
-        <svg class="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-        <input type="search" id="hero-search" placeholder="Search 131 calculators or ask a question..." class="w-full pl-14 pr-6 py-4 rounded-2xl border-2 border-gray-200 text-lg focus:outline-none focus:border-gold focus:ring-4 focus:ring-gold/10 shadow-md hover:shadow-lg transition bg-white" autocomplete="off" maxlength="500">
-        <kbd class="hidden sm:inline-flex absolute right-4 top-1/2 -translate-y-1/2 items-center gap-1 px-2 py-1 text-xs text-gray-400 bg-gray-100 rounded border border-gray-200 pointer-events-none">
-          <span class="text-[10px]">⌘</span>K
-        </kbd>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" class="absolute left-4 top-1/2 -translate-y-1/2 w-6 h-6 pointer-events-none"><rect width="32" height="32" rx="6" fill="#00205B"/><rect x="5" y="5" width="22" height="22" rx="3" fill="#FFB800"/><rect x="8" y="8" width="16" height="5" rx="1" fill="#00205B" opacity="0.9"/><rect x="8" y="15" width="4" height="4" rx="0.5" fill="#00205B" opacity="0.7"/><rect x="14" y="15" width="4" height="4" rx="0.5" fill="#00205B" opacity="0.7"/><rect x="20" y="15" width="4" height="4" rx="0.5" fill="#00205B" opacity="0.7"/><rect x="8" y="21" width="4" height="4" rx="0.5" fill="#00205B" opacity="0.7"/><rect x="14" y="21" width="4" height="4" rx="0.5" fill="#00205B" opacity="0.7"/><rect x="20" y="21" width="4" height="4" rx="0.5" fill="#FFB800" stroke="#00205B" stroke-width="0.5"/><text x="24" y="24.5" font-size="4" font-weight="bold" fill="#00205B" text-anchor="middle" font-family="sans-serif">=</text></svg>
+        <div id="rotating-placeholder" class="absolute left-14 top-1/2 -translate-y-1/2 pointer-events-none overflow-hidden h-7 flex items-center">
+          <span id="rotating-text" class="text-gray-400 text-lg transition-all duration-500 ease-in-out"></span>
+        </div>
+        <input type="search" id="hero-search" class="w-full pl-14 pr-6 py-4 rounded-2xl border-2 border-gray-200 text-lg focus:outline-none focus:border-gold focus:ring-4 focus:ring-gold/10 shadow-md hover:shadow-lg transition bg-white" autocomplete="off" maxlength="500">
       </div>
       <div id="hero-search-results" class="absolute top-full left-0 right-0 mt-2 bg-white rounded-2xl shadow-2xl hidden max-h-96 overflow-y-auto z-50 border border-gray-100"></div>
     </div>
-    <p id="hero-hint" class="text-sm text-gray-400 mt-3">Try "stamp duty" or ask "What's my take-home pay on $85k in NSW?"</p>
+    <p id="hero-hint" class="text-sm text-gray-400 mt-3 hidden"></p>
     <div class="max-w-xl mx-auto">
       <div id="ai-results" class="mt-4 hidden"></div>
       <div id="ai-loading" class="mt-4 hidden text-center">
@@ -165,4 +165,63 @@
 <%- include('partials/ad-footer-banner', { calc: { affiliateContext: 'general' } }) %>
 <%- include('partials/footer') %>
 <script src="/js/ai-search.js?v=20260412f"></script>
+<script>
+(function() {
+  var suggestions = [
+    'What\u2019s my take-home pay on $85k?',
+    'How much stamp duty in NSW?',
+    'What can I borrow for a mortgage?',
+    'How much super should I have at 40?',
+    'What\u2019s the GST on $500?',
+    'How many calories should I eat?',
+    'What are my mortgage repayments?',
+    'Am I a healthy weight?',
+    'How much does my coffee habit cost?',
+    'What\u2019s my BMI?'
+  ];
+  var idx = 0;
+  var el = document.getElementById('rotating-text');
+  var ph = document.getElementById('rotating-placeholder');
+  var input = document.getElementById('hero-search');
+  if (!el || !input) return;
+
+  function show() {
+    if (input.value.length > 0 || document.activeElement === input) {
+      ph.style.opacity = '0';
+      return;
+    }
+    ph.style.opacity = '1';
+    // Fade out
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(-8px)';
+    setTimeout(function() {
+      el.textContent = suggestions[idx];
+      idx = (idx + 1) % suggestions.length;
+      // Fade in from below
+      el.style.transform = 'translateY(8px)';
+      // Force reflow
+      el.offsetHeight;
+      el.style.opacity = '1';
+      el.style.transform = 'translateY(0)';
+    }, 400);
+  }
+
+  // Initial display
+  el.textContent = suggestions[0];
+  el.style.opacity = '1';
+  idx = 1;
+
+  // Rotate every 3.5 seconds
+  setInterval(show, 3500);
+
+  // Hide placeholder when user types or focuses
+  input.addEventListener('input', function() {
+    ph.style.opacity = input.value.length > 0 ? '0' : '1';
+  });
+  input.addEventListener('focus', function() { ph.style.opacity = '0'; });
+  input.addEventListener('blur', function() {
+    if (input.value.length === 0) { ph.style.opacity = '1'; }
+  });
+})();
+</script>
 <%- include('partials/tail') %>
