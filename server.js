@@ -83,6 +83,32 @@ function rateLimit(windowMs, maxRequests) {
   };
 }
 
+// Affiliate click tracking — rate limit: 10/min per IP
+const affiliateClickRateMap = new Map();
+setInterval(() => affiliateClickRateMap.clear(), 60000);
+
+app.post('/api/affiliate-click', (req, res) => {
+  const ip = req.ip;
+  const count = (affiliateClickRateMap.get(ip) || 0) + 1;
+  affiliateClickRateMap.set(ip, count);
+  if (count > 10) return res.status(429).end();
+
+  const { calculator, product, context, position } = req.body || {};
+  const line = JSON.stringify({
+    timestamp: new Date().toISOString(),
+    calculator: String(calculator || '').slice(0, 200),
+    product: String(product || '').slice(0, 200),
+    context: String(context || 'unknown').slice(0, 100),
+    position: typeof position === 'number' ? position : 0,
+    userAgent: String(req.headers['user-agent'] || '').slice(0, 100),
+    referer: String(req.headers.referer || '').slice(0, 500)
+  }) + '\n';
+
+  // Fire and forget
+  fs.appendFile(path.join(__dirname, 'data', 'affiliate-clicks.log'), line, () => {});
+  res.status(204).end();
+});
+
 // Make data available to all templates
 app.use((req, res, next) => {
   res.locals.calculators = calculators;

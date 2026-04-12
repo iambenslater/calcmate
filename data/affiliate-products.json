@@ -1,0 +1,677 @@
+{
+  "lastCurated": "2026-04-12",
+  "products": {
+    "food": [
+      {
+        "asin": "B06X9NQ8GX",
+        "title": "Amazon Basics Digital Kitchen Scale",
+        "price": "$15.22",
+        "rating": 4.6,
+        "tagline": "Weigh your portions accurately",
+        "searchFallback": "digital kitchen food scale"
+      },
+      {
+        "asin": "B0939X6TMM",
+        "title": "Igluu Meal Prep Containers (30 Pack)",
+        "price": "$35.95",
+        "rating": 4.3,
+        "tagline": "Portion control made easy",
+        "searchFallback": "meal prep containers bpa free"
+      },
+      {
+        "asin": "B0787GY484",
+        "title": "OWYN Vegan Plant-Based Protein Powder",
+        "price": "$34.97",
+        "rating": 4.4,
+        "tagline": "Hit your protein targets",
+        "searchFallback": "protein powder plant based"
+      },
+      {
+        "asin": "B0DKB4MRFF",
+        "title": "Rechargeable Kitchen Scale 15kg",
+        "price": "$24.99",
+        "rating": 4.6,
+        "tagline": "USB rechargeable, stainless steel",
+        "searchFallback": "kitchen scale rechargeable"
+      }
+    ],
+    "fitness": [
+      {
+        "asin": "B01N1UX8RW",
+        "title": "RENPHO Bluetooth Body Fat Scale",
+        "price": "$29.99",
+        "rating": 4.6,
+        "tagline": "Track 13 body metrics via app",
+        "searchFallback": "body composition scale bluetooth"
+      },
+      {
+        "asin": "B07T3K157H",
+        "title": "PROIRON Resistance Bands Set of 5",
+        "price": "$18.99",
+        "rating": 4.4,
+        "tagline": "Home workouts sorted",
+        "searchFallback": "resistance bands set exercise"
+      },
+      {
+        "asin": "B08D9CBZDZ",
+        "title": "Meteor Essential Power Bands Set",
+        "price": "$50.95",
+        "rating": 4.6,
+        "tagline": "Natural latex, multiple resistance levels",
+        "searchFallback": "power bands resistance set"
+      },
+      {
+        "asin": "B087G9R27X",
+        "title": "Etekcity Smart Digital BMI Scale",
+        "price": "$33.99",
+        "rating": 4.7,
+        "tagline": "Syncs with Apple Health & Fitbit",
+        "searchFallback": "smart scale body weight"
+      }
+    ],
+    "finance-books": [
+      {
+        "asin": "073039753X",
+        "title": "The Barefoot Investor (Classic Edition)",
+        "price": "$19.00",
+        "rating": 4.8,
+        "tagline": "#1 Australian finance book, 8K+ reviews",
+        "searchFallback": "barefoot investor book"
+      },
+      {
+        "asin": "B0DPDF9M3P",
+        "title": "Monthly Budget Planner & Expense Tracker",
+        "price": "$10.99",
+        "rating": 5.0,
+        "tagline": "Track every dollar, Prime eligible",
+        "searchFallback": "budget planner notebook"
+      },
+      {
+        "asin": "0730396533",
+        "title": "Share Investing for Dummies (AU Edition)",
+        "price": "$31.19",
+        "rating": 4.4,
+        "tagline": "Australian share market guide",
+        "searchFallback": "share investing australia"
+      },
+      {
+        "asin": "1460763653",
+        "title": "Barefoot Kids",
+        "price": "$19.00",
+        "rating": 4.7,
+        "tagline": "Teach your kids about money",
+        "searchFallback": "barefoot kids book"
+      }
+    ],
+    "tax-software": [
+      {
+        "asin": "B0B1Q4VGWL",
+        "title": "Sooez Accordion File Organiser (5 Pocket)",
+        "price": "$12.90",
+        "rating": 4.7,
+        "tagline": "Keep your tax receipts sorted",
+        "searchFallback": "receipt organiser folder"
+      },
+      {
+        "asin": "B0D3HKRX27",
+        "title": "13 Pocket Expanding Tax File Organiser",
+        "price": "$11.98",
+        "rating": 4.5,
+        "tagline": "Monthly tabs for easy tax prep",
+        "searchFallback": "tax file organiser expandable"
+      },
+      {
+        "asin": "073039753X",
+        "title": "The Barefoot Investor (Classic Edition)",
+        "price": "$19.00",
+        "rating": 4.8,
+        "tagline": "Australia's #1 money book",
+        "searchFallback": "barefoot investor book"
+      },
+      {
+        "asin": "B082P6TTMP",
+        "title": "Casio Scientific Calculator",
+        "price": "$27.89",
+        "rating": 4.4,
+        "tagline": "8.2K reviews, reliable workhorse",
+        "searchFallback": "casio scientific calculator"
+      }
+    ],
+    "budgeting": [
+      {
+        "asin": "B0DPDF9M3P",
+        "title": "Monthly Budget Planner & Expense Tracker",
+        "price": "$10.99",
+        "rating": 5.0,
+        "tagline": "Finance organiser with expense tracker",
+        "searchFallback": "budget planner notebook"
+      },
+      {
+        "asin": "073039753X",
+        "title": "The Barefoot Investor (Classic Edition)",
+        "price": "$19.00",
+        "rating": 4.8,
+        "tagline": "Step-by-step money management",
+        "searchFallback": "barefoot investor book"
+      },
+      {
+        "asin": "B0B1Q4VGWL",
+        "title": "Sooez Accordion File Organiser",
+        "price": "$12.90",
+        "rating": 4.7,
+        "tagline": "Organise bills, receipts, statements",
+        "searchFallback": "accordion file organiser"
+      }
+    ],
+    "mortgage": [
+      {
+        "asin": "1394170424",
+        "title": "Buying a Property for Dummies (AU Edition)",
+        "price": "$17.35",
+        "rating": 4.4,
+        "tagline": "First home buyer's bible",
+        "searchFallback": "buying property australia book"
+      },
+      {
+        "asin": "0648980499",
+        "title": "Australia's Home Buying Guide",
+        "price": "$25.20",
+        "rating": 4.4,
+        "tagline": "Step-by-step Australian property guide",
+        "searchFallback": "home buying guide australia"
+      },
+      {
+        "asin": "073039753X",
+        "title": "The Barefoot Investor (Classic Edition)",
+        "price": "$19.00",
+        "rating": 4.8,
+        "tagline": "Sort your finances before buying",
+        "searchFallback": "barefoot investor book"
+      },
+      {
+        "asin": "B0CNW3C7YN",
+        "title": "Twaca Fireproof Document Bag (AU Owned)",
+        "price": "$39.87",
+        "rating": 4.8,
+        "tagline": "Protect your mortgage docs",
+        "searchFallback": "fireproof document bag"
+      }
+    ],
+    "savings": [
+      {
+        "asin": "073039753X",
+        "title": "The Barefoot Investor (Classic Edition)",
+        "price": "$19.00",
+        "rating": 4.8,
+        "tagline": "The savings system that works",
+        "searchFallback": "barefoot investor book"
+      },
+      {
+        "asin": "B0DPDF9M3P",
+        "title": "Monthly Budget Planner & Expense Tracker",
+        "price": "$10.99",
+        "rating": 5.0,
+        "tagline": "Track your savings goals",
+        "searchFallback": "budget planner tracker"
+      },
+      {
+        "asin": "0730396533",
+        "title": "Share Investing for Dummies (AU Edition)",
+        "price": "$31.19",
+        "rating": 4.4,
+        "tagline": "Make your savings work harder",
+        "searchFallback": "investing for beginners australia"
+      }
+    ],
+    "investment": [
+      {
+        "asin": "0730396533",
+        "title": "Share Investing for Dummies (AU Edition)",
+        "price": "$31.19",
+        "rating": 4.4,
+        "tagline": "Australian share market starter guide",
+        "searchFallback": "share investing australia"
+      },
+      {
+        "asin": "073039753X",
+        "title": "The Barefoot Investor (Classic Edition)",
+        "price": "$19.00",
+        "rating": 4.8,
+        "tagline": "Australia's #1 money book",
+        "searchFallback": "barefoot investor"
+      },
+      {
+        "asin": "B0DPDF9M3P",
+        "title": "Monthly Budget Planner & Expense Tracker",
+        "price": "$10.99",
+        "rating": 5.0,
+        "tagline": "Track investments and expenses",
+        "searchFallback": "financial planner notebook"
+      }
+    ],
+    "car-accessories": [
+      {
+        "asin": "B0G1FRVMZX",
+        "title": "KAWA 2K Dash Cam with Voice Control",
+        "price": "$62.99",
+        "rating": 4.9,
+        "tagline": "Mini dashcam with 32GB card included",
+        "searchFallback": "dash cam 2k australia"
+      },
+      {
+        "asin": "B0FBX2L9N9",
+        "title": "TECXLERON 4K Dual Dash Cam Front & Rear",
+        "price": "$158.99",
+        "rating": 4.8,
+        "tagline": "Starlight night vision, front + rear",
+        "searchFallback": "dash cam front and rear 4k"
+      },
+      {
+        "asin": "B0FPD3HD9N",
+        "title": "3 Channel Dash Cam with 128GB Card",
+        "price": "$161.49",
+        "rating": 4.7,
+        "tagline": "Front, rear & cabin - 699 reviews",
+        "searchFallback": "3 channel dash cam"
+      }
+    ],
+    "car-loan": [
+      {
+        "asin": "B0G1FRVMZX",
+        "title": "KAWA 2K Dash Cam with Voice Control",
+        "price": "$62.99",
+        "rating": 4.9,
+        "tagline": "Protect your new investment",
+        "searchFallback": "dash cam australia"
+      },
+      {
+        "asin": "073039753X",
+        "title": "The Barefoot Investor (Classic Edition)",
+        "price": "$19.00",
+        "rating": 4.8,
+        "tagline": "Smart finance before you sign",
+        "searchFallback": "barefoot investor book"
+      },
+      {
+        "asin": "B0CNW3C7YN",
+        "title": "Twaca Fireproof Document Bag (AU Owned)",
+        "price": "$39.87",
+        "rating": 4.8,
+        "tagline": "Store your loan and rego docs safely",
+        "searchFallback": "fireproof document bag"
+      }
+    ],
+    "trade-tools": [
+      {
+        "asin": "B0FQTN4FW8",
+        "title": "Traderight Green 360 Laser Level + Tripod",
+        "price": "$59.99",
+        "rating": null,
+        "tagline": "Green beam cross line, brightness adjust",
+        "searchFallback": "laser level green beam tripod"
+      },
+      {
+        "asin": "B09B28HJK2",
+        "title": "Huepar 16 Lines Self-Levelling Laser",
+        "price": "$223.65",
+        "rating": 4.4,
+        "tagline": "4x360 green cross line, pro grade",
+        "searchFallback": "huepar laser level 16 lines"
+      },
+      {
+        "asin": "B082P6TTMP",
+        "title": "Casio Scientific Calculator",
+        "price": "$27.89",
+        "rating": 4.4,
+        "tagline": "Quick material calcs on site",
+        "searchFallback": "casio scientific calculator"
+      }
+    ],
+    "home-appliances": [
+      {
+        "asin": "B0BNDW7N3S",
+        "title": "TP-Link Tapo Smart Wi-Fi Socket",
+        "price": "$22.00",
+        "rating": 4.7,
+        "tagline": "Energy monitoring per device, 512 reviews",
+        "searchFallback": "smart plug energy monitoring"
+      },
+      {
+        "asin": "B0DPMR35HW",
+        "title": "Meross Matter Smart Plug (2 Pack)",
+        "price": "$49.99",
+        "rating": 4.4,
+        "tagline": "Energy monitoring + Home Automation",
+        "searchFallback": "smart plug energy monitor 2 pack"
+      },
+      {
+        "asin": "B0CGNR2MP5",
+        "title": "Tuya Smart Energy Meter (Din Rail)",
+        "price": "$36.59",
+        "rating": 4.4,
+        "tagline": "Whole-home power consumption monitor",
+        "searchFallback": "smart energy meter wifi"
+      }
+    ],
+    "home-tools": [
+      {
+        "asin": "B0CNW3C7YN",
+        "title": "Twaca Fireproof Document Bag (AU Owned)",
+        "price": "$39.87",
+        "rating": 4.8,
+        "tagline": "Protect important docs during reno",
+        "searchFallback": "fireproof document bag"
+      },
+      {
+        "asin": "B082P6TTMP",
+        "title": "Casio Scientific Calculator",
+        "price": "$27.89",
+        "rating": 4.4,
+        "tagline": "Calculate paint, timber, materials",
+        "searchFallback": "casio scientific calculator"
+      }
+    ],
+    "kitchen": [
+      {
+        "asin": "B06X9NQ8GX",
+        "title": "Amazon Basics Digital Kitchen Scale",
+        "price": "$15.22",
+        "rating": 4.6,
+        "tagline": "Precise to 1g, batteries included",
+        "searchFallback": "digital kitchen scale"
+      },
+      {
+        "asin": "B0BAGAIL",
+        "title": "BAGAIL Coffee Scale with Timer",
+        "price": "$36.99",
+        "rating": 4.4,
+        "tagline": "0.1g precision for pour over coffee",
+        "searchFallback": "coffee scale timer"
+      },
+      {
+        "asin": "B0DKB4MRFF",
+        "title": "Rechargeable Kitchen Scale 15kg",
+        "price": "$24.99",
+        "rating": 4.6,
+        "tagline": "USB rechargeable, stainless steel",
+        "searchFallback": "kitchen scale rechargeable 15kg"
+      }
+    ],
+    "baby": [
+      {
+        "asin": "B0BM3R8D6N",
+        "title": "KeaBabies Pregnancy Journal (80 Pages)",
+        "price": "$24.96",
+        "rating": 4.7,
+        "tagline": "Track every milestone",
+        "searchFallback": "pregnancy journal book"
+      },
+      {
+        "asin": "B0BC9CC5RB",
+        "title": "Indoor Security Camera 2K (Baby Monitor)",
+        "price": "$39.99",
+        "rating": 4.3,
+        "tagline": "WiFi camera with phone app",
+        "searchFallback": "baby monitor camera wifi"
+      },
+      {
+        "asin": "B01N1UX8RW",
+        "title": "RENPHO Bluetooth Body Fat Scale",
+        "price": "$29.99",
+        "rating": 4.6,
+        "tagline": "Track pregnancy weight safely",
+        "searchFallback": "bluetooth body scale"
+      }
+    ],
+    "education": [
+      {
+        "asin": "B082P6TTMP",
+        "title": "Casio Scientific Calculator",
+        "price": "$27.89",
+        "rating": 4.4,
+        "tagline": "8.2K reviews, exam approved",
+        "searchFallback": "casio scientific calculator"
+      },
+      {
+        "asin": "B084TFV38M",
+        "title": "Casio fx-82AU PLUS II Calculator",
+        "price": "$27.00",
+        "rating": 4.7,
+        "tagline": "Australian curriculum approved",
+        "searchFallback": "casio fx-82au plus"
+      },
+      {
+        "asin": "B0BD3GVXKF",
+        "title": "82MS Scientific Calculator (2-Line)",
+        "price": "$10.99",
+        "rating": 4.1,
+        "tagline": "Budget-friendly 240 functions",
+        "searchFallback": "scientific calculator cheap"
+      }
+    ],
+    "fashion": [
+      {
+        "asin": "B01N1UX8RW",
+        "title": "RENPHO Bluetooth Body Fat Scale",
+        "price": "$29.99",
+        "rating": 4.6,
+        "tagline": "Know your measurements accurately",
+        "searchFallback": "body composition scale"
+      }
+    ],
+    "travel": [
+      {
+        "asin": "B014VBGE7G",
+        "title": "Amazon Essentials Packing Cubes (Set)",
+        "price": "$29.90",
+        "rating": 4.7,
+        "tagline": "1.3K reviews, organise your luggage",
+        "searchFallback": "packing cubes travel set"
+      }
+    ],
+    "business-books": [
+      {
+        "asin": "073039753X",
+        "title": "The Barefoot Investor (Classic Edition)",
+        "price": "$19.00",
+        "rating": 4.8,
+        "tagline": "Sort your business finances",
+        "searchFallback": "barefoot investor book"
+      },
+      {
+        "asin": "B0B1Q4VGWL",
+        "title": "Sooez Accordion File Organiser",
+        "price": "$12.90",
+        "rating": 4.7,
+        "tagline": "Keep receipts and invoices sorted",
+        "searchFallback": "receipt organiser folder"
+      },
+      {
+        "asin": "B082P6TTMP",
+        "title": "Casio Scientific Calculator",
+        "price": "$27.89",
+        "rating": 4.4,
+        "tagline": "Quick business calcs",
+        "searchFallback": "casio scientific calculator"
+      }
+    ],
+    "office-furniture": [
+      {
+        "asin": "B09BF8RXPL",
+        "title": "YEOUX Monitor Riser (Clear + Wood Base)",
+        "price": "$45.99",
+        "rating": 4.6,
+        "tagline": "Ergonomic desk setup",
+        "searchFallback": "monitor stand desk riser"
+      },
+      {
+        "asin": "B0741GJFFH",
+        "title": "VIVO Black Wood 24\" Monitor Stand",
+        "price": "$39.99",
+        "rating": 4.5,
+        "tagline": "Desktop organiser + monitor riser",
+        "searchFallback": "monitor stand wood desk"
+      }
+    ],
+    "office-supplies": [
+      {
+        "asin": "B082P6TTMP",
+        "title": "Casio Scientific Calculator",
+        "price": "$27.89",
+        "rating": 4.4,
+        "tagline": "Desktop calculator for the office",
+        "searchFallback": "casio calculator"
+      },
+      {
+        "asin": "B0B1Q4VGWL",
+        "title": "Sooez Accordion File Organiser",
+        "price": "$12.90",
+        "rating": 4.7,
+        "tagline": "Sort your desk paperwork",
+        "searchFallback": "file organiser desk"
+      }
+    ],
+    "pet": [
+      {
+        "asin": "B06X9NQ8GX",
+        "title": "Amazon Basics Digital Kitchen Scale",
+        "price": "$15.22",
+        "rating": 4.6,
+        "tagline": "Weigh pet food portions accurately",
+        "searchFallback": "digital scale pet food"
+      }
+    ],
+    "insurance": [
+      {
+        "asin": "B0CNW3C7YN",
+        "title": "Twaca Fireproof Document Bag (AU Owned)",
+        "price": "$39.87",
+        "rating": 4.8,
+        "tagline": "Protect policies and important docs",
+        "searchFallback": "fireproof document bag"
+      },
+      {
+        "asin": "B08QFK76CG",
+        "title": "ABSOK Fireproof Document Bag (2 Pack)",
+        "price": "$34.99",
+        "rating": 4.4,
+        "tagline": "Two sizes for different documents",
+        "searchFallback": "fireproof bag documents"
+      },
+      {
+        "asin": "B0B1Q4VGWL",
+        "title": "Sooez Accordion File Organiser",
+        "price": "$12.90",
+        "rating": 4.7,
+        "tagline": "Organise all your policy docs",
+        "searchFallback": "file organiser accordion"
+      }
+    ],
+    "health": [
+      {
+        "asin": "B0B5T85N8K",
+        "title": "OMRON Upper Arm Blood Pressure Monitor",
+        "price": "$104.92",
+        "rating": 4.8,
+        "tagline": "Bluetooth, irregular heartbeat detection",
+        "searchFallback": "omron blood pressure monitor"
+      },
+      {
+        "asin": "B01N1UX8RW",
+        "title": "RENPHO Bluetooth Body Fat Scale",
+        "price": "$29.99",
+        "rating": 4.6,
+        "tagline": "Track 13 body metrics via app",
+        "searchFallback": "body composition scale bluetooth"
+      },
+      {
+        "asin": "B09YLG7QMS",
+        "title": "Vimmk Blood Pressure Monitor (Upper Arm)",
+        "price": "$42.99",
+        "rating": 4.5,
+        "tagline": "LED backlit, easy one-button use",
+        "searchFallback": "blood pressure monitor arm"
+      }
+    ],
+    "health-insurance": [
+      {
+        "asin": "B0B5T85N8K",
+        "title": "OMRON Upper Arm Blood Pressure Monitor",
+        "price": "$104.92",
+        "rating": 4.8,
+        "tagline": "Take charge of your health at home",
+        "searchFallback": "omron blood pressure monitor"
+      },
+      {
+        "asin": "B01N1UX8RW",
+        "title": "RENPHO Bluetooth Body Fat Scale",
+        "price": "$29.99",
+        "rating": 4.6,
+        "tagline": "Track your health metrics",
+        "searchFallback": "smart body scale bluetooth"
+      }
+    ],
+    "credit-cards": [
+      {
+        "asin": "B0DPDF9M3P",
+        "title": "Monthly Budget Planner & Expense Tracker",
+        "price": "$10.99",
+        "rating": 5.0,
+        "tagline": "Track and crush your debt",
+        "searchFallback": "debt payoff planner"
+      },
+      {
+        "asin": "073039753X",
+        "title": "The Barefoot Investor (Classic Edition)",
+        "price": "$19.00",
+        "rating": 4.8,
+        "tagline": "The debt domino strategy",
+        "searchFallback": "barefoot investor book"
+      }
+    ],
+    "personal-loan": [
+      {
+        "asin": "073039753X",
+        "title": "The Barefoot Investor (Classic Edition)",
+        "price": "$19.00",
+        "rating": 4.8,
+        "tagline": "Before you borrow, read this",
+        "searchFallback": "barefoot investor book"
+      },
+      {
+        "asin": "B0DPDF9M3P",
+        "title": "Monthly Budget Planner & Expense Tracker",
+        "price": "$10.99",
+        "rating": 5.0,
+        "tagline": "Plan your repayments properly",
+        "searchFallback": "budget planner repayment tracker"
+      }
+    ],
+    "general": [
+      {
+        "asin": "073039753X",
+        "title": "The Barefoot Investor (Classic Edition)",
+        "price": "$19.00",
+        "rating": 4.8,
+        "tagline": "Australia's #1 money book",
+        "searchFallback": "barefoot investor book"
+      },
+      {
+        "asin": "B082P6TTMP",
+        "title": "Casio Scientific Calculator",
+        "price": "$27.89",
+        "rating": 4.4,
+        "tagline": "When you need a real calculator",
+        "searchFallback": "casio scientific calculator"
+      },
+      {
+        "asin": "B01N1UX8RW",
+        "title": "RENPHO Bluetooth Body Fat Scale",
+        "price": "$29.99",
+        "rating": 4.6,
+        "tagline": "Know your numbers",
+        "searchFallback": "body composition scale bluetooth"
+      }
+    ]
+  }
+}

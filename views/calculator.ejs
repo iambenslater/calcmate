@@ -61,7 +61,7 @@
   <% adSlotNum = (typeof adSlotNum === 'undefined') ? 0 : adSlotNum; %><%- include('partials/ad-leaderboard', { adSlot: adSlotNum++ }) %>
 </div>
 
-<main class="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-6">
+<main class="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-6" data-calculator-slug="<%= calc.slug %>" data-affiliate-context="<%= calc.affiliateContext || calc.category %>">
   <%- include('partials/breadcrumbs', { category: calc.category, categoryName, calc }) %>
 
   <div class="lg:flex gap-8">
