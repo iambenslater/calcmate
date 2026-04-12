@@ -1,85 +1,120 @@
-# CalculatorMate
+# CalculatorMate — CLAUDE.md
 
-Australian calculator SEO site — calculatormate.com.au
+## bOS Integration
 
-## bOS Context
-Read `/Users/benslater/Library/CloudStorage/GoogleDrive-ben@benslater.me/My Drive/bOS/Root/CLAUDE.md` for full system context.
+This project operates within Ben Slater's Business Operating System (bOS).
+This CLAUDE.md lives inside the bOS Google Drive folder, so all paths resolve relatively.
 
-## Stack
-- Node.js + Express + EJS templates + Tailwind CDN
-- DigitalOcean Droplet: 134.199.144.82
-- PM2 process manager (runs as `calcmate` user, not root)
-- Data: `data/calculators.json` — all calculator definitions, inputs, FAQ, keywords
+Before doing anything, read the bOS root context (two levels up from this file):
 
-## Adding a New Calculator
-
-Every calculator requires three things:
-
-### 1. JSON entry in `data/calculators.json`
-```json
-{
-  "slug": "kebab-case-name",
-  "title": "Human Readable Title",
-  "category": "finance|property|super|car|health|business|advanced-finance|investment|conversions|lifestyle",
-  "description": "One-line description for SEO and cards",
-  "inputs": [
-    { "id": "fieldName", "label": "Label", "type": "number|select|radio|checkbox", "prefix": "$", "suffix": "%", "help": "optional" }
-  ],
-  "faq": [ { "q": "...", "a": "..." } ],
-  "keywords": ["search", "terms"],
-  "relatedSlugs": ["other-calc-slug"]
-}
+```
+../../CLAUDE.md
 ```
 
-### 2. Calculator JS file at `public/js/calculators/{slug}.js`
+Then read the CalculatorMate venture skill:
 
-Must define two functions:
-
-**`calculate()`** — reads inputs from DOM, computes results, renders into `#results-content`:
-```javascript
-function calculate() {
-  var value = parseFloat(document.getElementById('input-fieldName').value) || 0;
-  // ... compute ...
-  document.getElementById('calc-results').classList.remove('hidden');
-  document.getElementById('results-content').innerHTML = `
-    <div class="result-row"><span class="result-label">Label</span><span class="result-value">$1,234</span></div>
-  `;
-}
+```
+../../Skills/venture-skills/calculatormate/SKILL.md
 ```
 
-**`getTLDR()`** — returns a plain English 1-2 sentence summary of results (no HTML, no DOM changes):
-```javascript
-function getTLDR() {
-  var value = parseFloat(document.getElementById('input-fieldName').value) || 0;
-  if (!value) return '';
-  // ... recompute key results ...
-  return 'On a $' + value.toLocaleString() + ' salary, you\'ll take home $' + takeHome.toLocaleString() + ' after tax.';
-}
-```
-
-Rules for getTLDR():
-- Re-read inputs from DOM (same as calculate), do NOT rely on global state
-- Return a string, never HTML
-- 1-2 sentences, plain English, conversational Australian tone
-- Focus on the 2-3 numbers the user cares most about
-- Return `''` if required inputs are missing/zero
-- Use existing helper functions (formatCurrency, fmt, etc.) from the same file
-
-### 3. Input IDs must match
-Input elements in the template use `id="input-{fieldId}"` where `{fieldId}` matches the `id` in the JSON inputs array. Radio buttons use `name="input-{fieldId}"`.
-
-## Deployment
+If relative paths don't resolve (e.g. Claude Code was opened from a symlinked or different
+working directory), fall back to finding bOS dynamically:
 
 ```bash
-# From local: commit, push, then SSH
-ssh root@134.199.144.82
-cd /home/calcmate/app && git pull
-su - calcmate -c 'cd /home/calcmate/app && pm2 delete calcmate && pm2 start ecosystem.config.js'
+find ~/Library/CloudStorage -path "*/bOS/Root/CLAUDE.md" 2>/dev/null | head -1
 ```
 
-Always restart PM2 under the `calcmate` user, not root. Use `pm2 delete` + `pm2 start` (not `pm2 restart`) to ensure env vars are loaded.
+All bOS principles apply — API keys from `deploy-keys.sh`, check API Registry before using
+any service, capture learnings back into the venture skill at session end.
 
-## AI Search
-- POST `/api/ai-search` — Claude Haiku parses natural language queries
-- $50 lifetime budget (~50,000 queries), tracked in `/home/calcmate/app/ai-query-count.json`
-- 10 req/min per IP rate limit
+## Project Overview
+
+| Field | Value |
+|-------|-------|
+| Project | CalculatorMate |
+| URL | https://calculatormate.com.au |
+| Repo | github.com/iambenslater/calcmate |
+| Droplet | 134.199.144.82 (syd1, $6/mo, Ubuntu 24.04) |
+| User | calcmate |
+| PM2 | calcmate (port 3000) |
+| Stack | Node.js + EJS, data-driven via `data/calculators.json` |
+| Monetisation | Amazon Associates AU (benslater-22), future AdSense |
+
+## SEO Tool — claude-seo (INSTALL ON FIRST SESSION)
+
+This project uses the **claude-seo** plugin for SEO auditing and content planning.
+
+**Check if already installed:**
+```bash
+ls ~/.claude/skills/seo/SKILL.md 2>/dev/null && echo "Already installed" || echo "Not installed"
+```
+
+**If not installed, run this first:**
+```bash
+git clone --depth 1 https://github.com/AgriciDaniel/claude-seo.git /tmp/claude-seo && bash /tmp/claude-seo/install.sh && rm -rf /tmp/claude-seo
+```
+
+**Then run the full site audit:**
+```
+/seo audit https://calculatormate.com.au
+```
+
+**Useful follow-up commands for this site:**
+- `/seo schema https://calculatormate.com.au` — validate FAQ schema across calculator pages
+- `/seo geo https://calculatormate.com.au` — AI Overview / AEO optimisation (core to the site's strategy)
+- `/seo technical https://calculatormate.com.au` — Core Web Vitals, crawlability, indexability
+- `/seo page https://calculatormate.com.au/finance/take-home-pay` — deep-dive a single calculator
+- `/seo plan "Australian calculator and financial tools website"` — strategic plan before building articles section
+
+**Priority:** Run `/seo audit` before building the articles section. The audit will surface which
+content gaps to fill first, so articles are written against real keyword data, not guesswork.
+
+## Architecture
+
+Data-driven: `data/calculators.json` defines all 121 calculators. Each has inputs, a JS file
+at `public/js/calculators/{slug}.js` with a `calculate()` function, FAQ, SEO metadata,
+affiliate context, and related calculators. Adding a calculator = JSON entry + JS file only.
+
+## Content Formatting Standard (MANDATORY)
+
+ALL HTML content (articles, audience pages, guides) MUST:
+1. Wrap in `<div class="article-content">` — applies shared typography from `style.css`
+2. Use standard HTML tags — H2, H3, p, ul, ol, strong, a, table, blockquote. No inline styles.
+3. Use `q` and `a` for FAQ keys (not `question`/`answer`)
+4. Escape quotes in JSON with `\"` — never use HTML entities (`&quot;`, `&apos;`) in JSON data
+5. Include a Gemini-generated image via `scripts/generate-article-images.js`
+6. Calculator links use `/finance/take-home-pay` format (not `/calculator/` prefix)
+7. Amazon links use `tag=benslater-22`
+
+## Testing
+
+```bash
+node tests/smoke-test.js          # Tier 1: all pages load, calculate() works
+node tests/tier2-math-*.js        # Tier 2: 100/100 known-correct math assertions
+```
+Tier 3 is manual audit against ATO, Fair Work, and state gov sources.
+
+## Known Gotchas
+
+1. **State input:** JSON sends lowercase (`nsw`), JS lookups use uppercase (`NSW`) — always `.toUpperCase()`
+2. **Radio buttons:** `querySelector('input[name="input-{id}"]:checked')`, not `getElementById`
+3. **No `alert()`:** Use inline error messages — `alert()` blocks Puppeteer tests
+4. **Deploy sequence:** push first, then SSH pull
+5. **JSON-LD uses `<%- %>` NOT `<%= %>`:** Inside `<script type="application/ld+json">` blocks, ALWAYS use `<%- %>` (unescaped) with `.replace(/"/g, '\\"')` for text fields. EJS `<%= %>` HTML-encodes `&`, `'`, `"` etc. but JSON parsers don't decode HTML entities — so `&amp;` renders literally as "Food &amp; Nutrition" instead of "Food & Nutrition". This applies to ALL templates.
+6. **No HTML entities in calculators.json:** FAQ answers, descriptions, and titles must use raw characters (`'` not `&apos;`, `½` not `&frac12;`). The data goes into JSON-LD `<script>` tags which don't parse HTML entities. Only escape JSON quotes (`\"`). Run `grep -E '&amp;|&apos;|&quot;|&frac|&lt;|&gt;' data/calculators.json` to check before deploying new calculators.
+
+## Deploy
+
+```bash
+# From this directory
+git add -A && git commit -m "message" && git push
+ssh calcmate@134.199.144.82 "cd /home/calcmate/app && bash deploy.sh"
+```
+
+## Session End Checklist
+
+Before closing any session on this project:
+1. Propose updates to `Skills/venture-skills/calculatormate/SKILL.md` in bOS
+2. If SEO audit surfaced insights → note them in the venture skill
+3. If a new API was used → check the API Registry and propose an update
+4. If a reusable pattern was built → propose update to the relevant domain skill
