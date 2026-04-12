@@ -51,6 +51,30 @@
         </div>
       </div>
     </div>
+
+    <!-- Trending pills — above the fold, drives traffic to high-value calculator pages -->
+    <%
+      const trendingPills = [
+        { slug: 'take-home-pay', category: 'finance', label: 'Tax Time 2026', icon: '🧾' },
+        { slug: 'mortgage-repayment', category: 'property', label: 'What will I repay?', icon: '🏠' },
+        { slug: 'borrowing-power', category: 'property', label: 'What can I borrow?', icon: '💰' },
+        { slug: 'bmi', category: 'health', label: 'Am I a healthy weight?', icon: '⚖️' },
+        { slug: 'stamp-duty-all-states', category: 'property', label: 'Stamp duty by state', icon: '📋' },
+        { slug: 'compound-interest', category: 'finance', label: 'Grow my savings', icon: '📈' },
+        { slug: 'calorie-intake', category: 'health', label: 'Daily calories', icon: '🍎' },
+        { slug: 'budget-planner', category: 'finance', label: 'Build a budget', icon: '📊' },
+        { slug: 'gst-calculator', category: 'conversions', label: 'BAS season', icon: '🧮' },
+        { slug: 'fuel-cost', category: 'car', label: 'Trip fuel cost', icon: '⛽' }
+      ];
+    %>
+    <div class="flex flex-wrap justify-center gap-2 mt-6 max-w-3xl mx-auto">
+      <% trendingPills.forEach(t => { %>
+        <a href="/<%= t.category %>/<%= t.slug %>" class="inline-flex items-center gap-1.5 px-4 py-2 bg-white rounded-full border border-gray-200 hover:border-gold hover:bg-gold-light text-sm font-medium text-gray-700 hover:text-navy shadow-sm hover:shadow transition">
+          <span><%= t.icon %></span>
+          <span><%= t.label %></span>
+        </a>
+      <% }) %>
+    </div>
   </section>
 
   <!-- Categories -->
@@ -86,38 +110,6 @@
             </div>
           </div>
         </a>
-        <% if (idx === 5) { %>
-        <% } %>
-      <% }) %>
-    </div>
-  </section>
-
-  <!-- Trending This Month -->
-  <section class="mb-12">
-    <h2 class="text-2xl font-bold text-navy mb-2">Trending This Month</h2>
-    <p class="text-sm text-gray-500 mb-5">The calculators Australians are using most right now</p>
-    <div class="flex gap-3 overflow-x-auto pb-2 -mx-1 px-1 snap-x">
-      <%
-        const trending = [
-          { slug: 'take-home-pay', category: 'finance', reason: 'Tax season prep' },
-          { slug: 'mortgage-repayment', category: 'property', reason: 'Rate changes' },
-          { slug: 'stamp-duty-all-states', category: 'property', reason: 'Property market' },
-          { slug: 'super-balance-growth', category: 'super', reason: 'End of FY' },
-          { slug: 'income-tax', category: 'finance', reason: 'New tax brackets' },
-          { slug: 'borrowing-power', category: 'property', reason: 'Rate decisions' },
-          { slug: 'gst-calculator', category: 'conversions', reason: 'BAS season' },
-          { slug: 'budget-planner', category: 'finance', reason: 'Cost of living' }
-        ];
-      %>
-      <% trending.forEach(t => { %>
-        <% const tc = calculators.find(c => c.slug === t.slug); %>
-        <% if (tc) { %>
-          <a href="/<%= tc.category %>/<%= tc.slug %>" class="flex-shrink-0 w-56 snap-start group bg-white rounded-xl p-4 shadow-sm hover:shadow-md border border-gray-100 hover:border-gold/50 transition">
-            <span class="inline-block text-xs font-medium text-gold bg-gold-light px-2 py-0.5 rounded-full mb-2"><%= t.reason %></span>
-            <h3 class="font-semibold text-sm text-navy group-hover:text-gold transition"><%= tc.title %></h3>
-            <p class="text-xs text-gray-500 mt-1 line-clamp-2"><%= tc.description %></p>
-          </a>
-        <% } %>
       <% }) %>
     </div>
   </section>
