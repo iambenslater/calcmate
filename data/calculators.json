@@ -13196,5 +13196,434 @@
       "budget-planner",
       "net-worth"
     ]
+  },
+  {
+    "slug": "macro-calculator",
+    "title": "Macro Calculator",
+    "category": "food",
+    "description": "Calculate your daily macronutrient targets — protein, carbs, and fat — based on your body stats and goals.",
+    "metaDescription": "Free Australian macro calculator. Get personalised daily protein, carb, and fat targets based on your age, weight, activity level, and fitness goals.",
+    "keywords": [
+      "macro calculator",
+      "macronutrient calculator",
+      "protein calculator",
+      "macro split calculator",
+      "iifym calculator australia"
+    ],
+    "inputs": [
+      {
+        "id": "age",
+        "label": "Age",
+        "type": "number",
+        "default": 30,
+        "min": 15,
+        "max": 100,
+        "step": 1,
+        "help": "Your current age in years"
+      },
+      {
+        "id": "gender",
+        "label": "Gender",
+        "type": "radio",
+        "default": "male",
+        "options": [
+          { "value": "male", "label": "Male" },
+          { "value": "female", "label": "Female" }
+        ]
+      },
+      {
+        "id": "weight",
+        "label": "Weight",
+        "type": "number",
+        "default": 75,
+        "suffix": "kg",
+        "min": 30,
+        "max": 300,
+        "step": 0.5,
+        "help": "Your current body weight in kilograms"
+      },
+      {
+        "id": "height",
+        "label": "Height",
+        "type": "number",
+        "default": 175,
+        "suffix": "cm",
+        "min": 100,
+        "max": 250,
+        "step": 1,
+        "help": "Your height in centimetres"
+      },
+      {
+        "id": "activityLevel",
+        "label": "Activity Level",
+        "type": "select",
+        "default": "moderate",
+        "options": [
+          { "value": "sedentary", "label": "Sedentary (desk job, little exercise)" },
+          { "value": "light", "label": "Lightly Active (1-3 days/week)" },
+          { "value": "moderate", "label": "Moderately Active (3-5 days/week)" },
+          { "value": "active", "label": "Very Active (6-7 days/week)" },
+          { "value": "extreme", "label": "Extremely Active (athlete/physical job)" }
+        ]
+      },
+      {
+        "id": "goal",
+        "label": "Goal",
+        "type": "select",
+        "default": "maintain",
+        "options": [
+          { "value": "lose", "label": "Lose Weight" },
+          { "value": "maintain", "label": "Maintain Weight" },
+          { "value": "gain", "label": "Build Muscle / Gain Weight" }
+        ]
+      }
+    ],
+    "faq": [
+      {
+        "q": "What are macros?",
+        "a": "Macros (macronutrients) are the three main nutrients your body needs in large quantities: protein, carbohydrates, and fat. Each provides energy (calories) and plays different roles in your body. Protein builds and repairs muscle, carbs fuel activity, and fat supports hormones and cell health."
+      },
+      {
+        "q": "How much protein do I need per day?",
+        "a": "For most active Australians, 1.6-2.2g of protein per kilogram of body weight is recommended. This calculator uses 2g/kg as a solid baseline for anyone exercising regularly. If you&apos;re sedentary, 1.2-1.6g/kg may be sufficient."
+      },
+      {
+        "q": "What is TDEE?",
+        "a": "TDEE (Total Daily Energy Expenditure) is the total number of calories your body burns in a day, including your basal metabolic rate plus calories burned through activity. It&apos;s the starting point for calculating how much you should eat to lose, maintain, or gain weight."
+      },
+      {
+        "q": "Should I track macros or just calories?",
+        "a": "Tracking macros gives you more control over body composition. Two people eating the same calories can get very different results depending on their macro split. If your goal is to build muscle or lose fat while preserving muscle, tracking macros is significantly more effective than calories alone."
+      },
+      {
+        "q": "How accurate is this macro calculator?",
+        "a": "This calculator uses the Mifflin-St Jeor equation, which research shows is the most accurate BMR formula for most people. However, individual metabolism varies. Use these numbers as a starting point and adjust based on your actual results over 2-3 weeks."
+      }
+    ],
+    "affiliateContext": "food",
+    "relatedSlugs": [
+      "calorie-intake",
+      "bmi",
+      "body-fat",
+      "daily-serves"
+    ]
+  },
+  {
+    "slug": "daily-serves",
+    "title": "Daily Serves Calculator (Five Food Groups)",
+    "category": "food",
+    "description": "Find out how many serves of vegetables, fruit, grains, protein, and dairy you need daily based on Australian Dietary Guidelines.",
+    "metaDescription": "Free Australian daily serves calculator based on the Eat for Health guidelines. Find recommended serves of vegetables, fruit, grains, protein, and dairy for your age and gender.",
+    "keywords": [
+      "daily serves calculator",
+      "five food groups calculator",
+      "australian dietary guidelines",
+      "eat for health serves",
+      "food group serves australia"
+    ],
+    "inputs": [
+      {
+        "id": "age",
+        "label": "Age",
+        "type": "number",
+        "default": 30,
+        "min": 2,
+        "max": 100,
+        "step": 1,
+        "help": "Your current age in years (guidelines cover ages 2+)"
+      },
+      {
+        "id": "gender",
+        "label": "Gender",
+        "type": "radio",
+        "default": "male",
+        "options": [
+          { "value": "male", "label": "Male" },
+          { "value": "female", "label": "Female" }
+        ]
+      },
+      {
+        "id": "pregnant",
+        "label": "Pregnant",
+        "type": "radio",
+        "default": "no",
+        "options": [
+          { "value": "yes", "label": "Yes" },
+          { "value": "no", "label": "No" }
+        ],
+        "help": "Are you currently pregnant? (Applies to females only)"
+      },
+      {
+        "id": "breastfeeding",
+        "label": "Breastfeeding",
+        "type": "radio",
+        "default": "no",
+        "options": [
+          { "value": "yes", "label": "Yes" },
+          { "value": "no", "label": "No" }
+        ],
+        "help": "Are you currently breastfeeding? (Applies to females only)"
+      }
+    ],
+    "faq": [
+      {
+        "q": "What are the five food groups in Australia?",
+        "a": "The Australian Dietary Guidelines identify five core food groups: vegetables and legumes, fruit, grain (cereal) foods, lean meats and protein alternatives, and milk/yoghurt/cheese (dairy). Each group provides different essential nutrients, and eating the recommended serves from all five groups supports overall health."
+      },
+      {
+        "q": "What counts as one serve of vegetables?",
+        "a": "One standard serve of vegetables is about 75g, which equals roughly &frac12; cup of cooked vegetables, 1 cup of raw salad, or &frac12; medium potato. Most Australians don&apos;t eat enough vegetables — the average adult needs 5-6 serves per day."
+      },
+      {
+        "q": "Why do pregnant women need more grains?",
+        "a": "Pregnant women need 8.5 serves of grain foods per day (compared to 6 for non-pregnant women) because grains provide essential B vitamins, iron, and energy needed to support the growing baby. Wholegrain and high-fibre options are recommended for at least two-thirds of grain serves."
+      },
+      {
+        "q": "Do these guidelines apply to children under 2?",
+        "a": "No. The Australian Dietary Guidelines provide specific food group serves for ages 2 and above. Children under 2 have different nutritional needs, including continued breastfeeding or formula. Speak with your paediatrician or child health nurse for age-appropriate feeding advice."
+      },
+      {
+        "q": "Are these guidelines from the Australian Government?",
+        "a": "Yes. This calculator is based on the Australian Dietary Guidelines published by the National Health and Medical Research Council (NHMRC) through the Eat for Health program. These are the official dietary recommendations for Australians."
+      }
+    ],
+    "affiliateContext": "food",
+    "relatedSlugs": [
+      "calorie-intake",
+      "macro-calculator",
+      "grocery-budget",
+      "bmi"
+    ]
+  },
+  {
+    "slug": "meal-cost-comparison",
+    "title": "Meal Cost Comparison Calculator",
+    "category": "food",
+    "description": "Compare the cost of home cooking, meal kits, and takeaway to see how your food spending stacks up.",
+    "metaDescription": "Compare meal costs in Australia: home cooking vs meal kits vs takeaway. See your weekly, monthly, and annual food spend and find where you can save.",
+    "keywords": [
+      "meal cost comparison",
+      "meal kit vs cooking cost",
+      "food cost calculator australia",
+      "takeaway vs home cooking cost",
+      "hellofresh cost calculator"
+    ],
+    "inputs": [
+      {
+        "id": "householdSize",
+        "label": "People in Household",
+        "type": "number",
+        "default": 4,
+        "min": 1,
+        "max": 12,
+        "step": 1,
+        "help": "Number of people you cook for"
+      },
+      {
+        "id": "mealsPerWeek",
+        "label": "Dinners Per Week",
+        "type": "number",
+        "default": 14,
+        "min": 1,
+        "max": 21,
+        "step": 1,
+        "help": "How many evening meals you cook or order per week"
+      },
+      {
+        "id": "homeCookCost",
+        "label": "Home-Cooked Meal Cost",
+        "type": "number",
+        "default": 12,
+        "prefix": "$",
+        "min": 0,
+        "max": 100,
+        "step": 0.5,
+        "help": "Average total cost per home-cooked meal (groceries for the whole household)"
+      },
+      {
+        "id": "mealKitCost",
+        "label": "Meal Kit Cost Per Serve",
+        "type": "number",
+        "default": 9.5,
+        "prefix": "$",
+        "min": 0,
+        "max": 50,
+        "step": 0.5,
+        "help": "Cost per person per meal from a kit service (e.g. HelloFresh, Marley Spoon)"
+      },
+      {
+        "id": "takeawayCost",
+        "label": "Takeaway Cost Per Person",
+        "type": "number",
+        "default": 18,
+        "prefix": "$",
+        "min": 0,
+        "max": 100,
+        "step": 0.5,
+        "help": "Average cost per person including delivery fees (Uber Eats, Menulog, etc.)"
+      },
+      {
+        "id": "homeCookMeals",
+        "label": "Home-Cooked Meals Per Week",
+        "type": "number",
+        "default": 8,
+        "min": 0,
+        "max": 21,
+        "step": 1
+      },
+      {
+        "id": "mealKitMeals",
+        "label": "Meal Kit Meals Per Week",
+        "type": "number",
+        "default": 3,
+        "min": 0,
+        "max": 21,
+        "step": 1
+      },
+      {
+        "id": "takeawayMeals",
+        "label": "Takeaway Meals Per Week",
+        "type": "number",
+        "default": 3,
+        "min": 0,
+        "max": 21,
+        "step": 1
+      }
+    ],
+    "faq": [
+      {
+        "q": "How much does a home-cooked meal cost in Australia?",
+        "a": "The average home-cooked dinner in Australia costs $10-$15 for a family of four using standard supermarket ingredients. This can drop to $6-$8 per meal with budget planning, or rise to $20+ with premium ingredients. The key variable is whether you shop at Aldi, Coles, or Woolworths, and whether you meal plan."
+      },
+      {
+        "q": "Are meal kits cheaper than cooking from scratch?",
+        "a": "Generally no. Meal kits like HelloFresh cost around $8-$12 per person per serve in Australia, which is more expensive than cooking from scratch for most families. However, meal kits reduce food waste and save planning time. For singles or couples, the cost difference is smaller and meal kits can actually save money compared to buying ingredients that go to waste."
+      },
+      {
+        "q": "How much does the average Australian family spend on takeaway?",
+        "a": "Australian families spend an average of $60-$100 per week on takeaway and food delivery. With delivery app fees and surcharges, the average Uber Eats order for a family of four is around $70-$90. Cutting just one takeaway meal per week can save $3,000-$5,000 per year."
+      },
+      {
+        "q": "What is the cheapest way to feed a family in Australia?",
+        "a": "Batch cooking and meal planning with supermarket specials is the most cost-effective approach. Shop at Aldi for staples, buy seasonal produce, cook in bulk on weekends, and use a freezer. A family of four can eat well for $120-$150 per week with disciplined planning."
+      },
+      {
+        "q": "Does this calculator include lunch and breakfast?",
+        "a": "This calculator focuses on dinner meals as that&apos;s where the biggest cost variation occurs between home cooking, meal kits, and takeaway. You can adjust the &quot;meals per week&quot; number to include other meals if you want a more complete picture."
+      }
+    ],
+    "affiliateContext": "food",
+    "relatedSlugs": [
+      "grocery-budget",
+      "budget-planner",
+      "macro-calculator",
+      "daily-serves"
+    ]
+  },
+  {
+    "slug": "grocery-budget",
+    "title": "Weekly Grocery Budget Planner",
+    "category": "food",
+    "description": "Plan your weekly grocery budget based on household size, dietary needs, and location in Australia.",
+    "metaDescription": "Plan your Australian grocery budget. Get a realistic weekly spending target based on your household size, dietary needs, and location. Updated for 2025-26 prices.",
+    "keywords": [
+      "grocery budget calculator",
+      "weekly grocery budget australia",
+      "food budget planner",
+      "grocery cost calculator",
+      "how much to spend on groceries australia"
+    ],
+    "inputs": [
+      {
+        "id": "adults",
+        "label": "Number of Adults",
+        "type": "number",
+        "default": 2,
+        "min": 0,
+        "max": 10,
+        "step": 1
+      },
+      {
+        "id": "children",
+        "label": "Number of Children (under 14)",
+        "type": "number",
+        "default": 2,
+        "min": 0,
+        "max": 10,
+        "step": 1
+      },
+      {
+        "id": "teens",
+        "label": "Number of Teenagers (14-18)",
+        "type": "number",
+        "default": 0,
+        "min": 0,
+        "max": 10,
+        "step": 1
+      },
+      {
+        "id": "budgetStyle",
+        "label": "Budget Style",
+        "type": "radio",
+        "default": "moderate",
+        "options": [
+          { "value": "thrifty", "label": "Budget-Conscious" },
+          { "value": "moderate", "label": "Moderate" },
+          { "value": "comfortable", "label": "Comfortable" }
+        ]
+      },
+      {
+        "id": "dietaryNeeds",
+        "label": "Dietary Needs",
+        "type": "select",
+        "default": "standard",
+        "options": [
+          { "value": "standard", "label": "Standard" },
+          { "value": "vegetarian", "label": "Vegetarian" },
+          { "value": "vegan", "label": "Vegan" },
+          { "value": "gluten-free", "label": "Gluten-Free" }
+        ]
+      },
+      {
+        "id": "location",
+        "label": "Location",
+        "type": "select",
+        "default": "metro",
+        "options": [
+          { "value": "metro", "label": "Metro / Capital City" },
+          { "value": "regional", "label": "Regional" },
+          { "value": "remote", "label": "Remote" }
+        ]
+      }
+    ],
+    "faq": [
+      {
+        "q": "How much should a family of 4 spend on groceries in Australia?",
+        "a": "A family of four in metro Australia typically spends $250-$400 per week on groceries in 2025-26, depending on budget style. Budget-conscious families can manage around $220/week by shopping at Aldi, using specials, and meal planning. Comfortable spending sits around $360-$400/week with premium brands and organic produce."
+      },
+      {
+        "q": "Why are groceries more expensive in regional and remote areas?",
+        "a": "Transport costs, limited competition, and supply chain logistics push grocery prices higher outside capital cities. Regional areas typically pay 5-10% more, while remote communities can pay 20-30% more for basic groceries. This is recognised by the Australian Government through remote area allowances."
+      },
+      {
+        "q": "Is a vegetarian diet cheaper than eating meat?",
+        "a": "Generally yes. Plant-based proteins like lentils, chickpeas, and tofu are significantly cheaper per kilogram than meat in Australian supermarkets. A vegetarian diet typically costs 10-15% less than a standard diet. Vegan diets can save even more, though specialty vegan products (like plant-based cheese) can offset some savings."
+      },
+      {
+        "q": "Why does a gluten-free diet cost more?",
+        "a": "Gluten-free specialty products (bread, pasta, flour, snacks) typically cost 2-3 times more than their standard equivalents in Australian supermarkets. While naturally gluten-free foods (rice, potatoes, meat, vegetables) are the same price, the premium on processed gluten-free products adds roughly 15-20% to a typical grocery bill."
+      },
+      {
+        "q": "How can I reduce my grocery spending?",
+        "a": "The biggest savings come from meal planning, shopping at Aldi for staples, buying seasonal produce, cooking from scratch, and reducing food waste. Using apps like Frugl to compare prices and shopping supermarket specials can save 20-30%. Batch cooking on weekends also reduces the temptation to order takeaway."
+      }
+    ],
+    "affiliateContext": "food",
+    "relatedSlugs": [
+      "meal-cost-comparison",
+      "budget-planner",
+      "daily-serves",
+      "macro-calculator"
+    ]
   }
 ]

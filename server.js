@@ -37,6 +37,7 @@ const categoryMeta = {
   trade: { name: 'Construction & Trade', icon: '🔨', description: 'Concrete, paint, timber, roofing, fencing, and decking material calculators for Australian tradies.' },
   lifestyle: { name: 'Lifestyle & Utility', icon: '🏡', description: 'Blood alcohol, electricity usage, solar savings, water usage, pet age, and size converter calculators.' },
   investment: { name: 'Investment & Crypto', icon: '📈', description: 'Rental yield, negative gearing, dividend reinvestment, and crypto profit/loss calculators for Australian investors.' },
+  food: { name: 'Food & Nutrition', icon: '🥗', description: 'Macro calculator, meal cost comparison, daily serves, and grocery budget tools for healthy Australian eating.' },
   fun: { name: 'Fun & Miscellaneous', icon: '🎉', description: 'Love calculator, pizza split, coffee spending — fun calculators to brighten your day.' }
 };
 
@@ -272,7 +273,7 @@ app.get('/sitemap.xml', (req, res) => {
 // Robots.txt
 app.get('/robots.txt', (req, res) => {
   res.type('text/plain');
-  res.send(`User-agent: *\nAllow: /\nSitemap: ${res.locals.siteUrl}/sitemap.xml\n\n# AI crawlers\nUser-agent: GPTBot\nAllow: /\nUser-agent: ChatGPT-User\nAllow: /\nUser-agent: Claude-Web\nAllow: /\nUser-agent: Perplexity-User\nAllow: /\n`);
+  res.send(`User-agent: *\nAllow: /\nSitemap: ${res.locals.siteUrl}/sitemap.xml\n\n# AI crawlers\nUser-agent: GPTBot\nAllow: /\nUser-agent: ChatGPT-User\nAllow: /\nUser-agent: Claude-Web\nAllow: /\nUser-agent: Anthropic-AI\nAllow: /\nUser-agent: Perplexity-User\nAllow: /\nUser-agent: PerplexityBot\nAllow: /\nUser-agent: Google-Extended\nAllow: /\nUser-agent: CCBot\nAllow: /\nUser-agent: cohere-ai\nAllow: /\n`);
 });
 
 // Articles
@@ -298,7 +299,7 @@ app.get('/articles/:slug', (req, res) => {
     articles,
     relatedCalcs,
     calc: { affiliateContext: article.affiliateContext || 'general' },
-    title: `${article.title} | CalculatorMate Australia`,
+    title: `${article.title} | CalculatorMate`,
     metaDescription: article.metaDescription || article.excerpt
   });
 });
@@ -379,7 +380,7 @@ app.get('/for/:slug', (req, res) => {
 // About
 app.get('/about', (req, res) => {
   res.render('about', {
-    title: 'About CalculatorMate — Built by a Brisbane Dad for Real Australians',
+    title: 'About CalculatorMate — Built by a Brisbane Dad',
     metaDescription: 'CalculatorMate was built by Ben Slater, a Brisbane-based father of three, to give every Australian free access to accurate, easy-to-use financial, property, health, and lifestyle calculators.'
   });
 });

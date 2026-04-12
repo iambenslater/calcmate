@@ -23,9 +23,22 @@
   "headline": "<%= article.title %>",
   "description": "<%= article.metaDescription || article.excerpt %>",
   "url": "<%= siteUrl %>/articles/<%= article.slug %>",
+  "image": "<%= siteUrl %>/images/og-default.png",
   "datePublished": "<%= article.datePublished || '2026-04-12' %>",
+  "dateModified": "<%= article.dateModified || article.datePublished || '2026-04-12' %>",
   "publisher": { "@type": "Organization", "name": "CalculatorMate", "url": "<%= siteUrl %>" },
-  "author": { "@type": "Organization", "name": "CalculatorMate" }
+  "author": { "@type": "Person", "name": "Ben Slater", "url": "<%= siteUrl %>/about" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "<%= siteUrl %>" },
+    { "@type": "ListItem", "position": 2, "name": "Articles", "item": "<%= siteUrl %>/articles" },
+    { "@type": "ListItem", "position": 3, "name": "<%= article.title %>", "item": "<%= siteUrl %>/articles/<%= article.slug %>" }
+  ]
 }
 </script>
 <%- include('partials/header') %>
