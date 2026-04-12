@@ -44,19 +44,21 @@ const imagePrompts = {
 async function generateImage(prompt) {
   return new Promise((resolve, reject) => {
     const body = JSON.stringify({
-      contents: [{
-        parts: [{ text: `Generate an image: ${prompt}` }]
-      }],
-      generationConfig: {
-        responseModalities: ['IMAGE', 'TEXT']
+      instances: [{ prompt }],
+      parameters: {
+        sampleCount: 1,
+        aspectRatio: '16:9'
       }
     });
 
     const options = {
       hostname: 'generativelanguage.googleapis.com',
-      path: `/v1beta/models/gemini-2.0-flash:generateContent?key=${API_KEY}`,
+      path: `/v1beta/models/imagen-4.0-fast-generate-001:predict`,
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' }
+      headers: {
+        'Content-Type': 'application/json',
+        'x-goog-api-key': API_KEY
+      }
     };
 
     const req = https.request(options, res => {
@@ -65,10 +67,14 @@ async function generateImage(prompt) {
       res.on('end', () => {
         try {
           const json = JSON.parse(data);
-          const parts = json.candidates?.[0]?.content?.parts || [];
-          const imagePart = parts.find(p => p.inlineData);
-          if (imagePart) {
-            resolve(Buffer.from(imagePart.inlineData.data, 'base64'));
+          if (json.error) {
+            console.warn('  API error:', json.error.message?.substring(0, 100));
+            resolve(null);
+            return;
+          }
+          const predictions = json.predictions || [];
+          if (predictions.length > 0 && predictions[0].bytesBase64Encoded) {
+            resolve(Buffer.from(predictions[0].bytesBase64Encoded, 'base64'));
           } else {
             console.warn('  No image in response:', JSON.stringify(json).substring(0, 200));
             resolve(null);
