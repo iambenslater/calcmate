@@ -8,8 +8,8 @@
     <% article.faq.forEach((f, i) => { %>
     {
       "@type": "Question",
-      "name": "<%- f.q.replace(/"/g, '\\"') %>",
-      "acceptedAnswer": { "@type": "Answer", "text": "<%- f.a.replace(/"/g, '\\"') %>" }
+      "name": "<%- (f.q || '').replace(/"/g, '\\"') %>",
+      "acceptedAnswer": { "@type": "Answer", "text": "<%- (f.a || '').replace(/"/g, '\\"') %>" }
     }<%= i < article.faq.length - 1 ? ',' : '' %>
     <% }) %>
   ]
