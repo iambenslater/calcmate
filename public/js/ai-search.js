@@ -27,7 +27,7 @@
       keywordResults.classList.add('hidden');
       keywordResults.innerHTML = '';
       if (hint) {
-        hint.textContent = 'Press Enter to ask Mate';
+        hint.textContent = 'Press Enter to ask AI Mate';
         hint.classList.remove('text-gray-400');
         hint.classList.add('text-gold', 'font-medium');
       }
