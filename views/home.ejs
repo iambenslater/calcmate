@@ -31,11 +31,6 @@
 </script>
 <%- include('partials/header') %>
 
-<!-- Header ad -->
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
-  <% adSlotNum = 0; %><%- include('partials/ad-leaderboard', { adSlot: adSlotNum++ }) %>
-</div>
-
 <main class="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-6">
 
   <!-- Hero -->
@@ -73,8 +68,8 @@
     </div>
   </section>
 
-  <!-- Ad: between categories and popular -->
-  <div class="mb-12"><%- include('partials/ad-leaderboard', { adSlot: adSlotNum++ }) %></div>
+  <!-- Editorial pick — between categories and popular -->
+  <div class="mb-12"><%- include('partials/ad-editorial-pick', { calc: { affiliateContext: 'finance-books' } }) %></div>
 
   <!-- Popular -->
   <section class="mb-12">
@@ -92,8 +87,6 @@
           </div>
         </a>
         <% if (idx === 5) { %>
-          <!-- Ad: mid-popular inline -->
-          <div class="sm:col-span-2 lg:col-span-3"><%- include('partials/ad-leaderboard', { adSlot: adSlotNum++ }) %></div>
         <% } %>
       <% }) %>
     </div>
@@ -151,9 +144,6 @@
   <!-- Amazon featured products -->
   <%- include('partials/affiliate-inline', { calc: { affiliateContext: 'finance-books' } }) %>
 
-  <!-- Ad: before all calculators -->
-  <div class="mb-8"><%- include('partials/ad-leaderboard', { adSlot: adSlotNum++ }) %></div>
-
   <!-- All calculators for SEO -->
   <section class="mb-8">
     <h2 class="text-2xl font-bold text-navy mb-6">All Calculators</h2>
@@ -174,11 +164,7 @@
 
 </main>
 
-<!-- Footer ad -->
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-4">
-  <%- include('partials/ad-leaderboard', { adSlot: adSlotNum++ }) %>
-</div>
-
+<%- include('partials/ad-footer-banner', { calc: { affiliateContext: 'general' } }) %>
 <%- include('partials/footer') %>
 <script src="/js/ai-search.js?v=20260412f"></script>
 <%- include('partials/tail') %>
