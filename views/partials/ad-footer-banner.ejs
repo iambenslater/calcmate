@@ -1,0 +1,56 @@
+<%
+// Compact full-width product banner — above the footer
+// Same dark style as hero but half the height, different product
+const affiliateTag = 'benslater-22';
+
+const productData = typeof affiliateProducts !== 'undefined' ? affiliateProducts : { products: {} };
+const footerCtx = typeof calc !== 'undefined' ? (calc.affiliateContext || calc.category || 'general')
+  : (typeof affiliateContext !== 'undefined' ? affiliateContext : 'general');
+const ctxProducts = (productData.products && productData.products[footerCtx]) || productData.products['general'] || [];
+
+// Use the 2nd product (hero uses #1) — fall back to #1 if only one exists
+const footerPick = ctxProducts.length > 1 ? ctxProducts[1] : (ctxProducts.length > 0 ? ctxProducts[0] : null);
+
+function footerUrl(p) {
+  if (p && p.asin && p.asin.length >= 10) {
+    return 'https://www.amazon.com.au/dp/' + p.asin + '?tag=' + affiliateTag;
+  }
+  if (p && p.searchFallback) {
+    return 'https://www.amazon.com.au/s?k=' + encodeURIComponent(p.searchFallback) + '&tag=' + affiliateTag;
+  }
+  return 'https://www.amazon.com.au/?tag=' + affiliateTag;
+}
+
+function formatReviewCount(n) {
+  if (!n) return '';
+  if (n >= 1000) return (n / 1000).toFixed(n >= 10000 ? 0 : 1).replace(/\.0$/, '') + 'K';
+  return String(n);
+}
+%>
+<% if (footerPick) { %>
+<a href="<%- footerUrl(footerPick) %>" target="_blank" rel="nofollow noopener" class="block bg-gray-950 hover:bg-gray-900 transition group" data-affiliate-product="<%= footerPick.asin %>" data-affiliate-position="footer">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-4">
+    <div class="flex items-center gap-4 sm:gap-6">
+      <% if (footerPick.image) { %>
+      <div class="shrink-0 w-12 h-12 sm:w-16 sm:h-16 bg-white rounded-lg flex items-center justify-center p-1.5 sm:p-2">
+        <img src="<%= footerPick.image %>" alt="<%= footerPick.title %>" class="max-w-full max-h-full object-contain" loading="lazy">
+      </div>
+      <% } %>
+      <div class="flex-1 min-w-0">
+        <p class="text-sm sm:text-base font-bold text-white leading-snug truncate"><%= footerPick.title %></p>
+        <div class="flex items-center flex-wrap gap-x-3 gap-y-0.5 mt-0.5">
+          <% if (footerPick.price) { %><span class="text-sm font-bold text-white"><%= footerPick.price %></span><% } %>
+          <% if (footerPick.rating) { %>
+            <span class="text-xs text-gray-400"><span class="text-amber-400"><%= '★'.repeat(Math.round(footerPick.rating)) %></span> <%= footerPick.rating %><% if (footerPick.reviewCount) { %> (<%= formatReviewCount(footerPick.reviewCount) %>)<% } %></span>
+          <% } %>
+        </div>
+      </div>
+      <div class="shrink-0">
+        <span class="inline-block px-4 py-1.5 bg-white text-gray-900 text-xs sm:text-sm font-bold rounded-full group-hover:bg-gray-100 transition whitespace-nowrap">
+          Check price &rarr;
+        </span>
+      </div>
+    </div>
+  </div>
+</a>
+<% } %>
