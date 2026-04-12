@@ -28,7 +28,7 @@
     "@type": "BreadcrumbList",
     "itemListElement": [
       { "@type": "ListItem", "position": 1, "name": "Home", "item": "<%= siteUrl %>" },
-      { "@type": "ListItem", "position": 2, "name": "By Audience", "item": "<%= siteUrl %>/for" },
+      { "@type": "ListItem", "position": 2, "name": "Calculators For...", "item": "<%= siteUrl %>/for" },
       { "@type": "ListItem", "position": 3, "name": "<%= audience.title %>" }
     ]
   }
@@ -47,7 +47,7 @@
     <ol class="flex items-center gap-2 text-sm text-gray-500">
       <li><a href="/" class="hover:text-navy transition">Home</a></li>
       <li class="text-gray-300">/</li>
-      <li><a href="/for" class="hover:text-navy transition">By Audience</a></li>
+      <li><a href="/for" class="hover:text-navy transition">Calculators For...</a></li>
       <li class="text-gray-300">/</li>
       <li class="text-gray-800 font-medium"><%= audience.shortTitle || audience.title %></li>
     </ol>
@@ -223,7 +223,7 @@
       <div class="sticky top-20 space-y-4">
         <!-- Other audience pages -->
         <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-4">
-          <h3 class="font-semibold text-navy mb-3 text-sm uppercase tracking-wider">By Audience</h3>
+          <h3 class="font-semibold text-navy mb-3 text-sm uppercase tracking-wider">Calculators For...</h3>
           <nav class="space-y-1">
             <% audiences.forEach(a => { %>
               <a href="/for/<%= a.slug %>" class="block px-3 py-2 rounded-lg text-sm transition <%= a.slug === audience.slug ? 'bg-gold-light text-navy font-medium' : 'hover:bg-gray-50 text-gray-600' %>">

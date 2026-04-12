@@ -167,7 +167,7 @@ audiences.forEach(a => { audienceBySlug[a.slug] = a; });
 app.get('/for', (req, res) => {
   res.render('audiences', {
     audiences,
-    title: 'Calculators By Audience | CalculatorMate Australia',
+    title: 'Calculators For... | CalculatorMate Australia',
     metaDescription: 'Find the right Australian calculators for your situation — first home buyers, families, retirees, small business owners, teenagers, and more.'
   });
 });
