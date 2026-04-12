@@ -11410,5 +11410,1791 @@
       "compound-interest",
       "blood-alcohol"
     ]
+  },
+  {
+    "slug": "property-buying-costs",
+    "title": "Property Buying Costs Calculator",
+    "category": "property",
+    "description": "Estimate the full cost of buying a property in Australia, including stamp duty by state, legal fees, building and pest inspections, LMI, and total funds required.",
+    "metaDescription": "Calculate all the costs of buying property in Australia — stamp duty, legal fees, LMI, inspections and more. Updated 2024-25 rates for all states.",
+    "keywords": [
+      "property buying costs calculator",
+      "stamp duty calculator australia",
+      "buying costs australia",
+      "first home buyer stamp duty",
+      "LMI calculator"
+    ],
+    "inputs": [
+      {
+        "id": "propertyPrice",
+        "label": "Property Price",
+        "type": "number",
+        "default": 700000,
+        "placeholder": "e.g. 700000",
+        "prefix": "$",
+        "min": 0,
+        "max": 10000000,
+        "step": 5000,
+        "help": "The purchase price of the property"
+      },
+      {
+        "id": "state",
+        "label": "State / Territory",
+        "type": "select",
+        "default": "NSW",
+        "options": [
+          { "value": "NSW", "label": "New South Wales" },
+          { "value": "VIC", "label": "Victoria" },
+          { "value": "QLD", "label": "Queensland" },
+          { "value": "SA", "label": "South Australia" },
+          { "value": "WA", "label": "Western Australia" },
+          { "value": "TAS", "label": "Tasmania" },
+          { "value": "NT", "label": "Northern Territory" },
+          { "value": "ACT", "label": "Australian Capital Territory" }
+        ]
+      },
+      {
+        "id": "firstHomeBuyer",
+        "label": "First Home Buyer?",
+        "type": "checkbox",
+        "default": false,
+        "help": "Tick if you are eligible for first home buyer stamp duty concessions"
+      },
+      {
+        "id": "propertyType",
+        "label": "Property Type",
+        "type": "radio",
+        "default": "established",
+        "options": [
+          { "value": "established", "label": "Established Home" },
+          { "value": "new", "label": "New Build" },
+          { "value": "vacant-land", "label": "Vacant Land" }
+        ]
+      }
+    ],
+    "faq": [
+      {
+        "q": "How much does it cost to buy a house in Australia beyond the purchase price?",
+        "a": "On top of the purchase price you typically pay stamp duty, legal and conveyancing fees ($1,000–$2,500), building and pest inspections (~$800), a loan application fee (~$400), and potentially Lenders Mortgage Insurance (LMI) if your deposit is under 20%. Total buying costs commonly range from 3% to 6% of the purchase price."
+      },
+      {
+        "q": "What is stamp duty and how is it calculated?",
+        "a": "Stamp duty (transfer duty) is a state-based tax on property transactions. Each state has its own sliding-scale rates. For example, a $700,000 purchase in NSW attracts approximately $26,730 in stamp duty. First home buyers may be eligible for concessions or exemptions."
+      },
+      {
+        "q": "What is LMI and when do I have to pay it?",
+        "a": "Lenders Mortgage Insurance (LMI) is a premium you pay when your deposit is less than 20% of the purchase price (i.e. LVR above 80%). LMI protects the lender — not you — against default. On a $700,000 property with a 10% deposit, LMI can be $8,000–$18,000."
+      },
+      {
+        "q": "Do first home buyers pay stamp duty?",
+        "a": "It depends on the state and the purchase price. NSW first home buyers pay no stamp duty on properties under $800,000 (established) or $1M (new). Victorian first home buyers pay no duty under $600,000. ACT first home buyers pay no duty under $900,000. Other states have varying thresholds."
+      },
+      {
+        "q": "Can I include buying costs in my home loan?",
+        "a": "In some cases yes — some lenders allow you to capitalise costs like LMI into the loan. However, stamp duty and legal fees generally need to be paid from your own savings. Always confirm with your lender."
+      }
+    ],
+    "affiliateContext": "mortgage",
+    "relatedSlugs": [
+      "stamp-duty",
+      "mortgage-repayment",
+      "property-selling-costs",
+      "lmi-calculator"
+    ]
+  },
+  {
+    "slug": "property-selling-costs",
+    "title": "Property Selling Costs Calculator",
+    "category": "property",
+    "description": "Calculate the full cost of selling a property in Australia — agent commission, marketing, conveyancing, discharge fees, and estimated capital gains tax.",
+    "metaDescription": "Estimate what it costs to sell your Australian property. Calculate agent fees, marketing, legal costs, and capital gains tax to find your true net proceeds.",
+    "keywords": [
+      "property selling costs calculator",
+      "real estate agent commission australia",
+      "capital gains tax property australia",
+      "cost of selling house australia",
+      "net proceeds property sale"
+    ],
+    "inputs": [
+      {
+        "id": "salePrice",
+        "label": "Expected Sale Price",
+        "type": "number",
+        "default": 800000,
+        "placeholder": "e.g. 800000",
+        "prefix": "$",
+        "min": 0,
+        "max": 20000000,
+        "step": 5000,
+        "help": "The price you expect to sell the property for"
+      },
+      {
+        "id": "agentCommission",
+        "label": "Agent Commission (%)",
+        "type": "number",
+        "default": 2.0,
+        "placeholder": "e.g. 2.0",
+        "suffix": "%",
+        "min": 0,
+        "max": 5,
+        "step": 0.1,
+        "help": "Typical range is 1.5%–3.5% depending on state and agent"
+      },
+      {
+        "id": "marketingBudget",
+        "label": "Marketing Budget",
+        "type": "number",
+        "default": 5000,
+        "placeholder": "e.g. 5000",
+        "prefix": "$",
+        "min": 0,
+        "max": 50000,
+        "step": 500,
+        "help": "Photography, online listings, signboards, print. Typically $3,000–$10,000"
+      },
+      {
+        "id": "outstandingMortgage",
+        "label": "Outstanding Mortgage Balance",
+        "type": "number",
+        "default": 0,
+        "placeholder": "e.g. 350000",
+        "prefix": "$",
+        "min": 0,
+        "max": 10000000,
+        "step": 1000,
+        "help": "Enter 0 if you own the property outright"
+      },
+      {
+        "id": "state",
+        "label": "State / Territory",
+        "type": "select",
+        "default": "NSW",
+        "options": [
+          { "value": "NSW", "label": "New South Wales" },
+          { "value": "VIC", "label": "Victoria" },
+          { "value": "QLD", "label": "Queensland" },
+          { "value": "SA", "label": "South Australia" },
+          { "value": "WA", "label": "Western Australia" },
+          { "value": "TAS", "label": "Tasmania" },
+          { "value": "NT", "label": "Northern Territory" },
+          { "value": "ACT", "label": "Australian Capital Territory" }
+        ]
+      },
+      {
+        "id": "yearsOwned",
+        "label": "Years Owned",
+        "type": "number",
+        "default": 5,
+        "placeholder": "e.g. 5",
+        "suffix": "years",
+        "min": 0,
+        "max": 50,
+        "step": 1,
+        "help": "Used to estimate capital gains — the longer you've owned, the higher the likely gain"
+      }
+    ],
+    "faq": [
+      {
+        "q": "How much does it cost to sell a house in Australia?",
+        "a": "Selling costs typically total 2%–4% of the sale price. The biggest cost is agent commission (1.5%–3.5%), followed by marketing ($3,000–$10,000), conveyancing (~$1,100), auctioneer fees (~$600), and a mortgage discharge fee (~$400) if applicable."
+      },
+      {
+        "q": "Do I pay capital gains tax when I sell my home?",
+        "a": "If the property was your principal place of residence for the entire ownership period, you are generally exempt from CGT. If it was an investment property or rented out at any point, CGT will apply. Properties held over 12 months benefit from a 50% CGT discount."
+      },
+      {
+        "q": "What is a mortgage discharge fee?",
+        "a": "When you sell a property and pay off your home loan, lenders charge a discharge fee to remove the mortgage from the title. This is typically $300–$600."
+      },
+      {
+        "q": "How is agent commission calculated?",
+        "a": "Agent commission is a percentage of the sale price, agreed before listing. It varies by state — Queensland is typically 2%–3.5%, NSW and Victoria 1.5%–2.5%. Always get written quotes from multiple agents and compare the total cost including marketing."
+      }
+    ],
+    "affiliateContext": "mortgage",
+    "relatedSlugs": [
+      "property-buying-costs",
+      "stamp-duty",
+      "capital-gains-tax",
+      "mortgage-repayment"
+    ]
+  },
+  {
+    "slug": "mortgage-payoff-timeline",
+    "title": "Mortgage Payoff Timeline Calculator",
+    "category": "property",
+    "description": "Find out exactly when your mortgage will be paid off based on your current balance, interest rate, and monthly repayment amount.",
+    "metaDescription": "Calculate your mortgage payoff date based on your current balance, interest rate and repayment. See total interest paid and a balance milestone timeline.",
+    "keywords": [
+      "mortgage payoff calculator",
+      "when will my mortgage be paid off",
+      "mortgage timeline calculator",
+      "home loan payoff date",
+      "mortgage balance calculator"
+    ],
+    "inputs": [
+      {
+        "id": "loanAmount",
+        "label": "Current Loan Balance",
+        "type": "number",
+        "default": 500000,
+        "placeholder": "e.g. 500000",
+        "prefix": "$",
+        "min": 1000,
+        "max": 5000000,
+        "step": 1000,
+        "help": "Your current outstanding mortgage balance (not the original loan amount)"
+      },
+      {
+        "id": "interestRate",
+        "label": "Interest Rate",
+        "type": "number",
+        "default": 6.5,
+        "placeholder": "e.g. 6.5",
+        "suffix": "% p.a.",
+        "min": 0.1,
+        "max": 20,
+        "step": 0.05,
+        "help": "Your current variable or fixed interest rate"
+      },
+      {
+        "id": "monthlyRepayment",
+        "label": "Monthly Repayment",
+        "type": "number",
+        "default": 3200,
+        "placeholder": "e.g. 3200",
+        "prefix": "$",
+        "min": 0,
+        "max": 100000,
+        "step": 50,
+        "help": "Your actual monthly repayment amount (must exceed monthly interest)"
+      }
+    ],
+    "faq": [
+      {
+        "q": "How does this calculator work out my payoff date?",
+        "a": "It simulates your mortgage month by month — applying your repayment, deducting interest, and reducing principal — until the balance reaches zero. The number of months gives your payoff timeline."
+      },
+      {
+        "q": "What happens if my repayment doesn't cover the interest?",
+        "a": "If your monthly repayment is less than or equal to the monthly interest charge, your loan will never be paid off — the balance grows over time. This is called negative amortisation. The calculator will flag this situation."
+      },
+      {
+        "q": "How can I pay off my mortgage faster?",
+        "a": "Making extra repayments, switching to fortnightly payments, and making lump sum payments are the three most effective strategies. Even $200 extra per month on a $500,000 loan at 6.5% can save over 4 years and $80,000 in interest."
+      },
+      {
+        "q": "Does the calculator account for rate changes?",
+        "a": "No — the calculator assumes your interest rate stays constant for the entire loan term. If rates rise, your payoff timeline will extend; if rates fall, it will shorten."
+      }
+    ],
+    "affiliateContext": "mortgage",
+    "relatedSlugs": [
+      "extra-repayment",
+      "lump-sum-payment",
+      "fortnightly-payment",
+      "mortgage-repayment"
+    ]
+  },
+  {
+    "slug": "extra-repayment",
+    "title": "Extra Repayment Calculator",
+    "category": "property",
+    "description": "See how much interest you save and how many years you cut off your mortgage by making extra monthly repayments.",
+    "metaDescription": "Calculate how much you save by making extra mortgage repayments each month. See interest saved, time saved, and a full loan comparison.",
+    "keywords": [
+      "extra repayment calculator",
+      "mortgage extra repayment",
+      "pay off mortgage faster",
+      "additional mortgage repayment",
+      "home loan extra payments"
+    ],
+    "inputs": [
+      {
+        "id": "loanAmount",
+        "label": "Loan Amount",
+        "type": "number",
+        "default": 500000,
+        "placeholder": "e.g. 500000",
+        "prefix": "$",
+        "min": 1000,
+        "max": 5000000,
+        "step": 1000,
+        "help": "Your current outstanding loan balance"
+      },
+      {
+        "id": "interestRate",
+        "label": "Interest Rate",
+        "type": "number",
+        "default": 6.5,
+        "placeholder": "e.g. 6.5",
+        "suffix": "% p.a.",
+        "min": 0.1,
+        "max": 20,
+        "step": 0.05
+      },
+      {
+        "id": "loanTerm",
+        "label": "Remaining Loan Term",
+        "type": "number",
+        "default": 30,
+        "placeholder": "e.g. 30",
+        "suffix": "years",
+        "min": 1,
+        "max": 40,
+        "step": 1
+      },
+      {
+        "id": "extraMonthly",
+        "label": "Extra Monthly Repayment",
+        "type": "number",
+        "default": 500,
+        "placeholder": "e.g. 500",
+        "prefix": "$",
+        "min": 0,
+        "max": 50000,
+        "step": 50,
+        "help": "The additional amount you want to pay each month on top of the minimum"
+      }
+    ],
+    "faq": [
+      {
+        "q": "How much does $500 extra per month save on a $500,000 mortgage?",
+        "a": "On a $500,000 loan at 6.5% over 30 years, paying an extra $500 per month saves approximately $170,000 in interest and cuts about 9 years off the loan term."
+      },
+      {
+        "q": "Is there a limit to how much extra I can repay?",
+        "a": "On variable rate loans, you can typically make unlimited extra repayments. On fixed rate loans, most lenders cap extra repayments at $10,000–$20,000 per year during the fixed period. Check your loan terms."
+      },
+      {
+        "q": "What is the effect of making extra repayments early in the loan?",
+        "a": "Extra repayments are most powerful early in a loan when the outstanding balance (and therefore the interest component) is highest. Every dollar of extra principal reduction saves interest compounding over the remaining years."
+      },
+      {
+        "q": "Can I use an offset account instead of extra repayments?",
+        "a": "Yes. An offset account achieves the same interest-saving effect — money in the offset reduces the balance on which interest is calculated. Some borrowers prefer offset accounts for flexibility (the money is accessible). Check whether your loan has a free offset account."
+      }
+    ],
+    "affiliateContext": "mortgage",
+    "relatedSlugs": [
+      "lump-sum-payment",
+      "fortnightly-payment",
+      "mortgage-payoff-timeline",
+      "mortgage-repayment"
+    ]
+  },
+  {
+    "slug": "lump-sum-payment",
+    "title": "Lump Sum Payment Calculator",
+    "category": "property",
+    "description": "Find out how much interest you save and how much sooner your mortgage ends when you make a one-off lump sum payment.",
+    "metaDescription": "Calculate the interest saved and time cut from your mortgage by making a lump sum payment. See your estimated payoff date and total savings.",
+    "keywords": [
+      "lump sum mortgage payment calculator",
+      "one off mortgage payment",
+      "mortgage lump sum savings",
+      "pay down mortgage lump sum",
+      "home loan extra payment"
+    ],
+    "inputs": [
+      {
+        "id": "loanAmount",
+        "label": "Loan Amount",
+        "type": "number",
+        "default": 500000,
+        "placeholder": "e.g. 500000",
+        "prefix": "$",
+        "min": 1000,
+        "max": 5000000,
+        "step": 1000
+      },
+      {
+        "id": "interestRate",
+        "label": "Interest Rate",
+        "type": "number",
+        "default": 6.5,
+        "placeholder": "e.g. 6.5",
+        "suffix": "% p.a.",
+        "min": 0.1,
+        "max": 20,
+        "step": 0.05
+      },
+      {
+        "id": "loanTerm",
+        "label": "Loan Term",
+        "type": "number",
+        "default": 30,
+        "placeholder": "e.g. 30",
+        "suffix": "years",
+        "min": 1,
+        "max": 40,
+        "step": 1
+      },
+      {
+        "id": "lumpSum",
+        "label": "Lump Sum Amount",
+        "type": "number",
+        "default": 20000,
+        "placeholder": "e.g. 20000",
+        "prefix": "$",
+        "min": 1,
+        "max": 2000000,
+        "step": 1000,
+        "help": "The one-off extra payment you plan to make"
+      },
+      {
+        "id": "yearOfPayment",
+        "label": "Year of Payment",
+        "type": "number",
+        "default": 5,
+        "placeholder": "e.g. 5",
+        "suffix": "years in",
+        "min": 1,
+        "max": 39,
+        "step": 1,
+        "help": "How many years into the loan you plan to make the lump sum payment"
+      }
+    ],
+    "faq": [
+      {
+        "q": "When is the best time to make a lump sum mortgage payment?",
+        "a": "Earlier is always better. A lump sum payment made in year 1 saves significantly more interest than the same payment made in year 10, because there are more years of compounding for the interest to accumulate. However, any lump sum payment is beneficial at any point in the loan."
+      },
+      {
+        "q": "Does a lump sum payment reduce my repayments or shorten my loan?",
+        "a": "It depends on your lender. Most lenders keep your repayment the same but your loan ends earlier. Some allow you to revert to a lower minimum repayment — but keeping repayments the same maximises your interest savings."
+      },
+      {
+        "q": "What is the best use of a windfall — lump sum on the mortgage or investing?",
+        "a": "This depends on your mortgage rate vs expected investment return, and your risk tolerance. If your mortgage rate is 6.5%, you need investments to return more than 6.5% after tax to come out ahead. For most Australians paying down the mortgage is a guaranteed, risk-free return."
+      },
+      {
+        "q": "Are there fees for making lump sum payments on a fixed rate loan?",
+        "a": "Fixed rate loans often include break costs or limit extra repayments during the fixed period. On variable rate loans, lump sum payments are generally unlimited and fee-free. Always check your loan contract."
+      }
+    ],
+    "affiliateContext": "mortgage",
+    "relatedSlugs": [
+      "extra-repayment",
+      "fortnightly-payment",
+      "mortgage-payoff-timeline",
+      "mortgage-repayment"
+    ]
+  },
+  {
+    "slug": "fortnightly-payment",
+    "title": "Fortnightly Payment Calculator",
+    "category": "property",
+    "description": "Calculate how much interest and time you save by switching from monthly to fortnightly mortgage repayments.",
+    "metaDescription": "See how switching to fortnightly mortgage repayments saves you years and tens of thousands in interest. Free Australian calculator with instant results.",
+    "keywords": [
+      "fortnightly mortgage repayment calculator",
+      "monthly vs fortnightly mortgage",
+      "pay mortgage fortnightly australia",
+      "fortnightly home loan savings",
+      "mortgage repayment frequency"
+    ],
+    "inputs": [
+      {
+        "id": "loanAmount",
+        "label": "Loan Amount",
+        "type": "number",
+        "default": 500000,
+        "placeholder": "e.g. 500000",
+        "prefix": "$",
+        "min": 1000,
+        "max": 5000000,
+        "step": 1000
+      },
+      {
+        "id": "interestRate",
+        "label": "Interest Rate",
+        "type": "number",
+        "default": 6.5,
+        "placeholder": "e.g. 6.5",
+        "suffix": "% p.a.",
+        "min": 0.1,
+        "max": 20,
+        "step": 0.05
+      },
+      {
+        "id": "loanTerm",
+        "label": "Loan Term",
+        "type": "number",
+        "default": 30,
+        "placeholder": "e.g. 30",
+        "suffix": "years",
+        "min": 1,
+        "max": 40,
+        "step": 1
+      }
+    ],
+    "faq": [
+      {
+        "q": "Why does paying fortnightly save money compared to monthly?",
+        "a": "When you pay half your monthly repayment every fortnight, you make 26 half-payments per year — equivalent to 13 full monthly payments. That extra month's payment every year chips away at your principal faster, reducing the interest that compounds on the outstanding balance."
+      },
+      {
+        "q": "How much can I save by switching to fortnightly payments?",
+        "a": "On a typical $500,000 mortgage at 6.5% over 30 years, switching to fortnightly payments can save approximately $70,000 in interest and shorten the loan by around 4–5 years."
+      },
+      {
+        "q": "Do lenders allow fortnightly repayments?",
+        "a": "Most Australian lenders allow weekly, fortnightly, or monthly repayments. Check your loan contract — some lenders split the monthly payment in two rather than offering a true fortnightly schedule. True fortnightly (26 payments/year) saves more than semi-monthly (24 payments/year)."
+      },
+      {
+        "q": "Is the fortnightly repayment amount exactly half the monthly payment?",
+        "a": "In this calculator, yes — the fortnightly payment is half the standard monthly repayment. This is the most common method used by lenders, and it's this structure that creates the equivalent of one extra monthly payment per year."
+      }
+    ],
+    "affiliateContext": "mortgage",
+    "relatedSlugs": [
+      "extra-repayment",
+      "lump-sum-payment",
+      "mortgage-payoff-timeline",
+      "mortgage-repayment"
+    ]
+  },
+  {
+    "slug": "split-loan",
+    "title": "Split Loan Calculator",
+    "category": "property",
+    "description": "Compare a split home loan (part fixed, part variable) against all-fixed and all-variable options to find your best strategy.",
+    "metaDescription": "Calculate split loan repayments, blended interest rate, and total interest cost. Compare fixed vs variable vs split loan in one Australian calculator.",
+    "keywords": [
+      "split loan calculator australia",
+      "fixed variable split mortgage",
+      "split home loan repayments",
+      "blended mortgage rate calculator",
+      "fixed vs variable home loan"
+    ],
+    "inputs": [
+      {
+        "id": "loanAmount",
+        "label": "Total Loan Amount",
+        "type": "number",
+        "default": 500000,
+        "placeholder": "e.g. 500000",
+        "prefix": "$",
+        "min": 1000,
+        "max": 5000000,
+        "step": 1000
+      },
+      {
+        "id": "fixedRate",
+        "label": "Fixed Interest Rate",
+        "type": "number",
+        "default": 6.0,
+        "placeholder": "e.g. 6.0",
+        "suffix": "% p.a.",
+        "min": 0.1,
+        "max": 20,
+        "step": 0.05
+      },
+      {
+        "id": "variableRate",
+        "label": "Variable Interest Rate",
+        "type": "number",
+        "default": 6.5,
+        "placeholder": "e.g. 6.5",
+        "suffix": "% p.a.",
+        "min": 0.1,
+        "max": 20,
+        "step": 0.05
+      },
+      {
+        "id": "fixedPortion",
+        "label": "Fixed Portion (%)",
+        "type": "number",
+        "default": 50,
+        "placeholder": "e.g. 50",
+        "suffix": "%",
+        "min": 0,
+        "max": 100,
+        "step": 5,
+        "help": "Percentage of the loan on the fixed rate; the remainder is on variable"
+      },
+      {
+        "id": "loanTerm",
+        "label": "Loan Term",
+        "type": "number",
+        "default": 30,
+        "placeholder": "e.g. 30",
+        "suffix": "years",
+        "min": 1,
+        "max": 40,
+        "step": 1
+      }
+    ],
+    "faq": [
+      {
+        "q": "What is a split home loan?",
+        "a": "A split home loan divides your mortgage into two portions — one on a fixed interest rate (rate certainty for a set period) and one on a variable rate (flexibility for extra repayments and offset accounts). The split can be any ratio, e.g. 50/50, 70/30."
+      },
+      {
+        "q": "What are the benefits of splitting your home loan?",
+        "a": "You get the best of both worlds: certainty on the fixed portion (protection against rate rises) and flexibility on the variable portion (extra repayments, redraw, offset accounts). It's a hedging strategy for borrowers uncertain about interest rate direction."
+      },
+      {
+        "q": "What is a blended interest rate?",
+        "a": "The blended rate is the weighted average of your fixed and variable rates, based on how much of your loan is in each portion. A 50/50 split at 6.0% fixed and 6.5% variable gives a blended rate of 6.25%."
+      },
+      {
+        "q": "Can I make extra repayments on a split loan?",
+        "a": "Yes, but only on the variable portion (unless your lender allows limited extra repayments on fixed). Most lenders allow unlimited extra repayments on variable rate portions, often with a linked offset account."
+      }
+    ],
+    "affiliateContext": "mortgage",
+    "relatedSlugs": [
+      "mortgage-repayment",
+      "extra-repayment",
+      "fortnightly-payment",
+      "comparison-rate"
+    ]
+  },
+  {
+    "slug": "luxury-car-tax",
+    "title": "Luxury Car Tax (LCT) Calculator",
+    "category": "car",
+    "description": "Calculate the Luxury Car Tax payable on a new vehicle purchase in Australia for the 2024-25 financial year, including the higher threshold for fuel-efficient vehicles.",
+    "metaDescription": "Calculate Australian Luxury Car Tax (LCT) for 2024-25. Instant results for standard and fuel-efficient vehicle thresholds. ATO-based formula.",
+    "keywords": [
+      "luxury car tax calculator australia",
+      "LCT calculator",
+      "luxury car tax 2024-25",
+      "luxury car tax electric vehicle",
+      "ATO luxury car tax"
+    ],
+    "inputs": [
+      {
+        "id": "carPrice",
+        "label": "Car Price",
+        "type": "number",
+        "default": 90000,
+        "placeholder": "e.g. 90000",
+        "prefix": "$",
+        "min": 0,
+        "max": 2000000,
+        "step": 500,
+        "help": "Enter the drive-away price including or excluding GST (select below)"
+      },
+      {
+        "id": "fuelType",
+        "label": "Vehicle Type",
+        "type": "radio",
+        "default": "standard",
+        "options": [
+          { "value": "standard", "label": "Standard (petrol, diesel)" },
+          { "value": "electric-hybrid", "label": "Fuel-efficient (electric, hybrid)" }
+        ]
+      },
+      {
+        "id": "gstIncluded",
+        "label": "Price Includes GST?",
+        "type": "radio",
+        "default": "yes",
+        "options": [
+          { "value": "yes", "label": "Yes — price is GST-inclusive" },
+          { "value": "no", "label": "No — price is ex-GST" }
+        ]
+      }
+    ],
+    "faq": [
+      {
+        "q": "What is Luxury Car Tax (LCT)?",
+        "a": "LCT is a federal tax applied to luxury vehicles sold in Australia above a set threshold. For 2024-25, the threshold is $76,950 for standard vehicles and $89,332 for fuel-efficient vehicles (electric and hybrids). LCT is charged at 33% on the amount above the threshold, calculated as: (GST-inclusive price − threshold) × 33 ÷ 133."
+      },
+      {
+        "q": "Do electric vehicles attract LCT in Australia?",
+        "a": "Electric vehicles are subject to LCT, but at a higher threshold of $89,332 for 2024-25 (compared to $76,950 for standard vehicles). This means many EVs that would attract LCT under the standard threshold are exempt under the fuel-efficient threshold."
+      },
+      {
+        "q": "Who pays LCT — the buyer or the dealer?",
+        "a": "Technically the dealer pays LCT to the ATO and passes the cost on to the buyer in the vehicle price. You'll see it as a line item on the contract or included in the total drive-away price."
+      },
+      {
+        "q": "Can businesses claim back LCT?",
+        "a": "Businesses can only claim back LCT if the vehicle is used for a purpose that attracts a LCT credit — for example, a primary producer or tourism operator. For most businesses, LCT is a non-refundable cost."
+      }
+    ],
+    "affiliateContext": "car-loan",
+    "relatedSlugs": [
+      "car-loan",
+      "novated-lease",
+      "stamp-duty",
+      "caravan-loan"
+    ]
+  },
+  {
+    "slug": "novated-lease",
+    "title": "Novated Lease Calculator",
+    "category": "car",
+    "description": "Calculate the tax savings and net fortnightly cost of a novated lease versus buying a car outright, using 2024-25 Australian tax brackets.",
+    "metaDescription": "Calculate novated lease savings in Australia. See your tax benefit, net fortnightly cost, and comparison to buying outright. 2024-25 tax rates.",
+    "keywords": [
+      "novated lease calculator australia",
+      "novated lease tax savings",
+      "salary packaging car calculator",
+      "novated lease vs buying outright",
+      "electric vehicle novated lease"
+    ],
+    "inputs": [
+      {
+        "id": "carPrice",
+        "label": "Car Price",
+        "type": "number",
+        "default": 45000,
+        "placeholder": "e.g. 45000",
+        "prefix": "$",
+        "min": 5000,
+        "max": 200000,
+        "step": 500
+      },
+      {
+        "id": "annualSalary",
+        "label": "Annual Salary",
+        "type": "number",
+        "default": 90000,
+        "placeholder": "e.g. 90000",
+        "prefix": "$",
+        "min": 20000,
+        "max": 500000,
+        "step": 1000
+      },
+      {
+        "id": "leaseTerm",
+        "label": "Lease Term",
+        "type": "select",
+        "default": "3",
+        "options": [
+          { "value": "1", "label": "1 year" },
+          { "value": "2", "label": "2 years" },
+          { "value": "3", "label": "3 years" },
+          { "value": "4", "label": "4 years" },
+          { "value": "5", "label": "5 years" }
+        ]
+      },
+      {
+        "id": "annualKm",
+        "label": "Annual Kilometres",
+        "type": "select",
+        "default": "15000",
+        "options": [
+          { "value": "10000", "label": "10,000 km" },
+          { "value": "15000", "label": "15,000 km" },
+          { "value": "20000", "label": "20,000 km" },
+          { "value": "25000", "label": "25,000 km" },
+          { "value": "30000", "label": "30,000 km" }
+        ]
+      },
+      {
+        "id": "fuelType",
+        "label": "Fuel Type",
+        "type": "radio",
+        "default": "petrol",
+        "options": [
+          { "value": "petrol", "label": "Petrol" },
+          { "value": "diesel", "label": "Diesel" },
+          { "value": "hybrid", "label": "Hybrid" },
+          { "value": "electric", "label": "Electric" }
+        ]
+      }
+    ],
+    "faq": [
+      {
+        "q": "What is a novated lease?",
+        "a": "A novated lease is a three-way agreement between you, your employer, and a finance company. Your employer deducts lease payments from your pre-tax salary, reducing your taxable income. The result is a lower income tax bill, which reduces the effective cost of running a car."
+      },
+      {
+        "q": "Who is eligible for a novated lease?",
+        "a": "Any PAYG employee whose employer offers salary packaging can access a novated lease. It's most commonly used by employees in the public sector, healthcare, and large corporations. Self-employed individuals are not eligible."
+      },
+      {
+        "q": "Does FBT (Fringe Benefits Tax) apply to novated leases?",
+        "a": "FBT can apply to novated leases, but many arrangements use the Employee Contribution Method (ECM) to reduce or eliminate FBT by having the employee contribute an after-tax amount equal to the FBT liability. Electric vehicles are FBT-exempt if under the LCT threshold."
+      },
+      {
+        "q": "What happens at the end of a novated lease?",
+        "a": "At end of term, you can pay the residual value to own the car outright, re-lease the vehicle, or hand it back. The residual value is set by the ATO based on the lease term."
+      },
+      {
+        "q": "Is a novated lease worth it?",
+        "a": "It depends on your marginal tax rate, the car price, and how much you drive. The higher your income, the more tax you save. Employees in the 37%+ tax bracket typically benefit most. Always compare total cost of ownership including residual, FBT, and running costs."
+      }
+    ],
+    "affiliateContext": "car-loan",
+    "relatedSlugs": [
+      "luxury-car-tax",
+      "car-loan",
+      "take-home-pay",
+      "income-tax"
+    ]
+  },
+  {
+    "slug": "caravan-loan",
+    "title": "Caravan Loan Calculator",
+    "category": "car",
+    "description": "Calculate monthly repayments, total interest, and true cost of a caravan loan in Australia, with a term comparison table and balloon payment example.",
+    "metaDescription": "Calculate caravan loan repayments, total interest and total cost in Australia. Compare loan terms and see a balloon payment example. Instant results.",
+    "keywords": [
+      "caravan loan calculator australia",
+      "caravan finance repayments",
+      "caravan loan interest",
+      "caravan repayment calculator",
+      "motorhome loan australia"
+    ],
+    "inputs": [
+      {
+        "id": "caravanPrice",
+        "label": "Caravan Price",
+        "type": "number",
+        "default": 60000,
+        "placeholder": "e.g. 60000",
+        "prefix": "$",
+        "min": 5000,
+        "max": 500000,
+        "step": 1000
+      },
+      {
+        "id": "deposit",
+        "label": "Deposit",
+        "type": "number",
+        "default": 10000,
+        "placeholder": "e.g. 10000",
+        "prefix": "$",
+        "min": 0,
+        "max": 490000,
+        "step": 500
+      },
+      {
+        "id": "interestRate",
+        "label": "Interest Rate",
+        "type": "number",
+        "default": 9.5,
+        "placeholder": "e.g. 9.5",
+        "suffix": "% p.a.",
+        "min": 0.1,
+        "max": 30,
+        "step": 0.1
+      },
+      {
+        "id": "loanTerm",
+        "label": "Loan Term",
+        "type": "select",
+        "default": "5",
+        "options": [
+          { "value": "3", "label": "3 years" },
+          { "value": "5", "label": "5 years" },
+          { "value": "7", "label": "7 years" },
+          { "value": "10", "label": "10 years" }
+        ]
+      },
+      {
+        "id": "includeInsurance",
+        "label": "Include Insurance Estimate?",
+        "type": "checkbox",
+        "default": true,
+        "help": "Adds ~$1,200/year for caravan insurance to your monthly cost estimate"
+      }
+    ],
+    "faq": [
+      {
+        "q": "What interest rate should I expect on a caravan loan in Australia?",
+        "a": "Caravan loan rates vary widely depending on the lender, loan type, and your credit profile. Secured caravan loans (the caravan is collateral) typically range from 7%–12% p.a. Unsecured personal loans for caravans are usually higher, at 10%–18%. Always compare the comparison rate, not just the advertised rate."
+      },
+      {
+        "q": "Can I get a caravan loan without a deposit?",
+        "a": "Some lenders offer 100% finance for caravans, but you'll pay a higher interest rate and the lender will need to be satisfied the caravan holds sufficient value. A deposit of 10%–20% typically gives you access to better rates and terms."
+      },
+      {
+        "q": "What is a balloon payment on a caravan loan?",
+        "a": "A balloon payment defers a lump sum (commonly 20–40% of the loan) to the end of the term. This reduces your monthly repayments during the loan but leaves a large payment due at the end. It suits buyers who expect a lump sum at loan maturity or plan to refinance."
+      },
+      {
+        "q": "How long can I finance a caravan for?",
+        "a": "Most Australian lenders offer caravan loans from 1 to 10 years. Longer terms reduce monthly repayments but significantly increase total interest paid. A 10-year loan on a $60,000 caravan at 9.5% costs about 60% more in interest than a 5-year loan."
+      }
+    ],
+    "affiliateContext": "car-loan",
+    "relatedSlugs": [
+      "car-loan",
+      "personal-loan-repayment",
+      "luxury-car-tax",
+      "novated-lease"
+    ]
+  },
+  {
+    "slug": "commercial-hire-purchase",
+    "title": "Commercial Hire Purchase Calculator",
+    "category": "car",
+    "description": "Calculate CHP repayments, total interest, tax and GST benefits for businesses financing equipment or vehicles in Australia.",
+    "metaDescription": "Calculate Commercial Hire Purchase (CHP) repayments, balloon payments, GST input credits, and tax benefits for Australian businesses. 2024-25 rates.",
+    "keywords": [
+      "commercial hire purchase calculator australia",
+      "CHP calculator",
+      "business car finance australia",
+      "equipment finance balloon payment",
+      "GST input credit vehicle"
+    ],
+    "inputs": [
+      {
+        "id": "assetPrice",
+        "label": "Asset Price (GST-inclusive)",
+        "type": "number",
+        "default": 80000,
+        "placeholder": "e.g. 80000",
+        "prefix": "$",
+        "min": 1000,
+        "max": 2000000,
+        "step": 1000
+      },
+      {
+        "id": "deposit",
+        "label": "Deposit (%)",
+        "type": "number",
+        "default": 10,
+        "placeholder": "e.g. 10",
+        "suffix": "%",
+        "min": 0,
+        "max": 99,
+        "step": 1
+      },
+      {
+        "id": "interestRate",
+        "label": "Interest Rate",
+        "type": "number",
+        "default": 7.5,
+        "placeholder": "e.g. 7.5",
+        "suffix": "% p.a.",
+        "min": 0.1,
+        "max": 30,
+        "step": 0.1
+      },
+      {
+        "id": "term",
+        "label": "Loan Term",
+        "type": "select",
+        "default": "5",
+        "options": [
+          { "value": "1", "label": "1 year" },
+          { "value": "2", "label": "2 years" },
+          { "value": "3", "label": "3 years" },
+          { "value": "4", "label": "4 years" },
+          { "value": "5", "label": "5 years" },
+          { "value": "7", "label": "7 years" }
+        ]
+      },
+      {
+        "id": "balloonPayment",
+        "label": "Balloon Payment (%)",
+        "type": "number",
+        "default": 20,
+        "placeholder": "e.g. 20",
+        "suffix": "%",
+        "min": 0,
+        "max": 99,
+        "step": 5,
+        "help": "Percentage of finance amount deferred to end of term. Enter 0 for no balloon."
+      },
+      {
+        "id": "gstRegistered",
+        "label": "GST Registered?",
+        "type": "checkbox",
+        "default": true,
+        "help": "Tick if your business is registered for GST — you may be able to claim the GST input credit on the asset"
+      }
+    ],
+    "faq": [
+      {
+        "q": "What is a Commercial Hire Purchase (CHP)?",
+        "a": "A CHP is a business finance arrangement where the lender purchases the asset and hires it to you for a fixed term. Ownership transfers to you at the end of the term once all payments (including any balloon) are made. Unlike a lease, you can claim depreciation and interest as business deductions."
+      },
+      {
+        "q": "Can I claim GST on a Commercial Hire Purchase?",
+        "a": "If your business is GST registered, you can claim the full GST input tax credit on the asset purchase price in your next BAS, rather than spreading it across repayments. This is a significant cash flow advantage of CHP over some other finance structures."
+      },
+      {
+        "q": "What are the tax benefits of CHP for businesses?",
+        "a": "Interest payments are tax deductible, and the asset is depreciable under Division 40. Under the ATO's instant asset write-off (where eligible), you may be able to deduct the full asset cost in the year of purchase. Consult your accountant for your specific entitlements."
+      },
+      {
+        "q": "What is a balloon payment and should I use one?",
+        "a": "A balloon payment defers a percentage of the loan to the end of the term, reducing regular repayments. It suits businesses that want to free up cash flow during the loan and plan to refinance, sell the asset, or pay from business profits at maturity."
+      }
+    ],
+    "affiliateContext": "car-loan",
+    "relatedSlugs": [
+      "car-loan",
+      "novated-lease",
+      "caravan-loan",
+      "comparison-rate"
+    ]
+  },
+  {
+    "slug": "balance-transfer",
+    "title": "Balance Transfer Calculator",
+    "category": "advanced-finance",
+    "description": "Compare keeping your current credit card debt versus transferring to a 0% or low-rate balance transfer card, and calculate exactly whether it saves you money.",
+    "metaDescription": "Calculate whether a credit card balance transfer saves you money. Compare interest costs, fees, and revert rates over the promotional period. Instant results.",
+    "keywords": [
+      "balance transfer calculator australia",
+      "credit card balance transfer savings",
+      "0% balance transfer australia",
+      "balance transfer fee calculator",
+      "credit card interest savings"
+    ],
+    "inputs": [
+      {
+        "id": "currentBalance",
+        "label": "Current Credit Card Balance",
+        "type": "number",
+        "default": 8000,
+        "placeholder": "e.g. 8000",
+        "prefix": "$",
+        "min": 100,
+        "max": 100000,
+        "step": 100
+      },
+      {
+        "id": "currentRate",
+        "label": "Current Card Interest Rate",
+        "type": "number",
+        "default": 20.0,
+        "placeholder": "e.g. 20.0",
+        "suffix": "% p.a.",
+        "min": 0,
+        "max": 50,
+        "step": 0.1
+      },
+      {
+        "id": "btRate",
+        "label": "Balance Transfer Promo Rate",
+        "type": "number",
+        "default": 0,
+        "placeholder": "e.g. 0",
+        "suffix": "% p.a.",
+        "min": 0,
+        "max": 50,
+        "step": 0.1,
+        "help": "Enter 0 for a 0% balance transfer offer"
+      },
+      {
+        "id": "btPeriod",
+        "label": "Promotional Period",
+        "type": "number",
+        "default": 12,
+        "placeholder": "e.g. 12",
+        "suffix": "months",
+        "min": 3,
+        "max": 36,
+        "step": 1
+      },
+      {
+        "id": "btFee",
+        "label": "Balance Transfer Fee",
+        "type": "number",
+        "default": 2,
+        "placeholder": "e.g. 2",
+        "suffix": "%",
+        "min": 0,
+        "max": 5,
+        "step": 0.1,
+        "help": "Most cards charge 1%–3% of the transferred balance"
+      },
+      {
+        "id": "monthlyRepayment",
+        "label": "Monthly Repayment",
+        "type": "number",
+        "default": 500,
+        "placeholder": "e.g. 500",
+        "prefix": "$",
+        "min": 0,
+        "max": 100000,
+        "step": 50,
+        "help": "Enter 0 to see interest-only accrual during the promo period"
+      }
+    ],
+    "faq": [
+      {
+        "q": "What is a balance transfer?",
+        "a": "A balance transfer moves your existing credit card debt to a new card — often at 0% or a very low interest rate for a promotional period (typically 6–24 months). This gives you time to pay down the balance without accumulating interest at the usual 20%+ rate."
+      },
+      {
+        "q": "What is the balance transfer fee?",
+        "a": "Most balance transfer offers charge a fee of 1%–3% of the amount you're transferring. For example, a 2% fee on an $8,000 balance costs $160. This fee is added to your new card balance and should be factored into your savings calculation."
+      },
+      {
+        "q": "What happens after the promotional period ends?",
+        "a": "Once the promo period ends, any remaining balance reverts to the card's standard purchase rate — typically 19%–22% p.a. This is the revert rate. If you haven't paid off the balance by then, you'll start accruing interest at the full rate."
+      },
+      {
+        "q": "Is a balance transfer always worth it?",
+        "a": "Not always. The transfer fee can outweigh the interest savings if the promo period is short or the balance is small. This calculator shows you the net saving (or cost) of transferring so you can decide with real numbers."
+      },
+      {
+        "q": "Can I spend on a balance transfer card?",
+        "a": "Be careful — new purchases on a balance transfer card often attract the full purchase rate from day one, not the promo rate. It's best to avoid using a BT card for new spending and focus on paying down the transferred balance during the promo period."
+      }
+    ],
+    "affiliateContext": "credit-cards",
+    "relatedSlugs": [
+      "personal-loan-repayment",
+      "debt-repayment",
+      "comparison-rate",
+      "net-worth"
+    ]
+  },
+  {
+    "slug": "personal-loan-repayment",
+    "title": "Personal Loan Repayment Calculator",
+    "category": "advanced-finance",
+    "description": "Calculate personal loan repayments weekly, fortnightly or monthly, total interest paid, and a full amortisation schedule for any Australian personal loan.",
+    "metaDescription": "Calculate personal loan repayments by week, fortnight or month. Get total interest, total cost, and a full amortisation schedule. Free Australian calculator.",
+    "keywords": [
+      "personal loan repayment calculator australia",
+      "personal loan calculator",
+      "loan repayment schedule",
+      "personal loan interest calculator",
+      "unsecured loan repayments"
+    ],
+    "inputs": [
+      {
+        "id": "loanAmount",
+        "label": "Loan Amount",
+        "type": "number",
+        "default": 15000,
+        "placeholder": "e.g. 15000",
+        "prefix": "$",
+        "min": 500,
+        "max": 200000,
+        "step": 500
+      },
+      {
+        "id": "interestRate",
+        "label": "Interest Rate",
+        "type": "number",
+        "default": 8.5,
+        "placeholder": "e.g. 8.5",
+        "suffix": "% p.a.",
+        "min": 0.1,
+        "max": 50,
+        "step": 0.1
+      },
+      {
+        "id": "loanTerm",
+        "label": "Loan Term",
+        "type": "select",
+        "default": "3",
+        "options": [
+          { "value": "1", "label": "1 year" },
+          { "value": "2", "label": "2 years" },
+          { "value": "3", "label": "3 years" },
+          { "value": "5", "label": "5 years" },
+          { "value": "7", "label": "7 years" }
+        ]
+      },
+      {
+        "id": "repaymentFrequency",
+        "label": "Repayment Frequency",
+        "type": "radio",
+        "default": "monthly",
+        "options": [
+          { "value": "weekly", "label": "Weekly" },
+          { "value": "fortnightly", "label": "Fortnightly" },
+          { "value": "monthly", "label": "Monthly" }
+        ]
+      }
+    ],
+    "faq": [
+      {
+        "q": "What is the average interest rate for a personal loan in Australia?",
+        "a": "Personal loan rates in Australia typically range from 6.99% to 25% p.a. depending on the lender, your credit profile, and whether the loan is secured. The comparison rate is the most accurate measure of total cost — it includes fees as well as the interest rate."
+      },
+      {
+        "q": "What is the difference between a secured and unsecured personal loan?",
+        "a": "A secured loan uses an asset (such as a car) as collateral. This reduces the lender's risk, so rates are lower — typically 6%–12%. An unsecured personal loan has no collateral requirement but carries higher rates (10%–25%) and is approved based on your creditworthiness alone."
+      },
+      {
+        "q": "Does the repayment frequency affect how much I pay?",
+        "a": "Weekly or fortnightly repayments can save a small amount compared to monthly, as you're paying more frequently and interest accrues on a lower balance. For personal loans over short terms, the difference is modest — typically a few hundred dollars."
+      },
+      {
+        "q": "What is an amortisation schedule?",
+        "a": "An amortisation schedule shows how each payment is split between interest and principal over the life of the loan. Early payments are mostly interest; later payments are mostly principal. This calculator shows the first and last 12 payments for any term."
+      }
+    ],
+    "affiliateContext": "personal-loan",
+    "relatedSlugs": [
+      "balance-transfer",
+      "comparison-rate",
+      "car-loan",
+      "debt-repayment"
+    ]
+  },
+  {
+    "slug": "comparison-rate",
+    "title": "Comparison Rate Calculator",
+    "category": "advanced-finance",
+    "description": "Calculate the true comparison rate for any Australian loan by factoring in fees — both for your actual loan scenario and the regulatory $150,000/25-year standard.",
+    "metaDescription": "Calculate the true comparison rate for any Australian home or personal loan including all fees. Understand how fees affect your real borrowing cost.",
+    "keywords": [
+      "comparison rate calculator australia",
+      "true cost of loan australia",
+      "loan comparison rate fees",
+      "advertised vs comparison rate",
+      "mortgage comparison rate"
+    ],
+    "inputs": [
+      {
+        "id": "advertisedRate",
+        "label": "Advertised Interest Rate",
+        "type": "number",
+        "default": 6.0,
+        "placeholder": "e.g. 6.0",
+        "suffix": "% p.a.",
+        "min": 0.1,
+        "max": 30,
+        "step": 0.05
+      },
+      {
+        "id": "loanAmount",
+        "label": "Loan Amount",
+        "type": "number",
+        "default": 500000,
+        "placeholder": "e.g. 500000",
+        "prefix": "$",
+        "min": 1000,
+        "max": 5000000,
+        "step": 1000
+      },
+      {
+        "id": "loanTerm",
+        "label": "Loan Term",
+        "type": "number",
+        "default": 30,
+        "placeholder": "e.g. 30",
+        "suffix": "years",
+        "min": 1,
+        "max": 40,
+        "step": 1
+      },
+      {
+        "id": "applicationFee",
+        "label": "Application / Establishment Fee",
+        "type": "number",
+        "default": 600,
+        "placeholder": "e.g. 600",
+        "prefix": "$",
+        "min": 0,
+        "max": 10000,
+        "step": 50
+      },
+      {
+        "id": "annualFee",
+        "label": "Annual Fee",
+        "type": "number",
+        "default": 0,
+        "placeholder": "e.g. 395",
+        "prefix": "$",
+        "min": 0,
+        "max": 1000,
+        "step": 10
+      },
+      {
+        "id": "monthlyFee",
+        "label": "Monthly Fee",
+        "type": "number",
+        "default": 0,
+        "placeholder": "e.g. 10",
+        "prefix": "$",
+        "min": 0,
+        "max": 500,
+        "step": 1
+      },
+      {
+        "id": "valuationFee",
+        "label": "Valuation Fee",
+        "type": "number",
+        "default": 0,
+        "placeholder": "e.g. 300",
+        "prefix": "$",
+        "min": 0,
+        "max": 2000,
+        "step": 50
+      },
+      {
+        "id": "otherUpfrontFees",
+        "label": "Other Upfront Fees",
+        "type": "number",
+        "default": 0,
+        "placeholder": "e.g. 200",
+        "prefix": "$",
+        "min": 0,
+        "max": 10000,
+        "step": 50
+      }
+    ],
+    "faq": [
+      {
+        "q": "What is a comparison rate?",
+        "a": "A comparison rate is an interest rate that includes most fees and charges in a single figure, making it easier to compare the true cost of different loans. Australian law requires lenders to display a comparison rate alongside their advertised rate, calculated on a standard $150,000 loan over 25 years."
+      },
+      {
+        "q": "Why does the regulatory comparison rate use $150,000 over 25 years?",
+        "a": "This standardised loan size and term is set by Australian law (National Consumer Credit Protection Act) so that consumers can compare like-for-like. However, because fees are fixed amounts, a smaller loan inflates the impact of fees — making the regulatory comparison rate misleading for large mortgages. This calculator shows both the regulatory rate and your actual scenario rate."
+      },
+      {
+        "q": "What fees are included in a comparison rate?",
+        "a": "Comparison rates include establishment fees, monthly fees, and annual fees. They exclude government charges (stamp duty, title insurance), redraw fees, and fees conditional on an event (like break costs). This is why two identical loans can have different comparison rates."
+      },
+      {
+        "q": "How much do fees add to my interest rate?",
+        "a": "A $600 establishment fee on a $500,000 mortgage over 30 years adds less than 0.05% to the effective rate — minimal. But a $600 establishment fee on a $50,000 personal loan over 3 years can add 0.5%–0.8% to the effective rate. Fees hurt more on small, short loans."
+      }
+    ],
+    "affiliateContext": "mortgage",
+    "relatedSlugs": [
+      "personal-loan-repayment",
+      "mortgage-repayment",
+      "split-loan",
+      "balance-transfer"
+    ]
+  },
+  {
+    "slug": "net-worth",
+    "title": "Net Worth Calculator",
+    "category": "finance",
+    "description": "Calculate your personal net worth by entering your assets and liabilities, and compare your result to Australian median benchmarks for your age group.",
+    "metaDescription": "Calculate your net worth in Australia and see how you compare to the median for your age group. Uses ABS Household Income and Wealth data (2021-22).",
+    "keywords": [
+      "net worth calculator australia",
+      "personal net worth calculator",
+      "australian median net worth by age",
+      "assets and liabilities calculator",
+      "wealth percentile australia"
+    ],
+    "inputs": [
+      {
+        "id": "cash",
+        "label": "Cash & Savings",
+        "type": "number",
+        "default": 20000,
+        "placeholder": "e.g. 20000",
+        "prefix": "$",
+        "min": 0,
+        "max": 50000000,
+        "step": 1000
+      },
+      {
+        "id": "superBalance",
+        "label": "Superannuation Balance",
+        "type": "number",
+        "default": 80000,
+        "placeholder": "e.g. 80000",
+        "prefix": "$",
+        "min": 0,
+        "max": 10000000,
+        "step": 1000
+      },
+      {
+        "id": "propertyValue",
+        "label": "Property Value",
+        "type": "number",
+        "default": 700000,
+        "placeholder": "e.g. 700000",
+        "prefix": "$",
+        "min": 0,
+        "max": 50000000,
+        "step": 5000
+      },
+      {
+        "id": "vehicleValue",
+        "label": "Vehicle Value",
+        "type": "number",
+        "default": 20000,
+        "placeholder": "e.g. 20000",
+        "prefix": "$",
+        "min": 0,
+        "max": 2000000,
+        "step": 500
+      },
+      {
+        "id": "investmentValue",
+        "label": "Investments (Shares, ETFs, etc.)",
+        "type": "number",
+        "default": 30000,
+        "placeholder": "e.g. 30000",
+        "prefix": "$",
+        "min": 0,
+        "max": 50000000,
+        "step": 1000
+      },
+      {
+        "id": "otherAssets",
+        "label": "Other Assets",
+        "type": "number",
+        "default": 0,
+        "placeholder": "e.g. 5000",
+        "prefix": "$",
+        "min": 0,
+        "max": 10000000,
+        "step": 500
+      },
+      {
+        "id": "mortgageOwing",
+        "label": "Mortgage Owing",
+        "type": "number",
+        "default": 450000,
+        "placeholder": "e.g. 450000",
+        "prefix": "$",
+        "min": 0,
+        "max": 10000000,
+        "step": 1000
+      },
+      {
+        "id": "carLoan",
+        "label": "Car Loan Balance",
+        "type": "number",
+        "default": 0,
+        "placeholder": "e.g. 12000",
+        "prefix": "$",
+        "min": 0,
+        "max": 500000,
+        "step": 500
+      },
+      {
+        "id": "creditCardDebt",
+        "label": "Credit Card Debt",
+        "type": "number",
+        "default": 0,
+        "placeholder": "e.g. 3000",
+        "prefix": "$",
+        "min": 0,
+        "max": 200000,
+        "step": 100
+      },
+      {
+        "id": "studentDebt",
+        "label": "HECS-HELP / Student Debt",
+        "type": "number",
+        "default": 0,
+        "placeholder": "e.g. 25000",
+        "prefix": "$",
+        "min": 0,
+        "max": 200000,
+        "step": 500
+      },
+      {
+        "id": "otherDebts",
+        "label": "Other Debts",
+        "type": "number",
+        "default": 0,
+        "placeholder": "e.g. 5000",
+        "prefix": "$",
+        "min": 0,
+        "max": 5000000,
+        "step": 500
+      },
+      {
+        "id": "age",
+        "label": "Your Age",
+        "type": "number",
+        "default": 35,
+        "placeholder": "e.g. 35",
+        "suffix": "years",
+        "min": 18,
+        "max": 99,
+        "step": 1,
+        "help": "Used to compare your net worth against ABS benchmarks for your age group"
+      }
+    ],
+    "faq": [
+      {
+        "q": "What is net worth?",
+        "a": "Net worth is the total value of everything you own (assets) minus everything you owe (liabilities). It's the single most important measure of financial health. A positive net worth means your assets exceed your debts; a negative net worth (more common for young Australians) means liabilities exceed assets."
+      },
+      {
+        "q": "Should I include superannuation in my net worth?",
+        "a": "Yes. The ABS includes superannuation in its net worth calculations, and this calculator follows that convention. Super is a real financial asset — it's just locked until preservation age. Including it gives you the most accurate picture of your wealth."
+      },
+      {
+        "q": "What is the median net worth for Australians?",
+        "a": "According to ABS data (2021-22), median net worth varies by age: under 25 (~$35,000), 25-34 (~$150,000), 35-44 (~$500,000), 45-54 (~$850,000), 55-64 (~$1,100,000), and 65+ (~$1,000,000). These figures include superannuation."
+      },
+      {
+        "q": "How can I improve my net worth?",
+        "a": "The two levers are growing assets (saving more, investing in growth assets like shares and property) and reducing liabilities (paying down high-interest debt first). Over time, compounding returns on investments and the paydown of mortgages naturally increase net worth for most Australians."
+      }
+    ],
+    "affiliateContext": "investment",
+    "relatedSlugs": [
+      "super-balance",
+      "budget-planner",
+      "mortgage-repayment",
+      "compound-interest"
+    ]
+  },
+  {
+    "slug": "life-insurance-cover",
+    "title": "Life Insurance Cover Calculator",
+    "category": "lifestyle",
+    "description": "Estimate how much life insurance cover you need based on your income, debts, dependants, and existing cover, with a full component-by-component breakdown.",
+    "metaDescription": "Calculate how much life insurance cover you need in Australia. Uses income replacement, debt clearance, education fund, and existing cover to give a personalised estimate.",
+    "keywords": [
+      "life insurance calculator australia",
+      "how much life insurance do i need",
+      "life cover calculator",
+      "life insurance needs australia",
+      "income replacement life insurance"
+    ],
+    "inputs": [
+      {
+        "id": "annualIncome",
+        "label": "Annual Income",
+        "type": "number",
+        "default": 90000,
+        "placeholder": "e.g. 90000",
+        "prefix": "$",
+        "min": 0,
+        "max": 2000000,
+        "step": 1000
+      },
+      {
+        "id": "age",
+        "label": "Your Age",
+        "type": "number",
+        "default": 35,
+        "placeholder": "e.g. 35",
+        "suffix": "years",
+        "min": 18,
+        "max": 80,
+        "step": 1
+      },
+      {
+        "id": "dependants",
+        "label": "Number of Dependants (children)",
+        "type": "select",
+        "default": "0",
+        "options": [
+          { "value": "0", "label": "None" },
+          { "value": "1", "label": "1" },
+          { "value": "2", "label": "2" },
+          { "value": "3", "label": "3" },
+          { "value": "4+", "label": "4 or more" }
+        ]
+      },
+      {
+        "id": "mortgageOwing",
+        "label": "Mortgage Owing",
+        "type": "number",
+        "default": 400000,
+        "placeholder": "e.g. 400000",
+        "prefix": "$",
+        "min": 0,
+        "max": 10000000,
+        "step": 5000
+      },
+      {
+        "id": "otherDebts",
+        "label": "Other Debts",
+        "type": "number",
+        "default": 0,
+        "placeholder": "e.g. 20000",
+        "prefix": "$",
+        "min": 0,
+        "max": 2000000,
+        "step": 1000
+      },
+      {
+        "id": "existingCover",
+        "label": "Existing Life Insurance Cover",
+        "type": "number",
+        "default": 0,
+        "placeholder": "e.g. 300000",
+        "prefix": "$",
+        "min": 0,
+        "max": 10000000,
+        "step": 10000,
+        "help": "Include cover through super and any standalone policies"
+      },
+      {
+        "id": "yearsOfSupport",
+        "label": "Years of Income to Replace",
+        "type": "number",
+        "default": 10,
+        "placeholder": "e.g. 10",
+        "suffix": "years",
+        "min": 1,
+        "max": 40,
+        "step": 1,
+        "help": "How many years of income your family would need if you were no longer here"
+      },
+      {
+        "id": "hasPartnerIncome",
+        "label": "Does Your Partner Have Income?",
+        "type": "checkbox",
+        "default": false,
+        "help": "If yes, enter your partner's income below — it will partially offset the income replacement needed"
+      },
+      {
+        "id": "partnerIncome",
+        "label": "Partner's Annual Income",
+        "type": "number",
+        "default": 0,
+        "placeholder": "e.g. 60000",
+        "prefix": "$",
+        "min": 0,
+        "max": 1000000,
+        "step": 1000,
+        "help": "Only used if the checkbox above is ticked"
+      }
+    ],
+    "faq": [
+      {
+        "q": "How much life insurance do I need in Australia?",
+        "a": "A common rule of thumb is 10 times your annual income, but a needs-based calculation is more accurate. You should consider income replacement for your dependants, clearing all debts (mortgage and other loans), funding children's education (~$50,000 per child), and covering funeral and estate costs (~$12,500). Subtract any existing cover you already have."
+      },
+      {
+        "q": "Does superannuation include life insurance?",
+        "a": "Most Australian superannuation funds include default death and total permanent disability (TPD) cover for eligible members. The amount is often modest — typically 2–4 units of cover worth $50,000–$400,000. Check your super statement or fund website to find your default cover amount."
+      },
+      {
+        "q": "When should I review my life insurance needs?",
+        "a": "Review your cover whenever you have a major life event: buying a home, having a child, salary increases, or paying down significant debt. Life insurance needs generally decrease as you age — as debts are paid down and children become financially independent."
+      },
+      {
+        "q": "What is the difference between life insurance and income protection?",
+        "a": "Life insurance pays a lump sum to your beneficiaries upon your death. Income protection insurance pays a monthly benefit (typically 70%–85% of your income) if you are unable to work due to illness or injury. Both serve different purposes and are often recommended together."
+      }
+    ],
+    "affiliateContext": "insurance",
+    "relatedSlugs": [
+      "income-protection",
+      "net-worth",
+      "mortgage-repayment",
+      "budget-planner"
+    ]
+  },
+  {
+    "slug": "income-protection",
+    "title": "Income Protection Calculator",
+    "category": "lifestyle",
+    "description": "Estimate your income protection insurance benefit, indicative premium, and the value of cover based on your income, occupation, age, and policy settings.",
+    "metaDescription": "Calculate income protection insurance benefit and estimated premium in Australia. See how occupation, waiting period, and benefit period affect your cover and cost.",
+    "keywords": [
+      "income protection calculator australia",
+      "income protection insurance estimate",
+      "income protection premium calculator",
+      "how much income protection do i need",
+      "income protection waiting period"
+    ],
+    "inputs": [
+      {
+        "id": "annualIncome",
+        "label": "Annual Income",
+        "type": "number",
+        "default": 90000,
+        "placeholder": "e.g. 90000",
+        "prefix": "$",
+        "min": 10000,
+        "max": 2000000,
+        "step": 1000
+      },
+      {
+        "id": "coverPercentage",
+        "label": "Cover Percentage",
+        "type": "radio",
+        "default": "75%",
+        "options": [
+          { "value": "75%", "label": "75% of income" },
+          { "value": "85%", "label": "85% of income" }
+        ]
+      },
+      {
+        "id": "waitingPeriod",
+        "label": "Waiting Period",
+        "type": "select",
+        "default": "30days",
+        "options": [
+          { "value": "14days", "label": "14 days" },
+          { "value": "30days", "label": "30 days" },
+          { "value": "60days", "label": "60 days" },
+          { "value": "90days", "label": "90 days" }
+        ]
+      },
+      {
+        "id": "benefitPeriod",
+        "label": "Benefit Period",
+        "type": "select",
+        "default": "2years",
+        "options": [
+          { "value": "2years", "label": "2 years" },
+          { "value": "5years", "label": "5 years" },
+          { "value": "to-65", "label": "To age 65" }
+        ]
+      },
+      {
+        "id": "age",
+        "label": "Your Age",
+        "type": "number",
+        "default": 35,
+        "placeholder": "e.g. 35",
+        "suffix": "years",
+        "min": 18,
+        "max": 64,
+        "step": 1
+      },
+      {
+        "id": "smoker",
+        "label": "Smoker?",
+        "type": "radio",
+        "default": "no",
+        "options": [
+          { "value": "no", "label": "Non-smoker" },
+          { "value": "yes", "label": "Smoker" }
+        ]
+      },
+      {
+        "id": "occupation",
+        "label": "Occupation Category",
+        "type": "select",
+        "default": "professional",
+        "options": [
+          { "value": "professional", "label": "Professional (doctor, lawyer, accountant)" },
+          { "value": "white-collar", "label": "White collar (office / admin)" },
+          { "value": "light-manual", "label": "Light manual (trades support, retail)" },
+          { "value": "heavy-manual", "label": "Heavy manual (tradesperson, labourer)" }
+        ]
+      }
+    ],
+    "faq": [
+      {
+        "q": "What is income protection insurance?",
+        "a": "Income protection insurance pays a monthly benefit — typically 75%–85% of your pre-disability income — if you are unable to work due to illness or injury. Payments continue from the end of the waiting period until you recover, the benefit period ends, or you reach age 65 (for to-65 policies)."
+      },
+      {
+        "q": "Is income protection insurance tax deductible in Australia?",
+        "a": "Yes. Premiums for income protection insurance held outside superannuation are generally fully tax-deductible in Australia. Policies held inside super are paid with pre-tax super contributions, but benefits paid out may be taxable at your marginal rate. Consult your tax adviser."
+      },
+      {
+        "q": "What is the waiting period?",
+        "a": "The waiting period (also called the excess period) is the time you must be unable to work before payments begin. Common options are 14, 30, 60, or 90 days. A longer waiting period lowers your premium — choose a waiting period that matches your sick leave entitlements or emergency fund runway."
+      },
+      {
+        "q": "What is the benefit period?",
+        "a": "The benefit period is the maximum length of time the insurer will pay your monthly benefit. Options include 2 years, 5 years, or to age 65. Longer benefit periods cost more but provide significantly better long-term protection. A 2-year benefit period is the most common for shorter-term cover."
+      },
+      {
+        "q": "Do occupation categories affect income protection premiums?",
+        "a": "Yes, significantly. Insurers classify occupations by risk. Professionals in office-based roles attract the lowest premiums. Heavy manual workers (tradespeople, labourers) can pay 2x–3x more for equivalent cover due to higher injury risk. Your occupation class is one of the biggest drivers of premium."
+      }
+    ],
+    "affiliateContext": "insurance",
+    "relatedSlugs": [
+      "life-insurance-cover",
+      "take-home-pay",
+      "budget-planner",
+      "net-worth"
+    ]
   }
 ]

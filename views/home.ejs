@@ -86,6 +86,55 @@
     </div>
   </section>
 
+  <!-- Trending This Month -->
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold text-navy mb-2">Trending This Month</h2>
+    <p class="text-sm text-gray-500 mb-5">The calculators Australians are using most right now</p>
+    <div class="flex gap-3 overflow-x-auto pb-2 -mx-1 px-1 snap-x">
+      <%
+        const trending = [
+          { slug: 'take-home-pay', category: 'finance', reason: 'Tax season prep' },
+          { slug: 'mortgage-repayment', category: 'property', reason: 'Rate changes' },
+          { slug: 'stamp-duty-all-states', category: 'property', reason: 'Property market' },
+          { slug: 'super-balance-growth', category: 'super', reason: 'End of FY' },
+          { slug: 'income-tax', category: 'finance', reason: 'New tax brackets' },
+          { slug: 'borrowing-power', category: 'property', reason: 'Rate decisions' },
+          { slug: 'gst-calculator', category: 'conversions', reason: 'BAS season' },
+          { slug: 'budget-planner', category: 'finance', reason: 'Cost of living' }
+        ];
+      %>
+      <% trending.forEach(t => { %>
+        <% const tc = calculators.find(c => c.slug === t.slug); %>
+        <% if (tc) { %>
+          <a href="/<%= tc.category %>/<%= tc.slug %>" class="flex-shrink-0 w-56 snap-start group bg-white rounded-xl p-4 shadow-sm hover:shadow-md border border-gray-100 hover:border-gold/50 transition">
+            <span class="inline-block text-xs font-medium text-gold bg-gold-light px-2 py-0.5 rounded-full mb-2"><%= t.reason %></span>
+            <h3 class="font-semibold text-sm text-navy group-hover:text-gold transition"><%= tc.title %></h3>
+            <p class="text-xs text-gray-500 mt-1 line-clamp-2"><%= tc.description %></p>
+          </a>
+        <% } %>
+      <% }) %>
+    </div>
+  </section>
+
+  <!-- Latest Articles -->
+  <% if (articles && articles.length) { %>
+  <section class="mb-12">
+    <div class="flex items-center justify-between mb-5">
+      <h2 class="text-2xl font-bold text-navy">Latest Articles & Guides</h2>
+      <a href="/articles" class="text-sm text-gold font-medium hover:underline">View all →</a>
+    </div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <% articles.slice(0, 6).forEach(a => { %>
+        <a href="/articles/<%= a.slug %>" class="group bg-white rounded-xl p-5 shadow-sm hover:shadow-md border border-gray-100 hover:border-gold/50 transition">
+          <h3 class="font-semibold text-sm text-navy group-hover:text-gold transition mb-2"><%= a.title %></h3>
+          <p class="text-xs text-gray-500 line-clamp-2"><%= a.excerpt || a.metaDescription %></p>
+          <span class="text-xs text-gold font-medium mt-3 inline-block">Read more →</span>
+        </a>
+      <% }) %>
+    </div>
+  </section>
+  <% } %>
+
   <!-- Amazon featured products -->
   <%- include('partials/affiliate-inline', { calc: { affiliateContext: 'finance-books' } }) %>
 

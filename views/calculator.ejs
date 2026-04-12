@@ -130,9 +130,12 @@
         <!-- Results -->
         <div id="calc-results" class="mt-8 hidden">
           <div class="bg-gradient-to-b from-gray-50 to-white rounded-2xl border border-gray-100 p-6 md:p-8 shadow-sm">
-            <div class="flex items-center gap-2 mb-5">
-              <div class="w-1 h-6 bg-gold rounded-full"></div>
-              <h2 class="text-lg font-bold" style="color: #1d1d1f; letter-spacing: -0.02em;">Your Results</h2>
+            <div class="flex items-center justify-between mb-5">
+              <div class="flex items-center gap-2">
+                <div class="w-1 h-6 bg-gold rounded-full"></div>
+                <h2 class="text-lg font-bold" style="color: #1d1d1f; letter-spacing: -0.02em;">Your Results</h2>
+              </div>
+              <span class="text-xs text-gray-400 font-medium">Rates current as of April 2026</span>
             </div>
             <div id="results-content"></div>
           </div>
@@ -199,6 +202,38 @@
           </div>
         </div>
       <% } %>
+
+      <!-- Related articles -->
+      <% const relatedArticles = (articles || []).filter(a => {
+        const calcCats = [calc.category, calc.slug];
+        const articleText = ((a.title || '') + ' ' + (a.excerpt || '') + ' ' + (a.metaDescription || '')).toLowerCase();
+        const catKeywords = {
+          'finance': ['tax', 'income', 'pay', 'salary', 'budget', 'saving'],
+          'property': ['mortgage', 'home loan', 'stamp duty', 'property', 'house', 'borrowing', 'lmi'],
+          'super': ['super', 'retirement', 'superannuation'],
+          'car': ['car', 'vehicle', 'fuel', 'rego', 'driving'],
+          'health': ['bmi', 'calorie', 'fitness', 'weight', 'health', 'pregnancy'],
+          'business': ['leave', 'redundancy', 'hourly', 'overtime', 'business'],
+          'advanced-finance': ['interest', 'loan', 'credit card', 'capital gains', 'offset', 'refinance'],
+          'investment': ['rental', 'dividend', 'gearing', 'investment', 'crypto']
+        };
+        const keywords = catKeywords[calc.category] || [];
+        return keywords.some(kw => articleText.includes(kw));
+      }).slice(0, 4); %>
+      <% if (relatedArticles.length) { %>
+        <div class="mb-8">
+          <h2 class="text-xl font-bold text-navy mb-4">Related Articles & Guides</h2>
+          <div class="grid sm:grid-cols-2 gap-3">
+            <% relatedArticles.forEach(a => { %>
+              <a href="/articles/<%= a.slug %>" class="group bg-white rounded-lg p-4 shadow-sm hover:shadow-md border border-gray-100 hover:border-gold/50 transition">
+                <h3 class="font-medium text-navy group-hover:text-gold transition text-sm"><%= a.title %></h3>
+                <p class="text-xs text-gray-500 mt-1 line-clamp-2"><%= a.excerpt || a.metaDescription %></p>
+                <span class="text-xs text-gold font-medium mt-2 inline-block">Read more →</span>
+              </a>
+            <% }) %>
+          </div>
+        </div>
+      <% } %>
     </div>
 
     <!-- Sidebar — sticky, no scroll -->
@@ -246,6 +281,7 @@
 <script src="/js/calcmate-results.js"></script>
 
 <script>
+  // Calculate button
   document.getElementById('calc-btn').addEventListener('click', function() {
     if (typeof calculate === 'function') {
       calculate();
@@ -256,5 +292,29 @@
       }, 100);
     }
   });
+
+  // Real-time calculation as you type (debounced)
+  (function() {
+    var debounceTimer;
+    var calcInputs = document.getElementById('calc-inputs');
+    if (!calcInputs) return;
+    calcInputs.addEventListener('input', function() {
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(function() {
+        if (typeof calculate === 'function' && !document.getElementById('calc-results').classList.contains('hidden')) {
+          calculate();
+          if (typeof window.onCalculateComplete === 'function') window.onCalculateComplete();
+        }
+      }, 400);
+    });
+    calcInputs.addEventListener('change', function(e) {
+      if (e.target.tagName === 'SELECT' || e.target.type === 'radio' || e.target.type === 'checkbox') {
+        if (typeof calculate === 'function' && !document.getElementById('calc-results').classList.contains('hidden')) {
+          calculate();
+          if (typeof window.onCalculateComplete === 'function') window.onCalculateComplete();
+        }
+      }
+    });
+  })();
 </script>
 <%- include('partials/tail') %>

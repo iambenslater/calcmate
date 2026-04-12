@@ -84,6 +84,7 @@ app.use((req, res, next) => {
   res.locals.calculators = calculators;
   res.locals.calcsByCategory = calcsByCategory;
   res.locals.categoryMeta = categoryMeta;
+  res.locals.articles = articles;
   res.locals.currentPath = req.path;
   res.locals.siteUrl = process.env.SITE_URL || 'https://calculatormate.com.au';
   next();
