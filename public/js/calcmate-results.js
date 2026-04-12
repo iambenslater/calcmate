@@ -112,7 +112,9 @@
           var value = row.querySelector('.result-value');
           if (!label || !value) return;
           var labelText = label.textContent.trim();
-          if (chartConfig.dataLabels.indexOf(labelText) > -1) {
+          // Match exact or startsWith (for labels with dynamic suffixes like "Protein (35%)")
+          var matched = chartConfig.dataLabels.some(function(dl) { return labelText === dl || labelText.startsWith(dl); });
+          if (matched) {
             labels.push(labelText);
             // Parse currency or number from value text
             var numStr = value.textContent.replace(/[^0-9.-]/g, '');
