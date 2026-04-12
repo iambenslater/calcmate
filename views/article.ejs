@@ -62,6 +62,12 @@
       <h1 class="text-3xl font-bold text-navy mb-3"><%= article.title %></h1>
       <p class="text-gray-500 text-sm mb-4"><%= article.datePublished || '12 April 2026' %> · <%= article.readTime || '5' %> min read</p>
 
+      <!-- Hero image -->
+      <% const articleImgPath = '/images/articles/' + article.slug + '.png'; %>
+      <figure class="mb-8 rounded-xl overflow-hidden border border-gray-100 shadow-sm max-h-64 md:max-h-80">
+        <img src="<%= articleImgPath %>" alt="<%= article.title %>" class="w-full h-full object-cover" loading="eager" onerror="this.parentElement.style.display='none'">
+      </figure>
+
       <!-- Article content -->
       <article class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 md:p-8 mb-8">
         <div class="article-content">
