@@ -17,12 +17,8 @@
   }
 }
 </script>
+<%- include('partials/ad-hero-banner', { calc: { affiliateContext: calcs[0] ? calcs[0].affiliateContext : 'general' } }) %>
 <%- include('partials/header') %>
-
-<!-- Header ad -->
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
-  <% adSlotNum = 0; %><%- include('partials/ad-leaderboard', { adSlot: adSlotNum++, calc: { affiliateContext: calcs[0] ? calcs[0].affiliateContext : 'general' } }) %>
-</div>
 
 <main class="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-6">
   <%- include('partials/breadcrumbs', { category, categoryName }) %>
@@ -41,15 +37,11 @@
             <h2 class="font-semibold text-navy group-hover:text-gold transition mb-1"><%= c.title %></h2>
             <p class="text-sm text-gray-500"><%= c.description %></p>
           </a>
-          <% if (idx === 3 && calcs.length > 6) { %>
-            <!-- Ad: mid-listing -->
-            <div class="sm:col-span-2"><%- include('partials/ad-leaderboard', { adSlot: adSlotNum++, calc: { affiliateContext: calcs[0] ? calcs[0].affiliateContext : 'general' } }) %></div>
-          <% } %>
         <% }) %>
       </div>
 
-      <!-- Ad: after listing -->
-      <div class="mt-8"><%- include('partials/ad-leaderboard', { adSlot: adSlotNum++, calc: { affiliateContext: calcs[0] ? calcs[0].affiliateContext : 'general' } }) %></div>
+      <!-- Editorial pick after calculator listing -->
+      <div class="mt-8"><%- include('partials/ad-editorial-pick', { calc: { affiliateContext: calcs[0] ? calcs[0].affiliateContext : 'general' } }) %></div>
 
       <!-- Inline Amazon CTA -->
       <div class="mt-8"><%- include('partials/affiliate-inline', { calc: { affiliateContext: calcs[0] ? calcs[0].affiliateContext : 'general' } }) %></div>
@@ -69,17 +61,13 @@
           </nav>
         </div>
 
-        <!-- Amazon rectangle ad -->
-        <%- include('partials/ad-rectangle', { calc: { affiliateContext: calcs[0] ? calcs[0].affiliateContext : 'general' } }) %>
+        <!-- Amazon product cards -->
+        <%- include('partials/ad-product', { calc: { affiliateContext: calcs[0] ? calcs[0].affiliateContext : 'general' } }) %>
       </div>
     </aside>
   </div>
 </main>
 
-<!-- Footer ad -->
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-4">
-  <%- include('partials/ad-leaderboard', { adSlot: adSlotNum++, calc: { affiliateContext: calcs[0] ? calcs[0].affiliateContext : 'general' } }) %>
-</div>
-
+<%- include('partials/ad-footer-banner', { calc: { affiliateContext: calcs[0] ? calcs[0].affiliateContext : 'general' } }) %>
 <%- include('partials/footer') %>
 <%- include('partials/tail') %>

@@ -1,9 +1,6 @@
 <%- include('partials/head') %>
+<%- include('partials/ad-hero-banner', { calc: { affiliateContext: 'general' } }) %>
 <%- include('partials/header') %>
-
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
-  <% adSlotNum = 0; %><%- include('partials/ad-leaderboard', { adSlot: adSlotNum++, calc: { affiliateContext: 'general' } }) %>
-</div>
 
 <main class="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-6">
   <nav aria-label="Breadcrumb" class="mb-4">
@@ -29,9 +26,6 @@
   </div>
 </main>
 
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-4">
-  <%- include('partials/ad-leaderboard', { adSlot: adSlotNum++, calc: { affiliateContext: 'general' } }) %>
-</div>
-
+<%- include('partials/ad-footer-banner', { calc: { affiliateContext: 'general' } }) %>
 <%- include('partials/footer') %>
 <%- include('partials/tail') %>

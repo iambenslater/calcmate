@@ -41,12 +41,8 @@
   ]
 }
 </script>
+<%- include('partials/ad-hero-banner') %>
 <%- include('partials/header') %>
-
-<!-- Header ad -->
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
-  <% adSlotNum = 0; %><%- include('partials/ad-leaderboard', { adSlot: adSlotNum++ }) %>
-</div>
 
 <main class="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-6">
   <!-- Breadcrumbs -->
@@ -73,8 +69,8 @@
         </div>
       </article>
 
-      <!-- Ad: after article -->
-      <div class="mb-8"><%- include('partials/ad-leaderboard', { adSlot: adSlotNum++ }) %></div>
+      <!-- Editorial pick after article -->
+      <%- include('partials/ad-editorial-pick') %>
 
       <!-- Inline Amazon CTA -->
       <%- include('partials/affiliate-inline') %>
@@ -108,16 +104,10 @@
                 </summary>
                 <p class="mt-2 text-sm leading-relaxed" style="color: #4b5563;"><%= f.a || f.answer || '' %></p>
               </details>
-              <% if (fIdx === 1) { %>
-                <div class="my-2"><%- include('partials/ad-leaderboard', { adSlot: adSlotNum++ }) %></div>
-              <% } %>
             <% }) %>
           </div>
         </div>
       <% } %>
-
-      <!-- Ad: before footer -->
-      <div class="mb-8"><%- include('partials/ad-leaderboard', { adSlot: adSlotNum++ }) %></div>
     </div>
 
     <!-- Sidebar -->
@@ -146,10 +136,6 @@
   </div>
 </main>
 
-<!-- Footer ad -->
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-4">
-  <%- include('partials/ad-leaderboard', { adSlot: adSlotNum++ }) %>
-</div>
-
+<%- include('partials/ad-footer-banner') %>
 <%- include('partials/footer') %>
 <%- include('partials/tail') %>

@@ -34,12 +34,8 @@
   }
 }
 </script>
+<%- include('partials/ad-hero-banner', { calc: { affiliateContext: audience.affiliateContext || 'general' } }) %>
 <%- include('partials/header') %>
-
-<!-- Header ad -->
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
-  <% adSlotNum = 0; %><%- include('partials/ad-leaderboard', { adSlot: adSlotNum++, calc: { affiliateContext: audience.affiliateContext || 'general' } }) %>
-</div>
 
 <main class="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-6">
   <!-- Breadcrumbs -->
@@ -161,8 +157,8 @@
         </div>
       </section>
 
-      <!-- Ad -->
-      <div class="mb-8"><%- include('partials/ad-leaderboard', { adSlot: adSlotNum++, calc: { affiliateContext: audience.affiliateContext || 'general' } }) %></div>
+      <!-- Editorial pick -->
+      <%- include('partials/ad-editorial-pick', { calc: { affiliateContext: audience.affiliateContext || 'general' } }) %>
 
       <!-- Guides content -->
       <% if (audience.guides) { %>
@@ -192,9 +188,6 @@
                 </summary>
                 <p class="mt-2 text-sm leading-relaxed" style="color: #4b5563;"><%= f.a || f.answer || '' %></p>
               </details>
-              <% if (fIdx === 1) { %>
-                <div class="my-2"><%- include('partials/ad-leaderboard', { adSlot: adSlotNum++, calc: { affiliateContext: audience.affiliateContext || 'general' } }) %></div>
-              <% } %>
             <% }) %>
           </div>
         </div>
@@ -213,9 +206,6 @@
           <% }) %>
         </div>
       </section>
-
-      <!-- Footer ad -->
-      <div class="mb-8"><%- include('partials/ad-leaderboard', { adSlot: adSlotNum++, calc: { affiliateContext: audience.affiliateContext || 'general' } }) %></div>
     </div>
 
     <!-- Sidebar -->
@@ -240,11 +230,7 @@
   </div>
 </main>
 
-<!-- Footer ad -->
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-4">
-  <%- include('partials/ad-leaderboard', { adSlot: adSlotNum++, calc: { affiliateContext: audience.affiliateContext || 'general' } }) %>
-</div>
-
+<%- include('partials/ad-footer-banner', { calc: { affiliateContext: audience.affiliateContext || 'general' } }) %>
 <%- include('partials/footer') %>
 
 <!-- Audience calculator scripts -->
