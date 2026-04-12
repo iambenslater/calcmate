@@ -37,9 +37,15 @@
   <section class="text-center py-12 md:py-16">
     <h1 class="text-4xl md:text-5xl font-bold text-navy mb-4">Your Calculation <span class="text-gold">Mate</span></h1>
     <p class="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">131 free online calculators built for Australians. Tax, mortgage, health, business — all with current rates and state-specific data.</p>
-    <div class="max-w-xl mx-auto relative">
-      <input type="search" id="hero-search" placeholder="Search or ask a question..." class="w-full px-6 py-4 rounded-xl border-2 border-gray-200 text-lg focus:outline-none focus:border-gold focus:ring-2 focus:ring-gold/20 shadow-sm transition" autocomplete="off" maxlength="500">
-      <div id="hero-search-results" class="absolute top-full left-0 right-0 mt-2 bg-white rounded-xl shadow-xl hidden max-h-80 overflow-y-auto z-50 border border-gray-100"></div>
+    <div class="max-w-2xl mx-auto relative">
+      <div class="relative">
+        <svg class="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+        <input type="search" id="hero-search" placeholder="Search 131 calculators or ask a question..." class="w-full pl-14 pr-6 py-4 rounded-2xl border-2 border-gray-200 text-lg focus:outline-none focus:border-gold focus:ring-4 focus:ring-gold/10 shadow-md hover:shadow-lg transition bg-white" autocomplete="off" maxlength="500">
+        <kbd class="hidden sm:inline-flex absolute right-4 top-1/2 -translate-y-1/2 items-center gap-1 px-2 py-1 text-xs text-gray-400 bg-gray-100 rounded border border-gray-200 pointer-events-none">
+          <span class="text-[10px]">⌘</span>K
+        </kbd>
+      </div>
+      <div id="hero-search-results" class="absolute top-full left-0 right-0 mt-2 bg-white rounded-2xl shadow-2xl hidden max-h-96 overflow-y-auto z-50 border border-gray-100"></div>
     </div>
     <p id="hero-hint" class="text-sm text-gray-400 mt-3">Try "stamp duty" or ask "What's my take-home pay on $85k in NSW?"</p>
     <div class="max-w-xl mx-auto">
