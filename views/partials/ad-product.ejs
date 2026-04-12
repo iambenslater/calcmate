@@ -6,7 +6,7 @@ const affiliateTag = 'benslater-22';
 let products = [];
 let affiliateCtx = 'general';
 try {
-  const productData = require('../../data/affiliate-products.json');
+  const productData = require(require('path').join(process.cwd(), 'data', 'affiliate-products.json'));
   affiliateCtx = typeof calc !== 'undefined' ? (calc.affiliateContext || calc.category || 'general')
     : (typeof affiliateContext !== 'undefined' ? affiliateContext : 'general');
   products = (productData.products && productData.products[affiliateCtx]) || [];
@@ -14,7 +14,7 @@ try {
 
   // Load click stats if available — boost products with higher CTR
   try {
-    const stats = require('../../data/affiliate-stats.json');
+    const stats = require(require('path').join(process.cwd(), 'data', 'affiliate-stats.json'));
     if (stats.byProduct) {
       products = products.map(p => {
         const s = stats.byProduct[p.asin];

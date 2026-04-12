@@ -5,7 +5,7 @@ const affiliateTag = 'benslater-22';
 let inlineProduct = null;
 let affiliateCtx = 'general';
 try {
-  const productData = require('../../data/affiliate-products.json');
+  const productData = require(require('path').join(process.cwd(), 'data', 'affiliate-products.json'));
   affiliateCtx = typeof calc !== 'undefined' ? (calc.affiliateContext || calc.category || 'general')
     : (typeof affiliateContext !== 'undefined' ? affiliateContext : 'general');
   const products = (productData.products && productData.products[affiliateCtx]) || productData.products['general'] || [];
