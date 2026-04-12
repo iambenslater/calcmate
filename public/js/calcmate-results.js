@@ -102,7 +102,7 @@
       type = chartConfig.type || 'doughnut';
       var labels = [];
       var values = [];
-      var colours = chartConfig.colours || ['#00205B', '#FFB800', '#3B82F6', '#10B981', '#EF4444', '#8B5CF6', '#F59E0B', '#6366F1'];
+      var colours = chartConfig.colours || ['#00205B', '#FFB800', '#3B82F6', '#10B981', '#6366F1', '#EC4899', '#F59E0B', '#8B5CF6'];
 
       if (chartConfig.dataLabels) {
         // Scrape specific result rows by label text
@@ -145,10 +145,34 @@
       options = {
         responsive: true,
         maintainAspectRatio: true,
-        cutout: type === 'doughnut' ? '55%' : 0,
+        cutout: type === 'doughnut' ? '60%' : 0,
         plugins: {
-          legend: { position: 'bottom', labels: { padding: 16, usePointStyle: true, font: { family: 'Inter, system-ui, sans-serif', size: 12 } } },
-          tooltip: { callbacks: { label: function(ctx) { return ctx.label + ': $' + ctx.parsed.toLocaleString('en-AU', {minimumFractionDigits: 2}); } } }
+          legend: {
+            position: 'bottom',
+            labels: {
+              padding: 20,
+              usePointStyle: true,
+              pointStyleWidth: 10,
+              font: { family: 'Inter, system-ui, sans-serif', size: 13, weight: '500' },
+              color: '#1d1d1f'
+            }
+          },
+          tooltip: {
+            backgroundColor: '#1d1d1f',
+            titleFont: { family: 'Inter, system-ui, sans-serif', size: 13, weight: '600' },
+            bodyFont: { family: 'Inter, system-ui, sans-serif', size: 12 },
+            padding: 12,
+            cornerRadius: 8,
+            displayColors: true,
+            boxPadding: 6,
+            callbacks: {
+              label: function(ctx) {
+                var total = ctx.dataset.data.reduce(function(a, b) { return a + b; }, 0);
+                var pct = total > 0 ? ((ctx.parsed / total) * 100).toFixed(1) : 0;
+                return ' $' + ctx.parsed.toLocaleString('en-AU', {minimumFractionDigits: 2}) + ' (' + pct + '%)';
+              }
+            }
+          }
         }
       };
     } else if (type === 'bar') {
@@ -157,11 +181,25 @@
         maintainAspectRatio: true,
         plugins: {
           legend: { display: false },
-          tooltip: { callbacks: { label: function(ctx) { return '$' + ctx.parsed.y.toLocaleString('en-AU', {minimumFractionDigits: 2}); } } }
+          tooltip: {
+            backgroundColor: '#1d1d1f',
+            titleFont: { family: 'Inter, system-ui, sans-serif', size: 13, weight: '600' },
+            bodyFont: { family: 'Inter, system-ui, sans-serif', size: 12 },
+            padding: 12,
+            cornerRadius: 8,
+            callbacks: { label: function(ctx) { return ' $' + ctx.parsed.y.toLocaleString('en-AU', {minimumFractionDigits: 2}); } }
+          }
         },
         scales: {
-          y: { beginAtZero: true, ticks: { callback: function(v) { return '$' + v.toLocaleString(); } } },
-          x: { ticks: { font: { size: 11 } } }
+          y: {
+            beginAtZero: true,
+            grid: { color: '#f0f0f2', drawBorder: false },
+            ticks: { callback: function(v) { return '$' + v.toLocaleString(); }, font: { size: 11 }, color: '#86868b' }
+          },
+          x: {
+            grid: { display: false },
+            ticks: { font: { size: 12, weight: '500' }, color: '#1d1d1f' }
+          }
         }
       };
       // Convert doughnut-style data to bar-style

@@ -20,18 +20,190 @@
 .article-content figure { margin: 1.5rem 0 !important; }
 .article-content figcaption { font-size: 0.8125rem !important; color: #6b7280 !important; padding: 0.5rem 0 !important; }
 
-/* Result row styling */
+/* ============================================================
+   RESULTS PANEL — Professional calculator results styling
+   Typography hierarchy: primary result large + gold accent,
+   secondary results medium + navy, labels subtle grey.
+   Generous whitespace between rows. Clean separators.
+   ============================================================ */
+
+/* Results container */
+#calc-results {
+  animation: fadeInUp 0.4s ease-out;
+}
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Result rows */
 .result-row {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  padding: 0.5rem 0;
-  border-bottom: 1px solid #f3f4f6;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #f0f0f2;
+  gap: 1rem;
 }
 .result-row:last-child { border-bottom: none; }
-.result-label { color: #6b7280; font-size: 0.875rem; }
-.result-value { font-weight: 600; color: #00205B; font-size: 1.125rem; }
-.result-value.highlight { color: #FFB800; font-size: 1.5rem; }
+.result-row:first-child { padding-top: 0; }
+
+/* Labels — subtle, readable */
+.result-label {
+  color: #86868b;
+  font-size: 0.875rem;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  line-height: 1.4;
+}
+
+/* Values — bold, navy, authoritative */
+.result-value {
+  font-weight: 600;
+  color: #1d1d1f;
+  font-size: 1rem;
+  text-align: right;
+  letter-spacing: -0.01em;
+  flex-shrink: 0;
+}
+
+/* Primary/highlight result — large, gold accent */
+.result-value.highlight,
+.result-row.font-bold .result-value {
+  color: #00205B;
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+/* Bold rows (totals/summaries) — elevated */
+.result-row.font-bold {
+  padding: 1rem 0;
+  border-bottom: 2px solid #00205B;
+  margin-top: 0.25rem;
+}
+.result-row.font-bold .result-label {
+  color: #1d1d1f;
+  font-weight: 600;
+  font-size: 0.9375rem;
+}
+
+/* Negative values (deductions) */
+.result-value.text-red-600 {
+  color: #dc2626 !important;
+  font-weight: 500;
+}
+
+/* Positive values */
+.result-value.text-green-600 {
+  color: #16a34a !important;
+  font-weight: 500;
+}
+
+/* Warning values */
+.result-value.text-amber-600 {
+  color: #d97706 !important;
+}
+
+/* Section separators within results */
+#results-content hr {
+  border: none;
+  border-top: 1px solid #e5e7eb;
+  margin: 0.75rem 0;
+}
+
+/* Results section headers */
+#results-content h4 {
+  color: #00205B;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.25rem;
+  border-bottom: 2px solid #FFB800;
+  display: inline-block;
+}
+
+/* Tables within results */
+#results-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0.75rem 0;
+  font-size: 0.8125rem;
+}
+#results-content th {
+  background: #f9fafb;
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+  font-weight: 600;
+  color: #1d1d1f;
+  border-bottom: 2px solid #e5e7eb;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+#results-content td {
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid #f3f4f6;
+  color: #374151;
+}
+#results-content tr:hover td {
+  background: #fafafa;
+}
+
+/* Chart container */
+#chart-container {
+  animation: fadeInUp 0.5s ease-out 0.1s both;
+}
+#chart-container .bg-gray-50 {
+  background: #fafafa !important;
+  border: 1px solid #f0f0f2 !important;
+  border-radius: 12px !important;
+  padding: 1.5rem !important;
+}
+
+/* Share button */
+#share-result-btn {
+  margin-top: 1.5rem !important;
+  padding: 0.875rem 1.5rem !important;
+  border-radius: 12px !important;
+  font-size: 0.9375rem !important;
+  letter-spacing: -0.01em !important;
+  transition: all 0.2s ease-out !important;
+}
+#share-result-btn:hover {
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 12px rgba(0, 32, 91, 0.15) !important;
+}
+
+/* Share modal */
+#share-modal-overlay .bg-white {
+  border-radius: 16px !important;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Results disclaimer text */
+#results-content .text-gray-400,
+#results-content .text-gray-500 {
+  font-size: 0.75rem !important;
+  line-height: 1.5 !important;
+  margin-top: 1rem !important;
+  padding-top: 0.75rem !important;
+  border-top: 1px solid #f0f0f2 !important;
+}
+
+/* Mobile: stack result rows vertically on very small screens */
+@media (max-width: 400px) {
+  .result-row {
+    flex-direction: column;
+    gap: 0.125rem;
+  }
+  .result-value {
+    text-align: left;
+  }
+}
 
 /* Calculator input groups */
 .calc-group { margin-bottom: 1rem; }
