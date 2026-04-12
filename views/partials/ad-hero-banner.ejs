@@ -1,0 +1,90 @@
+<%
+// Large-format hero product banner — sits above everything (header, nav, search)
+// Modelled on Wirecutter's full-width above-the-fold product placement
+// Shows one curated product per page context with image + editorial copy
+const affiliateTag = 'benslater-22';
+
+const productData = typeof affiliateProducts !== 'undefined' ? affiliateProducts : { products: {} };
+const heroCtx = typeof calc !== 'undefined' ? (calc.affiliateContext || calc.category || 'general')
+  : (typeof affiliateContext !== 'undefined' ? affiliateContext : 'general');
+const ctxProducts = (productData.products && productData.products[heroCtx]) || productData.products['general'] || [];
+
+// Use the #1 product for the hero
+const hero = ctxProducts.length > 0 ? ctxProducts[0] : null;
+
+// Context-specific editorial headline — not "BUY THIS" but "here's what we recommend"
+const heroHeadlines = {
+  food: 'We weighed a lot of options. This scale won.',
+  fitness: 'The body scale that tracks what your bathroom scale can\'t.',
+  'finance-books': 'The money book Australians keep coming back to.',
+  'tax-software': 'Tax time is sorted when your receipts are.',
+  budgeting: 'The budget planner people actually stick with.',
+  mortgage: 'The first home buyer guide that doesn\'t overcomplicate it.',
+  savings: 'The book that turned savings into a system.',
+  investment: 'Start here before you start investing.',
+  'car-accessories': 'The dash cam that pays for itself.',
+  'car-loan': 'Protect your new investment from day one.',
+  'trade-tools': 'Precision that makes the job faster.',
+  'home-appliances': 'See exactly where your energy goes.',
+  'home-tools': 'Your important documents deserve protection.',
+  kitchen: 'Precision that makes recipes repeatable.',
+  baby: 'The pregnancy journal other parents wish they\'d started.',
+  education: 'The calculator Australian students trust.',
+  health: 'Hospital-grade monitoring at home.',
+  'health-insurance': 'Know your numbers between doctor visits.',
+  'credit-cards': 'A written plan makes debt feel manageable.',
+  'personal-loan': 'Read this before you borrow.',
+  insurance: 'Fireproof protection for what matters.',
+  'office-furniture': 'A small upgrade that changes how you work.',
+  'office-supplies': 'The desk tool that earns its spot.',
+  pet: 'Accurate portions for a healthier pet.',
+  fashion: 'Measurements you can trust.',
+  travel: 'The packing system seasoned travellers swear by.',
+  'business-books': 'The book that sorts your business finances.',
+  general: 'Australians are adding this to cart right now.'
+};
+const headline = heroHeadlines[heroCtx] || heroHeadlines.general;
+
+function heroUrl(p) {
+  if (p && p.asin && p.asin.length >= 10) {
+    return 'https://www.amazon.com.au/dp/' + p.asin + '?tag=' + affiliateTag;
+  }
+  if (p && p.searchFallback) {
+    return 'https://www.amazon.com.au/s?k=' + encodeURIComponent(p.searchFallback) + '&tag=' + affiliateTag;
+  }
+  return 'https://www.amazon.com.au/?tag=' + affiliateTag;
+}
+
+function formatReviewCount(n) {
+  if (!n) return '';
+  if (n >= 1000) return (n / 1000).toFixed(n >= 10000 ? 0 : 1).replace(/\.0$/, '') + 'K';
+  return String(n);
+}
+%>
+<% if (hero) { %>
+<a href="<%- heroUrl(hero) %>" target="_blank" rel="nofollow noopener" class="block bg-gray-50 border-b border-gray-200 hover:bg-gray-100 transition group" data-affiliate-product="<%= hero.asin %>" data-affiliate-position="hero">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-5">
+    <div class="flex items-center gap-5 sm:gap-8">
+      <% if (hero.image) { %>
+      <div class="shrink-0 w-16 h-16 sm:w-20 sm:h-20 bg-white rounded-lg border border-gray-100 flex items-center justify-center p-1.5 sm:p-2">
+        <img src="<%= hero.image.replace('_SL200_', '_SL160_') %>" alt="<%= hero.title %>" class="max-w-full max-h-full object-contain" loading="eager">
+      </div>
+      <% } %>
+      <div class="flex-1 min-w-0">
+        <p class="text-xs text-gray-400 font-medium uppercase tracking-wider mb-0.5">Our recommendation</p>
+        <p class="text-sm sm:text-base font-semibold text-gray-900 leading-snug"><%= headline %></p>
+        <div class="flex items-center flex-wrap gap-x-3 gap-y-0.5 mt-1">
+          <span class="text-sm font-medium text-gray-700"><%= hero.title %></span>
+        </div>
+        <div class="flex items-center flex-wrap gap-x-3 gap-y-0.5 mt-0.5">
+          <% if (hero.price) { %><span class="text-sm font-bold text-gray-900"><%= hero.price %></span><% } %>
+          <% if (hero.rating) { %>
+            <span class="text-xs text-gray-400"><%= hero.rating %><span class="text-amber-500 ml-0.5"><%= '★'.repeat(Math.round(hero.rating)) %></span><% if (hero.reviewCount) { %> (<%= formatReviewCount(hero.reviewCount) %> reviews)<% } %></span>
+          <% } %>
+          <span class="text-xs text-blue-600 group-hover:text-blue-800 font-medium transition">Check price on Amazon &rarr;</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</a>
+<% } %>

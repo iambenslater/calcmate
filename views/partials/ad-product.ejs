@@ -52,7 +52,7 @@ function formatReviewCount(n) {
     <% products.forEach((p, idx) => { %>
       <a href="<%- productUrl(p) %>" target="_blank" rel="nofollow noopener" class="flex items-start gap-3 group" data-affiliate-product="<%= p.asin %>" data-affiliate-position="<%= idx + 1 %>">
         <% if (p.image) { %>
-        <div class="shrink-0 w-16 h-16 flex items-center justify-center">
+        <div class="shrink-0 w-14 h-14 bg-white rounded-lg border border-gray-100 flex items-center justify-center p-1.5">
           <img src="<%= p.image %>" alt="<%= p.title %>" class="max-w-full max-h-full object-contain" loading="lazy">
         </div>
         <% } %>
