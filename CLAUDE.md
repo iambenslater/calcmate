@@ -38,7 +38,7 @@ any service, capture learnings back into the venture skill at session end.
 | User | calcmate |
 | PM2 | calcmate (port 3000) |
 | Stack | Node.js + EJS, data-driven via `data/calculators.json` |
-| Monetisation | Amazon Associates AU (benslater-22), future AdSense |
+| Monetisation | Amazon Associates geo-routed (AU: calculatormate-22, US: calculatormat-20), Commission Factory, future AdSense |
 
 ## SEO Tool — claude-seo (INSTALL ON FIRST SESSION)
 
@@ -69,9 +69,33 @@ git clone --depth 1 https://github.com/AgriciDaniel/claude-seo.git /tmp/claude-s
 **Priority:** Run `/seo audit` before building the articles section. The audit will surface which
 content gaps to fill first, so articles are written against real keyword data, not guesswork.
 
+## Marketing Skills — programmatic-seo + free-tool-strategy (INSTALL ON FIRST SESSION)
+
+Two skills from Corey Haines' [marketingskills](https://github.com/coreyhaines31/marketingskills) repo are worth having for this project. Install selectively — don't install the full repo.
+
+**Check if already installed:**
+```bash
+ls ~/.claude/skills/programmatic-seo/SKILL.md 2>/dev/null && echo "programmatic-seo: installed" || echo "programmatic-seo: NOT installed"
+ls ~/.claude/skills/free-tool-strategy/SKILL.md 2>/dev/null && echo "free-tool-strategy: installed" || echo "free-tool-strategy: NOT installed"
+```
+
+**If not installed, run this to cherry-pick just the two relevant skills:**
+```bash
+git clone --depth 1 https://github.com/coreyhaines31/marketingskills.git /tmp/marketingskills
+mkdir -p ~/.claude/skills/programmatic-seo && cp /tmp/marketingskills/skills/programmatic-seo/SKILL.md ~/.claude/skills/programmatic-seo/
+mkdir -p ~/.claude/skills/free-tool-strategy && cp /tmp/marketingskills/skills/free-tool-strategy/SKILL.md ~/.claude/skills/free-tool-strategy/
+rm -rf /tmp/marketingskills
+```
+
+**Why these two:**
+- `programmatic-seo` — bulk content at scale, schema patterns, internal linking. Directly relevant when building out the articles section.
+- `free-tool-strategy` — a playbook for exactly what CalculatorMate is (free tools as SEO/lead magnets). Use it when planning calculator expansion or monetisation strategy.
+
+**Note:** Before using either skill, populate a `product-marketing-context` for CalculatorMate (the foundation skill both rely on). It's essentially a brief covering: what the site does, target audience, core value prop, monetisation model, and competitive positioning. Add it to `Skills/venture-skills/calculatormate/SKILL.md` in bOS when first built.
+
 ## Architecture
 
-Data-driven: `data/calculators.json` defines all 121 calculators. Each has inputs, a JS file
+Data-driven: `data/calculators.json` defines all 131 calculators. Each has inputs, a JS file
 at `public/js/calculators/{slug}.js` with a `calculate()` function, FAQ, SEO metadata,
 affiliate context, and related calculators. Adding a calculator = JSON entry + JS file only.
 
@@ -81,10 +105,10 @@ ALL HTML content (articles, audience pages, guides) MUST:
 1. Wrap in `<div class="article-content">` — applies shared typography from `style.css`
 2. Use standard HTML tags — H2, H3, p, ul, ol, strong, a, table, blockquote. No inline styles.
 3. Use `q` and `a` for FAQ keys (not `question`/`answer`)
-4. Escape quotes in JSON with `\"` — never use HTML entities (`&quot;`, `&apos;`) in JSON data
+4. Escape quotes in JSON with `&quot;` — use `scripts/fix-article-json.js` to fix after the fact
 5. Include a Gemini-generated image via `scripts/generate-article-images.js`
 6. Calculator links use `/finance/take-home-pay` format (not `/calculator/` prefix)
-7. Amazon links use `tag=benslater-22`
+7. Amazon links use geo-routed tags (handled automatically by ad partials)
 
 ## Testing
 
@@ -100,8 +124,10 @@ Tier 3 is manual audit against ATO, Fair Work, and state gov sources.
 2. **Radio buttons:** `querySelector('input[name="input-{id}"]:checked')`, not `getElementById`
 3. **No `alert()`:** Use inline error messages — `alert()` blocks Puppeteer tests
 4. **Deploy sequence:** push first, then SSH pull
-5. **JSON-LD uses `<%- %>` NOT `<%= %>`:** Inside `<script type="application/ld+json">` blocks, ALWAYS use `<%- %>` (unescaped) with `.replace(/"/g, '\\"')` for text fields. EJS `<%= %>` HTML-encodes `&`, `'`, `"` etc. but JSON parsers don't decode HTML entities — so `&amp;` renders literally as "Food &amp; Nutrition" instead of "Food & Nutrition". This applies to ALL templates.
-6. **No HTML entities in calculators.json:** FAQ answers, descriptions, and titles must use raw characters (`'` not `&apos;`, `½` not `&frac12;`). The data goes into JSON-LD `<script>` tags which don't parse HTML entities. Only escape JSON quotes (`\"`). Run `grep -E '&amp;|&apos;|&quot;|&frac|&lt;|&gt;' data/calculators.json` to check before deploying new calculators.
+5. **How it works:** Collapsible `<details>` ABOVE the calculator, not below. Fun section should be cheeky, not technical.
+6. **Charts removed:** Ben decided Chart.js charts didn't add value. Don't re-add.
+7. **Image text:** Gemini renders text if article title is in the prompt. Exclude titles entirely, use strong no-text instructions.
+8. **Logo:** Inline SVG calculator icon (from favicon.svg), not emoji.
 
 ## Deploy
 
