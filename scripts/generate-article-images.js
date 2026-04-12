@@ -133,7 +133,7 @@ function buildImageHtml(article) {
   }
 
   return `<figure class="my-6 rounded-xl overflow-hidden border border-gray-100 shadow-sm">
-  <img src="/images/articles/${slug}.png" alt="${article.title}" class="w-full h-auto" loading="lazy">
+  <img src="/images/articles/${slug}.webp" alt="${article.title}" class="w-full h-auto" loading="lazy">
   <figcaption class="px-4 py-3 bg-gray-50 text-sm text-gray-600">${caption}</figcaption>
 </figure>`;
 }
@@ -168,7 +168,7 @@ async function main() {
     if (!fs.existsSync(imagePath)) return;
 
     // Don't inject if already has an image
-    if (article.content && article.content.includes(`/images/articles/${article.slug}.png`)) return;
+    if (article.content && (article.content.includes(`/images/articles/${article.slug}.webp`) || article.content.includes(`/images/articles/${article.slug}.png`))) return;
 
     const imageHtml = buildImageHtml(article);
 
