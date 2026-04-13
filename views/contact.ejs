@@ -75,11 +75,11 @@
       </div>
 
       <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 cm-heading mb-4">Let's talk<br>numbers.</h1>
-      <p class="text-gray-500 text-base leading-relaxed mb-6">Whether you've spotted a bug, have an idea for a calculator, or just want to say g'day &mdash; I'd love to hear from you.</p>
-      <p class="text-gray-500 text-base leading-relaxed mb-8">My name's Ben. I built CalculatorMate from my kitchen table in Brisbane, and I personally read and reply to every single message.</p>
+      <p class="text-gray-500 text-base leading-relaxed mb-5">Whether you've spotted a bug, have an idea for a calculator, or just want to say g'day &mdash; I'd love to hear from you.</p>
+      <p class="text-gray-500 text-base leading-relaxed mb-10">My name's Ben. I built CalculatorMate from my kitchen table in Brisbane, and I personally read and reply to every single message.</p>
 
       <!-- Quick info cards -->
-      <div class="space-y-3">
+      <div class="space-y-4">
         <div class="flex items-center gap-3 p-3 rounded-xl bg-white cm-shadow-xs border border-black/5">
           <span class="text-lg">&#9889;</span>
           <div>
@@ -106,7 +106,7 @@
 
     <!-- Right column — the form -->
     <div class="lg:w-7/12">
-      <div class="bg-white rounded-2xl cm-shadow-md border border-black/5 p-6 sm:p-8">
+      <div class="bg-white rounded-2xl cm-shadow-md border border-black/5 p-6 sm:p-10">
 
         <% if (typeof error !== 'undefined' && error) { %>
           <div class="mb-6 p-4 rounded-xl bg-red-50 border border-red-200">
@@ -117,12 +117,12 @@
           </div>
         <% } %>
 
-        <form method="POST" action="/contact" id="contact-form" class="space-y-5">
+        <form method="POST" action="/contact" id="contact-form" class="space-y-7">
 
           <!-- Topic selector — replaces boring dropdown -->
           <div>
             <p class="cm-gradient-text text-xs font-semibold uppercase tracking-widest mb-3">What's this about?</p>
-            <div class="flex flex-wrap gap-2" id="contact-topics">
+            <div class="flex flex-wrap gap-2.5" id="contact-topics">
               <button type="button" data-topic="general" class="contact-topic active inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-medium border transition-all duration-200 cursor-pointer">&#128075; G'day</button>
               <button type="button" data-topic="bug" class="contact-topic inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-medium border transition-all duration-200 cursor-pointer">&#128027; Bug report</button>
               <button type="button" data-topic="suggestion" class="contact-topic inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-medium border transition-all duration-200 cursor-pointer">&#128161; Calculator idea</button>
@@ -132,7 +132,7 @@
             <input type="hidden" name="subject" id="contact-subject-hidden" value="general">
           </div>
 
-          <div class="grid sm:grid-cols-2 gap-5">
+          <div class="grid sm:grid-cols-2 gap-6">
             <div>
               <label for="contact-name" class="block text-sm font-medium text-gray-700 mb-1.5">Name</label>
               <input type="text" id="contact-name" name="name" required
@@ -162,7 +162,7 @@
             <input type="text" name="website" tabindex="-1" autocomplete="off">
           </div>
 
-          <div class="flex items-center justify-between gap-4 pt-1">
+          <div class="flex items-center justify-between gap-4 pt-2">
             <p class="text-xs text-gray-400 hidden sm:block">I read every message personally. &mdash; Ben</p>
             <button type="submit" id="contact-submit"
               class="w-full sm:w-auto px-8 py-3.5 rounded-xl text-sm font-semibold text-white transition-all duration-200 hover:opacity-90 active:scale-[0.98] flex items-center justify-center gap-2"
