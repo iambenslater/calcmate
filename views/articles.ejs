@@ -3,30 +3,113 @@
 <%- include('partials/header') %>
 
 <main class="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-6">
-  <nav aria-label="Breadcrumb" class="mb-4">
+  <!-- Breadcrumbs -->
+  <nav aria-label="Breadcrumb" class="mb-6">
     <ol class="flex items-center gap-2 text-sm text-gray-500">
-      <li><a href="/" class="hover:text-navy transition">Home</a></li>
+      <li><a href="/" class="hover:text-gray-700 transition">Home</a></li>
       <li class="text-gray-300">/</li>
       <li class="text-gray-800 font-medium">Articles</li>
     </ol>
   </nav>
 
-  <h1 class="text-3xl font-bold text-navy mb-2">Articles & Guides</h1>
-  <p class="text-gray-600 mb-8">Australian finance, property, health, separation, and lifestyle guides — with free calculators to help you crunch the numbers.</p>
+  <% if (featuredArticle) { %>
+  <!-- Section 1: Hero Featured Article -->
+  <section class="mb-12">
+    <a href="/articles/<%= featuredArticle.slug %>" class="group block bg-white rounded-xl border border-gray-100 hover:border-gray-300 transition overflow-hidden">
+      <div class="md:flex">
+        <div class="md:w-1/2">
+          <img
+            src="/images/articles/<%= featuredArticle.slug %>.webp"
+            alt="<%= featuredArticle.title %>"
+            class="w-full h-64 md:h-full object-cover"
+            onerror="this.parentElement.style.display='none'"
+          >
+        </div>
+        <div class="p-6 md:p-8 md:w-1/2 flex flex-col justify-center">
+          <div class="border-t-[4px] border-[#1a1a1a] pt-4">
+            <span class="text-xs text-gold font-medium uppercase tracking-wider"><%= featuredArticle.category || 'Guide' %></span>
+            <h1 class="text-3xl font-bold text-navy group-hover:text-gray-600 transition mt-2 mb-3"><%= featuredArticle.title %></h1>
+            <p class="text-gray-600 mb-4 line-clamp-3"><%= featuredArticle.excerpt %></p>
+            <span class="text-sm text-gray-400"><%= featuredArticle.readTime || '5' %> min read</span>
+          </div>
+        </div>
+      </div>
+    </a>
+  </section>
+  <% } %>
 
-  <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-    <% articles.forEach((a, idx) => { %>
-      <a href="/articles/<%= a.slug %>" class="group bg-white rounded-xl p-5 shadow-sm hover:shadow-md border border-gray-100 hover:border-gold/50 transition">
-        <div class="text-xs text-gold font-medium uppercase tracking-wider mb-2"><%= a.category || 'Guide' %></div>
-        <h2 class="font-semibold text-navy group-hover:text-gold transition mb-2"><%= a.title %></h2>
-        <p class="text-sm text-gray-500 line-clamp-3"><%= a.excerpt %></p>
-        <div class="text-xs text-gray-400 mt-3"><%= a.readTime || '5' %> min read</div>
-      </a>
-      <% if (idx === 5) { %>
-        <div class="sm:col-span-2 lg:col-span-3"><%- include('partials/ad-editorial-pick', { calc: { affiliateContext: 'finance-books' } }) %></div>
-      <% } %>
-      <% if (idx === 11) { %>
-        <div class="sm:col-span-2 lg:col-span-3">
+  <!-- Section 2: Latest Articles -->
+  <% if (latestArticles && latestArticles.length > 0) { %>
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold text-navy border-t-[3px] border-navy pt-4 mb-6">Latest</h2>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <% latestArticles.forEach(a => { %>
+        <a href="/articles/<%= a.slug %>" class="group bg-white rounded-xl border border-gray-100 hover:border-gray-300 transition overflow-hidden">
+          <img
+            src="/images/articles/<%= a.slug %>.webp"
+            alt="<%= a.title %>"
+            class="w-full h-40 object-cover"
+            onerror="this.style.display='none'"
+          >
+          <div class="p-5">
+            <span class="text-xs text-gold font-medium uppercase tracking-wider"><%= a.category || 'Guide' %></span>
+            <h3 class="font-semibold text-navy group-hover:text-gray-600 transition mt-1 mb-2"><%= a.title %></h3>
+            <p class="text-sm text-gray-500 line-clamp-2"><%= a.excerpt %></p>
+            <div class="text-xs text-gray-400 mt-3"><%= a.readTime || '5' %> min read</div>
+          </div>
+        </a>
+      <% }) %>
+    </div>
+  </section>
+  <% } %>
+
+  <!-- Ad Break 1: Editorial Pick -->
+  <div class="mb-12">
+    <%- include('partials/ad-editorial-pick', { calc: { affiliateContext: 'finance-books' } }) %>
+  </div>
+
+  <!-- Section 3-N: Articles by Category -->
+  <%
+    const categoryOrder = ['Finance', 'Super', 'Property', 'Health', 'Separation', 'Lifestyle', 'Business', 'Trade', 'Car', 'Fun'];
+    let catIndex = 0;
+  %>
+  <% categoryOrder.forEach(cat => { %>
+    <% const catArticles = articlesByCategory[cat]; %>
+    <% if (catArticles && catArticles.length > 0) { %>
+      <% const showLimit = 4; %>
+      <% const hasMore = catArticles.length > showLimit; %>
+      <section class="mb-10">
+        <h2 class="text-xl font-bold text-navy border-t-[3px] border-navy pt-4 mb-6">
+          <%= cat %> <span class="text-gray-400 font-normal text-base">(<%= catArticles.length %> article<%= catArticles.length === 1 ? '' : 's' %>)</span>
+        </h2>
+        <div class="grid md:grid-cols-2 gap-5">
+          <% catArticles.forEach((a, idx) => { %>
+            <a
+              href="/articles/<%= a.slug %>"
+              class="group bg-white rounded-xl p-5 border border-gray-100 hover:border-gray-300 transition<%= (hasMore && idx >= showLimit) ? ' hidden' : '' %>"
+              <% if (hasMore && idx >= showLimit) { %>data-cat-extra="<%= cat %>"<% } %>
+            >
+              <span class="text-xs text-gold font-medium uppercase tracking-wider"><%= a.category || 'Guide' %></span>
+              <h3 class="font-semibold text-navy group-hover:text-gray-600 transition mt-1 mb-2"><%= a.title %></h3>
+              <p class="text-sm text-gray-500 line-clamp-2"><%= a.excerpt %></p>
+              <div class="text-xs text-gray-400 mt-3"><%= a.readTime || '5' %> min read</div>
+            </a>
+          <% }) %>
+        </div>
+        <% if (hasMore) { %>
+          <button
+            onclick="document.querySelectorAll('[data-cat-extra=\'<%= cat %>\']').forEach(el => el.classList.remove('hidden')); this.style.display='none';"
+            class="mt-4 text-sm font-medium text-gold hover:underline"
+          >
+            View all <%= catArticles.length %> articles &rarr;
+          </button>
+        <% } %>
+      </section>
+
+      <% catIndex++; %>
+      <%/* AdSense ad after every 3rd category section */%>
+      <% if (catIndex % 3 === 0 && catIndex < categoryOrder.length) { %>
+        <div class="my-8">
           <ins class="adsbygoogle"
             style="display:block"
             data-ad-client="ca-pub-8414007005923504"
@@ -36,10 +119,12 @@
           <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
         </div>
       <% } %>
-      <% if (idx === 14) { %>
-        <div class="sm:col-span-2 lg:col-span-3"><%- include('partials/affiliate-inline', { calc: { affiliateContext: 'finance-books' } }) %></div>
-      <% } %>
-    <% }) %>
+    <% } %>
+  <% }) %>
+
+  <!-- Final: Inline Affiliate -->
+  <div class="mt-8 mb-4">
+    <%- include('partials/affiliate-inline', { calc: { affiliateContext: 'finance-books' } }) %>
   </div>
 </main>
 

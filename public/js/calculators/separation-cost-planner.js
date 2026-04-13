@@ -92,32 +92,32 @@ function calculate() {
   }
 
   var html = '' +
-    '<div style="background: #00205B; color: white; padding: 20px; border-radius: 12px; text-align: center; margin-bottom: 20px;">' +
+    '<div style="background: #1a1a1a; color: white; padding: 20px; border-radius: 12px; text-align: center; margin-bottom: 20px;">' +
       '<div style="font-size: 14px; opacity: 0.8; margin-bottom: 4px;">Estimated Total Cost of Separation</div>' +
       '<div style="font-size: 36px; font-weight: 700; color: #FFB800;">' + formatCurrency(totalMid) + '</div>' +
       '<div style="font-size: 13px; opacity: 0.7; margin-top: 4px;">Range: ' + formatCurrency(totalLow) + ' – ' + formatCurrency(totalHigh) + '</div>' +
     '</div>' +
 
     '<div style="background: #FFF7E6; border-left: 4px solid #FFB800; padding: 14px 16px; border-radius: 0 8px 8px 0; margin-bottom: 20px;">' +
-      '<div style="font-weight: 600; color: #00205B; margin-bottom: 2px;">Bare minimum to move out</div>' +
-      '<div style="font-size: 22px; font-weight: 700; color: #00205B;">' + formatCurrency(emergencyMin) + '</div>' +
+      '<div style="font-weight: 600; color: #1a1a1a; margin-bottom: 2px;">Bare minimum to move out</div>' +
+      '<div style="font-size: 22px; font-weight: 700; color: #1a1a1a;">' + formatCurrency(emergencyMin) + '</div>' +
       '<div style="font-size: 13px; color: #666; margin-top: 2px;">Bond + 2 weeks rent + utility connections</div>' +
     '</div>' +
 
-    '<h4 class="font-semibold mb-3" style="color: #00205B;">Itemised Breakdown</h4>' +
+    '<h4 class="font-semibold mb-3" style="color: #1a1a1a;">Itemised Breakdown</h4>' +
     '<div style="overflow-x: auto;">' +
     '<table class="w-full text-sm">' +
-      '<thead><tr class="border-b-2" style="border-color: #00205B;">' +
+      '<thead><tr class="border-b-2" style="border-color: #1a1a1a;">' +
         '<th class="py-2 pr-3 text-left">Category</th>' +
         '<th class="py-2 px-2 text-right">Low</th>' +
         '<th class="py-2 px-2 text-right">Mid</th>' +
         '<th class="py-2 px-2 text-right">High</th>' +
       '</tr></thead>' +
       '<tbody>' + tableRows +
-        '<tr style="border-top: 2px solid #00205B; font-weight: 700;">' +
+        '<tr style="border-top: 2px solid #1a1a1a; font-weight: 700;">' +
           '<td class="py-2 pr-3">Total</td>' +
           '<td class="py-2 px-2 text-right">' + formatCurrency(totalLow) + '</td>' +
-          '<td class="py-2 px-2 text-right" style="color: #00205B;">' + formatCurrency(totalMid) + '</td>' +
+          '<td class="py-2 px-2 text-right" style="color: #1a1a1a;">' + formatCurrency(totalMid) + '</td>' +
           '<td class="py-2 px-2 text-right">' + formatCurrency(totalHigh) + '</td>' +
         '</tr>' +
       '</tbody>' +
@@ -125,7 +125,7 @@ function calculate() {
     '</div>' +
 
     '<div style="margin-top: 24px; background: #F0F4FF; padding: 16px; border-radius: 8px;">' +
-      '<h4 class="font-semibold mb-2" style="color: #00205B;">Money-Saving Tips</h4>' +
+      '<h4 class="font-semibold mb-2" style="color: #1a1a1a;">Money-Saving Tips</h4>' +
       '<ul style="list-style: none; padding: 0; margin: 0; font-size: 14px;">' +
         '<li style="padding: 6px 0; border-bottom: 1px solid #E0E7FF;">Free family mediation is available through Family Relationship Centres — call <strong>1800 050 321</strong></li>' +
         '<li style="padding: 6px 0; border-bottom: 1px solid #E0E7FF;">Facebook Marketplace and Gumtree can cut furniture costs by 50–70%</li>' +

@@ -77,7 +77,7 @@ function calculate() {
           '<span>Parent 2: ' + p2IncomePct + '%</span>' +
         '</div>' +
         '<div style="display:flex; height:24px; border-radius:6px; overflow:hidden;">' +
-          '<div style="width:' + p1IncomePct + '%; background:#00205B; transition:width 0.3s;"></div>' +
+          '<div style="width:' + p1IncomePct + '%; background:#1a1a1a; transition:width 0.3s;"></div>' +
           '<div style="width:' + p2IncomePct + '%; background:#FFB800; transition:width 0.3s;"></div>' +
         '</div>' +
         '<p style="font-size:0.8rem; color:#64748b; margin-top:4px;">Parent 1 earns ' + p1IncomePct + '% of combined income (' + formatCurrency(combinedIncome) + '/yr)</p>' +
@@ -96,7 +96,7 @@ function calculate() {
         '<span>Parent 2: ' + p2Pct.toFixed(1) + '%</span>' +
       '</div>' +
       '<div style="display:flex; height:24px; border-radius:6px; overflow:hidden;">' +
-        '<div style="width:' + p1Pct.toFixed(1) + '%; background:#00205B; transition:width 0.3s;"></div>' +
+        '<div style="width:' + p1Pct.toFixed(1) + '%; background:#1a1a1a; transition:width 0.3s;"></div>' +
         '<div style="width:' + p2Pct.toFixed(1) + '%; background:#FFB800; transition:width 0.3s;"></div>' +
       '</div>' +
     '</div>';
@@ -111,7 +111,7 @@ function calculate() {
       tableRows += '<tr>' +
         '<td style="padding:6px 8px; border-bottom:1px solid #e5e7eb;">' + cat.name + '</td>' +
         '<td style="padding:6px 8px; border-bottom:1px solid #e5e7eb; text-align:right;">' + formatCurrency(cat.amount) + '</td>' +
-        '<td style="padding:6px 8px; border-bottom:1px solid #e5e7eb; text-align:right; color:#00205B; font-weight:600;">' + formatCurrency(p1Share) + '</td>' +
+        '<td style="padding:6px 8px; border-bottom:1px solid #e5e7eb; text-align:right; color:#1a1a1a; font-weight:600;">' + formatCurrency(p1Share) + '</td>' +
         '<td style="padding:6px 8px; border-bottom:1px solid #e5e7eb; text-align:right; color:#b8860b; font-weight:600;">' + formatCurrency(p2Share) + '</td>' +
       '</tr>';
     }
@@ -123,16 +123,16 @@ function calculate() {
         '<tr style="background:#f8fafc;">' +
           '<th style="padding:8px; text-align:left; border-bottom:2px solid #e5e7eb;">Expense</th>' +
           '<th style="padding:8px; text-align:right; border-bottom:2px solid #e5e7eb;">Annual</th>' +
-          '<th style="padding:8px; text-align:right; border-bottom:2px solid #e5e7eb; color:#00205B;">Parent 1</th>' +
+          '<th style="padding:8px; text-align:right; border-bottom:2px solid #e5e7eb; color:#1a1a1a;">Parent 1</th>' +
           '<th style="padding:8px; text-align:right; border-bottom:2px solid #e5e7eb; color:#b8860b;">Parent 2</th>' +
         '</tr>' +
       '</thead>' +
       '<tbody>' + tableRows +
         '<tr style="font-weight:700; background:#f8fafc;">' +
-          '<td style="padding:8px; border-top:2px solid #00205B;">Total</td>' +
-          '<td style="padding:8px; text-align:right; border-top:2px solid #00205B;">' + formatCurrency(totalExpenses) + '</td>' +
-          '<td style="padding:8px; text-align:right; border-top:2px solid #00205B; color:#00205B;">' + formatCurrency(p1Total) + '</td>' +
-          '<td style="padding:8px; text-align:right; border-top:2px solid #00205B; color:#b8860b;">' + formatCurrency(p2Total) + '</td>' +
+          '<td style="padding:8px; border-top:2px solid #1a1a1a;">Total</td>' +
+          '<td style="padding:8px; text-align:right; border-top:2px solid #1a1a1a;">' + formatCurrency(totalExpenses) + '</td>' +
+          '<td style="padding:8px; text-align:right; border-top:2px solid #1a1a1a; color:#1a1a1a;">' + formatCurrency(p1Total) + '</td>' +
+          '<td style="padding:8px; text-align:right; border-top:2px solid #1a1a1a; color:#b8860b;">' + formatCurrency(p2Total) + '</td>' +
         '</tr>' +
       '</tbody>' +
     '</table>';
@@ -145,7 +145,7 @@ function calculate() {
 
   var summaryHTML = '' +
     '<div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:1.25rem;">' +
-      '<div style="background:#00205B; color:white; border-radius:8px; padding:1rem; text-align:center;">' +
+      '<div style="background:#1a1a1a; color:white; border-radius:8px; padding:1rem; text-align:center;">' +
         '<div style="font-size:0.8rem; text-transform:uppercase; letter-spacing:0.05em; opacity:0.8; margin-bottom:4px;">Parent 1 — Annual</div>' +
         '<div style="font-size:1.5rem; font-weight:800;">' + formatCurrency(p1Total) + '</div>' +
         '<div style="font-size:0.8rem; opacity:0.8; margin-top:4px;">' + formatCurrency(p1Monthly) + '/mo &nbsp;·&nbsp; ' + formatCurrency(p1Fortnightly) + '/fn</div>' +

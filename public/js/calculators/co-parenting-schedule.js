@@ -74,23 +74,23 @@ function calculate() {
   // Week 1
   calHtml += '<div style="font-size: 0.75em; color: #6b7280; padding: 6px 4px; text-align: center;">1</div>';
   for (var i = 0; i < 7; i++) {
-    var bg = pattern[i] === 1 ? '#00205B' : '#FFB800';
-    var fg = pattern[i] === 1 ? '#fff' : '#00205B';
+    var bg = pattern[i] === 1 ? '#1a1a1a' : '#FFB800';
+    var fg = pattern[i] === 1 ? '#fff' : '#1a1a1a';
     calHtml += '<div style="background: ' + bg + '; color: ' + fg + '; padding: 6px 4px; text-align: center; border-radius: 4px; font-size: 0.8em; font-weight: 600;">P' + pattern[i] + '</div>';
   }
 
   // Week 2
   calHtml += '<div style="font-size: 0.75em; color: #6b7280; padding: 6px 4px; text-align: center;">2</div>';
   for (var j = 7; j < 14; j++) {
-    var bg2 = pattern[j] === 1 ? '#00205B' : '#FFB800';
-    var fg2 = pattern[j] === 1 ? '#fff' : '#00205B';
+    var bg2 = pattern[j] === 1 ? '#1a1a1a' : '#FFB800';
+    var fg2 = pattern[j] === 1 ? '#fff' : '#1a1a1a';
     calHtml += '<div style="background: ' + bg2 + '; color: ' + fg2 + '; padding: 6px 4px; text-align: center; border-radius: 4px; font-size: 0.8em; font-weight: 600;">P' + pattern[j] + '</div>';
   }
   calHtml += '</div>';
 
   // Legend
   calHtml += '<div style="display: flex; gap: 1rem; margin-top: 0.5rem; font-size: 0.8em;">' +
-    '<span><span style="display: inline-block; width: 12px; height: 12px; background: #00205B; border-radius: 2px; vertical-align: middle; margin-right: 4px;"></span>Parent 1</span>' +
+    '<span><span style="display: inline-block; width: 12px; height: 12px; background: #1a1a1a; border-radius: 2px; vertical-align: middle; margin-right: 4px;"></span>Parent 1</span>' +
     '<span><span style="display: inline-block; width: 12px; height: 12px; background: #FFB800; border-radius: 2px; vertical-align: middle; margin-right: 4px;"></span>Parent 2</span>' +
     '</div></div>';
 
@@ -98,11 +98,11 @@ function calculate() {
   var barHtml = '' +
     '<div style="margin: 1rem 0;">' +
       '<div style="display: flex; justify-content: space-between; font-size: 0.85em; margin-bottom: 4px;">' +
-        '<span style="color: #00205B; font-weight: 600;">P1: ' + p1Care.pct + '%</span>' +
+        '<span style="color: #1a1a1a; font-weight: 600;">P1: ' + p1Care.pct + '%</span>' +
         '<span style="color: #FFB800; font-weight: 600;">P2: ' + p2Care.pct + '%</span>' +
       '</div>' +
       '<div style="display: flex; height: 28px; border-radius: 8px; overflow: hidden; border: 1px solid #e5e7eb;">' +
-        '<div style="width: ' + p1Care.pct + '%; background: #00205B;"></div>' +
+        '<div style="width: ' + p1Care.pct + '%; background: #1a1a1a;"></div>' +
         '<div style="width: ' + p2Care.pct + '%; background: #FFB800;"></div>' +
       '</div>' +
     '</div>';
@@ -112,7 +112,7 @@ function calculate() {
   var sharedBadge = isShared ? '<span style="display: inline-block; background: #16a34a; color: #fff; font-size: 0.75em; padding: 2px 8px; border-radius: 12px; margin-left: 8px;">Shared Care</span>' : '';
 
   var detailHtml = '' +
-    '<div style="font-size: 1.2em; font-weight: bold; color: #00205B; margin-bottom: 0.5rem;">' + s.label + sharedBadge + '</div>' +
+    '<div style="font-size: 1.2em; font-weight: bold; color: #1a1a1a; margin-bottom: 0.5rem;">' + s.label + sharedBadge + '</div>' +
     calHtml +
     barHtml +
     '<div class="result-row"><span class="result-label">Parent 1 care</span><span class="result-value" style="font-weight: bold;">' + p1Care.pct + '% \u2014 ' + p1Care.level + '</span></div>' +
@@ -122,7 +122,7 @@ function calculate() {
     '<div class="result-row"><span class="result-label">Changeovers per fortnight</span><span class="result-value">' + s.changeovers + '</span></div>' +
     '<div class="result-row"><span class="result-label">Longest away from P1</span><span class="result-value">' + s.longestP1 + '</span></div>' +
     '<div class="result-row"><span class="result-label">Longest away from P2</span><span class="result-value">' + s.longestP2 + '</span></div>' +
-    '<div style="margin-top: 1rem; padding: 0.75rem; background: #f0f4ff; border-radius: 8px; border-left: 4px solid #00205B;">' +
+    '<div style="margin-top: 1rem; padding: 0.75rem; background: #f0f4ff; border-radius: 8px; border-left: 4px solid #1a1a1a;">' +
       '<p style="margin: 0; font-size: 0.9em;">' + s.desc + '</p>' +
     '</div>';
 
@@ -132,7 +132,7 @@ function calculate() {
       '<strong>All Schedules Comparison</strong>' +
       '<div style="overflow-x: auto; margin-top: 0.5rem;">' +
         '<table style="width: 100%; border-collapse: collapse; font-size: 0.8em;">' +
-          '<thead><tr style="background: #00205B; color: #fff;">' +
+          '<thead><tr style="background: #1a1a1a; color: #fff;">' +
             '<th style="padding: 6px 8px; text-align: left;">Schedule</th>' +
             '<th style="padding: 6px 8px; text-align: center;">P1</th>' +
             '<th style="padding: 6px 8px; text-align: center;">P2</th>' +
@@ -165,7 +165,7 @@ function calculate() {
 
   // Shared care note
   var noteHtml = '<div style="margin-top: 1rem; padding: 0.75rem; background: #f9fafb; border-radius: 8px; border: 1px solid #e5e7eb;">' +
-    '<strong style="color: #00205B;">Shared Care for Child Support</strong>' +
+    '<strong style="color: #1a1a1a;">Shared Care for Child Support</strong>' +
     '<p style="margin: 0.5rem 0 0; font-size: 0.85em;">Under Australian child support law, <strong>shared care</strong> applies when each parent has at least 35% care (5+ nights per fortnight). ' +
     'Only the <strong>7-7</strong>, <strong>5-2-2-5</strong>, and <strong>4-3</strong> schedules in this table qualify as shared care. ' +
     'With shared care, both parents\u2019 incomes are assessed and the cost percentage scales proportionally. ' +

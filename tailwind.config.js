@@ -13,12 +13,16 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        navy: '#00205B',
+        navy: '#1a1a1a',
         gold: '#FFB800',
         'gold-light': '#FFF3D0',
+        warm: {
+          '50': '#fafaf8',
+        },
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
+        serif: ['"Source Serif 4"', 'Georgia', 'serif'],
       },
     },
   },

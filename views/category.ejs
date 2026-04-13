@@ -47,8 +47,8 @@
 
       <div class="grid sm:grid-cols-2 gap-4">
         <% calcs.forEach((c, idx) => { %>
-          <a href="/<%= c.category %>/<%= c.slug %>" class="group bg-white rounded-xl p-5 shadow-sm hover:shadow-md border border-gray-100 hover:border-gold/50 transition">
-            <h2 class="font-semibold text-navy group-hover:text-gold transition mb-1"><%= c.title %></h2>
+          <a href="/<%= c.category %>/<%= c.slug %>" class="group bg-white rounded-xl p-5 shadow-sm hover:shadow-md border border-gray-100 hover:border-gray-300 transition">
+            <h2 class="font-semibold text-navy group-hover:text-gray-600 transition mb-1"><%= c.title %></h2>
             <p class="text-sm text-gray-500"><%= c.description %></p>
           </a>
           <% if (idx === 5) { %>
@@ -70,8 +70,8 @@
         <h2 class="text-2xl font-bold text-navy mb-4">📖 Articles & Guides</h2>
         <div class="grid sm:grid-cols-2 gap-4">
           <% catArticles.forEach(a => { %>
-            <a href="/articles/<%= a.slug %>" class="group bg-white rounded-xl p-5 shadow-sm hover:shadow-md border border-gray-100 hover:border-gold/50 transition">
-              <h3 class="font-semibold text-sm text-navy group-hover:text-gold transition mb-2"><%= a.title %></h3>
+            <a href="/articles/<%= a.slug %>" class="group bg-white rounded-xl p-5 shadow-sm hover:shadow-md border border-gray-100 hover:border-gray-300 transition">
+              <h3 class="font-semibold text-sm text-navy group-hover:text-gray-600 transition mb-2"><%= a.title %></h3>
               <p class="text-xs text-gray-500 line-clamp-2"><%= a.excerpt %></p>
               <span class="text-xs text-gold font-medium mt-2 inline-block"><%= a.readTime %> · Read more →</span>
             </a>

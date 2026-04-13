@@ -148,7 +148,7 @@
                   </div>
 
                   <p class="text-xs text-gray-400 mt-4">
-                    <a href="/<%= c.category %>/<%= c.slug %>" class="text-navy underline hover:text-gold">Open full calculator →</a> for more options and detailed breakdown.
+                    <a href="/<%= c.category %>/<%= c.slug %>" class="text-navy underline hover:text-gray-600">Open full calculator →</a> for more options and detailed breakdown.
                   </p>
                 </div>
               </div>
@@ -193,8 +193,8 @@
           <div class="space-y-4">
             <% audience.faq.forEach((f, fIdx) => { %>
               <details class="group border-b border-gray-100 pb-3">
-                <summary class="cursor-pointer font-medium hover:text-gold transition flex justify-between gap-2 text-sm sm:text-base leading-snug py-1" style="color: #00205B;">
-                  <span class="flex-1" style="color: #00205B;"><%= f.q || f.question || '' %></span>
+                <summary class="cursor-pointer font-medium hover:text-gray-600 transition flex justify-between gap-2 text-sm sm:text-base leading-snug py-1" style="color: #1a1a1a;">
+                  <span class="flex-1" style="color: #1a1a1a;"><%= f.q || f.question || '' %></span>
                   <svg class="w-5 h-5 shrink-0 mt-0.5" style="color: #9ca3af;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
                 </summary>
                 <p class="mt-2 text-sm leading-relaxed" style="color: #4b5563;"><%= f.a || f.answer || '' %></p>
@@ -210,8 +210,8 @@
         <div class="grid sm:grid-cols-2 gap-3">
           <% (audience.allCalculators || audience.calculators).forEach(slug => { %>
             <% const c = allCalcs[slug]; if (!c) return; %>
-            <a href="/<%= c.category %>/<%= c.slug %>" class="group bg-white rounded-lg p-4 shadow-sm hover:shadow-md border border-gray-100 hover:border-gold/50 transition">
-              <h3 class="font-medium text-navy group-hover:text-gold transition text-sm"><%= c.title %></h3>
+            <a href="/<%= c.category %>/<%= c.slug %>" class="group bg-white rounded-lg p-4 shadow-sm hover:shadow-md border border-gray-100 hover:border-gray-300 transition">
+              <h3 class="font-medium text-navy group-hover:text-gray-600 transition text-sm"><%= c.title %></h3>
               <p class="text-xs text-gray-500 mt-1"><%= c.description %></p>
             </a>
           <% }) %>

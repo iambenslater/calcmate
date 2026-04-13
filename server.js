@@ -203,15 +203,15 @@ if (!fs.existsSync(OG_CACHE_DIR)) fs.mkdirSync(OG_CACHE_DIR, { recursive: true }
 
 // Calculator icon SVG (inline, matches favicon)
 const CALC_ICON = `<g transform="translate(80, 564) scale(1.4)">
-  <rect width="32" height="32" rx="6" fill="#00205B"/>
+  <rect width="32" height="32" rx="6" fill="#1a1a1a"/>
   <rect x="5" y="5" width="22" height="22" rx="3" fill="#FFB800"/>
-  <rect x="8" y="8" width="16" height="5" rx="1" fill="#00205B" opacity="0.9"/>
-  <rect x="8" y="15" width="4" height="4" rx="0.5" fill="#00205B" opacity="0.7"/>
-  <rect x="14" y="15" width="4" height="4" rx="0.5" fill="#00205B" opacity="0.7"/>
-  <rect x="20" y="15" width="4" height="4" rx="0.5" fill="#00205B" opacity="0.7"/>
-  <rect x="8" y="21" width="4" height="4" rx="0.5" fill="#00205B" opacity="0.7"/>
-  <rect x="14" y="21" width="4" height="4" rx="0.5" fill="#00205B" opacity="0.7"/>
-  <rect x="20" y="21" width="4" height="4" rx="0.5" fill="#FFB800" stroke="#00205B" stroke-width="0.5"/>
+  <rect x="8" y="8" width="16" height="5" rx="1" fill="#1a1a1a" opacity="0.9"/>
+  <rect x="8" y="15" width="4" height="4" rx="0.5" fill="#1a1a1a" opacity="0.7"/>
+  <rect x="14" y="15" width="4" height="4" rx="0.5" fill="#1a1a1a" opacity="0.7"/>
+  <rect x="20" y="15" width="4" height="4" rx="0.5" fill="#1a1a1a" opacity="0.7"/>
+  <rect x="8" y="21" width="4" height="4" rx="0.5" fill="#1a1a1a" opacity="0.7"/>
+  <rect x="14" y="21" width="4" height="4" rx="0.5" fill="#1a1a1a" opacity="0.7"/>
+  <rect x="20" y="21" width="4" height="4" rx="0.5" fill="#FFB800" stroke="#1a1a1a" stroke-width="0.5"/>
 </g>`;
 
 function generateOgSvg(title, description, categoryName) {
@@ -247,8 +247,8 @@ function generateOgSvg(title, description, categoryName) {
   return `<svg width="1200" height="630" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#00205B"/>
-      <stop offset="100%" style="stop-color:#001a4a"/>
+      <stop offset="0%" style="stop-color:#1a1a1a"/>
+      <stop offset="100%" style="stop-color:#111111"/>
     </linearGradient>
   </defs>
   <rect width="1200" height="630" fill="url(#bg)"/>
@@ -265,8 +265,8 @@ function generateOgSvg(title, description, categoryName) {
   ${desc2 ? `<text x="80" y="${descY + 32}" font-family="Inter" font-size="24" fill="rgba(255,255,255,0.6)" font-weight="400">${esc(desc2)}</text>` : ''}
   <!-- Footer: calculator icon + branding -->
   ${CALC_ICON}
-  <text x="132" y="590" font-family="Inter" font-size="28" font-weight="700" fill="#00205B">Calculator<tspan font-weight="800" fill="white">Mate</tspan></text>
-  <text x="1120" y="588" font-family="Inter" font-size="20" fill="rgba(0,32,91,0.6)" text-anchor="end" font-weight="500">calculatormate.com.au</text>
+  <text x="132" y="590" font-family="Inter" font-size="28" font-weight="700" fill="#1a1a1a">Calculator<tspan font-weight="800" fill="white">Mate</tspan></text>
+  <text x="1120" y="588" font-family="Inter" font-size="20" fill="rgba(26,26,26,0.6)" text-anchor="end" font-weight="500">calculatormate.com.au</text>
 </svg>`;
 }
 
@@ -462,8 +462,28 @@ const articleBySlug = {};
 articles.forEach(a => { articleBySlug[a.slug] = a; });
 
 app.get('/articles', (req, res) => {
+  // Sort articles by datePublished descending
+  const sorted = [...articles].sort((a, b) => (b.datePublished || '').localeCompare(a.datePublished || ''));
+
+  // Featured article: most recent
+  const featuredArticle = sorted[0] || null;
+
+  // Latest 6 articles (excluding the featured one)
+  const latestArticles = sorted.filter(a => a !== featuredArticle).slice(0, 6);
+
+  // Group by category
+  const articlesByCategory = {};
+  articles.forEach(a => {
+    const cat = a.category || 'Guide';
+    if (!articlesByCategory[cat]) articlesByCategory[cat] = [];
+    articlesByCategory[cat].push(a);
+  });
+
   res.render('articles', {
     articles,
+    featuredArticle,
+    latestArticles,
+    articlesByCategory,
     title: 'Articles & Guides | CalculatorMate Australia',
     metaDescription: 'Australian finance, property, health, separation, and lifestyle guides. Expert articles with free calculators to help you make smarter decisions.'
   });
@@ -501,16 +521,16 @@ app.post('/api/email-results', rateLimit(60000, 1), async (req, res) => {
         subject: `Your ${calculatorTitle} Result — CalculatorMate`,
         html: `
           <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-            <div style="background: #00205B; padding: 16px 24px; border-radius: 8px 8px 0 0;">
+            <div style="background: #1a1a1a; padding: 16px 24px; border-radius: 8px 8px 0 0;">
               <span style="color: #FFB800; font-size: 20px; font-weight: bold;">Calculator</span><span style="color: white; font-size: 20px; font-weight: bold;">Mate</span>
             </div>
             <div style="background: white; padding: 24px; border: 1px solid #e5e7eb; border-top: none;">
-              <h2 style="color: #00205B; margin: 0 0 8px 0;">${calculatorTitle}</h2>
+              <h2 style="color: #1a1a1a; margin: 0 0 8px 0;">${calculatorTitle}</h2>
               <div style="background: #FFF3D0; padding: 12px 16px; border-radius: 8px; margin-bottom: 16px;">
-                <span style="color: #00205B; font-weight: bold; font-size: 18px;">${primaryResult || ''}</span>
+                <span style="color: #1a1a1a; font-weight: bold; font-size: 18px;">${primaryResult || ''}</span>
               </div>
               <pre style="font-family: Arial, sans-serif; font-size: 14px; color: #374151; line-height: 1.6; white-space: pre-wrap; margin: 0 0 16px 0;">${resultsSummary}</pre>
-              <a href="${shareUrl}" style="display: inline-block; background: #FFB800; color: #00205B; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: bold;">View Full Result →</a>
+              <a href="${shareUrl}" style="display: inline-block; background: #FFB800; color: #1a1a1a; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: bold;">View Full Result →</a>
             </div>
             <div style="padding: 12px 24px; font-size: 11px; color: #9ca3af;">
               <p>This is an estimate only. Consult a qualified professional before making decisions based on these results.</p>

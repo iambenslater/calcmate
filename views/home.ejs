@@ -39,7 +39,7 @@
     <p class="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">145 free online calculators built for Australians. Tax, mortgage, health, business — all with current rates and state-specific data.</p>
     <div class="max-w-2xl mx-auto relative">
       <div class="relative">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" class="absolute left-4 top-1/2 -translate-y-1/2 w-6 h-6 pointer-events-none"><rect width="32" height="32" rx="6" fill="#00205B"/><rect x="5" y="5" width="22" height="22" rx="3" fill="#FFB800"/><rect x="8" y="8" width="16" height="5" rx="1" fill="#00205B" opacity="0.9"/><rect x="8" y="15" width="4" height="4" rx="0.5" fill="#00205B" opacity="0.7"/><rect x="14" y="15" width="4" height="4" rx="0.5" fill="#00205B" opacity="0.7"/><rect x="20" y="15" width="4" height="4" rx="0.5" fill="#00205B" opacity="0.7"/><rect x="8" y="21" width="4" height="4" rx="0.5" fill="#00205B" opacity="0.7"/><rect x="14" y="21" width="4" height="4" rx="0.5" fill="#00205B" opacity="0.7"/><rect x="20" y="21" width="4" height="4" rx="0.5" fill="#FFB800" stroke="#00205B" stroke-width="0.5"/><text x="24" y="24.5" font-size="4" font-weight="bold" fill="#00205B" text-anchor="middle" font-family="sans-serif">=</text></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" class="absolute left-4 top-1/2 -translate-y-1/2 w-6 h-6 pointer-events-none"><rect width="32" height="32" rx="6" fill="#1a1a1a"/><rect x="5" y="5" width="22" height="22" rx="3" fill="#FFB800"/><rect x="8" y="8" width="16" height="5" rx="1" fill="#1a1a1a" opacity="0.9"/><rect x="8" y="15" width="4" height="4" rx="0.5" fill="#1a1a1a" opacity="0.7"/><rect x="14" y="15" width="4" height="4" rx="0.5" fill="#1a1a1a" opacity="0.7"/><rect x="20" y="15" width="4" height="4" rx="0.5" fill="#1a1a1a" opacity="0.7"/><rect x="8" y="21" width="4" height="4" rx="0.5" fill="#1a1a1a" opacity="0.7"/><rect x="14" y="21" width="4" height="4" rx="0.5" fill="#1a1a1a" opacity="0.7"/><rect x="20" y="21" width="4" height="4" rx="0.5" fill="#FFB800" stroke="#1a1a1a" stroke-width="0.5"/><text x="24" y="24.5" font-size="4" font-weight="bold" fill="#1a1a1a" text-anchor="middle" font-family="sans-serif">=</text></svg>
         <div id="rotating-placeholder" class="absolute left-14 top-1/2 -translate-y-1/2 pointer-events-none overflow-hidden h-7 flex items-center">
           <span id="rotating-text" class="text-gray-400 text-lg transition-all duration-500 ease-in-out"></span>
         </div>
@@ -75,7 +75,7 @@
     %>
     <div class="flex flex-wrap justify-center gap-2 mt-6 max-w-3xl mx-auto">
       <% trendingPills.forEach(t => { %>
-        <a href="/<%= t.category %>/<%= t.slug %>" class="inline-flex items-center gap-1.5 px-4 py-2 bg-white rounded-full border border-gray-200 hover:border-gold hover:bg-gold-light text-sm font-medium text-gray-700 hover:text-navy shadow-sm hover:shadow transition">
+        <a href="/<%= t.category %>/<%= t.slug %>" class="inline-flex items-center gap-1.5 px-4 py-2 bg-white rounded-full border border-gray-200 hover:border-gray-300 hover:bg-gray-100 text-sm font-medium text-gray-700 hover:text-gray-900 shadow-sm hover:shadow transition">
           <span><%= t.icon %></span>
           <span><%= t.label %></span>
         </a>
@@ -89,9 +89,9 @@
     <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
       <% Object.entries(categoryMeta).forEach(([key, meta]) => { %>
         <% const count = (calcsByCategory[key] || []).length; %>
-        <a href="/<%= key %>" class="group bg-white rounded-xl p-4 shadow-sm hover:shadow-md border border-gray-100 hover:border-gold/50 transition text-center">
+        <a href="/<%= key %>" class="group bg-white rounded-xl p-4 shadow-sm hover:shadow-md border border-gray-100 hover:border-gray-300 transition text-center">
           <div class="text-3xl mb-2"><%= meta.icon %></div>
-          <h3 class="font-semibold text-sm text-navy group-hover:text-gold transition"><%= meta.name %></h3>
+          <h3 class="font-semibold text-sm text-navy group-hover:text-gray-600 transition"><%= meta.name %></h3>
           <p class="text-xs text-gray-400 mt-1"><%= count %> calculators</p>
         </a>
       <% }) %>
@@ -107,11 +107,11 @@
     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
       <% popular.forEach((c, idx) => { %>
         <% const catMeta = categoryMeta[c.category] || {}; %>
-        <a href="/<%= c.category %>/<%= c.slug %>" class="group bg-white rounded-xl p-5 shadow-sm hover:shadow-md border border-gray-100 hover:border-gold/50 transition">
+        <a href="/<%= c.category %>/<%= c.slug %>" class="group bg-white rounded-xl p-5 shadow-sm hover:shadow-md border border-gray-100 hover:border-gray-300 transition">
           <div class="flex items-start gap-3">
             <span class="text-2xl"><%= catMeta.icon || '' %></span>
             <div>
-              <h3 class="font-semibold text-navy group-hover:text-gold transition"><%= c.title %></h3>
+              <h3 class="font-semibold text-navy group-hover:text-gray-600 transition"><%= c.title %></h3>
               <p class="text-sm text-gray-500 mt-1"><%= c.description %></p>
             </div>
           </div>
@@ -129,8 +129,8 @@
     </div>
     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
       <% articles.slice(0, 6).forEach(a => { %>
-        <a href="/articles/<%= a.slug %>" class="group bg-white rounded-xl p-5 shadow-sm hover:shadow-md border border-gray-100 hover:border-gold/50 transition">
-          <h3 class="font-semibold text-sm text-navy group-hover:text-gold transition mb-2"><%= a.title %></h3>
+        <a href="/articles/<%= a.slug %>" class="group bg-white rounded-xl p-5 shadow-sm hover:shadow-md border border-gray-100 hover:border-gray-300 transition">
+          <h3 class="font-semibold text-sm text-navy group-hover:text-gray-600 transition mb-2"><%= a.title %></h3>
           <p class="text-xs text-gray-500 line-clamp-2"><%= a.excerpt || a.metaDescription %></p>
           <span class="text-xs text-gold font-medium mt-3 inline-block">Read more →</span>
         </a>
@@ -149,10 +149,10 @@
       <% Object.entries(categoryMeta).forEach(([key, meta]) => { %>
         <% const calcs = calcsByCategory[key] || []; %>
         <div class="mb-6 last:mb-0">
-          <h3 class="font-semibold text-navy mb-2"><a href="/<%= key %>" class="hover:text-gold transition"><%= meta.icon %> <%= meta.name %></a></h3>
+          <h3 class="font-semibold text-navy mb-2"><a href="/<%= key %>" class="hover:text-gray-600 transition"><%= meta.icon %> <%= meta.name %></a></h3>
           <div class="flex flex-wrap gap-2">
             <% calcs.forEach(c => { %>
-              <a href="/<%= c.category %>/<%= c.slug %>" class="text-sm px-3 py-1 rounded-full bg-gray-50 hover:bg-gold-light hover:text-navy transition border border-gray-200 hover:border-gold/50"><%= c.title %></a>
+              <a href="/<%= c.category %>/<%= c.slug %>" class="text-sm px-3 py-1 rounded-full bg-gray-50 hover:bg-gray-100 hover:text-gray-900 transition border border-gray-200 hover:border-gray-300"><%= c.title %></a>
             <% }) %>
           </div>
         </div>
