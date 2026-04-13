@@ -40,9 +40,13 @@ async function checkCalculator(browser, calc) {
   const jsErrors = [];
   const consoleErrors = [];
 
-  page.on('pageerror', err => jsErrors.push(err.message));
+  // Ignore known third-party errors (AdSense, GA, etc.)
+  const IGNORED_ERRORS = ['Uncaught (in promise) undefined', 'pagead', 'adsbygoogle', 'googlesyndication', 'googletagmanager'];
+  const isIgnored = msg => IGNORED_ERRORS.some(pattern => msg.includes(pattern));
+
+  page.on('pageerror', err => { if (!isIgnored(err.message)) jsErrors.push(err.message); });
   page.on('console', msg => {
-    if (msg.type() === 'error') consoleErrors.push(msg.text());
+    if (msg.type() === 'error' && !isIgnored(msg.text())) consoleErrors.push(msg.text());
   });
 
   try {

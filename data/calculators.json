@@ -15389,11 +15389,27 @@
         "label": "Number of Children",
         "type": "select",
         "options": [
-          { "value": "1", "label": "1", "default": true },
-          { "value": "2", "label": "2" },
-          { "value": "3", "label": "3" },
-          { "value": "4", "label": "4" },
-          { "value": "5", "label": "5+" }
+          {
+            "value": "1",
+            "label": "1",
+            "default": true
+          },
+          {
+            "value": "2",
+            "label": "2"
+          },
+          {
+            "value": "3",
+            "label": "3"
+          },
+          {
+            "value": "4",
+            "label": "4"
+          },
+          {
+            "value": "5",
+            "label": "5+"
+          }
         ]
       },
       {
@@ -15401,9 +15417,19 @@
         "label": "Ages of Children",
         "type": "select",
         "options": [
-          { "value": "under13", "label": "All under 13", "default": true },
-          { "value": "13plus", "label": "All 13 or over" },
-          { "value": "mixed", "label": "Mixed (some under 13, some 13+)" }
+          {
+            "value": "under13",
+            "label": "All under 13",
+            "default": true
+          },
+          {
+            "value": "13plus",
+            "label": "All 13 or over"
+          },
+          {
+            "value": "mixed",
+            "label": "Mixed (some under 13, some 13+)"
+          }
         ]
       },
       {
@@ -15469,8 +15495,15 @@
         "label": "Does care change during school holidays?",
         "type": "radio",
         "options": [
-          { "value": "no", "label": "No", "default": true },
-          { "value": "yes", "label": "Yes" }
+          {
+            "value": "no",
+            "label": "No",
+            "default": true
+          },
+          {
+            "value": "yes",
+            "label": "Yes"
+          }
         ]
       },
       {
@@ -15499,7 +15532,7 @@
         "a": "If your care arrangement changes during holidays, Services Australia calculates a blended annual percentage. For example, 4 nights per fortnight in term time but 7 during holidays produces a higher annual average than 4 alone."
       },
       {
-        "q": "What counts as a &quot;night&quot; of care?",
+        "q": "What counts as a \"night\" of care?",
         "a": "A night of care means the child sleeps at your home overnight. Daytime-only care does not count as a night, though significant daytime care can sometimes be recognised in special circumstances."
       },
       {
@@ -15544,9 +15577,19 @@
         "label": "How to Split",
         "type": "radio",
         "options": [
-          { "value": "proportional", "label": "Proportional to income", "default": true },
-          { "value": "5050", "label": "50-50" },
-          { "value": "custom", "label": "Custom" }
+          {
+            "value": "proportional",
+            "label": "Proportional to income",
+            "default": true
+          },
+          {
+            "value": "5050",
+            "label": "50-50"
+          },
+          {
+            "value": "custom",
+            "label": "Custom"
+          }
         ]
       },
       {
@@ -15563,7 +15606,7 @@
       },
       {
         "id": "medical",
-        "label": "Medical &amp; Dental out-of-pocket (annual $)",
+        "label": "Medical & Dental out-of-pocket (annual $)",
         "type": "number",
         "default": 0
       },
@@ -15581,7 +15624,7 @@
       },
       {
         "id": "clothing",
-        "label": "Clothing &amp; School Supplies (annual $)",
+        "label": "Clothing & School Supplies (annual $)",
         "type": "number",
         "default": 0
       },
@@ -15638,11 +15681,27 @@
         "label": "Number of Dependent Children",
         "type": "select",
         "options": [
-          { "value": "0", "label": "0" },
-          { "value": "1", "label": "1", "default": true },
-          { "value": "2", "label": "2" },
-          { "value": "3", "label": "3" },
-          { "value": "4", "label": "4+" }
+          {
+            "value": "0",
+            "label": "0"
+          },
+          {
+            "value": "1",
+            "label": "1",
+            "default": true
+          },
+          {
+            "value": "2",
+            "label": "2"
+          },
+          {
+            "value": "3",
+            "label": "3"
+          },
+          {
+            "value": "4",
+            "label": "4+"
+          }
         ]
       },
       {
@@ -15650,10 +15709,23 @@
         "label": "Primary Carer of Children",
         "type": "radio",
         "options": [
-          { "value": "parent1", "label": "Parent 1", "default": true },
-          { "value": "parent2", "label": "Parent 2" },
-          { "value": "shared", "label": "Shared equally" },
-          { "value": "none", "label": "No children" }
+          {
+            "value": "parent1",
+            "label": "Parent 1",
+            "default": true
+          },
+          {
+            "value": "parent2",
+            "label": "Parent 2"
+          },
+          {
+            "value": "shared",
+            "label": "Shared equally"
+          },
+          {
+            "value": "none",
+            "label": "No children"
+          }
         ]
       },
       {
@@ -15768,8 +15840,15 @@
         "label": "Bond Required (weeks)",
         "type": "select",
         "options": [
-          { "value": "4", "label": "4 weeks", "default": true },
-          { "value": "6", "label": "6 weeks" }
+          {
+            "value": "4",
+            "label": "4 weeks",
+            "default": true
+          },
+          {
+            "value": "6",
+            "label": "6 weeks"
+          }
         ]
       },
       {
@@ -15777,10 +15856,23 @@
         "label": "Furniture Needed",
         "type": "radio",
         "options": [
-          { "value": "full", "label": "Full setup", "default": true },
-          { "value": "basics", "label": "Basics only" },
-          { "value": "minimal", "label": "Minimal" },
-          { "value": "none", "label": "None" }
+          {
+            "value": "full",
+            "label": "Full setup",
+            "default": true
+          },
+          {
+            "value": "basics",
+            "label": "Basics only"
+          },
+          {
+            "value": "minimal",
+            "label": "Minimal"
+          },
+          {
+            "value": "none",
+            "label": "None"
+          }
         ]
       },
       {
@@ -15788,9 +15880,19 @@
         "label": "White Goods Needed",
         "type": "radio",
         "options": [
-          { "value": "all", "label": "All new", "default": true },
-          { "value": "some", "label": "Some" },
-          { "value": "none", "label": "None" }
+          {
+            "value": "all",
+            "label": "All new",
+            "default": true
+          },
+          {
+            "value": "some",
+            "label": "Some"
+          },
+          {
+            "value": "none",
+            "label": "None"
+          }
         ]
       },
       {
@@ -15798,10 +15900,23 @@
         "label": "Moving Method",
         "type": "radio",
         "options": [
-          { "value": "professional", "label": "Professional removalist", "default": true },
-          { "value": "truck", "label": "Hire a truck" },
-          { "value": "diy", "label": "DIY &mdash; friends &amp; family" },
-          { "value": "none", "label": "Not moving" }
+          {
+            "value": "professional",
+            "label": "Professional removalist",
+            "default": true
+          },
+          {
+            "value": "truck",
+            "label": "Hire a truck"
+          },
+          {
+            "value": "diy",
+            "label": "DIY &mdash; friends & family"
+          },
+          {
+            "value": "none",
+            "label": "Not moving"
+          }
         ]
       },
       {
@@ -15809,11 +15924,27 @@
         "label": "Legal Approach",
         "type": "radio",
         "options": [
-          { "value": "diy", "label": "DIY" },
-          { "value": "mediation", "label": "Mediation only", "default": true },
-          { "value": "lawyer-mediation", "label": "Lawyer-assisted mediation" },
-          { "value": "solicitor", "label": "Full solicitor" },
-          { "value": "litigation", "label": "Litigation" }
+          {
+            "value": "diy",
+            "label": "DIY"
+          },
+          {
+            "value": "mediation",
+            "label": "Mediation only",
+            "default": true
+          },
+          {
+            "value": "lawyer-mediation",
+            "label": "Lawyer-assisted mediation"
+          },
+          {
+            "value": "solicitor",
+            "label": "Full solicitor"
+          },
+          {
+            "value": "litigation",
+            "label": "Litigation"
+          }
         ]
       },
       {
@@ -15821,10 +15952,23 @@
         "label": "Children's Bedrooms to Set Up",
         "type": "select",
         "options": [
-          { "value": "0", "label": "0", "default": true },
-          { "value": "1", "label": "1" },
-          { "value": "2", "label": "2" },
-          { "value": "3", "label": "3" }
+          {
+            "value": "0",
+            "label": "0",
+            "default": true
+          },
+          {
+            "value": "1",
+            "label": "1"
+          },
+          {
+            "value": "2",
+            "label": "2"
+          },
+          {
+            "value": "3",
+            "label": "3"
+          }
         ]
       },
       {
@@ -15832,10 +15976,23 @@
         "label": "Court Filings Needed",
         "type": "radio",
         "options": [
-          { "value": "none", "label": "None", "default": true },
-          { "value": "consent", "label": "Consent orders ($195)" },
-          { "value": "divorce", "label": "Divorce ($1,060)" },
-          { "value": "both", "label": "Both ($1,255)" }
+          {
+            "value": "none",
+            "label": "None",
+            "default": true
+          },
+          {
+            "value": "consent",
+            "label": "Consent orders ($195)"
+          },
+          {
+            "value": "divorce",
+            "label": "Divorce ($1,060)"
+          },
+          {
+            "value": "both",
+            "label": "Both ($1,255)"
+          }
         ]
       }
     ],
@@ -15999,14 +16156,39 @@
         "label": "Parenting Arrangement",
         "type": "select",
         "options": [
-          { "value": "7-7", "label": "Week on/week off (7-7)", "default": true },
-          { "value": "5-2-2-5", "label": "5-2-2-5 split" },
-          { "value": "4-3", "label": "4-3 split" },
-          { "value": "10-4", "label": "Every other weekend (10-4)" },
-          { "value": "9-5", "label": "Every other weekend + midweek (9-5)" },
-          { "value": "8-6", "label": "60-40 split (8-6)" },
-          { "value": "12-2", "label": "Alternate weekends only (12-2)" },
-          { "value": "13-1", "label": "Primary with one overnight (13-1)" }
+          {
+            "value": "7-7",
+            "label": "Week on/week off (7-7)",
+            "default": true
+          },
+          {
+            "value": "5-2-2-5",
+            "label": "5-2-2-5 split"
+          },
+          {
+            "value": "4-3",
+            "label": "4-3 split"
+          },
+          {
+            "value": "10-4",
+            "label": "Every other weekend (10-4)"
+          },
+          {
+            "value": "9-5",
+            "label": "Every other weekend + midweek (9-5)"
+          },
+          {
+            "value": "8-6",
+            "label": "60-40 split (8-6)"
+          },
+          {
+            "value": "12-2",
+            "label": "Alternate weekends only (12-2)"
+          },
+          {
+            "value": "13-1",
+            "label": "Primary with one overnight (13-1)"
+          }
         ]
       }
     ],
@@ -16066,11 +16248,27 @@
         "label": "Current &mdash; Number of Children",
         "type": "select",
         "options": [
-          { "value": "1", "label": "1", "default": true },
-          { "value": "2", "label": "2" },
-          { "value": "3", "label": "3" },
-          { "value": "4", "label": "4" },
-          { "value": "5", "label": "5+" }
+          {
+            "value": "1",
+            "label": "1",
+            "default": true
+          },
+          {
+            "value": "2",
+            "label": "2"
+          },
+          {
+            "value": "3",
+            "label": "3"
+          },
+          {
+            "value": "4",
+            "label": "4"
+          },
+          {
+            "value": "5",
+            "label": "5+"
+          }
         ]
       },
       {
@@ -16078,9 +16276,19 @@
         "label": "Current &mdash; Ages of Children",
         "type": "select",
         "options": [
-          { "value": "under13", "label": "All under 13", "default": true },
-          { "value": "13plus", "label": "All 13 or over" },
-          { "value": "mixed", "label": "Mixed" }
+          {
+            "value": "under13",
+            "label": "All under 13",
+            "default": true
+          },
+          {
+            "value": "13plus",
+            "label": "All 13 or over"
+          },
+          {
+            "value": "mixed",
+            "label": "Mixed"
+          }
         ]
       },
       {
@@ -16109,11 +16317,27 @@
         "label": "New &mdash; Number of Children",
         "type": "select",
         "options": [
-          { "value": "1", "label": "1", "default": true },
-          { "value": "2", "label": "2" },
-          { "value": "3", "label": "3" },
-          { "value": "4", "label": "4" },
-          { "value": "5", "label": "5+" }
+          {
+            "value": "1",
+            "label": "1",
+            "default": true
+          },
+          {
+            "value": "2",
+            "label": "2"
+          },
+          {
+            "value": "3",
+            "label": "3"
+          },
+          {
+            "value": "4",
+            "label": "4"
+          },
+          {
+            "value": "5",
+            "label": "5+"
+          }
         ]
       },
       {
@@ -16121,9 +16345,19 @@
         "label": "New &mdash; Ages of Children",
         "type": "select",
         "options": [
-          { "value": "under13", "label": "All under 13", "default": true },
-          { "value": "13plus", "label": "All 13 or over" },
-          { "value": "mixed", "label": "Mixed" }
+          {
+            "value": "under13",
+            "label": "All under 13",
+            "default": true
+          },
+          {
+            "value": "13plus",
+            "label": "All 13 or over"
+          },
+          {
+            "value": "mixed",
+            "label": "Mixed"
+          }
         ]
       },
       {
