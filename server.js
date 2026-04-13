@@ -4,6 +4,7 @@ const fs = require('fs');
 const compression = require('compression');
 const helmet = require('helmet');
 const geoip = require('geoip-lite');
+const nodemailer = require('nodemailer');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -80,8 +81,9 @@ app.use(express.static(path.join(__dirname, 'public'), {
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
-// JSON body parser for API endpoints
+// Body parsers
 app.use(express.json({ limit: '10kb' }));
+app.use(express.urlencoded({ extended: false, limit: '10kb' }));
 
 // Simple rate limiter (in-memory, per IP)
 const rateLimitMap = new Map();
@@ -445,6 +447,7 @@ app.get('/sitemap.xml', (req, res) => {
   });
   xml += `  <url><loc>${baseUrl}/articles</loc><lastmod>${today}</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>\n`;
   xml += `  <url><loc>${baseUrl}/about</loc><lastmod>${today}</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>\n`;
+  xml += `  <url><loc>${baseUrl}/contact</loc><lastmod>${today}</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>\n`;
   xml += `  <url><loc>${baseUrl}/for</loc><lastmod>${today}</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>\n`;
   audiences.forEach(a => {
     xml += `  <url><loc>${baseUrl}/for/${a.slug}</loc><lastmod>${today}</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>\n`;
@@ -635,11 +638,79 @@ app.get('/about', (req, res) => {
   });
 });
 
+// Contact
+app.get('/contact', (req, res) => {
+  res.render('contact', {
+    title: 'Contact | CalculatorMate Australia',
+    metaDescription: 'Get in touch with CalculatorMate. Report a bug, suggest a calculator, or just say g\'day.'
+  });
+});
+
+app.post('/contact', async (req, res) => {
+  const { name, email, subject, message, website } = req.body;
+  const pageData = {
+    title: 'Contact | CalculatorMate Australia',
+    metaDescription: 'Get in touch with CalculatorMate. Report a bug, suggest a calculator, or just say g\'day.'
+  };
+
+  // Honeypot check — bots fill the hidden field
+  if (website) {
+    return res.render('contact', { ...pageData, success: true });
+  }
+
+  // Basic validation
+  if (!name || !email || !message || name.length > 200 || email.length > 200 || message.length > 5000) {
+    return res.render('contact', { ...pageData, error: 'Please fill in all fields.', formData: { name, email, message } });
+  }
+
+  // Simple email format check
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    return res.render('contact', { ...pageData, error: 'Please enter a valid email address.', formData: { name, email, message } });
+  }
+
+  const subjectLabels = { general: 'General Enquiry', bug: 'Bug Report', suggestion: 'Calculator Suggestion', feedback: 'Feedback', other: 'Other' };
+  const subjectLine = `[CalcMate] ${subjectLabels[subject] || 'Contact'} from ${name}`;
+
+  try {
+    const transporter = nodemailer.createTransport({
+      host: 'smtp.gmail.com',
+      port: 465,
+      secure: true,
+      auth: {
+        user: process.env.GMAIL_USER,
+        pass: process.env.GMAIL_APP_PASSWORD
+      }
+    });
+
+    await transporter.sendMail({
+      from: `"CalculatorMate" <${process.env.GMAIL_USER}>`,
+      replyTo: `"${name}" <${email}>`,
+      to: 'ben@benslater.me',
+      subject: subjectLine,
+      text: `From: ${name} <${email}>\nSubject: ${subjectLabels[subject] || 'Other'}\n\n${message}`,
+      html: `<div style="font-family:sans-serif;max-width:600px;margin:0 auto;">
+        <p style="color:#666;font-size:12px;margin-bottom:16px;">New message via calculatormate.com.au/contact</p>
+        <table style="width:100%;border-collapse:collapse;margin-bottom:16px;">
+          <tr><td style="padding:8px 12px;background:#f9f9f6;font-weight:600;width:100px;vertical-align:top;">From</td><td style="padding:8px 12px;">${name} &lt;${email}&gt;</td></tr>
+          <tr><td style="padding:8px 12px;background:#f9f9f6;font-weight:600;vertical-align:top;">Type</td><td style="padding:8px 12px;">${subjectLabels[subject] || 'Other'}</td></tr>
+        </table>
+        <div style="padding:16px;background:#f9f9f6;border-radius:8px;white-space:pre-wrap;font-size:14px;line-height:1.6;">${message.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</div>
+        <p style="color:#999;font-size:11px;margin-top:16px;">Reply directly to this email to respond to ${name}.</p>
+      </div>`
+    });
+
+    res.render('contact', { ...pageData, success: true });
+  } catch (err) {
+    console.error('Contact form error:', err.message);
+    res.render('contact', { ...pageData, error: 'Something went wrong sending your message. Please try again.', formData: { name, email, message } });
+  }
+});
+
 // llms.txt — AI crawler discoverability
 app.get('/llms.txt', (req, res) => {
   const baseUrl = res.locals.siteUrl;
   let txt = '# CalculatorMate Australia\n';
-  txt += '> 117 free online calculators built for Australians — tax, mortgage, health, business, and more.\n\n';
+  txt += '> 172 free online calculators built for Australians — tax, mortgage, health, business, and more.\n\n';
   txt += `## About\nCalculatorMate provides free, accurate calculators using current ATO rates, state-specific stamp duty, Medicare levy thresholds, and Australian workplace law. All calculations run client-side in the browser.\n\n`;
   txt += '## Calculators\n';
   Object.entries(categoryMeta).forEach(([key, meta]) => {
@@ -655,7 +726,7 @@ app.get('/llms.txt', (req, res) => {
       txt += `- [${a.title}](${baseUrl}/articles/${a.slug}): ${a.metaDescription || a.excerpt}\n`;
     });
   }
-  txt += `\n## Links\n- Homepage: ${baseUrl}\n- About: ${baseUrl}/about\n- Sitemap: ${baseUrl}/sitemap.xml\n`;
+  txt += `\n## Links\n- Homepage: ${baseUrl}\n- About: ${baseUrl}/about\n- Contact: ${baseUrl}/contact\n- Sitemap: ${baseUrl}/sitemap.xml\n`;
   res.type('text/plain');
   res.send(txt);
 });
