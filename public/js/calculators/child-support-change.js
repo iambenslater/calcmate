@@ -173,13 +173,13 @@ function calculate() {
   var html = '';
 
   // Hero difference banner
-  html += '<div style="background:linear-gradient(135deg,#1a1a1a,#003380);color:#fff;border-radius:12px;padding:24px;margin-bottom:20px;text-align:center;">';
+  html += '<div style="background:linear-gradient(135deg,#2C3520,#003380);color:#fff;border-radius:12px;padding:24px;margin-bottom:20px;text-align:center;">';
   if (payerFlipped) {
     html += '<div style="font-size:0.9em;opacity:0.8;margin-bottom:4px;">Payer changes from ' + cur.payer + ' to ' + nw.payer + '</div>';
-    html += '<div style="font-size:1.6em;font-weight:700;color:#FFB800;">Direction reverses</div>';
+    html += '<div style="font-size:1.6em;font-weight:700;color:#BFA956;">Direction reverses</div>';
     html += '<div style="margin-top:8px;font-size:0.9em;opacity:0.8;">Current: ' + cur.payer + ' pays ' + fmt(cur.annualAmount) + '/yr \u2192 Proposed: ' + nw.payer + ' pays ' + fmt(nw.annualAmount) + '/yr</div>';
   } else if (Math.abs(diff) < 1) {
-    html += '<div style="font-size:1.4em;font-weight:700;color:#FFB800;">No Change</div>';
+    html += '<div style="font-size:1.4em;font-weight:700;color:#BFA956;">No Change</div>';
     html += '<div style="margin-top:8px;font-size:0.9em;opacity:0.8;">Both scenarios produce the same result</div>';
   } else {
     html += '<div style="font-size:0.9em;opacity:0.8;margin-bottom:4px;">' + diffLabel + ' in payment</div>';
@@ -196,7 +196,7 @@ function calculate() {
   html += '<div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;overflow:hidden;margin-bottom:16px;">';
 
   // Header
-  html += '<div style="display:grid;grid-template-columns:1fr 1fr 1fr;background:#1a1a1a;color:#fff;font-weight:600;font-size:0.9em;">';
+  html += '<div style="display:grid;grid-template-columns:1fr 1fr 1fr;background:#2C3520;color:#fff;font-weight:600;font-size:0.9em;">';
   html += '<div style="padding:12px;"></div>';
   html += '<div style="padding:12px;text-align:center;">Current</div>';
   html += '<div style="padding:12px;text-align:center;">Proposed</div>';

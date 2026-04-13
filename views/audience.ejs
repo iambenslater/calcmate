@@ -193,8 +193,8 @@
           <div class="space-y-4">
             <% audience.faq.forEach((f, fIdx) => { %>
               <details class="group border-b border-gray-100 pb-3">
-                <summary class="cursor-pointer font-medium hover:text-gray-600 transition flex justify-between gap-2 text-sm sm:text-base leading-snug py-1" style="color: #1a1a1a;">
-                  <span class="flex-1" style="color: #1a1a1a;"><%= f.q || f.question || '' %></span>
+                <summary class="cursor-pointer font-medium hover:text-gray-600 transition flex justify-between gap-2 text-sm sm:text-base leading-snug py-1" style="color: #2C3520;">
+                  <span class="flex-1" style="color: #2C3520;"><%= f.q || f.question || '' %></span>
                   <svg class="w-5 h-5 shrink-0 mt-0.5" style="color: #9ca3af;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
                 </summary>
                 <p class="mt-2 text-sm leading-relaxed" style="color: #4b5563;"><%= f.a || f.answer || '' %></p>

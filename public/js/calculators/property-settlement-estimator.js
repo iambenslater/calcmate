@@ -192,8 +192,8 @@ function calculate() {
       '</thead>' +
       '<tbody>' + assetRows +
         '<tr style="background:#f8fafc;">' +
-          '<td style="padding:8px; font-weight:700; border-top:2px solid #1a1a1a;">Total Assets</td>' +
-          '<td style="padding:8px; text-align:right; font-weight:700; color:#16a34a; border-top:2px solid #1a1a1a;">' + formatCurrency(totalAssets) + '</td>' +
+          '<td style="padding:8px; font-weight:700; border-top:2px solid #2C3520;">Total Assets</td>' +
+          '<td style="padding:8px; text-align:right; font-weight:700; color:#16a34a; border-top:2px solid #2C3520;">' + formatCurrency(totalAssets) + '</td>' +
         '</tr>' +
         '<tr style="background:#f8fafc;">' +
           '<td style="padding:8px; font-weight:700;">Total Debts</td>' +
@@ -203,7 +203,7 @@ function calculate() {
     '</table>';
 
   // Net asset pool big number
-  var poolColour = netPool >= 0 ? '#1a1a1a' : '#dc2626';
+  var poolColour = netPool >= 0 ? '#2C3520' : '#dc2626';
   var netPoolHTML = '' +
     '<div style="text-align:center; padding:1.25rem 0; margin-bottom:1rem; background:#f8fafc; border-radius:8px;">' +
       '<div style="font-size:0.8rem; text-transform:uppercase; letter-spacing:0.05em; color:#64748b; margin-bottom:4px;">Net Asset Pool</div>' +
@@ -224,12 +224,12 @@ function calculate() {
   var splitHTML = '' +
     '<p class="result-note" style="font-weight:600; margin-bottom:0.5rem;">Estimated Settlement Range</p>' +
     '<div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:1rem;">' +
-      '<div style="background:#1a1a1a; color:white; border-radius:8px; padding:1rem; text-align:center;">' +
+      '<div style="background:#2C3520; color:white; border-radius:8px; padding:1rem; text-align:center;">' +
         '<div style="font-size:0.8rem; text-transform:uppercase; letter-spacing:0.05em; opacity:0.8; margin-bottom:4px;">Parent 1</div>' +
         '<div style="font-size:1.3rem; font-weight:800;">' + p1PctLow + '% – ' + p1PctHigh + '%</div>' +
         '<div style="font-size:0.85rem; opacity:0.85; margin-top:4px;">' + formatCurrency(p1DollarLow) + ' – ' + formatCurrency(p1DollarHigh) + '</div>' +
       '</div>' +
-      '<div style="background:#FFB800; color:#1a1a1a; border-radius:8px; padding:1rem; text-align:center;">' +
+      '<div style="background:#BFA956; color:#2C3520; border-radius:8px; padding:1rem; text-align:center;">' +
         '<div style="font-size:0.8rem; text-transform:uppercase; letter-spacing:0.05em; opacity:0.7; margin-bottom:4px;">Parent 2</div>' +
         '<div style="font-size:1.3rem; font-weight:800;">' + p2PctLow + '% – ' + p2PctHigh + '%</div>' +
         '<div style="font-size:0.85rem; opacity:0.7; margin-top:4px;">' + formatCurrency(p2DollarLow) + ' – ' + formatCurrency(p2DollarHigh) + '</div>' +
@@ -241,8 +241,8 @@ function calculate() {
   var splitBarHTML = '' +
     '<div style="margin-bottom:1.25rem;">' +
       '<div style="display:flex; height:24px; border-radius:6px; overflow:hidden; position:relative;">' +
-        '<div style="width:' + midP1 + '%; background:#1a1a1a; transition:width 0.3s;"></div>' +
-        '<div style="width:' + (100 - midP1) + '%; background:#FFB800; transition:width 0.3s;"></div>' +
+        '<div style="width:' + midP1 + '%; background:#2C3520; transition:width 0.3s;"></div>' +
+        '<div style="width:' + (100 - midP1) + '%; background:#BFA956; transition:width 0.3s;"></div>' +
       '</div>' +
       '<div style="display:flex; justify-content:space-between; font-size:0.8rem; color:#64748b; margin-top:2px;">' +
         '<span>Parent 1</span><span>Parent 2</span>' +
@@ -255,7 +255,7 @@ function calculate() {
     factorsHTML = '<p class="result-note" style="font-weight:600; margin-bottom:0.5rem;">Factors Influencing the Split</p><ul style="font-size:0.85rem; padding-left:1.25rem; margin-bottom:1rem; color:#334155;">';
     for (var i = 0; i < factors.length; i++) {
       var icon = factors[i].direction === 'neutral' ? '&#8596;' : (factors[i].direction === 'parent1' ? '&#8592; P1' : 'P2 &#8594;');
-      factorsHTML += '<li style="margin-bottom:4px;">' + factors[i].description + ' <span style="color:#1a1a1a; font-weight:600;">(+' + factors[i].low + '–' + factors[i].high + '%)</span></li>';
+      factorsHTML += '<li style="margin-bottom:4px;">' + factors[i].description + ' <span style="color:#2C3520; font-weight:600;">(+' + factors[i].low + '–' + factors[i].high + '%)</span></li>';
     }
     if (lengthNote) {
       factorsHTML += '<li style="margin-bottom:4px; font-style:italic;">' + lengthNote + '</li>';

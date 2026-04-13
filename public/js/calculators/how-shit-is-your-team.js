@@ -195,7 +195,7 @@ function buildResultHTML(team, result, sport, totalTeams) {
 
   // Team stats card
   html += '<div style="background:#f9fafb;border-radius:12px;padding:1rem;margin-bottom:1rem;">';
-  html += '<div style="font-weight:700;color:#1a1a1a;margin-bottom:0.5rem;">' + team.name + ' — ' + sportLabel + ' ' + _ladderData.season + '</div>';
+  html += '<div style="font-weight:700;color:#2C3520;margin-bottom:0.5rem;">' + team.name + ' — ' + sportLabel + ' ' + _ladderData.season + '</div>';
   html += '<div style="display:grid;grid-template-columns:repeat(2,1fr);gap:0.5rem;font-size:0.875rem;">';
   html += '<div>📊 Ladder position: <strong>' + team.position + '/' + totalTeams + '</strong></div>';
   html += '<div>🏆 Record: <strong>' + team.wins + 'W-' + team.losses + 'L' + (team.draws > 0 ? '-' + team.draws + 'D' : '') + '</strong></div>';

@@ -105,7 +105,7 @@ async function generateImage(prompt) {
   return new Promise((resolve, reject) => {
     const body = JSON.stringify({
       contents: [{
-        parts: [{ text: `Generate an image: ${prompt}` }]
+        parts: [{ text: `Generate a wide landscape-format (16:9 aspect ratio) image: ${prompt}` }]
       }],
       generationConfig: {
         responseModalities: ['IMAGE', 'TEXT']
@@ -185,8 +185,8 @@ async function processArticle(article, force) {
   // Convert to optimised WebP
   try {
     await sharp(imageData)
-      .webp({ quality: 80, effort: 6 })
-      .resize({ width: 1200, withoutEnlargement: true })
+      .resize({ width: 1200, height: 675, fit: 'cover' })  // 16:9 crop
+      .webp({ quality: 82, effort: 6 })
       .toFile(webpPath);
 
     const stats = fs.statSync(webpPath);

@@ -13,9 +13,9 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        navy: '#1a1a1a',
-        gold: '#FFB800',
-        'gold-light': '#FFF3D0',
+        navy: '#393F23',
+        gold: '#BFA956',
+        'gold-light': '#F5F2E8',
         warm: {
           '50': '#fafaf8',
         },

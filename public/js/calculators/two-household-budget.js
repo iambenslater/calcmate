@@ -85,14 +85,14 @@ function calculate() {
         '<div class="flex items-center gap-2 mb-1">' +
           '<span style="font-size: 11px; width: 65px; color: #666;">One home</span>' +
           '<div style="flex: 1; background: #E5E7EB; border-radius: 4px; height: 14px;">' +
-            '<div style="width: ' + w1 + '%; background: #1a1a1a; border-radius: 4px; height: 14px;"></div>' +
+            '<div style="width: ' + w1 + '%; background: #2C3520; border-radius: 4px; height: 14px;"></div>' +
           '</div>' +
           '<span style="font-size: 12px; width: 70px; text-align: right;">' + formatCurrency(c.current) + '</span>' +
         '</div>' +
         '<div class="flex items-center gap-2">' +
           '<span style="font-size: 11px; width: 65px; color: #666;">Two homes</span>' +
           '<div style="flex: 1; background: #E5E7EB; border-radius: 4px; height: 14px;">' +
-            '<div style="width: ' + w2 + '%; background: #FFB800; border-radius: 4px; height: 14px;"></div>' +
+            '<div style="width: ' + w2 + '%; background: #BFA956; border-radius: 4px; height: 14px;"></div>' +
           '</div>' +
           '<span style="font-size: 12px; width: 70px; text-align: right;">' + formatCurrency(c.twoHome) + '</span>' +
         '</div>' +
@@ -102,9 +102,9 @@ function calculate() {
 
   var html = '' +
     // Monthly gap hero
-    '<div style="background: #1a1a1a; color: white; padding: 20px; border-radius: 12px; text-align: center; margin-bottom: 20px;">' +
+    '<div style="background: #2C3520; color: white; padding: 20px; border-radius: 12px; text-align: center; margin-bottom: 20px;">' +
       '<div style="font-size: 14px; opacity: 0.8; margin-bottom: 4px;">Extra Monthly Cost of Two Homes</div>' +
-      '<div style="font-size: 36px; font-weight: 700; color: #FFB800;">+' + formatCurrency(monthlyGap) + '/mo</div>' +
+      '<div style="font-size: 36px; font-weight: 700; color: #BFA956;">+' + formatCurrency(monthlyGap) + '/mo</div>' +
       '<div style="font-size: 13px; opacity: 0.7; margin-top: 4px;">That\u2019s ' + formatCurrency(annualGap) + ' extra per year' + (currentTotal > 0 ? ' (' + percentIncrease + '% increase)' : '') + '</div>' +
     '</div>' +
 
@@ -112,28 +112,28 @@ function calculate() {
     '<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px;">' +
       '<div style="background: #F0F4FF; padding: 16px; border-radius: 8px; text-align: center;">' +
         '<div style="font-size: 12px; color: #666; margin-bottom: 4px;">One Home</div>' +
-        '<div style="font-size: 24px; font-weight: 700; color: #1a1a1a;">' + formatCurrency(currentTotal) + '</div>' +
+        '<div style="font-size: 24px; font-weight: 700; color: #2C3520;">' + formatCurrency(currentTotal) + '</div>' +
         '<div style="font-size: 11px; color: #999;">/month</div>' +
       '</div>' +
       '<div style="background: #FFF7E6; padding: 16px; border-radius: 8px; text-align: center;">' +
         '<div style="font-size: 12px; color: #666; margin-bottom: 4px;">Two Homes</div>' +
-        '<div style="font-size: 24px; font-weight: 700; color: #1a1a1a;">' + formatCurrency(twoHouseholdTotal) + '</div>' +
+        '<div style="font-size: 24px; font-weight: 700; color: #2C3520;">' + formatCurrency(twoHouseholdTotal) + '</div>' +
         '<div style="font-size: 11px; color: #999;">/month</div>' +
       '</div>' +
     '</div>' +
 
     // Comparison table
-    '<h4 class="font-semibold mb-3" style="color: #1a1a1a;">Category Comparison</h4>' +
+    '<h4 class="font-semibold mb-3" style="color: #2C3520;">Category Comparison</h4>' +
     '<div style="overflow-x: auto;">' +
     '<table class="w-full text-sm">' +
-      '<thead><tr class="border-b-2" style="border-color: #1a1a1a;">' +
+      '<thead><tr class="border-b-2" style="border-color: #2C3520;">' +
         '<th class="py-2 pr-3 text-left">Category</th>' +
         '<th class="py-2 px-2 text-right">One Home</th>' +
         '<th class="py-2 px-2 text-right">Two Homes</th>' +
         '<th class="py-2 px-2 text-right">Diff</th>' +
       '</tr></thead>' +
       '<tbody>' + compRows +
-        '<tr style="border-top: 2px solid #1a1a1a; font-weight: 700;">' +
+        '<tr style="border-top: 2px solid #2C3520; font-weight: 700;">' +
           '<td class="py-2 pr-3">Total</td>' +
           '<td class="py-2 px-2 text-right">' + formatCurrency(currentTotal) + '</td>' +
           '<td class="py-2 px-2 text-right">' + formatCurrency(twoHouseholdTotal) + '</td>' +
@@ -144,11 +144,11 @@ function calculate() {
     '</div>' +
 
     // Visual bar chart
-    '<h4 class="font-semibold mb-3 mt-5" style="color: #1a1a1a;">Visual Breakdown</h4>' +
+    '<h4 class="font-semibold mb-3 mt-5" style="color: #2C3520;">Visual Breakdown</h4>' +
     '<div style="margin-bottom: 8px;">' +
-      '<span style="display: inline-block; width: 12px; height: 12px; background: #1a1a1a; border-radius: 2px; margin-right: 4px; vertical-align: middle;"></span>' +
+      '<span style="display: inline-block; width: 12px; height: 12px; background: #2C3520; border-radius: 2px; margin-right: 4px; vertical-align: middle;"></span>' +
       '<span style="font-size: 12px; color: #666; margin-right: 16px;">One home</span>' +
-      '<span style="display: inline-block; width: 12px; height: 12px; background: #FFB800; border-radius: 2px; margin-right: 4px; vertical-align: middle;"></span>' +
+      '<span style="display: inline-block; width: 12px; height: 12px; background: #BFA956; border-radius: 2px; margin-right: 4px; vertical-align: middle;"></span>' +
       '<span style="font-size: 12px; color: #666;">Two homes</span>' +
     '</div>' +
     barChart;
@@ -158,7 +158,7 @@ function calculate() {
     var usedPct = ((twoHouseholdTotal / combinedIncome) * 100).toFixed(0);
     html += '' +
       '<div style="margin-top: 24px; background: ' + (surplus >= 0 ? '#F0FDF4' : '#FEF2F2') + '; border-left: 4px solid ' + surplusColor + '; padding: 14px 16px; border-radius: 0 8px 8px 0;">' +
-        '<h4 class="font-semibold mb-2" style="color: #1a1a1a;">Budget Analysis</h4>' +
+        '<h4 class="font-semibold mb-2" style="color: #2C3520;">Budget Analysis</h4>' +
         '<div class="text-sm" style="margin-bottom: 8px;">' +
           '<div style="display: flex; justify-content: space-between; padding: 4px 0;"><span>Combined income</span><strong>' + formatCurrency(combinedIncome) + '/mo</strong></div>' +
           '<div style="display: flex; justify-content: space-between; padding: 4px 0;"><span>Two-home expenses</span><strong>' + formatCurrency(twoHouseholdTotal) + '/mo</strong></div>' +
@@ -172,12 +172,12 @@ function calculate() {
       '<div style="margin-top: 16px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">' +
         '<div style="background: #F0F4FF; padding: 14px; border-radius: 8px; text-align: center;">' +
           '<div style="font-size: 12px; color: #666; margin-bottom: 2px;">Parent A (stays)</div>' +
-          '<div style="font-size: 20px; font-weight: 700; color: #1a1a1a;">' + formatCurrency(currentTotal) + '</div>' +
+          '<div style="font-size: 20px; font-weight: 700; color: #2C3520;">' + formatCurrency(currentTotal) + '</div>' +
           '<div style="font-size: 11px; color: #999;">/month</div>' +
         '</div>' +
         '<div style="background: #FFF7E6; padding: 14px; border-radius: 8px; text-align: center;">' +
           '<div style="font-size: 12px; color: #666; margin-bottom: 2px;">Parent B (moves)</div>' +
-          '<div style="font-size: 20px; font-weight: 700; color: #1a1a1a;">' + formatCurrency(newTotal) + '</div>' +
+          '<div style="font-size: 20px; font-weight: 700; color: #2C3520;">' + formatCurrency(newTotal) + '</div>' +
           '<div style="font-size: 11px; color: #999;">/month</div>' +
         '</div>' +
       '</div>';
@@ -186,7 +186,7 @@ function calculate() {
   // Tips
   html += '' +
     '<div style="margin-top: 24px; background: #F0F4FF; padding: 16px; border-radius: 8px;">' +
-      '<h4 class="font-semibold mb-2" style="color: #1a1a1a;">Good to Know</h4>' +
+      '<h4 class="font-semibold mb-2" style="color: #2C3520;">Good to Know</h4>' +
       '<ul style="list-style: none; padding: 0; margin: 0; font-size: 14px;">' +
         '<li style="padding: 6px 0; border-bottom: 1px solid #E0E7FF;">The average Australian separation increases total household costs by <strong>30\u201340%</strong></li>' +
         '<li style="padding: 6px 0; border-bottom: 1px solid #E0E7FF;">Shared costs like streaming, insurance, and internet are often duplicated \u2014 review every subscription</li>' +

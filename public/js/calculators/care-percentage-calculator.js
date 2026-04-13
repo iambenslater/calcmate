@@ -46,8 +46,8 @@ function calculate() {
     if (effectiveNights < 0) effectiveNights = 0;
 
     blendedHtml = '' +
-      '<div style="margin-top: 1rem; padding: 1rem; background: #f0f4ff; border-radius: 8px; border-left: 4px solid #1a1a1a;">' +
-        '<strong style="color: #1a1a1a;">Holiday Blending Calculation</strong>' +
+      '<div style="margin-top: 1rem; padding: 1rem; background: #f0f4ff; border-radius: 8px; border-left: 4px solid #2C3520;">' +
+        '<strong style="color: #2C3520;">Holiday Blending Calculation</strong>' +
         '<div style="margin-top: 0.5rem; font-size: 0.9em;">' +
           '<div class="result-row"><span class="result-label">Term nights per fortnight</span><span class="result-value">' + termNights + '</span></div>' +
           '<div class="result-row"><span class="result-label">Holiday nights per fortnight</span><span class="result-value">' + holidayNights + '</span></div>' +
@@ -66,22 +66,22 @@ function calculate() {
   var nightsPerYear = Math.round(effectiveNights * 26.07);
 
   // Determine level colour
-  var levelColour = '#1a1a1a';
+  var levelColour = '#2C3520';
   if (row.level === 'No care' || row.level === 'Below regular care') levelColour = '#dc2626';
   else if (row.level === 'Regular care') levelColour = '#ea580c';
   else if (row.level === 'Shared care') levelColour = '#16a34a';
-  else if (row.level === 'Primary care' || row.level === 'Above primary care') levelColour = '#1a1a1a';
+  else if (row.level === 'Primary care' || row.level === 'Above primary care') levelColour = '#2C3520';
 
   // Visual bar
   var barHtml = '' +
     '<div style="margin: 1rem 0;">' +
       '<div style="display: flex; justify-content: space-between; font-size: 0.85em; margin-bottom: 4px;">' +
-        '<span style="color: #1a1a1a; font-weight: 600;">You: ' + yourPct + '%</span>' +
-        '<span style="color: #FFB800; font-weight: 600;">Other parent: ' + otherPct + '%</span>' +
+        '<span style="color: #2C3520; font-weight: 600;">You: ' + yourPct + '%</span>' +
+        '<span style="color: #BFA956; font-weight: 600;">Other parent: ' + otherPct + '%</span>' +
       '</div>' +
       '<div style="display: flex; height: 32px; border-radius: 8px; overflow: hidden; border: 1px solid #e5e7eb;">' +
-        '<div style="width: ' + yourPct + '%; background: #1a1a1a; transition: width 0.3s;"></div>' +
-        '<div style="width: ' + otherPct + '%; background: #FFB800; transition: width 0.3s;"></div>' +
+        '<div style="width: ' + yourPct + '%; background: #2C3520; transition: width 0.3s;"></div>' +
+        '<div style="width: ' + otherPct + '%; background: #BFA956; transition: width 0.3s;"></div>' +
       '</div>' +
     '</div>';
 
@@ -91,7 +91,7 @@ function calculate() {
       '<strong>Services Australia Care Percentage Table</strong>' +
       '<div style="overflow-x: auto; margin-top: 0.5rem;">' +
         '<table style="width: 100%; border-collapse: collapse; font-size: 0.85em;">' +
-          '<thead><tr style="background: #1a1a1a; color: #fff;">' +
+          '<thead><tr style="background: #2C3520; color: #fff;">' +
             '<th style="padding: 6px 8px; text-align: left;">Nights</th>' +
             '<th style="padding: 6px 8px; text-align: right;">Care %</th>' +
             '<th style="padding: 6px 8px; text-align: left;">Level</th>' +
@@ -101,7 +101,7 @@ function calculate() {
   for (var i = 0; i < careTable.length; i++) {
     var r = careTable[i];
     var isActive = r.nights === effectiveNights;
-    var rowStyle = isActive ? 'background: #fffbeb; font-weight: bold; border-left: 3px solid #FFB800;' : '';
+    var rowStyle = isActive ? 'background: #fffbeb; font-weight: bold; border-left: 3px solid #BFA956;' : '';
     tableHtml += '<tr style="' + rowStyle + ' border-bottom: 1px solid #e5e7eb;">' +
       '<td style="padding: 6px 8px;">' + r.nights + '</td>' +
       '<td style="padding: 6px 8px; text-align: right;">' + r.pct + '%</td>' +
@@ -113,7 +113,7 @@ function calculate() {
 
   // Impact notes
   var impactHtml = '<div style="margin-top: 1.5rem; padding: 1rem; background: #f9fafb; border-radius: 8px; border: 1px solid #e5e7eb;">' +
-    '<strong style="color: #1a1a1a;">What This Means</strong><ul style="margin: 0.5rem 0 0 1.2rem; padding: 0;">';
+    '<strong style="color: #2C3520;">What This Means</strong><ul style="margin: 0.5rem 0 0 1.2rem; padding: 0;">';
 
   if (yourPct < 14) {
     impactHtml += '<li>With less than 14% care (below regular), you have no cost percentage applied and may owe the full child support amount based on income.</li>';
@@ -137,7 +137,7 @@ function calculate() {
   var html = '' +
     '<div class="result-row" style="font-size: 1.2em; font-weight: bold;">' +
       '<span class="result-label">Your Care Percentage</span>' +
-      '<span class="result-value" style="color: #1a1a1a;">' + yourPct + '%</span>' +
+      '<span class="result-value" style="color: #2C3520;">' + yourPct + '%</span>' +
     '</div>' +
     '<div class="result-row">' +
       '<span class="result-label">Other Parent\u2019s Care Percentage</span>' +

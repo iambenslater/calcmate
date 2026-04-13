@@ -214,13 +214,13 @@ function calculate() {
   var html = '';
 
   // Hero result
-  html += '<div style="background:linear-gradient(135deg,#1a1a1a,#003380);color:#fff;border-radius:12px;padding:24px;margin-bottom:20px;text-align:center;">';
+  html += '<div style="background:linear-gradient(135deg,#2C3520,#003380);color:#fff;border-radius:12px;padding:24px;margin-bottom:20px;text-align:center;">';
   if (r.annualAmount < 1) {
     html += '<div style="font-size:1.1em;opacity:0.9;">No child support payable</div>';
     html += '<div style="font-size:0.9em;opacity:0.7;margin-top:8px;">Both parents contribute equally based on income and care shares</div>';
   } else {
     html += '<div style="font-size:0.9em;opacity:0.8;margin-bottom:4px;">' + payer + ' pays ' + receiver + '</div>';
-    html += '<div style="font-size:2em;font-weight:700;color:#FFB800;">' + fmt(r.annualAmount) + '<span style="font-size:0.4em;opacity:0.8;">/year</span></div>';
+    html += '<div style="font-size:2em;font-weight:700;color:#BFA956;">' + fmt(r.annualAmount) + '<span style="font-size:0.4em;opacity:0.8;">/year</span></div>';
     html += '<div style="display:flex;justify-content:center;gap:24px;margin-top:12px;font-size:0.95em;">';
     html += '<span>' + fmt(r.monthly) + '/month</span>';
     html += '<span>' + fmt(r.fortnightly) + '/fortnight</span>';
@@ -233,11 +233,11 @@ function calculate() {
 
   // Step-by-step breakdown
   html += '<div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:20px;margin-bottom:16px;">';
-  html += '<h3 style="margin:0 0 16px;font-size:1.1em;color:#1a1a1a;">Step-by-Step Breakdown</h3>';
+  html += '<h3 style="margin:0 0 16px;font-size:1.1em;color:#2C3520;">Step-by-Step Breakdown</h3>';
 
   // Step 1
   html += '<div style="margin-bottom:14px;">';
-  html += '<div style="font-weight:600;color:#1a1a1a;font-size:0.95em;">Step 1: Child Support Income</div>';
+  html += '<div style="font-weight:600;color:#2C3520;font-size:0.95em;">Step 1: Child Support Income</div>';
   html += '<div style="font-size:0.85em;color:#64748b;margin-bottom:4px;">ATI minus Self-Support Amount (' + fmt(SSA) + ')</div>';
   html += '<div style="display:flex;justify-content:space-between;padding:4px 0;"><span>Parent 1 CSI</span><span style="font-weight:600;">' + fmt(r.p1CSI) + '</span></div>';
   html += '<div style="display:flex;justify-content:space-between;padding:4px 0;"><span>Parent 2 CSI</span><span style="font-weight:600;">' + fmt(r.p2CSI) + '</span></div>';
@@ -245,20 +245,20 @@ function calculate() {
 
   // Step 2
   html += '<div style="margin-bottom:14px;">';
-  html += '<div style="font-weight:600;color:#1a1a1a;font-size:0.95em;">Step 2: Combined Child Support Income</div>';
+  html += '<div style="font-weight:600;color:#2C3520;font-size:0.95em;">Step 2: Combined Child Support Income</div>';
   html += '<div style="display:flex;justify-content:space-between;padding:4px 0;"><span>Combined CSI</span><span style="font-weight:600;">' + fmt(r.combinedCSI) + '</span></div>';
   html += '</div>';
 
   // Step 3
   html += '<div style="margin-bottom:14px;">';
-  html += '<div style="font-weight:600;color:#1a1a1a;font-size:0.95em;">Step 3: Income Percentages</div>';
+  html += '<div style="font-weight:600;color:#2C3520;font-size:0.95em;">Step 3: Income Percentages</div>';
   html += '<div style="display:flex;justify-content:space-between;padding:4px 0;"><span>Parent 1 income share</span><span style="font-weight:600;">' + (r.p1IncomePct * 100).toFixed(1) + '%</span></div>';
   html += '<div style="display:flex;justify-content:space-between;padding:4px 0;"><span>Parent 2 income share</span><span style="font-weight:600;">' + (r.p2IncomePct * 100).toFixed(1) + '%</span></div>';
   html += '</div>';
 
   // Step 4
   html += '<div style="margin-bottom:14px;">';
-  html += '<div style="font-weight:600;color:#1a1a1a;font-size:0.95em;">Step 4: Care Percentages</div>';
+  html += '<div style="font-weight:600;color:#2C3520;font-size:0.95em;">Step 4: Care Percentages</div>';
   html += '<div style="font-size:0.85em;color:#64748b;margin-bottom:4px;">Based on nights per fortnight</div>';
   html += '<div style="display:flex;justify-content:space-between;padding:4px 0;"><span>Parent 1: ' + r.p1Nights + ' nights</span><span style="font-weight:600;">' + r.p1CarePct + '% — ' + r.p1CareBand + '</span></div>';
   html += '<div style="display:flex;justify-content:space-between;padding:4px 0;"><span>Parent 2: ' + r.p2Nights + ' nights</span><span style="font-weight:600;">' + r.p2CarePct + '% — ' + r.p2CareBand + '</span></div>';
@@ -266,14 +266,14 @@ function calculate() {
 
   // Step 5
   html += '<div style="margin-bottom:14px;">';
-  html += '<div style="font-weight:600;color:#1a1a1a;font-size:0.95em;">Step 5: Cost Percentages</div>';
+  html += '<div style="font-weight:600;color:#2C3520;font-size:0.95em;">Step 5: Cost Percentages</div>';
   html += '<div style="display:flex;justify-content:space-between;padding:4px 0;"><span>Parent 1 cost %</span><span style="font-weight:600;">' + (r.p1CostPct * 100).toFixed(0) + '%</span></div>';
   html += '<div style="display:flex;justify-content:space-between;padding:4px 0;"><span>Parent 2 cost %</span><span style="font-weight:600;">' + (r.p2CostPct * 100).toFixed(0) + '%</span></div>';
   html += '</div>';
 
   // Step 6
   html += '<div style="margin-bottom:14px;">';
-  html += '<div style="font-weight:600;color:#1a1a1a;font-size:0.95em;">Step 6: Child Support Percentage</div>';
+  html += '<div style="font-weight:600;color:#2C3520;font-size:0.95em;">Step 6: Child Support Percentage</div>';
   html += '<div style="font-size:0.85em;color:#64748b;margin-bottom:4px;">Income % minus Cost % (positive = pays, negative = receives)</div>';
   html += '<div style="display:flex;justify-content:space-between;padding:4px 0;"><span>Parent 1</span><span style="font-weight:600;color:' + (r.p1CSPct > 0 ? '#dc2626' : '#16a34a') + ';">' + (r.p1CSPct * 100).toFixed(1) + '%</span></div>';
   html += '<div style="display:flex;justify-content:space-between;padding:4px 0;"><span>Parent 2</span><span style="font-weight:600;color:' + (r.p2CSPct > 0 ? '#dc2626' : '#16a34a') + ';">' + (r.p2CSPct * 100).toFixed(1) + '%</span></div>';
@@ -281,7 +281,7 @@ function calculate() {
 
   // Step 7
   html += '<div style="margin-bottom:14px;">';
-  html += '<div style="font-weight:600;color:#1a1a1a;font-size:0.95em;">Step 7: Costs of Children</div>';
+  html += '<div style="font-weight:600;color:#2C3520;font-size:0.95em;">Step 7: Costs of Children</div>';
   html += '<div style="font-size:0.85em;color:#64748b;margin-bottom:4px;">' + numChildren + ' child' + (numChildren > 1 ? 'ren' : '') + ' (' + agesLabel + ') — marginal rate calculation on ' + fmt(Math.min(r.combinedCSI, 200910)) + '</div>';
   html += costRows;
   if (numChildren >= 3) {
@@ -292,7 +292,7 @@ function calculate() {
 
   // Step 8
   html += '<div style="margin-bottom:0;">';
-  html += '<div style="font-weight:600;color:#1a1a1a;font-size:0.95em;">Step 8: Annual Child Support</div>';
+  html += '<div style="font-weight:600;color:#2C3520;font-size:0.95em;">Step 8: Annual Child Support</div>';
   html += '<div style="font-size:0.85em;color:#64748b;margin-bottom:4px;">|Child Support %| \u00d7 Cost of Children</div>';
   html += '<div style="display:flex;justify-content:space-between;padding:4px 0;"><span>|' + (Math.abs(r.p1CSPct) * 100).toFixed(1) + '%| \u00d7 ' + fmt(r.costOfChildren) + '</span><span style="font-weight:600;">' + fmt(r.annualAmount) + '/year</span></div>';
   html += '</div>';
