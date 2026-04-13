@@ -20,26 +20,27 @@
 <%- include('partials/ad-hero-banner', { calc: { affiliateContext: calcs[0] ? calcs[0].affiliateContext : 'general' } }) %>
 <%- include('partials/header') %>
 
-<main class="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-6">
+<main class="flex-1 max-w-6xl mx-auto w-full px-5 sm:px-8 py-8">
   <%- include('partials/breadcrumbs', { category, categoryName }) %>
 
-  <div class="lg:flex gap-8">
+  <div class="lg:flex gap-10">
     <!-- Main content -->
     <div class="flex-1">
       <div class="mb-8">
-        <h1 class="text-3xl font-bold text-navy mb-2"><%= categoryIcon %> <%= categoryName %> Calculators</h1>
-        <p class="text-gray-600"><%= categoryDescription %></p>
+        <p class="cm-gradient-text text-xs font-semibold uppercase tracking-widest mb-3"><%= categoryIcon %> Category</p>
+        <h1 class="text-3xl md:text-4xl font-bold text-gray-900 cm-heading mb-2"><%= categoryName %> Calculators</h1>
+        <p class="text-gray-500"><%= categoryDescription %></p>
       </div>
 
       <% if (category === 'separation') { %>
-      <div class="bg-blue-50 border border-blue-200 rounded-xl p-5 mb-8">
-        <h2 class="font-semibold text-navy mb-2">📋 Official Government Resources</h2>
+      <div class="bg-blue-50 border border-blue-100 rounded-2xl p-5 mb-8">
+        <h2 class="font-semibold text-gray-900 mb-2 text-sm">Official Government Resources</h2>
         <p class="text-sm text-gray-600 mb-3">These calculators provide estimates only. For official assessments, contact:</p>
         <div class="grid sm:grid-cols-2 gap-2 text-sm">
-          <a href="https://www.servicesaustralia.gov.au/child-support" target="_blank" rel="noopener" class="flex items-center gap-2 text-blue-700 hover:underline">🏛️ Services Australia — Child Support</a>
-          <a href="https://www.familyrelationships.gov.au" target="_blank" rel="noopener" class="flex items-center gap-2 text-blue-700 hover:underline">👨‍👩‍👧 Family Relationships Online</a>
-          <a href="https://www.fcfcoa.gov.au" target="_blank" rel="noopener" class="flex items-center gap-2 text-blue-700 hover:underline">⚖️ Federal Circuit & Family Court</a>
-          <a href="https://www.legalaid.nsw.gov.au" target="_blank" rel="noopener" class="flex items-center gap-2 text-blue-700 hover:underline">📞 Legal Aid (find your state)</a>
+          <a href="https://www.servicesaustralia.gov.au/child-support" target="_blank" rel="noopener" class="flex items-center gap-2 text-blue-700 hover:underline">Services Australia — Child Support</a>
+          <a href="https://www.familyrelationships.gov.au" target="_blank" rel="noopener" class="flex items-center gap-2 text-blue-700 hover:underline">Family Relationships Online</a>
+          <a href="https://www.fcfcoa.gov.au" target="_blank" rel="noopener" class="flex items-center gap-2 text-blue-700 hover:underline">Federal Circuit & Family Court</a>
+          <a href="https://www.legalaid.nsw.gov.au" target="_blank" rel="noopener" class="flex items-center gap-2 text-blue-700 hover:underline">Legal Aid (find your state)</a>
         </div>
         <p class="text-xs text-gray-500 mt-3">Free call: Family Relationship Advice Line <strong>1800 050 321</strong></p>
       </div>
@@ -47,9 +48,18 @@
 
       <div class="grid sm:grid-cols-2 gap-4">
         <% calcs.forEach((c, idx) => { %>
-          <a href="/<%= c.category %>/<%= c.slug %>" class="group bg-white rounded-xl p-5 shadow-sm hover:shadow-md border border-gray-100 hover:border-gray-300 transition">
-            <h2 class="font-semibold text-navy group-hover:text-gray-600 transition mb-1"><%= c.title %></h2>
-            <p class="text-sm text-gray-500"><%= c.description %></p>
+          <a href="/<%= c.category %>/<%= c.slug %>" class="group cm-card p-5 hover:border-black/10 hover:-translate-y-0.5 transition-all duration-300">
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-xl bg-gray-50 flex items-center justify-center text-lg shrink-0 group-hover:scale-105 transition-transform duration-300"><%= categoryIcon %></div>
+              <div class="min-w-0">
+                <h2 class="font-semibold text-gray-900 group-hover:text-gray-600 transition-colors duration-200 mb-1"><%= c.title %></h2>
+                <p class="text-sm text-gray-500"><%= c.description %></p>
+                <span class="inline-flex items-center gap-1 text-xs font-medium text-gray-500 group-hover:text-gray-700 mt-3 transition-colors">
+                  Open calculator
+                  <svg class="w-3 h-3 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                </span>
+              </div>
+            </div>
           </a>
           <% if (idx === 5) { %>
             <div class="sm:col-span-2">
@@ -65,15 +75,30 @@
         <% }) %>
       </div>
 
+      <!-- AdSense display ad after calculator listing -->
+      <div class="mt-8 mb-4">
+        <ins class="adsbygoogle"
+          style="display:block"
+          data-ad-client="ca-pub-8414007005923504"
+          data-ad-slot="7713696451"
+          data-ad-format="auto"
+          data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      </div>
+
       <% if (catArticles && catArticles.length) { %>
       <section class="mt-10">
-        <h2 class="text-2xl font-bold text-navy mb-4">📖 Articles & Guides</h2>
+        <p class="cm-gradient-text text-xs font-semibold uppercase tracking-widest mb-3">Learn</p>
+        <h2 class="text-2xl font-bold text-gray-900 cm-heading mb-4">Articles & guides</h2>
         <div class="grid sm:grid-cols-2 gap-4">
           <% catArticles.forEach(a => { %>
-            <a href="/articles/<%= a.slug %>" class="group bg-white rounded-xl p-5 shadow-sm hover:shadow-md border border-gray-100 hover:border-gray-300 transition">
-              <h3 class="font-semibold text-sm text-navy group-hover:text-gray-600 transition mb-2"><%= a.title %></h3>
+            <a href="/articles/<%= a.slug %>" class="group cm-card p-5 hover:border-black/10 hover:-translate-y-0.5 transition-all duration-300">
+              <h3 class="font-semibold text-sm text-gray-900 group-hover:text-gray-600 transition-colors duration-200 mb-2"><%= a.title %></h3>
               <p class="text-xs text-gray-500 line-clamp-2"><%= a.excerpt %></p>
-              <span class="text-xs text-gold font-medium mt-2 inline-block"><%= a.readTime %> · Read more →</span>
+              <span class="inline-flex items-center gap-1 text-xs font-medium text-gray-500 group-hover:text-gray-700 mt-3 transition-colors">
+                <%= a.readTime %> · Read more
+                <svg class="w-3 h-3 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+              </span>
             </a>
           <% }) %>
         </div>
@@ -100,11 +125,11 @@
             data-full-width-responsive="true"></ins>
           <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
         </div>
-        <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-4">
-          <h3 class="font-semibold text-navy mb-3 text-sm uppercase tracking-wider">All Categories</h3>
+        <div class="cm-card p-4">
+          <h3 class="font-semibold text-gray-900 mb-3 text-sm">All categories</h3>
           <nav class="space-y-1">
             <% Object.entries(categoryMeta).forEach(([key, meta]) => { %>
-              <a href="/<%= key %>" class="block px-3 py-2 rounded-lg text-sm transition <%= key === category ? 'bg-gold-light text-navy font-medium' : 'hover:bg-gray-50 text-gray-600' %>">
+              <a href="/<%= key %>" class="block px-3 py-2 rounded-lg text-sm transition-all duration-200 <%= key === category ? 'bg-gray-100 text-gray-900 font-medium' : 'hover:bg-black/5 text-gray-600 hover:text-gray-900' %>">
                 <span class="mr-2"><%= meta.icon %></span><%= meta.name %>
               </a>
             <% }) %>

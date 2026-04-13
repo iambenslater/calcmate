@@ -37,65 +37,91 @@
 <%- include('partials/ad-hero-banner', { calc: { affiliateContext: audience.affiliateContext || 'general' } }) %>
 <%- include('partials/header') %>
 
-<main class="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-6">
+<main class="flex-1 max-w-6xl mx-auto w-full px-5 sm:px-8 py-8">
   <!-- Breadcrumbs -->
-  <nav aria-label="Breadcrumb" class="mb-4">
+  <nav aria-label="Breadcrumb" class="mb-6">
     <ol class="flex items-center gap-2 text-sm text-gray-500">
-      <li><a href="/" class="hover:text-navy transition">Home</a></li>
+      <li><a href="/" class="hover:text-gray-900 transition-colors duration-200">Home</a></li>
       <li class="text-gray-300">/</li>
-      <li><a href="/for" class="hover:text-navy transition">Calculators For...</a></li>
+      <li><a href="/for" class="hover:text-gray-900 transition-colors duration-200">Calculators For...</a></li>
       <li class="text-gray-300">/</li>
-      <li class="text-gray-800 font-medium"><%= audience.shortTitle || audience.title %></li>
+      <li class="text-gray-700 font-medium"><%= audience.shortTitle || audience.title %></li>
     </ol>
   </nav>
 
   <!-- Hero -->
   <section class="mb-8">
-    <h1 class="text-3xl md:text-4xl font-bold text-navy mb-3"><%= audience.headline %></h1>
-    <p class="text-lg text-gray-600 max-w-3xl"><%= audience.blurb %></p>
+    <p class="cm-gradient-text text-xs font-semibold uppercase tracking-widest mb-3">For you</p>
+    <h1 class="text-3xl md:text-4xl font-bold text-gray-900 cm-heading mb-3"><%= audience.headline %></h1>
+    <p class="text-lg text-gray-500 max-w-3xl"><%= audience.blurb %></p>
   </section>
 
-  <div class="lg:flex gap-8">
+  <div class="lg:flex gap-10">
     <div class="flex-1 min-w-0">
 
       <!-- Hero image -->
       <% const imgPath = '/images/audiences/' + audience.slug + '.webp'; %>
-      <figure class="mb-8 rounded-xl overflow-hidden border border-gray-100 shadow-sm max-h-64 md:max-h-80">
+      <figure class="mb-8 rounded-2xl overflow-hidden border border-black/5 cm-shadow-soft max-h-64 md:max-h-80">
         <img src="<%= imgPath %>" alt="<%= audience.title %>" class="w-full h-full object-cover" loading="lazy" onerror="this.parentElement.style.display='none'">
       </figure>
 
-      <!-- Intro content -->
+      <!-- Intro content — split with mid-content ad -->
       <% if (audience.intro) { %>
-        <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 md:p-8 mb-8">
+        <%
+          const introHtml = audience.intro || '';
+          const introParagraphs = introHtml.split('</p>');
+          const introMid = Math.floor(introParagraphs.length / 2);
+          const introFirst = introParagraphs.slice(0, introMid).join('</p>') + (introMid > 0 ? '</p>' : '');
+          const introSecond = introParagraphs.slice(introMid).join('</p>');
+        %>
+        <div class="cm-card p-6 md:p-8 mb-4">
           <div class="article-content">
-            <%- audience.intro %>
+            <%- introFirst %>
+          </div>
+        </div>
+
+        <!-- AdSense mid-content ad -->
+        <div class="mb-4">
+          <ins class="adsbygoogle"
+            style="display:block; text-align:center;"
+            data-ad-layout="in-article"
+            data-ad-format="fluid"
+            data-ad-client="ca-pub-8414007005923504"
+            data-ad-slot="2652941462"></ins>
+          <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
+
+        <div class="cm-card p-6 md:p-8 mb-8">
+          <div class="article-content">
+            <%- introSecond %>
           </div>
         </div>
       <% } %>
 
       <!-- Featured calculators — embedded -->
       <section class="mb-8">
-        <h2 class="text-2xl font-bold text-navy mb-4">Your Essential Calculators</h2>
+        <p class="cm-gradient-text text-xs font-semibold uppercase tracking-widest mb-3">Tools</p>
+        <h2 class="text-2xl font-bold text-gray-900 cm-heading mb-4">Your essential calculators</h2>
         <div class="space-y-4">
           <% audience.calculators.forEach((calcSlug, idx) => { %>
             <% const c = allCalcs[calcSlug]; if (!c) return; %>
-            <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden" id="calc-section-<%= idx %>">
-              <button onclick="toggleCalc(<%= idx %>)" class="w-full text-left px-6 py-4 flex items-center justify-between hover:bg-gray-50 transition">
+            <div class="cm-card overflow-hidden" id="calc-section-<%= idx %>">
+              <button onclick="toggleCalc(<%= idx %>)" class="w-full text-left px-6 py-4 flex items-center justify-between hover:bg-black/[0.02] transition-all duration-200">
                 <div>
-                  <h3 class="font-bold text-navy text-lg"><%= c.title %></h3>
+                  <h3 class="font-bold text-gray-900 text-lg"><%= c.title %></h3>
                   <p class="text-sm text-gray-500 mt-0.5"><%= c.description %></p>
                 </div>
                 <svg id="chevron-<%= idx %>" class="w-6 h-6 text-gray-400 transition-transform shrink-0 ml-4 <%= idx === 0 ? 'rotate-180' : '' %>" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
               </button>
               <div id="calc-body-<%= idx %>" class="px-6 pb-6 <%= idx === 0 ? '' : 'hidden' %>">
-                <div class="border-t border-gray-100 pt-4">
+                <div class="border-t border-black/5 pt-4">
                   <!-- Calculator inputs -->
                   <% if (c.inputs && c.inputs.length) { %>
                     <% c.inputs.forEach(input => { %>
                       <div class="mb-4">
-                        <label class="block text-sm font-medium text-gray-700 mb-1"><%= input.label %></label>
+                        <label class="block text-sm font-medium text-gray-700 mb-1.5"><%= input.label %></label>
                         <% if (input.type === 'select') { %>
-                          <select id="aud<%= idx %>-<%= input.id %>" class="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gold focus:border-gold transition">
+                          <select id="aud<%= idx %>-<%= input.id %>" class="w-full px-4 py-2.5 rounded-xl border border-gray-200 bg-white focus:outline-none focus:ring-2 focus:ring-black/10 focus:border-gray-400 transition-all duration-200 text-sm">
                             <% (input.options || []).forEach((opt, optIdx) => { %>
                               <option value="<%= opt.value %>" <%= opt.default || (!input.options.some(o => o.default) && optIdx === 0) ? 'selected' : '' %>><%= opt.label %></option>
                             <% }) %>
@@ -105,18 +131,18 @@
                             <% const hasDefault = (input.options || []).some(o => o.default); %>
                             <% (input.options || []).forEach((opt, optIdx) => { %>
                               <label class="flex items-center gap-2 cursor-pointer">
-                                <input type="radio" name="aud<%= idx %>-<%= input.id %>" value="<%= opt.value %>" <%= opt.default || (!hasDefault && optIdx === 0) ? 'checked' : '' %> class="text-gold focus:ring-gold">
+                                <input type="radio" name="aud<%= idx %>-<%= input.id %>" value="<%= opt.value %>" <%= opt.default || (!hasDefault && optIdx === 0) ? 'checked' : '' %> class="text-gray-900 focus:ring-gray-900">
                                 <span class="text-sm"><%= opt.label %></span>
                               </label>
                             <% }) %>
                           </div>
                         <% } else if (input.type === 'checkbox') { %>
                           <label class="flex items-center gap-2 cursor-pointer">
-                            <input type="checkbox" id="aud<%= idx %>-<%= input.id %>" <%= input.default ? 'checked' : '' %> class="rounded text-gold focus:ring-gold">
+                            <input type="checkbox" id="aud<%= idx %>-<%= input.id %>" <%= input.default ? 'checked' : '' %> class="rounded text-gray-900 focus:ring-gray-900">
                             <span class="text-sm"><%= input.checkLabel || '' %></span>
                           </label>
                         <% } else if (input.type === 'date') { %>
-                          <input type="date" id="aud<%= idx %>-<%= input.id %>" value="<%= input.default || '' %>" class="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gold focus:border-gold transition">
+                          <input type="date" id="aud<%= idx %>-<%= input.id %>" value="<%= input.default || '' %>" class="w-full px-4 py-2.5 rounded-xl border border-gray-200 bg-white focus:outline-none focus:ring-2 focus:ring-black/10 focus:border-gray-400 transition-all duration-200 text-sm">
                         <% } else { %>
                           <div class="relative">
                             <% if (input.prefix) { %><span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm"><%= input.prefix %></span><% } %>
@@ -126,7 +152,7 @@
                               <% if (typeof input.min !== 'undefined') { %>min="<%= input.min %>"<% } %>
                               <% if (typeof input.max !== 'undefined') { %>max="<%= input.max %>"<% } %>
                               <% if (input.step) { %>step="<%= input.step %>"<% } %>
-                              class="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gold focus:border-gold transition <%= input.prefix ? 'pl-8' : '' %>"
+                              class="w-full px-4 py-2.5 rounded-xl border border-gray-200 bg-white focus:outline-none focus:ring-2 focus:ring-black/10 focus:border-gray-400 transition-all duration-200 text-sm <%= input.prefix ? 'pl-8' : '' %>"
                             >
                             <% if (input.suffix) { %><span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm"><%= input.suffix %></span><% } %>
                           </div>
@@ -136,19 +162,19 @@
                     <% }) %>
                   <% } %>
 
-                  <button onclick="runCalc(<%= idx %>, '<%= c.slug %>')" class="w-full sm:w-auto px-8 py-3 bg-gold text-navy font-bold rounded-lg hover:bg-yellow-400 transition shadow-sm text-lg">
+                  <button onclick="runCalc(<%= idx %>, '<%= c.slug %>')" class="w-full sm:w-auto px-8 py-3 bg-gray-900 text-white font-semibold rounded-xl hover:bg-gray-800 transition-all duration-200 cm-shadow-soft hover:cm-shadow-md text-base">
                     Calculate
                   </button>
 
                   <div id="aud-results-<%= idx %>" class="mt-6 hidden">
-                    <div class="border-t border-gray-100 pt-4">
-                      <h4 class="text-lg font-bold text-navy mb-3">Results</h4>
+                    <div class="border-t border-black/5 pt-4">
+                      <h4 class="text-lg font-bold text-gray-900 mb-3">Results</h4>
                       <div id="aud-results-content-<%= idx %>" class="space-y-3"></div>
                     </div>
                   </div>
 
                   <p class="text-xs text-gray-400 mt-4">
-                    <a href="/<%= c.category %>/<%= c.slug %>" class="text-navy underline hover:text-gray-600">Open full calculator →</a> for more options and detailed breakdown.
+                    <a href="/<%= c.category %>/<%= c.slug %>" class="text-gray-600 underline hover:text-gray-900 transition-colors duration-200">Open full calculator</a> for more options and detailed breakdown.
                   </p>
                 </div>
               </div>
@@ -171,13 +197,38 @@
       <!-- Editorial pick -->
       <%- include('partials/ad-editorial-pick', { calc: { affiliateContext: audience.affiliateContext || 'general' } }) %>
 
-      <!-- Guides content -->
+      <!-- Guides content — split with mid-content ad -->
       <% if (audience.guides) { %>
         <section class="mb-8">
-          <h2 class="text-2xl font-bold text-navy mb-4">Helpful Guides</h2>
-          <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 md:p-8">
+          <p class="cm-gradient-text text-xs font-semibold uppercase tracking-widest mb-3">Learn</p>
+          <h2 class="text-2xl font-bold text-gray-900 cm-heading mb-4">Helpful guides</h2>
+          <%
+            const guidesHtml = audience.guides || '';
+            const guidesParagraphs = guidesHtml.split('</p>');
+            const guidesMid = Math.floor(guidesParagraphs.length / 2);
+            const guidesFirst = guidesParagraphs.slice(0, guidesMid).join('</p>') + (guidesMid > 0 ? '</p>' : '');
+            const guidesSecond = guidesParagraphs.slice(guidesMid).join('</p>');
+          %>
+          <div class="cm-card p-6 md:p-8 mb-4">
             <div class="article-content">
-              <%- audience.guides %>
+              <%- guidesFirst %>
+            </div>
+          </div>
+
+          <!-- AdSense mid-guides ad -->
+          <div class="mb-4">
+            <ins class="adsbygoogle"
+              style="display:block; text-align:center;"
+              data-ad-layout="in-article"
+              data-ad-format="fluid"
+              data-ad-client="ca-pub-8414007005923504"
+              data-ad-slot="2652941462"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+          </div>
+
+          <div class="cm-card p-6 md:p-8">
+            <div class="article-content">
+              <%- guidesSecond %>
             </div>
           </div>
         </section>
@@ -186,33 +237,57 @@
       <!-- Inline Amazon CTA -->
       <%- include('partials/affiliate-inline', { calc: { affiliateContext: audience.affiliateContext || 'general' } }) %>
 
+      <!-- AdSense display ad before FAQ -->
+      <div class="mb-8">
+        <ins class="adsbygoogle"
+          style="display:block"
+          data-ad-client="ca-pub-8414007005923504"
+          data-ad-slot="7713696451"
+          data-ad-format="auto"
+          data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      </div>
+
       <!-- FAQ -->
       <% if (audience.faq && audience.faq.length) { %>
-        <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mb-8">
-          <h2 class="text-xl font-bold text-navy mb-4">Frequently Asked Questions</h2>
+        <div class="cm-card p-6 mb-8">
+          <p class="cm-gradient-text text-xs font-semibold uppercase tracking-widest mb-3">FAQ</p>
+          <h2 class="text-2xl font-bold text-gray-900 cm-heading mb-5">Frequently asked questions</h2>
           <div class="space-y-4">
             <% audience.faq.forEach((f, fIdx) => { %>
               <details class="group border-b border-gray-100 pb-3">
-                <summary class="cursor-pointer font-medium hover:text-gray-600 transition flex justify-between gap-2 text-sm sm:text-base leading-snug py-1" style="color: #2C3520;">
-                  <span class="flex-1" style="color: #2C3520;"><%= f.q || f.question || '' %></span>
-                  <svg class="w-5 h-5 shrink-0 mt-0.5" style="color: #9ca3af;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                <summary class="cursor-pointer font-medium text-gray-900 hover:text-gray-600 transition flex justify-between gap-2 text-sm sm:text-base leading-snug py-1">
+                  <span class="flex-1"><%= f.q || f.question || '' %></span>
+                  <svg class="w-5 h-5 shrink-0 mt-0.5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
                 </summary>
-                <p class="mt-2 text-sm leading-relaxed" style="color: #4b5563;"><%= f.a || f.answer || '' %></p>
+                <p class="mt-2 text-sm text-gray-600 leading-relaxed"><%= f.a || f.answer || '' %></p>
               </details>
             <% }) %>
           </div>
         </div>
       <% } %>
 
+      <!-- AdSense display ad before all calculators grid -->
+      <div class="mb-8">
+        <ins class="adsbygoogle"
+          style="display:block; text-align:center;"
+          data-ad-layout="in-article"
+          data-ad-format="fluid"
+          data-ad-client="ca-pub-8414007005923504"
+          data-ad-slot="2652941462"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      </div>
+
       <!-- All related calculators grid -->
       <section class="mb-8">
-        <h2 class="text-xl font-bold text-navy mb-4">All <%= audience.shortTitle || '' %> Calculators</h2>
-        <div class="grid sm:grid-cols-2 gap-3">
+        <p class="cm-gradient-text text-xs font-semibold uppercase tracking-widest mb-3">All tools</p>
+        <h2 class="text-2xl font-bold text-gray-900 cm-heading mb-4">All <%= audience.shortTitle || '' %> calculators</h2>
+        <div class="grid sm:grid-cols-2 gap-4">
           <% (audience.allCalculators || audience.calculators).forEach(slug => { %>
             <% const c = allCalcs[slug]; if (!c) return; %>
-            <a href="/<%= c.category %>/<%= c.slug %>" class="group bg-white rounded-lg p-4 shadow-sm hover:shadow-md border border-gray-100 hover:border-gray-300 transition">
-              <h3 class="font-medium text-navy group-hover:text-gray-600 transition text-sm"><%= c.title %></h3>
-              <p class="text-xs text-gray-500 mt-1"><%= c.description %></p>
+            <a href="/<%= c.category %>/<%= c.slug %>" class="group cm-card p-5 hover:border-black/10 hover:-translate-y-0.5 transition-all duration-300">
+              <h3 class="font-semibold text-gray-900 group-hover:text-gray-600 transition-colors duration-200 text-sm"><%= c.title %></h3>
+              <p class="text-sm text-gray-500 mt-1.5"><%= c.description %></p>
             </a>
           <% }) %>
         </div>
@@ -233,12 +308,12 @@
           <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
         </div>
         <!-- Other audience pages -->
-        <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-4">
-          <h3 class="font-semibold text-navy mb-3 text-sm uppercase tracking-wider">Calculators For...</h3>
+        <div class="cm-card p-4">
+          <h3 class="font-semibold text-gray-900 mb-3 text-sm">Calculators for...</h3>
           <nav class="space-y-1">
             <% audiences.forEach(a => { %>
-              <a href="/for/<%= a.slug %>" class="block px-3 py-2 rounded-lg text-sm transition <%= a.slug === audience.slug ? 'bg-gold-light text-navy font-medium' : 'hover:bg-gray-50 text-gray-600' %>">
-                <span class="mr-2"><%= a.icon || '👤' %></span><%= a.shortTitle || a.title %>
+              <a href="/for/<%= a.slug %>" class="block px-3 py-2 rounded-lg text-sm transition-all duration-200 <%= a.slug === audience.slug ? 'bg-gray-100 text-gray-900 font-medium' : 'hover:bg-black/5 text-gray-600 hover:text-gray-900' %>">
+                <span class="mr-2"><%= a.icon || '' %></span><%= a.shortTitle || a.title %>
               </a>
             <% }) %>
           </nav>

@@ -1,53 +1,54 @@
-<footer class="bg-navy text-white/80">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+<footer class="bg-gray-900 text-white/70 mt-auto">
+  <div class="max-w-6xl mx-auto px-5 sm:px-8 py-12">
     <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
       <!-- About -->
       <div class="col-span-2 md:col-span-1">
-        <h3 class="text-white font-bold text-lg mb-3"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" class="w-6 h-6 inline-block align-text-bottom mr-1"><rect width="32" height="32" rx="6" fill="#393F23"/><rect x="5" y="5" width="22" height="22" rx="3" fill="#BFA956"/><rect x="8" y="8" width="16" height="5" rx="1" fill="#393F23" opacity="0.9"/><rect x="8" y="15" width="4" height="4" rx="0.5" fill="#393F23" opacity="0.7"/><rect x="14" y="15" width="4" height="4" rx="0.5" fill="#393F23" opacity="0.7"/><rect x="20" y="15" width="4" height="4" rx="0.5" fill="#393F23" opacity="0.7"/><rect x="8" y="21" width="4" height="4" rx="0.5" fill="#393F23" opacity="0.7"/><rect x="14" y="21" width="4" height="4" rx="0.5" fill="#393F23" opacity="0.7"/><rect x="20" y="21" width="4" height="4" rx="0.5" fill="#BFA956" stroke="#393F23" stroke-width="0.5"/><text x="24" y="24.5" font-size="4" font-weight="bold" fill="#393F23" text-anchor="middle" font-family="sans-serif">=</text></svg>Calculator<span class="text-gold">Mate</span></h3>
-        <p class="text-sm leading-relaxed">100+ free online calculators built for Australians with current rates and state-specific data.</p>
+        <a href="/" class="inline-flex items-center gap-2 text-lg font-bold text-white hover:opacity-70 transition-opacity mb-3">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" class="w-6 h-6"><rect width="32" height="32" rx="6" fill="#393F23"/><rect x="5" y="5" width="22" height="22" rx="3" fill="#BFA956"/><rect x="8" y="8" width="16" height="5" rx="1" fill="#393F23" opacity="0.9"/><rect x="8" y="15" width="4" height="4" rx="0.5" fill="#393F23" opacity="0.7"/><rect x="14" y="15" width="4" height="4" rx="0.5" fill="#393F23" opacity="0.7"/><rect x="20" y="15" width="4" height="4" rx="0.5" fill="#393F23" opacity="0.7"/><rect x="8" y="21" width="4" height="4" rx="0.5" fill="#393F23" opacity="0.7"/><rect x="14" y="21" width="4" height="4" rx="0.5" fill="#393F23" opacity="0.7"/><rect x="20" y="21" width="4" height="4" rx="0.5" fill="#BFA956" stroke="#393F23" stroke-width="0.5"/><text x="24" y="24.5" font-size="4" font-weight="bold" fill="#393F23" text-anchor="middle" font-family="sans-serif">=</text></svg>
+          <span>Calculator<span style="color: #BFA956">Mate</span></span>
+        </a>
+        <p class="text-sm leading-relaxed">145+ free online calculators built for Australians with current rates and state-specific data.</p>
       </div>
 
       <!-- Popular -->
       <div>
-        <h4 class="text-white font-semibold mb-3 text-sm uppercase tracking-wider">Popular</h4>
-        <ul class="space-y-2 text-sm">
-          <li><a href="/finance/take-home-pay" class="hover:text-white transition">Take Home Pay</a></li>
-          <li><a href="/property/mortgage-repayment" class="hover:text-white transition">Mortgage Repayment</a></li>
-          <li><a href="/health/bmi" class="hover:text-white transition">BMI Calculator</a></li>
-          <li><a href="/conversions/gst-calculator" class="hover:text-white transition">GST Calculator</a></li>
-          <li><a href="/conversions/percentage" class="hover:text-white transition">Percentage Calculator</a></li>
+        <h4 class="text-white/80 font-semibold mb-4 text-sm">Popular</h4>
+        <ul class="space-y-2.5 text-sm">
+          <li><a href="/finance/take-home-pay" class="hover:text-white transition-colors duration-200">Take Home Pay</a></li>
+          <li><a href="/property/mortgage-repayment" class="hover:text-white transition-colors duration-200">Mortgage Repayment</a></li>
+          <li><a href="/health/bmi" class="hover:text-white transition-colors duration-200">BMI Calculator</a></li>
+          <li><a href="/conversions/gst-calculator" class="hover:text-white transition-colors duration-200">GST Calculator</a></li>
+          <li><a href="/conversions/percentage" class="hover:text-white transition-colors duration-200">Percentage</a></li>
         </ul>
       </div>
 
-      <!-- Categories -->
+      <!-- Categories — all dynamically listed -->
       <div>
-        <h4 class="text-white font-semibold mb-3 text-sm uppercase tracking-wider">Categories</h4>
+        <h4 class="text-white/80 font-semibold mb-4 text-sm">Categories</h4>
         <ul class="space-y-2 text-sm">
-          <li><a href="/finance" class="hover:text-white transition">Finance & Pay</a></li>
-          <li><a href="/property" class="hover:text-white transition">Property</a></li>
-          <li><a href="/health" class="hover:text-white transition">Health & Fitness</a></li>
-          <li><a href="/business" class="hover:text-white transition">Business & Work</a></li>
-          <li><a href="/trade" class="hover:text-white transition">Construction</a></li>
+          <% Object.entries(categoryMeta).forEach(([key, meta]) => { %>
+            <li><a href="/<%= key %>" class="hover:text-white transition-colors duration-200"><%= meta.name %></a></li>
+          <% }) %>
         </ul>
       </div>
 
-      <!-- Legal -->
+      <!-- Info -->
       <div>
-        <h4 class="text-white font-semibold mb-3 text-sm uppercase tracking-wider">Info</h4>
-        <ul class="space-y-2 text-sm">
-          <li><a href="/about" class="hover:text-white transition">About Us</a></li>
-          <li><a href="/articles" class="hover:text-white transition">Articles & Guides</a></li>
-          <li><a href="/terms" class="hover:text-white transition">Terms of Use</a></li>
-          <li><a href="/privacy" class="hover:text-white transition">Privacy Policy</a></li>
-          <li><a href="/sitemap.xml" class="hover:text-white transition">Sitemap</a></li>
+        <h4 class="text-white/80 font-semibold mb-4 text-sm">Info</h4>
+        <ul class="space-y-2.5 text-sm">
+          <li><a href="/about" class="hover:text-white transition-colors duration-200">About Us</a></li>
+          <li><a href="/articles" class="hover:text-white transition-colors duration-200">Articles & Guides</a></li>
+          <li><a href="/terms" class="hover:text-white transition-colors duration-200">Terms of Use</a></li>
+          <li><a href="/privacy" class="hover:text-white transition-colors duration-200">Privacy Policy</a></li>
+          <li><a href="/sitemap.xml" class="hover:text-white transition-colors duration-200">Sitemap</a></li>
         </ul>
       </div>
     </div>
 
-    <div class="border-t border-white/10 mt-8 pt-8">
-      <div class="text-sm text-white/50 space-y-2">
+    <div class="border-t border-white/10 mt-10 pt-8">
+      <div class="text-sm text-white/40 space-y-2">
         <p>&copy; <%= new Date().getFullYear() %> CalculatorMate Australia. All rights reserved.</p>
-        <p class="text-xs">Disclaimer: Calculators provide estimates only and should not be used as financial, tax, or medical advice. Always consult a qualified professional. Australian tax rates based on ATO published rates for the current financial year. CalculatorMate is a participant in the Amazon Services LLC Associates Program.</p>
+        <p class="text-xs leading-relaxed">Disclaimer: Calculators provide estimates only and should not be used as financial, tax, or medical advice. Always consult a qualified professional. Australian tax rates based on ATO published rates for the current financial year. CalculatorMate is a participant in the Amazon Services LLC Associates Program.</p>
       </div>
     </div>
   </div>

@@ -6,13 +6,8 @@
   "@type": "Organization",
   "name": "CalculatorMate",
   "url": "<%- siteUrl %>",
-  "description": "100+ free online calculators built for Australians. Tax, mortgage, health, business calculators with current ATO rates and state-specific data.",
-  "logo": {
-    "@type": "ImageObject",
-    "url": "<%- siteUrl %>/images/og-default.png",
-    "width": 1200,
-    "height": 630
-  },
+  "description": "145 free online calculators built for Australians. Tax, mortgage, health, business calculators with current ATO rates and state-specific data.",
+  "logo": { "@type": "ImageObject", "url": "<%- siteUrl %>/images/og-default.png", "width": 1200, "height": 630 },
   "areaServed": { "@type": "Country", "name": "Australia" }
 }
 </script>
@@ -22,150 +17,348 @@
   "@type": "WebSite",
   "name": "CalculatorMate Australia",
   "url": "<%- siteUrl %>",
-  "potentialAction": {
-    "@type": "SearchAction",
-    "target": "<%- siteUrl %>/api/search?q={search_term_string}",
-    "query-input": "required name=search_term_string"
-  }
+  "potentialAction": { "@type": "SearchAction", "target": "<%- siteUrl %>/api/search?q={search_term_string}", "query-input": "required name=search_term_string" }
 }
 </script>
-<%- include('partials/header') %>
 
-<main class="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-6">
-
-  <!-- Hero -->
-  <section class="text-center py-12 md:py-16">
-    <h1 class="text-4xl md:text-5xl font-bold text-navy mb-4">Your Calculation <span class="text-gold">Mate</span></h1>
-    <p class="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">145 free online calculators built for Australians. Tax, mortgage, health, business — all with current rates and state-specific data.</p>
-    <div class="max-w-2xl mx-auto relative">
-      <div class="relative">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" class="absolute left-4 top-1/2 -translate-y-1/2 w-6 h-6 pointer-events-none"><rect width="32" height="32" rx="6" fill="#393F23"/><rect x="5" y="5" width="22" height="22" rx="3" fill="#BFA956"/><rect x="8" y="8" width="16" height="5" rx="1" fill="#393F23" opacity="0.9"/><rect x="8" y="15" width="4" height="4" rx="0.5" fill="#393F23" opacity="0.7"/><rect x="14" y="15" width="4" height="4" rx="0.5" fill="#393F23" opacity="0.7"/><rect x="20" y="15" width="4" height="4" rx="0.5" fill="#393F23" opacity="0.7"/><rect x="8" y="21" width="4" height="4" rx="0.5" fill="#393F23" opacity="0.7"/><rect x="14" y="21" width="4" height="4" rx="0.5" fill="#393F23" opacity="0.7"/><rect x="20" y="21" width="4" height="4" rx="0.5" fill="#BFA956" stroke="#393F23" stroke-width="0.5"/><text x="24" y="24.5" font-size="4" font-weight="bold" fill="#393F23" text-anchor="middle" font-family="sans-serif">=</text></svg>
-        <div id="rotating-placeholder" class="absolute left-14 top-1/2 -translate-y-1/2 pointer-events-none overflow-hidden h-7 flex items-center">
-          <span id="rotating-text" class="text-gray-400 text-lg transition-all duration-500 ease-in-out"></span>
-        </div>
-        <input type="search" id="hero-search" class="w-full pl-14 pr-6 py-4 rounded-2xl border-2 border-gray-200 text-lg focus:outline-none focus:border-gold focus:ring-4 focus:ring-gold/10 shadow-md hover:shadow-lg transition bg-white" autocomplete="off" maxlength="500">
-      </div>
-      <div id="hero-search-results" class="absolute top-full left-0 right-0 mt-2 bg-white rounded-2xl shadow-2xl hidden max-h-96 overflow-y-auto z-50 border border-gray-100"></div>
-    </div>
-    <p id="hero-hint" class="text-sm text-gray-400 mt-3 hidden"></p>
-    <div class="max-w-xl mx-auto">
-      <div id="ai-results" class="mt-4 hidden"></div>
-      <div id="ai-loading" class="mt-4 hidden text-center">
-        <div class="inline-flex items-center gap-2 text-gray-500 text-sm">
-          <svg class="animate-spin h-4 w-4" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" fill="none"/><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"/></svg>
-          Thinking...
-        </div>
-      </div>
-    </div>
-
-    <!-- Trending pills — above the fold, drives traffic to high-value calculator pages -->
-    <%
-      const trendingPills = [
-        { slug: 'take-home-pay', category: 'finance', label: 'Tax Time 2026', icon: '🧾' },
-        { slug: 'mortgage-repayment', category: 'property', label: 'What will I repay?', icon: '🏠' },
-        { slug: 'borrowing-power', category: 'property', label: 'What can I borrow?', icon: '💰' },
-        { slug: 'bmi', category: 'health', label: 'Am I a healthy weight?', icon: '⚖️' },
-        { slug: 'stamp-duty-all-states', category: 'property', label: 'Stamp duty by state', icon: '📋' },
-        { slug: 'compound-interest', category: 'finance', label: 'Grow my savings', icon: '📈' },
-        { slug: 'calorie-intake', category: 'health', label: 'Daily calories', icon: '🍎' },
-        { slug: 'budget-planner', category: 'finance', label: 'Build a budget', icon: '📊' },
-        { slug: 'gst-calculator', category: 'conversions', label: 'BAS season', icon: '🧮' },
-        { slug: 'fuel-cost', category: 'car', label: 'Trip fuel cost', icon: '⛽' }
-      ];
-    %>
-    <div class="flex flex-wrap justify-center gap-2 mt-6 max-w-3xl mx-auto">
-      <% trendingPills.forEach(t => { %>
-        <a href="/<%= t.category %>/<%= t.slug %>" class="inline-flex items-center gap-1.5 px-4 py-2 bg-white rounded-full border border-gray-200 hover:border-gray-300 hover:bg-gray-100 text-sm font-medium text-gray-700 hover:text-gray-900 shadow-sm hover:shadow transition">
-          <span><%= t.icon %></span>
-          <span><%= t.label %></span>
-        </a>
-      <% }) %>
-    </div>
-  </section>
-
-  <!-- Categories -->
-  <section class="mb-12">
-    <h2 class="text-2xl font-bold text-navy mb-6">Browse by Category</h2>
-    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-      <% Object.entries(categoryMeta).forEach(([key, meta]) => { %>
-        <% const count = (calcsByCategory[key] || []).length; %>
-        <a href="/<%= key %>" class="group bg-white rounded-xl p-4 shadow-sm hover:shadow-md border border-gray-100 hover:border-gray-300 transition text-center">
-          <div class="text-3xl mb-2"><%= meta.icon %></div>
-          <h3 class="font-semibold text-sm text-navy group-hover:text-gray-600 transition"><%= meta.name %></h3>
-          <p class="text-xs text-gray-400 mt-1"><%= count %> calculators</p>
-        </a>
-      <% }) %>
-    </div>
-  </section>
-
-  <!-- Editorial pick — between categories and popular -->
-  <div class="mb-12"><%- include('partials/ad-editorial-pick', { calc: { affiliateContext: 'finance-books' } }) %></div>
-
-  <!-- Popular -->
-  <section class="mb-12">
-    <h2 class="text-2xl font-bold text-navy mb-6">Most Popular</h2>
-    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-      <% popular.forEach((c, idx) => { %>
-        <% const catMeta = categoryMeta[c.category] || {}; %>
-        <a href="/<%= c.category %>/<%= c.slug %>" class="group bg-white rounded-xl p-5 shadow-sm hover:shadow-md border border-gray-100 hover:border-gray-300 transition">
-          <div class="flex items-start gap-3">
-            <span class="text-2xl"><%= catMeta.icon || '' %></span>
-            <div>
-              <h3 class="font-semibold text-navy group-hover:text-gray-600 transition"><%= c.title %></h3>
-              <p class="text-sm text-gray-500 mt-1"><%= c.description %></p>
-            </div>
+<!-- Glassmorphic header — overrides default for homepage only -->
+<header id="home-header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500">
+  <div class="max-w-6xl mx-auto px-5 sm:px-8">
+    <div class="flex items-center justify-between h-16">
+      <a href="/" class="flex items-center gap-2.5 text-lg font-bold text-gray-900 hover:opacity-70 transition-opacity">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" class="w-7 h-7"><rect width="32" height="32" rx="6" fill="#393F23"/><rect x="5" y="5" width="22" height="22" rx="3" fill="#BFA956"/><rect x="8" y="8" width="16" height="5" rx="1" fill="#393F23" opacity="0.9"/><rect x="8" y="15" width="4" height="4" rx="0.5" fill="#393F23" opacity="0.7"/><rect x="14" y="15" width="4" height="4" rx="0.5" fill="#393F23" opacity="0.7"/><rect x="20" y="15" width="4" height="4" rx="0.5" fill="#393F23" opacity="0.7"/><rect x="8" y="21" width="4" height="4" rx="0.5" fill="#393F23" opacity="0.7"/><rect x="14" y="21" width="4" height="4" rx="0.5" fill="#393F23" opacity="0.7"/><rect x="20" y="21" width="4" height="4" rx="0.5" fill="#BFA956" stroke="#393F23" stroke-width="0.5"/><text x="24" y="24.5" font-size="4" font-weight="bold" fill="#393F23" text-anchor="middle" font-family="sans-serif">=</text></svg>
+        <span>Calculator<span style="color: #BFA956">Mate</span></span>
+      </a>
+      <nav class="hidden md:flex items-center gap-1">
+        <a href="/articles" class="px-3.5 py-2 rounded-lg text-sm text-gray-600 hover:text-gray-900 hover:bg-black/5 transition-all duration-200 font-medium">Articles</a>
+        <a href="/for" class="px-3.5 py-2 rounded-lg text-sm text-gray-600 hover:text-gray-900 hover:bg-black/5 transition-all duration-200 font-medium">For you</a>
+        <div class="relative group">
+          <button class="px-3.5 py-2 rounded-lg text-sm text-gray-600 hover:text-gray-900 hover:bg-black/5 transition-all duration-200 font-medium flex items-center gap-1">
+            Categories
+            <svg class="w-3.5 h-3.5 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="absolute right-0 top-full mt-1 w-64 bg-white/95 backdrop-blur-xl rounded-2xl cm-shadow-lg hidden group-hover:block z-50 border border-black/5 py-2">
+            <% Object.entries(categoryMeta).forEach(([key, meta]) => { %>
+              <a href="/<%= key %>" class="block px-4 py-2 hover:bg-black/5 transition text-sm text-gray-600 hover:text-gray-900"><span class="mr-2"><%= meta.icon %></span><%= meta.name %></a>
+            <% }) %>
           </div>
-        </a>
-      <% }) %>
+        </div>
+      </nav>
+      <div class="hidden md:block">
+        <div class="relative">
+          <svg class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+          <input type="search" id="search-input" placeholder="Search calculators..." class="w-48 pl-9 pr-3 py-2 rounded-xl bg-black/5 border-0 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-black/10 focus:w-64 transition-all duration-300" autocomplete="off">
+          <div id="search-results" class="absolute top-full right-0 mt-2 w-80 bg-white rounded-2xl cm-shadow-lg text-gray-800 hidden max-h-96 overflow-y-auto z-50 border border-black/5"></div>
+        </div>
+      </div>
+      <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg hover:bg-black/5 transition">
+        <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+  </div>
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="hidden md:hidden bg-white/95 backdrop-blur-xl border-t border-black/5">
+    <div class="px-5 py-4 space-y-1">
+      <div class="relative mb-3">
+        <input type="search" id="search-input-mobile" placeholder="Search calculators..." class="w-full pl-10 pr-4 py-2.5 rounded-xl bg-black/5 border-0 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-black/10" autocomplete="off">
+        <svg class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+        <div id="search-results-mobile" class="absolute top-full left-0 right-0 mt-1 bg-white rounded-xl cm-shadow-lg text-gray-800 hidden max-h-64 overflow-y-auto z-50"></div>
+      </div>
+      <a href="/articles" class="block px-3 py-2.5 rounded-lg hover:bg-black/5 text-sm font-medium text-gray-700">Articles & Guides</a>
+      <a href="/for" class="block px-3 py-2.5 rounded-lg hover:bg-black/5 text-sm font-medium text-gray-700">Calculators For You</a>
+      <div class="border-t border-black/5 pt-2 mt-2">
+        <% Object.entries(categoryMeta).forEach(([key, meta]) => { %>
+          <a href="/<%= key %>" class="block px-3 py-2 rounded-lg hover:bg-black/5 text-sm text-gray-600"><span class="mr-2"><%= meta.icon %></span><%= meta.name %></a>
+        <% }) %>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="flex-1">
+
+  <!-- ═══════════════════ HERO ═══════════════════ -->
+  <section class="pt-[132px] pb-12 md:pt-[144px] md:pb-16 relative overflow-hidden">
+    <!-- Subtle radial glow behind hero -->
+    <div class="absolute inset-0 pointer-events-none" style="background: radial-gradient(ellipse 60% 50% at 50% 30%, rgba(191,169,86,0.08) 0%, transparent 70%);"></div>
+
+    <div class="max-w-4xl mx-auto px-5 sm:px-8 text-center relative">
+      <h1 class="text-4xl sm:text-[2.75rem] md:text-5xl font-bold text-gray-900 mb-6 cm-heading">
+        Every Australian<br>calculation, <span class="cm-gradient-text">sorted</span>
+      </h1>
+      <p class="text-lg md:text-xl text-gray-500 max-w-xl mx-auto mb-10 leading-relaxed">Tax, mortgage, health, super — 145 free calculators with current ATO rates and state-specific data.</p>
+
+      <!-- Hero search -->
+      <div class="max-w-xl mx-auto relative">
+        <div class="relative">
+          <svg class="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+          <div id="rotating-placeholder" class="absolute left-14 top-1/2 -translate-y-1/2 pointer-events-none overflow-hidden h-7 flex items-center">
+            <span id="rotating-text" class="text-gray-400 text-base transition-all duration-500 ease-in-out"></span>
+          </div>
+          <input type="search" id="hero-search" class="w-full pl-14 pr-6 py-4 rounded-2xl border border-black/10 text-base focus:outline-none focus:ring-4 focus:ring-black/5 focus:border-black/20 bg-white cm-shadow-soft transition-all duration-300" autocomplete="off" maxlength="500">
+        </div>
+        <div id="hero-search-results" class="absolute top-full left-0 right-0 mt-2 bg-white rounded-2xl cm-shadow-lg hidden max-h-96 overflow-y-auto z-50 border border-black/5"></div>
+      </div>
+      <p id="hero-hint" class="text-sm text-gray-400 mt-3 hidden"></p>
+      <div class="max-w-xl mx-auto">
+        <div id="ai-results" class="mt-4 hidden"></div>
+        <div id="ai-loading" class="mt-4 hidden text-center">
+          <div class="inline-flex items-center gap-2 text-gray-500 text-sm">
+            <svg class="animate-spin h-4 w-4" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" fill="none"/><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"/></svg>
+            Thinking...
+          </div>
+        </div>
+      </div>
+
+      <!-- Popular pills — right below search -->
+      <%
+        const trendingPills = [
+          { slug: 'take-home-pay', category: 'finance', label: 'Tax Time 2026', icon: '🧾' },
+          { slug: 'mortgage-repayment', category: 'property', label: 'What will I repay?', icon: '🏠' },
+          { slug: 'borrowing-power', category: 'property', label: 'What can I borrow?', icon: '💰' },
+          { slug: 'bmi', category: 'health', label: 'Am I a healthy weight?', icon: '⚖️' },
+          { slug: 'stamp-duty-all-states', category: 'property', label: 'Stamp duty by state', icon: '📋' },
+          { slug: 'compound-interest', category: 'finance', label: 'Grow my savings', icon: '📈' },
+          { slug: 'calorie-intake', category: 'health', label: 'Daily calories', icon: '🍎' },
+          { slug: 'budget-planner', category: 'finance', label: 'Build a budget', icon: '📊' },
+          { slug: 'gst-calculator', category: 'conversions', label: 'BAS season', icon: '🧮' },
+          { slug: 'fuel-cost', category: 'car', label: 'Trip fuel cost', icon: '⛽' }
+        ];
+      %>
+      <div class="flex flex-wrap justify-center gap-2 mt-8 max-w-3xl mx-auto">
+        <% trendingPills.forEach(t => { %>
+          <a href="/<%= t.category %>/<%= t.slug %>" class="inline-flex items-center gap-1.5 px-4 py-2 bg-white rounded-full border border-black/8 text-xs font-medium text-gray-500 hover:text-gray-900 cm-shadow-xs hover:cm-shadow-soft hover:border-black/12 transition-all duration-300 hover:-translate-y-0.5">
+            <span><%= t.icon %></span>
+            <span><%= t.label %></span>
+          </a>
+        <% }) %>
+      </div>
     </div>
   </section>
 
-  <!-- Latest Articles -->
-  <% if (articles && articles.length) { %>
-  <section class="mb-12">
-    <div class="flex items-center justify-between mb-5">
-      <h2 class="text-2xl font-bold text-navy">Latest Articles & Guides</h2>
-      <a href="/articles" class="text-sm text-gold font-medium hover:underline">View all →</a>
+  <!-- ═══════════════════ STATS BAR — compact ═══════════════════ -->
+  <section class="py-3 border-y border-black/5">
+    <div class="max-w-4xl mx-auto px-5 sm:px-8">
+      <div class="flex flex-wrap justify-center gap-6 md:gap-12 text-center">
+        <div class="flex items-center gap-1.5">
+          <span class="text-sm font-bold text-gray-900">145</span>
+          <span class="text-xs text-gray-500">calculators</span>
+        </div>
+        <div class="flex items-center gap-1.5">
+          <span class="text-sm font-bold text-gray-900">17</span>
+          <span class="text-xs text-gray-500">categories</span>
+        </div>
+        <div class="flex items-center gap-1.5">
+          <span class="text-sm font-bold text-gray-900">2026</span>
+          <span class="text-xs text-gray-500">rates</span>
+        </div>
+        <div class="flex items-center gap-1.5">
+          <span class="text-sm font-bold text-gray-900">50+</span>
+          <span class="text-xs text-gray-500">guides</span>
+        </div>
+      </div>
     </div>
-    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-      <% articles.slice(0, 6).forEach(a => { %>
-        <a href="/articles/<%= a.slug %>" class="group bg-white rounded-xl p-5 shadow-sm hover:shadow-md border border-gray-100 hover:border-gray-300 transition">
-          <h3 class="font-semibold text-sm text-navy group-hover:text-gray-600 transition mb-2"><%= a.title %></h3>
-          <p class="text-xs text-gray-500 line-clamp-2"><%= a.excerpt || a.metaDescription %></p>
-          <span class="text-xs text-gold font-medium mt-3 inline-block">Read more →</span>
+  </section>
+
+  <!-- ═══════════════════ CATEGORIES — DARK PANEL ═══════════════════ -->
+  <section class="px-5 sm:px-8 pb-10">
+    <div class="max-w-6xl mx-auto bg-gray-900 rounded-[2rem] md:rounded-[3rem] p-8 md:p-14 relative overflow-hidden">
+      <!-- Subtle texture -->
+      <div class="absolute inset-0 opacity-[0.03] pointer-events-none" style="background-image: radial-gradient(circle at 20% 50%, white 1px, transparent 1px); background-size: 24px 24px;"></div>
+
+      <div class="relative">
+        <div class="text-center mb-8 md:mb-10">
+          <p class="text-xs font-semibold uppercase tracking-widest text-white/40 mb-3">Explore</p>
+          <h2 class="text-3xl md:text-4xl font-bold text-white cm-heading">Find your calculator</h2>
+          <p class="text-gray-400 mt-3 max-w-md mx-auto">17 categories covering tax, property, health, business, and everything in between.</p>
+        </div>
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
+          <% Object.entries(categoryMeta).forEach(([key, meta]) => { %>
+            <% const count = (calcsByCategory[key] || []).length; %>
+            <a href="/<%= key %>" class="group bg-white/[0.07] hover:bg-white/[0.12] backdrop-blur-sm rounded-2xl p-5 text-center transition-all duration-300 border border-white/[0.06] hover:border-white/[0.12] hover:-translate-y-0.5">
+              <div class="text-2xl mb-2.5 group-hover:scale-110 transition-transform duration-300"><%= meta.icon %></div>
+              <h3 class="font-semibold text-sm text-white/90 group-hover:text-white transition-colors"><%= meta.name %></h3>
+              <p class="text-xs text-white/30 mt-1"><%= count %> calcs</p>
+            </a>
+          <% }) %>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ POPULAR CALCULATORS ═══════════════════ -->
+  <section class="py-10 md:py-14">
+    <div class="max-w-6xl mx-auto px-5 sm:px-8">
+      <div class="max-w-2xl mb-8">
+        <p class="cm-gradient-text text-xs font-semibold uppercase tracking-widest mb-3">Most used</p>
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 cm-heading">The calculators Australians<br class="hidden md:block"> reach for first</h2>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <% popular.forEach((c, idx) => { %>
+          <% const catMeta = categoryMeta[c.category] || {}; %>
+          <a href="/<%= c.category %>/<%= c.slug %>" class="group cm-card p-6 hover:border-black/10 hover:-translate-y-0.5 transition-all duration-300">
+            <div class="flex items-start gap-4">
+              <div class="w-11 h-11 rounded-2xl bg-gray-50 flex items-center justify-center text-xl shrink-0 group-hover:scale-105 transition-transform duration-300"><%= catMeta.icon || '🧮' %></div>
+              <div class="min-w-0">
+                <h3 class="font-semibold text-gray-900 group-hover:text-gray-600 transition-colors duration-200"><%= c.title %></h3>
+                <p class="text-sm text-gray-500 mt-1.5 leading-relaxed line-clamp-2"><%= c.description %></p>
+                <span class="inline-flex items-center gap-1 text-xs font-medium text-gray-500 group-hover:text-gray-700 mt-3 transition-colors">
+                  Open calculator
+                  <svg class="w-3 h-3 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                </span>
+              </div>
+            </div>
+          </a>
+        <% }) %>
+      </div>
+    </div>
+  </section>
+
+  <!-- Editorial pick -->
+  <section class="pb-4">
+    <div class="max-w-6xl mx-auto px-5 sm:px-8">
+      <%- include('partials/ad-editorial-pick', { calc: { affiliateContext: 'finance-books' } }) %>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ ARTICLES ═══════════════════ -->
+  <% if (articles && articles.length) { %>
+  <section class="py-10 md:py-14 bg-gray-50/80">
+    <div class="max-w-6xl mx-auto px-5 sm:px-8">
+      <div class="flex items-end justify-between mb-8">
+        <div>
+          <p class="cm-gradient-text text-xs font-semibold uppercase tracking-widest mb-3">Learn</p>
+          <h2 class="text-3xl md:text-4xl font-bold text-gray-900 cm-heading">Guides & articles</h2>
+        </div>
+        <a href="/articles" class="hidden sm:inline-flex items-center gap-1.5 text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors duration-200">
+          View all
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
         </a>
-      <% }) %>
+      </div>
+
+      <!-- Featured article -->
+      <% const featured = articles[0]; %>
+      <a href="/articles/<%= featured.slug %>" class="group block cm-card overflow-hidden mb-6 hover:-translate-y-0.5 transition-all duration-300">
+        <div class="md:flex">
+          <div class="md:w-1/2">
+            <img src="/images/articles/<%= featured.slug %>.webp" alt="<%= featured.title %>" class="w-full h-56 md:h-full object-cover" loading="lazy" onerror="this.parentElement.style.display='none'">
+          </div>
+          <div class="p-8 md:p-10 md:w-1/2 flex flex-col justify-center">
+            <span class="cm-gradient-text text-xs font-semibold uppercase tracking-widest"><%= featured.category || 'Guide' %></span>
+            <h3 class="text-xl md:text-2xl font-bold text-gray-900 group-hover:text-gray-600 transition-colors mt-2 mb-3 cm-heading"><%= featured.title %></h3>
+            <p class="text-gray-500 leading-relaxed line-clamp-3"><%= featured.excerpt || featured.metaDescription %></p>
+            <span class="inline-flex items-center gap-1.5 text-sm font-medium text-gray-400 group-hover:text-gray-600 mt-5 transition-colors">
+              Read article
+              <svg class="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Article grid -->
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <% articles.slice(1, 7).forEach(a => { %>
+          <a href="/articles/<%= a.slug %>" class="group cm-card overflow-hidden hover:-translate-y-0.5 transition-all duration-300">
+            <img src="/images/articles/<%= a.slug %>.webp" alt="<%= a.title %>" class="w-full h-40 object-cover" loading="lazy" onerror="this.style.display='none'">
+            <div class="p-5">
+              <span class="cm-gradient-text text-[10px] font-semibold uppercase tracking-widest"><%= a.category || 'Guide' %></span>
+              <h3 class="font-semibold text-gray-900 group-hover:text-gray-600 transition-colors mt-1.5 mb-2 text-sm leading-snug"><%= a.title %></h3>
+              <p class="text-xs text-gray-400 line-clamp-2 leading-relaxed"><%= a.excerpt || a.metaDescription %></p>
+            </div>
+          </a>
+        <% }) %>
+      </div>
+      <div class="text-center mt-8 sm:hidden">
+        <a href="/articles" class="text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors">View all articles →</a>
+      </div>
     </div>
   </section>
   <% } %>
 
   <!-- Amazon featured products -->
-  <%- include('partials/affiliate-inline', { calc: { affiliateContext: 'finance-books' } }) %>
+  <section class="py-4">
+    <div class="max-w-6xl mx-auto px-5 sm:px-8">
+      <%- include('partials/affiliate-inline', { calc: { affiliateContext: 'finance-books' } }) %>
+    </div>
+  </section>
 
-  <!-- All calculators for SEO -->
-  <section class="mb-8">
-    <h2 class="text-2xl font-bold text-navy mb-6">All Calculators</h2>
-    <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
-      <% Object.entries(categoryMeta).forEach(([key, meta]) => { %>
-        <% const calcs = calcsByCategory[key] || []; %>
-        <div class="mb-6 last:mb-0">
-          <h3 class="font-semibold text-navy mb-2"><a href="/<%= key %>" class="hover:text-gray-600 transition"><%= meta.icon %> <%= meta.name %></a></h3>
-          <div class="flex flex-wrap gap-2">
-            <% calcs.forEach(c => { %>
-              <a href="/<%= c.category %>/<%= c.slug %>" class="text-sm px-3 py-1 rounded-full bg-gray-50 hover:bg-gray-100 hover:text-gray-900 transition border border-gray-200 hover:border-gray-300"><%= c.title %></a>
-            <% }) %>
+  <!-- ═══════════════════ ALL CALCULATORS (SEO) ═══════════════════ -->
+  <section class="py-10 md:py-14">
+    <div class="max-w-6xl mx-auto px-5 sm:px-8">
+      <div class="text-center mb-8">
+        <p class="cm-gradient-text text-xs font-semibold uppercase tracking-widest mb-3">Complete directory</p>
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 cm-heading">All 145 calculators</h2>
+      </div>
+      <div class="cm-card p-8 md:p-12">
+        <% Object.entries(categoryMeta).forEach(([key, meta], catIdx) => { %>
+          <% const calcs = calcsByCategory[key] || []; %>
+          <div class="<%= catIdx > 0 ? 'mt-8 pt-8 border-t border-black/5' : '' %>">
+            <h3 class="font-semibold text-gray-900 mb-3"><a href="/<%= key %>" class="hover:text-gray-500 transition-colors"><%= meta.icon %> <%= meta.name %></a></h3>
+            <div class="flex flex-wrap gap-2">
+              <% calcs.forEach(c => { %>
+                <a href="/<%= c.category %>/<%= c.slug %>" class="text-sm px-3.5 py-1.5 rounded-full bg-gray-50 hover:bg-gray-100 text-gray-500 hover:text-gray-900 transition-all duration-200 border border-black/5 hover:border-black/10"><%= c.title %></a>
+              <% }) %>
+            </div>
           </div>
-        </div>
-      <% }) %>
+        <% }) %>
+      </div>
     </div>
   </section>
 
 </main>
 
 <%- include('partials/ad-footer-banner', { calc: { affiliateContext: 'general' } }) %>
-<%- include('partials/footer') %>
+
+<!-- Redesigned footer to match -->
+<footer class="bg-gray-900 text-white/60">
+  <div class="max-w-6xl mx-auto px-5 sm:px-8 py-12">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+      <div class="col-span-2 md:col-span-1">
+        <a href="/" class="flex items-center gap-2 text-lg font-bold text-white mb-4">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" class="w-6 h-6"><rect width="32" height="32" rx="6" fill="#393F23"/><rect x="5" y="5" width="22" height="22" rx="3" fill="#BFA956"/><rect x="8" y="8" width="16" height="5" rx="1" fill="#393F23" opacity="0.9"/><rect x="8" y="15" width="4" height="4" rx="0.5" fill="#393F23" opacity="0.7"/><rect x="14" y="15" width="4" height="4" rx="0.5" fill="#393F23" opacity="0.7"/><rect x="20" y="15" width="4" height="4" rx="0.5" fill="#393F23" opacity="0.7"/><rect x="8" y="21" width="4" height="4" rx="0.5" fill="#393F23" opacity="0.7"/><rect x="14" y="21" width="4" height="4" rx="0.5" fill="#393F23" opacity="0.7"/><rect x="20" y="21" width="4" height="4" rx="0.5" fill="#BFA956" stroke="#393F23" stroke-width="0.5"/><text x="24" y="24.5" font-size="4" font-weight="bold" fill="#393F23" text-anchor="middle" font-family="sans-serif">=</text></svg>
+          <span>Calculator<span style="color: #BFA956">Mate</span></span>
+        </a>
+        <p class="text-sm leading-relaxed text-white/40">Free Australian calculators with current rates and state-specific data.</p>
+      </div>
+      <div>
+        <h4 class="text-white/80 font-semibold mb-4 text-sm">Popular</h4>
+        <ul class="space-y-2.5 text-sm">
+          <li><a href="/finance/take-home-pay" class="hover:text-white transition-colors">Take Home Pay</a></li>
+          <li><a href="/property/mortgage-repayment" class="hover:text-white transition-colors">Mortgage Repayment</a></li>
+          <li><a href="/health/bmi" class="hover:text-white transition-colors">BMI Calculator</a></li>
+          <li><a href="/conversions/gst-calculator" class="hover:text-white transition-colors">GST Calculator</a></li>
+          <li><a href="/conversions/percentage" class="hover:text-white transition-colors">Percentage Calculator</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-white/80 font-semibold mb-4 text-sm">Categories</h4>
+        <ul class="space-y-2 text-sm">
+          <% Object.entries(categoryMeta).forEach(([key, meta]) => { %>
+            <li><a href="/<%= key %>" class="hover:text-white transition-colors"><%= meta.name %></a></li>
+          <% }) %>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-white/80 font-semibold mb-4 text-sm">Info</h4>
+        <ul class="space-y-2.5 text-sm">
+          <li><a href="/about" class="hover:text-white transition-colors">About Us</a></li>
+          <li><a href="/articles" class="hover:text-white transition-colors">Articles & Guides</a></li>
+          <li><a href="/terms" class="hover:text-white transition-colors">Terms of Use</a></li>
+          <li><a href="/privacy" class="hover:text-white transition-colors">Privacy Policy</a></li>
+          <li><a href="/sitemap.xml" class="hover:text-white transition-colors">Sitemap</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="border-t border-white/10 mt-12 pt-8">
+      <p class="text-xs text-white/30">&copy; <%= new Date().getFullYear() %> CalculatorMate Australia. All rights reserved.</p>
+      <p class="text-xs text-white/20 mt-2">Disclaimer: Calculators provide estimates only and should not be used as financial, tax, or medical advice. Always consult a qualified professional. Australian tax rates based on ATO published rates for the current financial year.</p>
+    </div>
+  </div>
+</footer>
+
 <script src="/js/ai-search.js?v=20260412f"></script>
 <script>
+// Rotating placeholder
 (function() {
   var suggestions = [
     'What\u2019s my take-home pay on $85k?',
@@ -184,43 +377,76 @@
   var ph = document.getElementById('rotating-placeholder');
   var input = document.getElementById('hero-search');
   if (!el || !input) return;
-
   function show() {
-    if (input.value.length > 0 || document.activeElement === input) {
-      ph.style.opacity = '0';
-      return;
-    }
+    if (input.value.length > 0 || document.activeElement === input) { ph.style.opacity = '0'; return; }
     ph.style.opacity = '1';
-    // Fade out
     el.style.opacity = '0';
     el.style.transform = 'translateY(-8px)';
     setTimeout(function() {
       el.textContent = suggestions[idx];
       idx = (idx + 1) % suggestions.length;
-      // Fade in from below
       el.style.transform = 'translateY(8px)';
-      // Force reflow
       el.offsetHeight;
       el.style.opacity = '1';
       el.style.transform = 'translateY(0)';
     }, 400);
   }
-
-  // Initial display
   el.textContent = suggestions[0];
   el.style.opacity = '1';
   idx = 1;
-
-  // Rotate every 3.5 seconds
   setInterval(show, 3500);
-
-  // Hide placeholder when user types or focuses
-  input.addEventListener('input', function() {
-    ph.style.opacity = input.value.length > 0 ? '0' : '1';
-  });
+  input.addEventListener('input', function() { ph.style.opacity = input.value.length > 0 ? '0' : '1'; });
   input.addEventListener('focus', function() { ph.style.opacity = '0'; });
-  input.addEventListener('blur', function() {
-    if (input.value.length === 0) { ph.style.opacity = '1'; }
+  input.addEventListener('blur', function() { if (input.value.length === 0) ph.style.opacity = '1'; });
+})();
+
+// Glassmorphic header — solidify on scroll
+(function() {
+  var header = document.getElementById('home-header');
+  if (!header) return;
+  var scrolled = false;
+  function check() {
+    var isScrolled = window.scrollY > 40;
+    if (isScrolled !== scrolled) {
+      scrolled = isScrolled;
+      if (scrolled) {
+        header.style.background = 'rgba(250,250,250,0.85)';
+        header.style.backdropFilter = 'blur(20px)';
+        header.style.webkitBackdropFilter = 'blur(20px)';
+        header.style.borderBottom = '1px solid rgba(0,0,0,0.06)';
+      } else {
+        header.style.background = 'transparent';
+        header.style.backdropFilter = 'none';
+        header.style.webkitBackdropFilter = 'none';
+        header.style.borderBottom = '1px solid transparent';
+      }
+    }
+  }
+  check();
+  window.addEventListener('scroll', check, { passive: true });
+})();
+
+// Mobile menu
+document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+  document.getElementById('mobile-menu').classList.toggle('hidden');
+});
+
+// Scroll-triggered fade-in
+(function() {
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.05 });
+  document.querySelectorAll('[data-animate]').forEach(function(el) {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+    observer.observe(el);
   });
 })();
 </script>

@@ -2,20 +2,20 @@
 <%- include('partials/ad-hero-banner', { calc: { affiliateContext: 'finance-books' } }) %>
 <%- include('partials/header') %>
 
-<main class="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-6">
+<main class="flex-1 max-w-6xl mx-auto w-full px-5 sm:px-8 py-8">
   <!-- Breadcrumbs -->
   <nav aria-label="Breadcrumb" class="mb-6">
     <ol class="flex items-center gap-2 text-sm text-gray-500">
-      <li><a href="/" class="hover:text-gray-700 transition">Home</a></li>
+      <li><a href="/" class="hover:text-gray-900 transition-colors duration-200">Home</a></li>
       <li class="text-gray-300">/</li>
-      <li class="text-gray-800 font-medium">Articles</li>
+      <li class="text-gray-700 font-medium">Articles</li>
     </ol>
   </nav>
 
   <% if (featuredArticle) { %>
   <!-- Section 1: Hero Featured Article -->
   <section class="mb-12">
-    <a href="/articles/<%= featuredArticle.slug %>" class="group block bg-white rounded-xl border border-gray-100 hover:border-gray-300 transition overflow-hidden">
+    <a href="/articles/<%= featuredArticle.slug %>" class="group block cm-card overflow-hidden hover:border-black/10 hover:-translate-y-0.5 transition-all duration-300">
       <div class="md:flex">
         <div class="md:w-1/2">
           <img
@@ -26,10 +26,10 @@
           >
         </div>
         <div class="p-6 md:p-8 md:w-1/2 flex flex-col justify-center">
-          <div class="border-t-[4px] border-navy pt-4">
-            <span class="text-xs text-gold font-medium uppercase tracking-wider"><%= featuredArticle.category || 'Guide' %></span>
-            <h1 class="text-3xl font-bold text-navy group-hover:text-gray-600 transition mt-2 mb-3"><%= featuredArticle.title %></h1>
-            <p class="text-gray-600 mb-4 line-clamp-3"><%= featuredArticle.excerpt %></p>
+          <div>
+            <p class="cm-gradient-text text-xs font-semibold uppercase tracking-widest mb-3"><%= featuredArticle.category || 'Guide' %></p>
+            <h1 class="text-3xl font-bold text-gray-900 cm-heading group-hover:text-gray-600 transition-colors duration-200 mb-3"><%= featuredArticle.title %></h1>
+            <p class="text-gray-500 mb-4 line-clamp-3"><%= featuredArticle.excerpt %></p>
             <span class="text-sm text-gray-400"><%= featuredArticle.readTime || '5' %> min read</span>
           </div>
         </div>
@@ -41,10 +41,11 @@
   <!-- Section 2: Latest Articles -->
   <% if (latestArticles && latestArticles.length > 0) { %>
   <section class="mb-12">
-    <h2 class="text-2xl font-bold text-navy border-t-[3px] border-navy pt-4 mb-6">Latest</h2>
-    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    <p class="cm-gradient-text text-xs font-semibold uppercase tracking-widest mb-3">Fresh</p>
+    <h2 class="text-2xl font-bold text-gray-900 cm-heading mb-6">Latest</h2>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
       <% latestArticles.forEach(a => { %>
-        <a href="/articles/<%= a.slug %>" class="group bg-white rounded-xl border border-gray-100 hover:border-gray-300 transition overflow-hidden">
+        <a href="/articles/<%= a.slug %>" class="group cm-card overflow-hidden hover:border-black/10 hover:-translate-y-0.5 transition-all duration-300">
           <img
             src="/images/articles/<%= a.slug %>.webp"
             alt="<%= a.title %>"
@@ -52,8 +53,8 @@
             onerror="this.style.display='none'"
           >
           <div class="p-5">
-            <span class="text-xs text-gold font-medium uppercase tracking-wider"><%= a.category || 'Guide' %></span>
-            <h3 class="font-semibold text-navy group-hover:text-gray-600 transition mt-1 mb-2"><%= a.title %></h3>
+            <p class="cm-gradient-text text-xs font-semibold uppercase tracking-widest mb-2"><%= a.category || 'Guide' %></p>
+            <h3 class="font-semibold text-gray-900 group-hover:text-gray-600 transition-colors duration-200 mb-2"><%= a.title %></h3>
             <p class="text-sm text-gray-500 line-clamp-2"><%= a.excerpt %></p>
             <div class="text-xs text-gray-400 mt-3"><%= a.readTime || '5' %> min read</div>
           </div>
@@ -79,18 +80,19 @@
       <% const showLimit = 4; %>
       <% const hasMore = catArticles.length > showLimit; %>
       <section class="mb-10">
-        <h2 class="text-xl font-bold text-navy border-t-[3px] border-navy pt-4 mb-6">
+        <p class="cm-gradient-text text-xs font-semibold uppercase tracking-widest mb-3"><%= cat %></p>
+        <h2 class="text-xl font-bold text-gray-900 cm-heading mb-6">
           <%= cat %> <span class="text-gray-400 font-normal text-base">(<%= catArticles.length %> article<%= catArticles.length === 1 ? '' : 's' %>)</span>
         </h2>
-        <div class="grid md:grid-cols-2 gap-5">
+        <div class="grid md:grid-cols-2 gap-4">
           <% catArticles.forEach((a, idx) => { %>
             <a
               href="/articles/<%= a.slug %>"
-              class="group bg-white rounded-xl p-5 border border-gray-100 hover:border-gray-300 transition<%= (hasMore && idx >= showLimit) ? ' hidden' : '' %>"
+              class="group cm-card p-5 hover:border-black/10 hover:-translate-y-0.5 transition-all duration-300<%= (hasMore && idx >= showLimit) ? ' hidden' : '' %>"
               <% if (hasMore && idx >= showLimit) { %>data-cat-extra="<%= cat %>"<% } %>
             >
-              <span class="text-xs text-gold font-medium uppercase tracking-wider"><%= a.category || 'Guide' %></span>
-              <h3 class="font-semibold text-navy group-hover:text-gray-600 transition mt-1 mb-2"><%= a.title %></h3>
+              <p class="cm-gradient-text text-xs font-semibold uppercase tracking-widest mb-2"><%= a.category || 'Guide' %></p>
+              <h3 class="font-semibold text-gray-900 group-hover:text-gray-600 transition-colors duration-200 mb-2"><%= a.title %></h3>
               <p class="text-sm text-gray-500 line-clamp-2"><%= a.excerpt %></p>
               <div class="text-xs text-gray-400 mt-3"><%= a.readTime || '5' %> min read</div>
             </a>
@@ -99,9 +101,10 @@
         <% if (hasMore) { %>
           <button
             onclick="document.querySelectorAll('[data-cat-extra=\'<%= cat %>\']').forEach(el => el.classList.remove('hidden')); this.style.display='none';"
-            class="mt-4 text-sm font-medium text-gold hover:underline"
+            class="mt-4 inline-flex items-center gap-1 text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors duration-200"
           >
-            View all <%= catArticles.length %> articles &rarr;
+            View all <%= catArticles.length %> articles
+            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
           </button>
         <% } %>
       </section>

@@ -44,38 +44,66 @@
 <%- include('partials/ad-hero-banner') %>
 <%- include('partials/header') %>
 
-<main class="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-6">
+<main class="flex-1 max-w-6xl mx-auto w-full px-5 sm:px-8 py-8">
   <!-- Breadcrumbs -->
-  <nav aria-label="Breadcrumb" class="mb-4">
+  <nav aria-label="Breadcrumb" class="mb-6">
     <ol class="flex items-center gap-2 text-sm text-gray-500">
-      <li><a href="/" class="hover:text-navy transition">Home</a></li>
+      <li><a href="/" class="hover:text-gray-900 transition-colors duration-200">Home</a></li>
       <li class="text-gray-300">/</li>
-      <li><a href="/articles" class="hover:text-navy transition">Articles</a></li>
+      <li><a href="/articles" class="hover:text-gray-900 transition-colors duration-200">Articles</a></li>
       <li class="text-gray-300">/</li>
-      <li class="text-gray-800 font-medium"><%= article.title %></li>
+      <li class="text-gray-700 font-medium"><%= article.title %></li>
     </ol>
   </nav>
 
-  <div class="lg:flex gap-8">
+  <div class="lg:flex gap-10">
     <!-- Main content -->
     <div class="flex-1 min-w-0">
-      <h1 class="text-3xl font-bold text-navy mb-3"><%= article.title %></h1>
-      <p class="text-gray-500 text-sm mb-4"><%= article.datePublished || '12 April 2026' %> · <%= article.readTime || '5' %> min read</p>
+      <div class="mb-6">
+        <p class="cm-gradient-text text-xs font-semibold uppercase tracking-widest mb-3">Article</p>
+        <h1 class="text-3xl md:text-4xl font-bold text-gray-900 cm-heading mb-3"><%= article.title %></h1>
+        <p class="text-gray-500 text-sm"><%= article.datePublished || '12 April 2026' %> · <%= article.readTime || '5' %> min read</p>
+      </div>
 
       <!-- Hero image -->
       <% const articleImgPath = '/images/articles/' + article.slug + '.webp'; %>
-      <figure class="mb-8 rounded-xl overflow-hidden border border-gray-100 shadow-sm max-h-64 md:max-h-80">
-        <img src="<%= articleImgPath %>" alt="<%= article.title %>" class="w-full h-full object-cover" loading="eager" onerror="this.parentElement.style.display='none'">
+      <figure class="mb-8 rounded-2xl overflow-hidden border border-black/5 cm-shadow-soft">
+        <img src="<%= articleImgPath %>" alt="<%= article.title %>" class="w-full h-auto" loading="eager" onerror="this.parentElement.style.display='none'">
       </figure>
 
-      <!-- Article content -->
-      <article class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 md:p-8 mb-8">
+      <!-- Article content — split into two halves with ad in the middle -->
+      <%
+        const contentHtml = article.content || '';
+        // Split at roughly the midpoint on a </p> boundary
+        const allParagraphs = contentHtml.split('</p>');
+        const midpoint = Math.floor(allParagraphs.length / 2);
+        const firstHalf = allParagraphs.slice(0, midpoint).join('</p>') + (midpoint > 0 ? '</p>' : '');
+        const secondHalf = allParagraphs.slice(midpoint).join('</p>');
+      %>
+      <article class="cm-card p-6 md:p-8 mb-4">
         <div class="article-content">
-          <%- article.content %>
+          <%- firstHalf %>
         </div>
       </article>
 
-      <!-- AdSense in-article ad -->
+      <!-- AdSense mid-article ad -->
+      <div class="mb-4">
+        <ins class="adsbygoogle"
+          style="display:block; text-align:center;"
+          data-ad-layout="in-article"
+          data-ad-format="fluid"
+          data-ad-client="ca-pub-8414007005923504"
+          data-ad-slot="2652941462"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      </div>
+
+      <article class="cm-card p-6 md:p-8 mb-8">
+        <div class="article-content">
+          <%- secondHalf %>
+        </div>
+      </article>
+
+      <!-- AdSense post-article ad -->
       <div class="mb-8">
         <ins class="adsbygoogle"
           style="display:block; text-align:center;"
@@ -95,13 +123,17 @@
       <!-- Related calculators -->
       <% if (relatedCalcs && relatedCalcs.length) { %>
         <div class="mb-8">
-          <h2 class="text-xl font-bold text-navy mb-4">Try These Calculators</h2>
-          <div class="grid sm:grid-cols-2 gap-3">
+          <p class="cm-gradient-text text-xs font-semibold uppercase tracking-widest mb-3">Tools</p>
+          <h2 class="text-2xl font-bold text-gray-900 cm-heading mb-4">Try these calculators</h2>
+          <div class="grid sm:grid-cols-2 gap-4">
             <% relatedCalcs.forEach(c => { %>
-              <a href="/<%= c.category %>/<%= c.slug %>" class="group bg-white rounded-lg p-4 shadow-sm hover:shadow-md border border-gray-100 hover:border-gray-300 transition">
-                <h3 class="font-medium text-navy group-hover:text-gray-600 transition text-sm"><%= c.title %></h3>
-                <p class="text-xs text-gray-500 mt-1"><%= c.description %></p>
-                <span class="text-xs text-gold font-medium mt-2 inline-block">Try it free →</span>
+              <a href="/<%= c.category %>/<%= c.slug %>" class="group cm-card p-5 hover:border-black/10 hover:-translate-y-0.5 transition-all duration-300">
+                <h3 class="font-semibold text-gray-900 group-hover:text-gray-600 transition-colors duration-200 text-sm"><%= c.title %></h3>
+                <p class="text-sm text-gray-500 mt-1.5"><%= c.description %></p>
+                <span class="inline-flex items-center gap-1 text-xs font-medium text-gray-500 group-hover:text-gray-700 mt-3 transition-colors">
+                  Open calculator
+                  <svg class="w-3 h-3 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                </span>
               </a>
             <% }) %>
           </div>
@@ -110,16 +142,17 @@
 
       <!-- FAQ -->
       <% if (article.faq && article.faq.length) { %>
-        <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mb-8">
-          <h2 class="text-xl font-bold text-navy mb-4">Frequently Asked Questions</h2>
+        <div class="cm-card p-6 mb-8">
+          <p class="cm-gradient-text text-xs font-semibold uppercase tracking-widest mb-3">FAQ</p>
+          <h2 class="text-2xl font-bold text-gray-900 cm-heading mb-5">Frequently asked questions</h2>
           <div class="space-y-4">
             <% article.faq.forEach((f, fIdx) => { %>
               <details class="group border-b border-gray-100 pb-3">
-                <summary class="cursor-pointer font-medium hover:text-gray-600 transition flex justify-between gap-2 text-sm sm:text-base leading-snug py-1" style="color: #2C3520;">
-                  <span class="flex-1" style="color: #2C3520;"><%= f.q || f.question || '' %></span>
-                  <svg class="w-5 h-5 shrink-0 mt-0.5" style="color: #9ca3af;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                <summary class="cursor-pointer font-medium text-gray-900 hover:text-gray-600 transition flex justify-between gap-2 text-sm sm:text-base leading-snug py-1">
+                  <span class="flex-1"><%= f.q || f.question || '' %></span>
+                  <svg class="w-5 h-5 shrink-0 mt-0.5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
                 </summary>
-                <p class="mt-2 text-sm leading-relaxed" style="color: #4b5563;"><%= f.a || f.answer || '' %></p>
+                <p class="mt-2 text-sm text-gray-600 leading-relaxed"><%= f.a || f.answer || '' %></p>
               </details>
             <% }) %>
           </div>
@@ -141,7 +174,7 @@
           <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
         </div>
         <!-- Share -->
-        <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-4">
+        <div class="cm-card p-4">
           <%- include('partials/share', { calc: { category: 'articles', slug: article.slug, title: article.title, description: article.metaDescription || article.excerpt || '' } }) %>
         </div>
 
@@ -149,13 +182,13 @@
         <%- include('partials/ad-product') %>
 
         <!-- More articles -->
-        <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-4">
-          <h3 class="font-semibold text-navy mb-3 text-sm uppercase tracking-wider">More Articles</h3>
+        <div class="cm-card p-4">
+          <h3 class="font-semibold text-gray-900 mb-3 text-sm">More articles</h3>
           <nav class="space-y-1">
             <% articles.filter(a => a.slug !== article.slug).slice(0, 8).forEach(a => { %>
-              <a href="/articles/<%= a.slug %>" class="block px-3 py-1.5 rounded-lg text-xs hover:bg-gray-50 text-gray-600 transition"><%= a.title %></a>
+              <a href="/articles/<%= a.slug %>" class="block px-3 py-1.5 rounded-lg text-xs text-gray-600 hover:bg-black/5 hover:text-gray-900 transition-all duration-200"><%= a.title %></a>
             <% }) %>
-            <a href="/articles" class="block px-3 py-1.5 rounded-lg text-xs text-gold font-medium hover:bg-gold-light transition">View all articles →</a>
+            <a href="/articles" class="block px-3 py-1.5 rounded-lg text-xs font-medium cm-gradient-text hover:opacity-70 transition">View all articles</a>
           </nav>
         </div>
       </div>
