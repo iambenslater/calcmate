@@ -197,11 +197,25 @@ app.get('/api/sports-ladders', (req, res) => {
 // Dynamic OG images for social sharing
 const { Resvg } = require('@resvg/resvg-js');
 const OG_CACHE_DIR = path.join(__dirname, 'data', 'og-cache');
+const OG_FONT_DIR = path.join(__dirname, 'data', 'fonts');
 if (!fs.existsSync(OG_CACHE_DIR)) fs.mkdirSync(OG_CACHE_DIR, { recursive: true });
 
+// Calculator icon SVG (inline, matches favicon)
+const CALC_ICON = `<g transform="translate(80, 564) scale(1.4)">
+  <rect width="32" height="32" rx="6" fill="#00205B"/>
+  <rect x="5" y="5" width="22" height="22" rx="3" fill="#FFB800"/>
+  <rect x="8" y="8" width="16" height="5" rx="1" fill="#00205B" opacity="0.9"/>
+  <rect x="8" y="15" width="4" height="4" rx="0.5" fill="#00205B" opacity="0.7"/>
+  <rect x="14" y="15" width="4" height="4" rx="0.5" fill="#00205B" opacity="0.7"/>
+  <rect x="20" y="15" width="4" height="4" rx="0.5" fill="#00205B" opacity="0.7"/>
+  <rect x="8" y="21" width="4" height="4" rx="0.5" fill="#00205B" opacity="0.7"/>
+  <rect x="14" y="21" width="4" height="4" rx="0.5" fill="#00205B" opacity="0.7"/>
+  <rect x="20" y="21" width="4" height="4" rx="0.5" fill="#FFB800" stroke="#00205B" stroke-width="0.5"/>
+</g>`;
+
 function generateOgSvg(title, description, categoryName) {
-  // Escape XML entities
   const esc = s => (s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+
   // Word-wrap description into 2 lines at ~65 chars
   let desc1 = '', desc2 = '';
   const dWords = (description || '').split(' ');
@@ -240,17 +254,18 @@ function generateOgSvg(title, description, categoryName) {
   <rect x="0" y="540" width="1200" height="90" fill="#FFB800"/>
   <rect x="0" y="536" width="1200" height="8" fill="#FFB800" opacity="0.6"/>
   <!-- Category badge -->
-  <rect x="80" y="80" rx="24" ry="24" width="${esc(categoryName).length * 16 + 48}" height="48" fill="rgba(255,184,0,0.15)"/>
-  <text x="104" y="112" font-family="Inter, system-ui, sans-serif" font-size="22" fill="#FFB800" font-weight="600">${esc(categoryName)}</text>
+  <rect x="80" y="80" rx="24" ry="24" width="${esc(categoryName).length * 14 + 48}" height="48" fill="rgba(255,184,0,0.15)"/>
+  <text x="104" y="112" font-family="Inter" font-size="22" fill="#FFB800" font-weight="600">${esc(categoryName)}</text>
   <!-- Title -->
-  <text x="80" y="${titleY}" font-family="Inter, system-ui, sans-serif" font-size="58" fill="white" font-weight="800">${esc(line1)}</text>
-  ${line2 ? `<text x="80" y="${titleY + 70}" font-family="Inter, system-ui, sans-serif" font-size="58" fill="white" font-weight="800">${esc(line2)}</text>` : ''}
+  <text x="80" y="${titleY}" font-family="Inter" font-size="58" fill="white" font-weight="800">${esc(line1)}</text>
+  ${line2 ? `<text x="80" y="${titleY + 70}" font-family="Inter" font-size="58" fill="white" font-weight="800">${esc(line2)}</text>` : ''}
   <!-- Description -->
-  <text x="80" y="${descY}" font-family="Inter, system-ui, sans-serif" font-size="24" fill="rgba(255,255,255,0.6)" font-weight="400">${esc(desc1)}</text>
-  ${desc2 ? `<text x="80" y="${descY + 32}" font-family="Inter, system-ui, sans-serif" font-size="24" fill="rgba(255,255,255,0.6)" font-weight="400">${esc(desc2)}</text>` : ''}
-  <!-- Footer branding -->
-  <text x="80" y="585" font-family="Inter, system-ui, sans-serif" font-size="28" font-weight="700"><tspan fill="#00205B">Calculator</tspan>  <tspan fill="#00205B" font-weight="800">Mate</tspan></text>
-  <text x="1120" y="585" font-family="Inter, system-ui, sans-serif" font-size="20" fill="rgba(0,32,91,0.6)" text-anchor="end">calculatormate.com.au</text>
+  <text x="80" y="${descY}" font-family="Inter" font-size="24" fill="rgba(255,255,255,0.6)" font-weight="400">${esc(desc1)}</text>
+  ${desc2 ? `<text x="80" y="${descY + 32}" font-family="Inter" font-size="24" fill="rgba(255,255,255,0.6)" font-weight="400">${esc(desc2)}</text>` : ''}
+  <!-- Footer: calculator icon + branding -->
+  ${CALC_ICON}
+  <text x="132" y="590" font-family="Inter" font-size="28" font-weight="700" fill="#00205B">Calculator</text><text x="280" y="590" font-family="Inter" font-size="28" font-weight="800" fill="#FFB800">Mate</text>
+  <text x="1120" y="588" font-family="Inter" font-size="20" fill="rgba(0,32,91,0.6)" text-anchor="end" font-weight="500">calculatormate.com.au</text>
 </svg>`;
 }
 
@@ -272,7 +287,11 @@ app.get('/og/:category/:slug.png', (req, res) => {
     const svg = generateOgSvg(calc.title, calc.metaDescription || calc.description, catMeta.name);
     const resvg = new Resvg(svg, {
       fitTo: { mode: 'width', value: 1200 },
-      font: { loadSystemFonts: true }
+      font: {
+        fontDirs: [OG_FONT_DIR],
+        loadSystemFonts: false,
+        defaultFontFamily: 'Inter'
+      }
     });
     const png = resvg.render().asPng();
     fs.writeFileSync(cacheFile, png);

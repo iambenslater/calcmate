@@ -7,3 +7,5 @@ data/affiliate-stats.json
 data/adsense-token.json
 data/adsense-report-latest.json
 data/adsense-weekly-summary.md
+data/og-cache/
+data/fonts/
