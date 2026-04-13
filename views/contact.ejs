@@ -48,12 +48,12 @@
   <div class="lg:flex gap-12 xl:gap-16 items-start">
 
     <!-- Left column — personality -->
-    <div class="lg:w-5/12 mb-10 lg:mb-0 lg:sticky lg:top-24">
+    <div class="lg:w-[42%] shrink-0 mb-10 lg:mb-0 lg:sticky lg:top-24">
       <!-- Calculator visual -->
       <div class="hidden sm:flex justify-center lg:justify-start mb-8">
         <div class="bg-white rounded-2xl cm-shadow-md border border-black/5 p-5 w-64">
           <div class="bg-gray-900 rounded-xl p-3 mb-3">
-            <p class="text-right font-mono text-2xl text-[#BFA956] tracking-wider">G'DAY</p>
+            <p class="text-right font-mono text-2xl text-[#BFA956] tracking-wider">HELLO</p>
             <p class="text-right font-mono text-[10px] text-gray-500 mt-0.5">MODE: LISTENING</p>
           </div>
           <div class="grid grid-cols-4 gap-1.5">
@@ -75,7 +75,7 @@
       </div>
 
       <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 cm-heading mb-4">Let's talk<br>numbers.</h1>
-      <p class="text-gray-500 text-base leading-relaxed mb-5">Whether you've spotted a bug, have an idea for a calculator, or just want to say g'day &mdash; I'd love to hear from you.</p>
+      <p class="text-gray-500 text-base leading-relaxed mb-5">Whether you've spotted a bug, have an idea for a calculator, or just want to say hey &mdash; I'd love to hear from you.</p>
       <p class="text-gray-500 text-base leading-relaxed mb-10">My name's Ben. I built CalculatorMate from my kitchen table in Brisbane, and I personally read and reply to every single message.</p>
 
       <!-- Quick info cards -->
@@ -105,7 +105,7 @@
     </div>
 
     <!-- Right column — the form -->
-    <div class="lg:w-7/12">
+    <div class="flex-1 min-w-0">
       <div class="bg-white rounded-2xl cm-shadow-md border border-black/5 p-6 sm:p-10">
 
         <% if (typeof error !== 'undefined' && error) { %>
@@ -123,7 +123,7 @@
           <div class="mb-8">
             <p class="cm-gradient-text text-xs font-semibold uppercase tracking-widest mb-4">What's this about?</p>
             <div class="flex flex-wrap gap-2.5" id="contact-topics">
-              <button type="button" data-topic="general" class="contact-topic active inline-flex items-center gap-1.5 px-4 py-2.5 rounded-full text-sm font-medium border transition-all duration-200 cursor-pointer">&#128075; G'day</button>
+              <button type="button" data-topic="general" class="contact-topic active inline-flex items-center gap-1.5 px-4 py-2.5 rounded-full text-sm font-medium border transition-all duration-200 cursor-pointer">&#128075; General enquiry</button>
               <button type="button" data-topic="bug" class="contact-topic inline-flex items-center gap-1.5 px-4 py-2.5 rounded-full text-sm font-medium border transition-all duration-200 cursor-pointer">&#128027; Bug report</button>
               <button type="button" data-topic="suggestion" class="contact-topic inline-flex items-center gap-1.5 px-4 py-2.5 rounded-full text-sm font-medium border transition-all duration-200 cursor-pointer">&#128161; Calculator idea</button>
               <button type="button" data-topic="feedback" class="contact-topic inline-flex items-center gap-1.5 px-4 py-2.5 rounded-full text-sm font-medium border transition-all duration-200 cursor-pointer">&#11088; Feedback</button>
@@ -164,16 +164,13 @@
             <input type="text" name="website" tabindex="-1" autocomplete="off">
           </div>
 
-          <div class="flex items-center justify-between gap-4 pt-2">
-            <p class="text-xs text-gray-400 hidden sm:block">I read every message personally. &mdash; Ben</p>
-            <button type="submit" id="contact-submit"
-              class="w-full sm:w-auto px-8 py-3.5 rounded-xl text-sm font-semibold text-white transition-all duration-200 hover:opacity-90 active:scale-[0.98] flex items-center justify-center gap-2"
-              style="background-color: #393F23;">
-              Send message
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-            </button>
-          </div>
-          <p class="text-xs text-gray-400 sm:hidden text-center">I read every message personally. &mdash; Ben</p>
+          <button type="submit" id="contact-submit"
+            class="w-full py-4 rounded-xl text-sm font-semibold text-white transition-all duration-200 hover:opacity-90 active:scale-[0.98] flex items-center justify-center gap-2"
+            style="background-color: #393F23;">
+            Send message
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+          </button>
+          <p class="text-xs text-gray-400 text-center mt-4">I read every message personally. &mdash; Ben</p>
         </form>
 
       </div>

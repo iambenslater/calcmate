@@ -642,7 +642,7 @@ app.get('/about', (req, res) => {
 app.get('/contact', (req, res) => {
   res.render('contact', {
     title: 'Contact | CalculatorMate Australia',
-    metaDescription: 'Get in touch with CalculatorMate. Report a bug, suggest a calculator, or just say g\'day.'
+    metaDescription: 'Get in touch with CalculatorMate. Report a bug, suggest a calculator, or share feedback.'
   });
 });
 
@@ -650,7 +650,7 @@ app.post('/contact', async (req, res) => {
   const { name, email, subject, message, website } = req.body;
   const pageData = {
     title: 'Contact | CalculatorMate Australia',
-    metaDescription: 'Get in touch with CalculatorMate. Report a bug, suggest a calculator, or just say g\'day.'
+    metaDescription: 'Get in touch with CalculatorMate. Report a bug, suggest a calculator, or share feedback.'
   };
 
   // Honeypot check — bots fill the hidden field
