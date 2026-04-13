@@ -264,7 +264,7 @@ function generateOgSvg(title, description, categoryName) {
   ${desc2 ? `<text x="80" y="${descY + 32}" font-family="Inter" font-size="24" fill="rgba(255,255,255,0.6)" font-weight="400">${esc(desc2)}</text>` : ''}
   <!-- Footer: calculator icon + branding -->
   ${CALC_ICON}
-  <text x="132" y="590" font-family="Inter" font-size="28" font-weight="700" fill="#00205B">Calculator<tspan font-weight="800" fill="#FFB800">Mate</tspan></text>
+  <text x="132" y="590" font-family="Inter" font-size="28" font-weight="700" fill="#00205B">Calculator<tspan font-weight="800" fill="white">Mate</tspan></text>
   <text x="1120" y="588" font-family="Inter" font-size="20" fill="rgba(0,32,91,0.6)" text-anchor="end" font-weight="500">calculatormate.com.au</text>
 </svg>`;
 }
