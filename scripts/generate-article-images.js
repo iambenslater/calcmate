@@ -33,7 +33,7 @@ const NO_TEXT = 'Absolutely no text, no words, no letters, no numbers, no labels
 
 // Category-specific visual prompts — NO article titles to prevent text rendering
 const categoryPrompts = {
-  Finance: `Clean modern flat illustration of Australian financial planning concept. A desk with a laptop showing a rising chart, a coffee cup, scattered coins, and a calculator. Professional navy blue and gold colour scheme. ${NO_TEXT}`,
+  Finance: `Clean modern flat illustration of Australian financial planning concept. A desk with a laptop showing a rising chart, a coffee cup, scattered coins, and a calculator. Professional dark charcoal and warm gold colour scheme. ${NO_TEXT}`,
   Property: `Clean modern flat illustration of Australian suburban homes and property. A row of colourful houses with a "sold" sign, green lawn, blue sky. Warm earthy and blue tones. ${NO_TEXT}`,
   Health: `Clean modern flat illustration of health and wellness. A person jogging in a park with trees, water bottle, and healthy food nearby. Fresh green and blue palette. ${NO_TEXT}`,
   Lifestyle: `Clean modern flat illustration of everyday Australian lifestyle. BBQ in a backyard, sunshine, casual outdoor scene. Warm inviting colours. ${NO_TEXT}`,
@@ -41,7 +41,8 @@ const categoryPrompts = {
   Business: `Clean modern flat illustration of Australian workplace and business. An office desk with documents, laptop, and a handshake. Professional grey and blue tones. ${NO_TEXT}`,
   Car: `Clean modern flat illustration of a car on an Australian road. Open highway with eucalyptus trees, fuel gauge, and blue sky. Blue and silver colours. ${NO_TEXT}`,
   Trade: `Clean modern flat illustration of construction and building trade. Tools, hardhat, tape measure, timber, and a building frame. Yellow and grey palette. ${NO_TEXT}`,
-  Fun: `Fun playful flat illustration with bright cheerful colours. Whimsical cartoon elements, confetti, stars, and happy vibes. ${NO_TEXT}`
+  Fun: `Fun playful flat illustration with bright cheerful colours. Whimsical cartoon elements, confetti, stars, and happy vibes. ${NO_TEXT}`,
+  Separation: `Clean modern flat illustration of family transition and co-parenting. Two houses connected by a gentle path, warm sunset sky, balanced scales of fairness, supportive and hopeful mood. Soft teal, warm amber, and muted purple tones. ${NO_TEXT}`
 };
 
 // Article-specific visual keywords to make each image unique
@@ -86,24 +87,37 @@ function getArticleVisualHint(article) {
     'pet-age-human-years-myth': 'dog and cat with birthday cakes of different sizes',
     'sydney-toll-costs-commuters': 'Sydney Harbour Bridge toll gates with coins flying out of car',
     'blood-alcohol-how-it-works': 'drink glasses with declining alcohol level indicators',
+    'how-child-support-is-calculated-australia': 'calculator with family silhouettes, balanced scales, dollar coins being divided fairly',
+    'care-percentage-guide-australia': 'calendar with coloured blocks showing shared days, two houses, children walking between them',
+    'property-settlement-after-separation': 'house being gently divided in half with balanced scales, legal gavel, asset pool concept',
+    'separation-costs-what-to-expect': 'moving boxes, calculator, rental keys, legal documents spread on a table',
+    'co-parenting-schedules-that-work': 'two-week calendar grid with alternating colours, clock, two houses connected by a path',
+    'managing-two-household-budgets': 'two houses side by side each with their own budget pie chart, coins flowing between them',
+    'changing-child-support-assessment': 'official form being updated with a pen, before and after comparison arrows',
+    'free-separation-resources-australia': 'helping hands, government building, phone helpline symbol, family support circle',
   };
   return hints[slug] || '';
 }
 
 async function generateImage(prompt) {
+  // Uses Gemini Flash image model via generateContent API (bOS billing account)
+  // NOT the Imagen predict endpoint (separate free-tier quota)
   return new Promise((resolve, reject) => {
     const body = JSON.stringify({
-      instances: [{ prompt }],
-      parameters: { sampleCount: 1, aspectRatio: '16:9' }
+      contents: [{
+        parts: [{ text: `Generate an image: ${prompt}` }]
+      }],
+      generationConfig: {
+        responseModalities: ['IMAGE', 'TEXT']
+      }
     });
 
     const options = {
       hostname: 'generativelanguage.googleapis.com',
-      path: '/v1beta/models/imagen-4.0-fast-generate-001:predict',
+      path: `/v1beta/models/gemini-2.5-flash-image:generateContent?key=${API_KEY}`,
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
-        'x-goog-api-key': API_KEY
+        'Content-Type': 'application/json'
       }
     };
 
@@ -118,13 +132,19 @@ async function generateImage(prompt) {
             resolve(null);
             return;
           }
-          const predictions = json.predictions || [];
-          if (predictions.length > 0 && predictions[0].bytesBase64Encoded) {
-            resolve(Buffer.from(predictions[0].bytesBase64Encoded, 'base64'));
-          } else {
-            console.warn('  No image in response');
-            resolve(null);
+          // Extract image from generateContent response
+          const candidates = json.candidates || [];
+          if (candidates.length > 0) {
+            const parts = candidates[0].content?.parts || [];
+            for (const part of parts) {
+              if (part.inlineData && part.inlineData.data) {
+                resolve(Buffer.from(part.inlineData.data, 'base64'));
+                return;
+              }
+            }
           }
+          console.warn('  No image in response');
+          resolve(null);
         } catch (e) {
           console.warn('  Parse error:', e.message);
           resolve(null);
