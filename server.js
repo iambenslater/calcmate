@@ -465,7 +465,7 @@ app.get('/articles', (req, res) => {
   res.render('articles', {
     articles,
     title: 'Articles & Guides | CalculatorMate Australia',
-    metaDescription: 'Australian finance, property, health, and lifestyle guides. Expert articles with free calculators to help you make smarter decisions.'
+    metaDescription: 'Australian finance, property, health, separation, and lifestyle guides. Expert articles with free calculators to help you make smarter decisions.'
   });
 });
 
