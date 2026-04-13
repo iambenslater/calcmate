@@ -15357,5 +15357,809 @@
       "fan-loyalty-test",
       "what-are-the-odds"
     ]
+  },
+  {
+    "slug": "child-support-estimator",
+    "title": "Child Support Estimator",
+    "category": "separation",
+    "description": "Estimate child support payments using the real Services Australia formula for 2025-26. Uses the cost-of-children table, self-support amount ($28,463), and official care percentage bands.",
+    "metaDescription": "Estimate Australian child support payments for 2025-26 using the Services Australia formula. Accounts for income shares, care percentage bands, and the cost-of-children table.",
+    "keywords": [
+      "child support calculator australia",
+      "child support estimator",
+      "services australia child support",
+      "child support formula 2025",
+      "how much child support"
+    ],
+    "inputs": [
+      {
+        "id": "parent1-income",
+        "label": "Parent 1 &mdash; Adjusted Taxable Income ($)",
+        "type": "number",
+        "default": 65000
+      },
+      {
+        "id": "parent2-income",
+        "label": "Parent 2 &mdash; Adjusted Taxable Income ($)",
+        "type": "number",
+        "default": 45000
+      },
+      {
+        "id": "num-children",
+        "label": "Number of Children",
+        "type": "select",
+        "options": [
+          { "value": "1", "label": "1", "default": true },
+          { "value": "2", "label": "2" },
+          { "value": "3", "label": "3" },
+          { "value": "4", "label": "4" },
+          { "value": "5", "label": "5+" }
+        ]
+      },
+      {
+        "id": "child-ages",
+        "label": "Ages of Children",
+        "type": "select",
+        "options": [
+          { "value": "under13", "label": "All under 13", "default": true },
+          { "value": "13plus", "label": "All 13 or over" },
+          { "value": "mixed", "label": "Mixed (some under 13, some 13+)" }
+        ]
+      },
+      {
+        "id": "parent1-nights",
+        "label": "Parent 1 &mdash; Nights per Fortnight with Children",
+        "type": "range",
+        "min": 0,
+        "max": 14,
+        "step": 1,
+        "default": 5
+      }
+    ],
+    "faq": [
+      {
+        "q": "How is child support calculated in Australia?",
+        "a": "Services Australia uses an 8-step formula. It takes each parent&apos;s adjusted taxable income, subtracts the self-support amount ($28,463 for 2025-26), works out each parent&apos;s income share, applies the cost-of-children table for the combined income and age group, then adjusts for the care percentage each parent provides."
+      },
+      {
+        "q": "What is the self-support amount?",
+        "a": "The self-support amount for 2025-26 is $28,463. This is deducted from each parent&apos;s adjusted taxable income before calculating child support, recognising that each parent needs a basic amount to live on."
+      },
+      {
+        "q": "Does the number of nights really matter?",
+        "a": "Yes &mdash; nights per fortnight determine your care percentage band, which directly affects how much child support is payable. Even a one-night difference can move you into a different band with a significant dollar impact."
+      },
+      {
+        "q": "Is this an official assessment?",
+        "a": "No. This is an estimate based on the published Services Australia formula and rates. Your actual assessment may differ based on factors like other dependants, multi-case caps, and any departure decisions. Use this as a guide and contact Services Australia for an official assessment."
+      }
+    ],
+    "howItWorks": "<p>This calculator applies the real Services Australia child support formula for 2025-26. It deducts the self-support amount ($28,463) from each parent&apos;s adjusted taxable income, calculates income shares, looks up the cost of children in the official table based on combined income and age group, then adjusts for your care percentage band. The result is an annual and fortnightly estimate of child support payable.</p>",
+    "affiliateContext": "general",
+    "relatedSlugs": [
+      "care-percentage-calculator",
+      "shared-expenses-splitter",
+      "child-support-change"
+    ]
+  },
+  {
+    "slug": "care-percentage-calculator",
+    "title": "Care Percentage Calculator",
+    "category": "separation",
+    "description": "Convert nights per fortnight into the official Services Australia care percentage and band. See how your care arrangement affects child support and Family Tax Benefit.",
+    "metaDescription": "Convert nights per fortnight into the official Services Australia care percentage and band. See how care arrangements affect child support and Family Tax Benefit.",
+    "keywords": [
+      "care percentage calculator",
+      "nights per fortnight",
+      "child support care percentage",
+      "shared care australia"
+    ],
+    "inputs": [
+      {
+        "id": "nights",
+        "label": "Your Nights per Fortnight",
+        "type": "range",
+        "min": 0,
+        "max": 14,
+        "step": 1,
+        "default": 5
+      },
+      {
+        "id": "holiday-different",
+        "label": "Does care change during school holidays?",
+        "type": "radio",
+        "options": [
+          { "value": "no", "label": "No", "default": true },
+          { "value": "yes", "label": "Yes" }
+        ]
+      },
+      {
+        "id": "holiday-nights",
+        "label": "Holiday Nights per Fortnight",
+        "type": "range",
+        "min": 0,
+        "max": 14,
+        "step": 1,
+        "default": 7
+      },
+      {
+        "id": "holiday-weeks",
+        "label": "Holiday Weeks Per Year (where different)",
+        "type": "number",
+        "default": 6
+      }
+    ],
+    "faq": [
+      {
+        "q": "What are the care percentage bands?",
+        "a": "Services Australia uses five bands: Below regular care (0&ndash;13%), Regular care (14&ndash;34%), Shared care (35&ndash;47%), Shared care (48&ndash;52%), and Primary care (53&ndash;100%). Each band maps to a different cost percentage used in the child support formula."
+      },
+      {
+        "q": "How do school holidays affect care percentage?",
+        "a": "If your care arrangement changes during holidays, Services Australia calculates a blended annual percentage. For example, 4 nights per fortnight in term time but 7 during holidays produces a higher annual average than 4 alone."
+      },
+      {
+        "q": "What counts as a &quot;night&quot; of care?",
+        "a": "A night of care means the child sleeps at your home overnight. Daytime-only care does not count as a night, though significant daytime care can sometimes be recognised in special circumstances."
+      },
+      {
+        "q": "Does care percentage affect Family Tax Benefit?",
+        "a": "Yes. Your FTB percentage is based on the same care determination. If you have at least 35% care, both parents can receive a share of FTB Part A proportional to their care percentage."
+      }
+    ],
+    "howItWorks": "<p>Enter your regular nights per fortnight and, if applicable, your holiday arrangement. The calculator converts nights into an annual care percentage using the Services Australia method, then maps it to the official care band. If holiday care differs, it blends term-time and holiday-time nights across the year to produce a weighted annual percentage.</p>",
+    "affiliateContext": "general",
+    "relatedSlugs": [
+      "child-support-estimator",
+      "co-parenting-schedule",
+      "child-support-change"
+    ]
+  },
+  {
+    "slug": "shared-expenses-splitter",
+    "title": "Shared Expenses Splitter",
+    "category": "separation",
+    "description": "Split shared child-related expenses fairly between separated parents based on income. Cover school fees, medical costs, activities, childcare, and more.",
+    "metaDescription": "Split shared child expenses fairly between separated parents. Calculate proportional or 50-50 splits for school fees, medical, childcare, activities, and more.",
+    "keywords": [
+      "shared expenses calculator separated parents",
+      "split child costs",
+      "co-parenting expenses australia"
+    ],
+    "inputs": [
+      {
+        "id": "parent1-income",
+        "label": "Parent 1 &mdash; Annual Income ($)",
+        "type": "number",
+        "default": 80000
+      },
+      {
+        "id": "parent2-income",
+        "label": "Parent 2 &mdash; Annual Income ($)",
+        "type": "number",
+        "default": 55000
+      },
+      {
+        "id": "split-method",
+        "label": "How to Split",
+        "type": "radio",
+        "options": [
+          { "value": "proportional", "label": "Proportional to income", "default": true },
+          { "value": "5050", "label": "50-50" },
+          { "value": "custom", "label": "Custom" }
+        ]
+      },
+      {
+        "id": "custom-pct",
+        "label": "Parent 1 Custom % (if custom)",
+        "type": "number",
+        "default": 60
+      },
+      {
+        "id": "school-fees",
+        "label": "School Fees (annual $)",
+        "type": "number",
+        "default": 0
+      },
+      {
+        "id": "medical",
+        "label": "Medical &amp; Dental out-of-pocket (annual $)",
+        "type": "number",
+        "default": 0
+      },
+      {
+        "id": "childcare",
+        "label": "Childcare / OSHC after CCS (annual $)",
+        "type": "number",
+        "default": 0
+      },
+      {
+        "id": "activities",
+        "label": "Extracurricular Activities (annual $)",
+        "type": "number",
+        "default": 0
+      },
+      {
+        "id": "clothing",
+        "label": "Clothing &amp; School Supplies (annual $)",
+        "type": "number",
+        "default": 0
+      },
+      {
+        "id": "other-expenses",
+        "label": "Other Shared Expenses (annual $)",
+        "type": "number",
+        "default": 0
+      }
+    ],
+    "faq": [
+      {
+        "q": "Should shared expenses be split 50-50 or by income?",
+        "a": "There&apos;s no single rule. Many families split proportionally to income so the higher earner covers a larger share, which is generally considered fairer. Others agree on 50-50 for simplicity. The best approach is whatever you can both agree on &mdash; this calculator lets you compare both."
+      },
+      {
+        "q": "Are these expenses separate from child support?",
+        "a": "Yes. Child support covers the basic cost of raising children. Shared expenses like private school fees, orthodontics, and sporting activities are typically negotiated separately between parents, often documented in a parenting plan or consent order."
+      },
+      {
+        "q": "What if one parent won&apos;t pay their share?",
+        "a": "If expenses are included in consent orders or a binding financial agreement, they&apos;re legally enforceable. If they&apos;re informal arrangements, you may need to apply to the court or negotiate through mediation. Services Australia can also include certain expenses in a child support agreement."
+      }
+    ],
+    "howItWorks": "<p>Enter both parents&apos; incomes and all shared child-related expenses. The calculator totals the expenses and splits them according to your chosen method &mdash; proportional to income, straight 50-50, or a custom percentage. The result shows each parent&apos;s annual and monthly share for every expense category, plus the total.</p>",
+    "affiliateContext": "general",
+    "relatedSlugs": [
+      "child-support-estimator",
+      "two-household-budget",
+      "care-percentage-calculator"
+    ]
+  },
+  {
+    "slug": "property-settlement-estimator",
+    "title": "Property Settlement Estimator",
+    "category": "separation",
+    "description": "Estimate how assets and debts might be divided after separation. Calculate the total asset pool and see an indicative split range based on Australian family law.",
+    "metaDescription": "Estimate how assets and debts are divided after separation under Australian family law. Calculate the total asset pool and see an indicative split range.",
+    "keywords": [
+      "property settlement calculator australia",
+      "divorce asset split",
+      "property settlement after separation",
+      "family law property division"
+    ],
+    "inputs": [
+      {
+        "id": "relationship-years",
+        "label": "Length of Relationship (years)",
+        "type": "number",
+        "default": 10
+      },
+      {
+        "id": "num-children",
+        "label": "Number of Dependent Children",
+        "type": "select",
+        "options": [
+          { "value": "0", "label": "0" },
+          { "value": "1", "label": "1", "default": true },
+          { "value": "2", "label": "2" },
+          { "value": "3", "label": "3" },
+          { "value": "4", "label": "4+" }
+        ]
+      },
+      {
+        "id": "primary-carer",
+        "label": "Primary Carer of Children",
+        "type": "radio",
+        "options": [
+          { "value": "parent1", "label": "Parent 1", "default": true },
+          { "value": "parent2", "label": "Parent 2" },
+          { "value": "shared", "label": "Shared equally" },
+          { "value": "none", "label": "No children" }
+        ]
+      },
+      {
+        "id": "property-value",
+        "label": "Family Home Value ($)",
+        "type": "number",
+        "default": 750000
+      },
+      {
+        "id": "mortgage",
+        "label": "Mortgage Balance ($)",
+        "type": "number",
+        "default": 350000
+      },
+      {
+        "id": "parent1-super",
+        "label": "Parent 1 Super ($)",
+        "type": "number",
+        "default": 180000
+      },
+      {
+        "id": "parent2-super",
+        "label": "Parent 2 Super ($)",
+        "type": "number",
+        "default": 60000
+      },
+      {
+        "id": "savings",
+        "label": "Combined Savings ($)",
+        "type": "number",
+        "default": 25000
+      },
+      {
+        "id": "vehicles",
+        "label": "Vehicles Total Value ($)",
+        "type": "number",
+        "default": 30000
+      },
+      {
+        "id": "other-assets",
+        "label": "Other Assets ($)",
+        "type": "number",
+        "default": 0
+      },
+      {
+        "id": "other-debts",
+        "label": "Other Debts ($)",
+        "type": "number",
+        "default": 0
+      },
+      {
+        "id": "parent1-income",
+        "label": "Parent 1 Annual Income ($)",
+        "type": "number",
+        "default": 90000
+      },
+      {
+        "id": "parent2-income",
+        "label": "Parent 2 Annual Income ($)",
+        "type": "number",
+        "default": 45000
+      }
+    ],
+    "faq": [
+      {
+        "q": "How does property settlement work in Australia?",
+        "a": "Australian family law uses a four-step process: (1) identify and value the total asset pool, (2) assess each party&apos;s financial contributions, (3) consider future needs like caring for children and earning capacity, and (4) check whether the result is just and equitable overall."
+      },
+      {
+        "q": "Is super included in the asset pool?",
+        "a": "Yes. Superannuation is treated as property under the Family Law Act and is included in the asset pool. It can be split via a superannuation splitting order, even before you reach retirement age."
+      },
+      {
+        "q": "What split percentage is typical?",
+        "a": "There&apos;s no fixed rule. Outcomes range widely depending on contributions, relationship length, children, and future needs. Common ranges are 55/45 to 70/30, but every case is different. The primary carer of young children often receives an adjustment in their favour."
+      },
+      {
+        "q": "Do I need a lawyer for property settlement?",
+        "a": "Not necessarily. If you and your ex agree, you can apply for consent orders ($195 filing fee) or make a binding financial agreement. However, getting independent legal advice is strongly recommended to ensure the agreement is fair and enforceable."
+      }
+    ],
+    "howItWorks": "<p>Enter the value of all major assets (property, super, savings, vehicles) and liabilities (mortgage, debts). The calculator totals the net asset pool, then applies an indicative split range based on relationship length, the primary carer role, income disparity, and the number of dependent children. The range reflects typical Australian family law outcomes &mdash; not a guaranteed result.</p>",
+    "affiliateContext": "general",
+    "relatedSlugs": [
+      "separation-cost-planner",
+      "two-household-budget",
+      "child-support-estimator"
+    ]
+  },
+  {
+    "slug": "separation-cost-planner",
+    "title": "Separation Cost Planner",
+    "category": "separation",
+    "description": "Calculate the realistic upfront costs of separating &mdash; rental bond, furniture, legal fees, mediation, moving costs, and setting up a new household.",
+    "metaDescription": "Calculate the real upfront costs of separation in Australia. Covers rental bond, furniture, legal fees, mediation, moving costs, and setting up a new household.",
+    "keywords": [
+      "cost of separation australia",
+      "separation budget",
+      "divorce cost calculator",
+      "moving out costs",
+      "setting up after separation"
+    ],
+    "inputs": [
+      {
+        "id": "weekly-rent",
+        "label": "Expected Weekly Rent ($)",
+        "type": "number",
+        "default": 450
+      },
+      {
+        "id": "bond-weeks",
+        "label": "Bond Required (weeks)",
+        "type": "select",
+        "options": [
+          { "value": "4", "label": "4 weeks", "default": true },
+          { "value": "6", "label": "6 weeks" }
+        ]
+      },
+      {
+        "id": "furniture-level",
+        "label": "Furniture Needed",
+        "type": "radio",
+        "options": [
+          { "value": "full", "label": "Full setup", "default": true },
+          { "value": "basics", "label": "Basics only" },
+          { "value": "minimal", "label": "Minimal" },
+          { "value": "none", "label": "None" }
+        ]
+      },
+      {
+        "id": "white-goods",
+        "label": "White Goods Needed",
+        "type": "radio",
+        "options": [
+          { "value": "all", "label": "All new", "default": true },
+          { "value": "some", "label": "Some" },
+          { "value": "none", "label": "None" }
+        ]
+      },
+      {
+        "id": "moving-method",
+        "label": "Moving Method",
+        "type": "radio",
+        "options": [
+          { "value": "professional", "label": "Professional removalist", "default": true },
+          { "value": "truck", "label": "Hire a truck" },
+          { "value": "diy", "label": "DIY &mdash; friends &amp; family" },
+          { "value": "none", "label": "Not moving" }
+        ]
+      },
+      {
+        "id": "legal-approach",
+        "label": "Legal Approach",
+        "type": "radio",
+        "options": [
+          { "value": "diy", "label": "DIY" },
+          { "value": "mediation", "label": "Mediation only", "default": true },
+          { "value": "lawyer-mediation", "label": "Lawyer-assisted mediation" },
+          { "value": "solicitor", "label": "Full solicitor" },
+          { "value": "litigation", "label": "Litigation" }
+        ]
+      },
+      {
+        "id": "children-setup",
+        "label": "Children&apos;s Bedrooms to Set Up",
+        "type": "select",
+        "options": [
+          { "value": "0", "label": "0", "default": true },
+          { "value": "1", "label": "1" },
+          { "value": "2", "label": "2" },
+          { "value": "3", "label": "3" }
+        ]
+      },
+      {
+        "id": "court-filings",
+        "label": "Court Filings Needed",
+        "type": "radio",
+        "options": [
+          { "value": "none", "label": "None", "default": true },
+          { "value": "consent", "label": "Consent orders ($195)" },
+          { "value": "divorce", "label": "Divorce ($1,060)" },
+          { "value": "both", "label": "Both ($1,255)" }
+        ]
+      }
+    ],
+    "faq": [
+      {
+        "q": "How much does it cost to separate in Australia?",
+        "a": "The upfront cost varies widely &mdash; from around $3,000 for a DIY separation with minimal setup, to $30,000+ if you need full furniture, professional movers, and solicitor representation. The biggest variables are legal fees, housing bond, and how much you need to furnish a new home."
+      },
+      {
+        "q": "What are the court filing fees for divorce?",
+        "a": "The filing fee for a divorce application is $1,060 (2025-26). If you also need consent orders to formalise your property or parenting agreement, that&apos;s an additional $195. A reduced fee may apply if you have a Health Care Card or are in financial hardship."
+      },
+      {
+        "q": "How much does mediation cost?",
+        "a": "Family Dispute Resolution (mediation) through a Family Relationship Centre is free or low-cost for the first session. Private mediators typically charge $200&ndash;$500 per hour. Lawyer-assisted mediation costs more but can resolve complex issues faster."
+      },
+      {
+        "q": "Can I claim any of these costs on tax?",
+        "a": "Generally, no. Personal legal costs for family law matters are not tax-deductible. However, if part of the settlement involves income-producing assets (like an investment property), the legal costs related to that specific asset may be partially deductible. Get tax advice for your situation."
+      }
+    ],
+    "howItWorks": "<p>Select your situation across housing, furniture, moving, legal, and court filing categories. The calculator applies realistic Australian cost ranges to each selection and totals your estimated upfront separation costs. It also shows a breakdown by category so you can see where the biggest expenses are and plan accordingly.</p>",
+    "affiliateContext": "general",
+    "relatedSlugs": [
+      "two-household-budget",
+      "property-settlement-estimator",
+      "shared-expenses-splitter"
+    ]
+  },
+  {
+    "slug": "two-household-budget",
+    "title": "Two-Household Budget Calculator",
+    "category": "separation",
+    "description": "Compare your current combined household costs with the projected cost of running two separate homes after separation. See the real budget gap.",
+    "metaDescription": "Compare the cost of one household versus two after separation. See the real budget gap and plan for running two homes on your combined income.",
+    "keywords": [
+      "two household budget",
+      "cost of two homes separation",
+      "budget after divorce",
+      "single parent budget"
+    ],
+    "inputs": [
+      {
+        "id": "current-rent",
+        "label": "Current Rent or Mortgage (monthly $)",
+        "type": "number",
+        "default": 2500
+      },
+      {
+        "id": "current-utilities",
+        "label": "Current Utilities &mdash; power, gas, water, internet (monthly $)",
+        "type": "number",
+        "default": 450
+      },
+      {
+        "id": "current-groceries",
+        "label": "Current Groceries (monthly $)",
+        "type": "number",
+        "default": 1200
+      },
+      {
+        "id": "current-transport",
+        "label": "Current Transport (monthly $)",
+        "type": "number",
+        "default": 600
+      },
+      {
+        "id": "current-insurance",
+        "label": "Current Insurance &mdash; home, car, health (monthly $)",
+        "type": "number",
+        "default": 400
+      },
+      {
+        "id": "current-other",
+        "label": "Current Other Household Costs (monthly $)",
+        "type": "number",
+        "default": 300
+      },
+      {
+        "id": "new-rent",
+        "label": "New Second Home &mdash; Rent (monthly $)",
+        "type": "number",
+        "default": 2000
+      },
+      {
+        "id": "new-utilities",
+        "label": "New Second Home &mdash; Utilities (monthly $)",
+        "type": "number",
+        "default": 350
+      },
+      {
+        "id": "new-groceries",
+        "label": "New Second Home &mdash; Groceries (monthly $)",
+        "type": "number",
+        "default": 600
+      },
+      {
+        "id": "new-transport",
+        "label": "New Second Home &mdash; Transport (monthly $)",
+        "type": "number",
+        "default": 400
+      },
+      {
+        "id": "new-insurance",
+        "label": "New Second Home &mdash; Insurance (monthly $)",
+        "type": "number",
+        "default": 250
+      },
+      {
+        "id": "new-other",
+        "label": "New Second Home &mdash; Other Costs (monthly $)",
+        "type": "number",
+        "default": 200
+      },
+      {
+        "id": "combined-income",
+        "label": "Combined Household After-Tax Income (monthly $)",
+        "type": "number",
+        "default": 8000
+      }
+    ],
+    "faq": [
+      {
+        "q": "How much more does it cost to run two households?",
+        "a": "On average, running two separate households costs 30&ndash;50% more than a single combined household. The biggest driver is housing &mdash; rent or mortgage is typically the largest expense, and you&apos;re now paying it twice. Utilities, insurance, and groceries also increase, though not quite double."
+      },
+      {
+        "q": "What expenses can be shared after separation?",
+        "a": "Some costs like children&apos;s school fees, medical expenses, and extracurricular activities can be split between parents. Streaming subscriptions, family phone plans, and bulk grocery shopping can also be coordinated. Use our Shared Expenses Splitter to work out fair shares."
+      },
+      {
+        "q": "How do I close the budget gap?",
+        "a": "Common strategies include: downsizing the original home, choosing a more affordable rental, reducing discretionary spending, increasing income through extra work, applying for Family Tax Benefit and other government payments, and negotiating child support that reflects the real costs."
+      }
+    ],
+    "howItWorks": "<p>Enter your current combined household costs across six categories, then enter the projected costs for the new second household. The calculator compares your current single-household budget with the combined cost of running two homes, shows the dollar increase and percentage change, and compares the total against your combined after-tax income to reveal the budget gap.</p>",
+    "affiliateContext": "general",
+    "relatedSlugs": [
+      "separation-cost-planner",
+      "shared-expenses-splitter",
+      "property-settlement-estimator"
+    ]
+  },
+  {
+    "slug": "co-parenting-schedule",
+    "title": "Co-Parenting Schedule Calculator",
+    "category": "separation",
+    "description": "Compare common parenting arrangements and see the care percentage, number of changeovers, and longest time away from each parent for each schedule.",
+    "metaDescription": "Compare common Australian parenting schedules. See care percentages, changeovers, and time away for week-on/week-off, 5-2-2-5, 4-3, and other custody arrangements.",
+    "keywords": [
+      "co-parenting schedule calculator",
+      "parenting arrangements australia",
+      "custody arrangements",
+      "week on week off",
+      "5-2-2-5",
+      "shared parenting schedule"
+    ],
+    "inputs": [
+      {
+        "id": "schedule",
+        "label": "Parenting Arrangement",
+        "type": "select",
+        "options": [
+          { "value": "7-7", "label": "Week on/week off (7-7)", "default": true },
+          { "value": "5-2-2-5", "label": "5-2-2-5 split" },
+          { "value": "4-3", "label": "4-3 split" },
+          { "value": "10-4", "label": "Every other weekend (10-4)" },
+          { "value": "9-5", "label": "Every other weekend + midweek (9-5)" },
+          { "value": "8-6", "label": "60-40 split (8-6)" },
+          { "value": "12-2", "label": "Alternate weekends only (12-2)" },
+          { "value": "13-1", "label": "Primary with one overnight (13-1)" }
+        ]
+      }
+    ],
+    "faq": [
+      {
+        "q": "What is the most common parenting arrangement in Australia?",
+        "a": "The most common arrangements are week-on/week-off (50/50) and every-other-weekend with midweek contact. The best arrangement depends on the children&apos;s ages, school logistics, parents&apos; work schedules, and the distance between homes."
+      },
+      {
+        "q": "What is a 5-2-2-5 schedule?",
+        "a": "In a 5-2-2-5 arrangement, the child spends 5 nights with Parent 1, then 2 with Parent 2, then 2 with Parent 1, then 5 with Parent 2. It&apos;s a 50/50 split with shorter maximum stretches away from each parent compared to week-on/week-off."
+      },
+      {
+        "q": "How many changeovers is too many?",
+        "a": "There&apos;s no fixed rule, but frequent changeovers can be unsettling for younger children. Most family consultants suggest minimising mid-week transitions for children under 5. Older children and teenagers generally handle more changeovers without difficulty."
+      },
+      {
+        "q": "Does the schedule affect child support?",
+        "a": "Yes. The number of nights per fortnight determines the care percentage band, which directly affects the child support calculation. A schedule change from 4 to 5 nights could move you into a different band and change the payment amount."
+      }
+    ],
+    "howItWorks": "<p>Select a parenting arrangement to see a detailed breakdown including the care percentage for each parent, the number of changeovers per fortnight, the longest consecutive stretch away from each parent, and the corresponding Services Australia care band. Compare different schedules to find the one that best suits your family&apos;s needs.</p>",
+    "affiliateContext": "general",
+    "relatedSlugs": [
+      "care-percentage-calculator",
+      "child-support-estimator",
+      "child-support-change"
+    ]
+  },
+  {
+    "slug": "child-support-change",
+    "title": "Child Support Change Calculator",
+    "category": "separation",
+    "description": "See how changes in income, care percentage, or number of children would affect your child support assessment. Compare your current and proposed scenarios.",
+    "metaDescription": "Compare how changes to income, care nights, or number of children affect your Australian child support assessment. Side-by-side current vs proposed scenarios.",
+    "keywords": [
+      "child support change calculator",
+      "change of assessment",
+      "child support income change",
+      "modify child support"
+    ],
+    "inputs": [
+      {
+        "id": "current-parent1-income",
+        "label": "Current &mdash; Parent 1 Income ($)",
+        "type": "number",
+        "default": 65000
+      },
+      {
+        "id": "current-parent2-income",
+        "label": "Current &mdash; Parent 2 Income ($)",
+        "type": "number",
+        "default": 45000
+      },
+      {
+        "id": "current-num-children",
+        "label": "Current &mdash; Number of Children",
+        "type": "select",
+        "options": [
+          { "value": "1", "label": "1", "default": true },
+          { "value": "2", "label": "2" },
+          { "value": "3", "label": "3" },
+          { "value": "4", "label": "4" },
+          { "value": "5", "label": "5+" }
+        ]
+      },
+      {
+        "id": "current-child-ages",
+        "label": "Current &mdash; Ages of Children",
+        "type": "select",
+        "options": [
+          { "value": "under13", "label": "All under 13", "default": true },
+          { "value": "13plus", "label": "All 13 or over" },
+          { "value": "mixed", "label": "Mixed" }
+        ]
+      },
+      {
+        "id": "current-parent1-nights",
+        "label": "Current &mdash; Parent 1 Nights per Fortnight",
+        "type": "range",
+        "min": 0,
+        "max": 14,
+        "step": 1,
+        "default": 5
+      },
+      {
+        "id": "new-parent1-income",
+        "label": "New &mdash; Parent 1 Income ($)",
+        "type": "number",
+        "default": 65000
+      },
+      {
+        "id": "new-parent2-income",
+        "label": "New &mdash; Parent 2 Income ($)",
+        "type": "number",
+        "default": 45000
+      },
+      {
+        "id": "new-num-children",
+        "label": "New &mdash; Number of Children",
+        "type": "select",
+        "options": [
+          { "value": "1", "label": "1", "default": true },
+          { "value": "2", "label": "2" },
+          { "value": "3", "label": "3" },
+          { "value": "4", "label": "4" },
+          { "value": "5", "label": "5+" }
+        ]
+      },
+      {
+        "id": "new-child-ages",
+        "label": "New &mdash; Ages of Children",
+        "type": "select",
+        "options": [
+          { "value": "under13", "label": "All under 13", "default": true },
+          { "value": "13plus", "label": "All 13 or over" },
+          { "value": "mixed", "label": "Mixed" }
+        ]
+      },
+      {
+        "id": "new-parent1-nights",
+        "label": "New &mdash; Parent 1 Nights per Fortnight",
+        "type": "range",
+        "min": 0,
+        "max": 14,
+        "step": 1,
+        "default": 5
+      }
+    ],
+    "faq": [
+      {
+        "q": "When can I apply for a change of assessment?",
+        "a": "You can apply for a change of assessment at any time if there&apos;s been a significant change in circumstances &mdash; such as a change in income, care arrangements, or the number of dependent children. You can also apply if you believe the formula assessment is unfair due to special circumstances."
+      },
+      {
+        "q": "How long does a change of assessment take?",
+        "a": "An administrative change of assessment through Services Australia typically takes 6&ndash;12 weeks. If income details change (e.g. a new tax return is lodged), the reassessment can happen automatically within a few weeks."
+      },
+      {
+        "q": "Does a change in care nights automatically change child support?",
+        "a": "Not automatically. You need to notify Services Australia of a change in care arrangements. If the care percentage changes by enough to move into a different band, your assessment will be recalculated from the date of notification."
+      },
+      {
+        "q": "Can child support go up and down?",
+        "a": "Yes. Child support is recalculated whenever there&apos;s a change in either parent&apos;s income (usually when new tax returns are lodged), a change in care percentage, or a change in the number of children. It can increase or decrease depending on the circumstances."
+      }
+    ],
+    "howItWorks": "<p>Enter your current child support scenario (incomes, number of children, ages, and care nights) and then your proposed new scenario. The calculator runs the Services Australia formula on both and shows a side-by-side comparison of the annual and fortnightly child support amounts, highlighting the dollar and percentage change so you can see exactly how the proposed change would affect your assessment.</p>",
+    "affiliateContext": "general",
+    "relatedSlugs": [
+      "child-support-estimator",
+      "care-percentage-calculator",
+      "co-parenting-schedule"
+    ]
   }
 ]

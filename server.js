@@ -51,7 +51,8 @@ const categoryMeta = {
   lifestyle: { name: 'Lifestyle & Utility', icon: '🏡', description: 'Blood alcohol, electricity usage, solar savings, water usage, pet age, and size converter calculators.' },
   investment: { name: 'Investment & Crypto', icon: '📈', description: 'Rental yield, negative gearing, dividend reinvestment, and crypto profit/loss calculators for Australian investors.' },
   food: { name: 'Food & Nutrition', icon: '🥗', description: 'Macro calculator, meal cost comparison, daily serves, and grocery budget tools for healthy Australian eating.' },
-  fun: { name: 'Fun & Miscellaneous', icon: '🎉', description: 'Love calculator, pizza split, coffee spending — fun calculators to brighten your day.' }
+  fun: { name: 'Fun & Miscellaneous', icon: '🎉', description: 'Love calculator, pizza split, coffee spending — fun calculators to brighten your day.' },
+  separation: { name: 'Separated Parents', icon: '⚖️', description: 'Child support estimates, care percentage, shared expenses, property settlement, and co-parenting tools for Australian separated parents. Based on real Services Australia formulas.' }
 };
 
 // Middleware
