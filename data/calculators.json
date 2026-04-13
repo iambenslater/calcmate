@@ -15419,11 +15419,11 @@
     "faq": [
       {
         "q": "How is child support calculated in Australia?",
-        "a": "Services Australia uses an 8-step formula. It takes each parent&apos;s adjusted taxable income, subtracts the self-support amount ($28,463 for 2025-26), works out each parent&apos;s income share, applies the cost-of-children table for the combined income and age group, then adjusts for the care percentage each parent provides."
+        "a": "Services Australia uses an 8-step formula. It takes each parent's adjusted taxable income, subtracts the self-support amount ($28,463 for 2025-26), works out each parent's income share, applies the cost-of-children table for the combined income and age group, then adjusts for the care percentage each parent provides."
       },
       {
         "q": "What is the self-support amount?",
-        "a": "The self-support amount for 2025-26 is $28,463. This is deducted from each parent&apos;s adjusted taxable income before calculating child support, recognising that each parent needs a basic amount to live on."
+        "a": "The self-support amount for 2025-26 is $28,463. This is deducted from each parent's adjusted taxable income before calculating child support, recognising that each parent needs a basic amount to live on."
       },
       {
         "q": "Does the number of nights really matter?",
@@ -15434,7 +15434,7 @@
         "a": "No. This is an estimate based on the published Services Australia formula and rates. Your actual assessment may differ based on factors like other dependants, multi-case caps, and any departure decisions. Use this as a guide and contact Services Australia for an official assessment."
       }
     ],
-    "howItWorks": "<p>This calculator applies the real Services Australia child support formula for 2025-26. It deducts the self-support amount ($28,463) from each parent&apos;s adjusted taxable income, calculates income shares, looks up the cost of children in the official table based on combined income and age group, then adjusts for your care percentage band. The result is an annual and fortnightly estimate of child support payable.</p>",
+    "howItWorks": "<p>This calculator applies the real Services Australia child support formula for 2025-26. It deducts the self-support amount ($28,463) from each parent's adjusted taxable income, calculates income shares, looks up the cost of children in the official table based on combined income and age group, then adjusts for your care percentage band. The result is an annual and fortnightly estimate of child support payable.</p>",
     "affiliateContext": "general",
     "relatedSlugs": [
       "care-percentage-calculator",
@@ -15595,18 +15595,18 @@
     "faq": [
       {
         "q": "Should shared expenses be split 50-50 or by income?",
-        "a": "There&apos;s no single rule. Many families split proportionally to income so the higher earner covers a larger share, which is generally considered fairer. Others agree on 50-50 for simplicity. The best approach is whatever you can both agree on &mdash; this calculator lets you compare both."
+        "a": "There's no single rule. Many families split proportionally to income so the higher earner covers a larger share, which is generally considered fairer. Others agree on 50-50 for simplicity. The best approach is whatever you can both agree on &mdash; this calculator lets you compare both."
       },
       {
         "q": "Are these expenses separate from child support?",
         "a": "Yes. Child support covers the basic cost of raising children. Shared expenses like private school fees, orthodontics, and sporting activities are typically negotiated separately between parents, often documented in a parenting plan or consent order."
       },
       {
-        "q": "What if one parent won&apos;t pay their share?",
-        "a": "If expenses are included in consent orders or a binding financial agreement, they&apos;re legally enforceable. If they&apos;re informal arrangements, you may need to apply to the court or negotiate through mediation. Services Australia can also include certain expenses in a child support agreement."
+        "q": "What if one parent won't pay their share?",
+        "a": "If expenses are included in consent orders or a binding financial agreement, they're legally enforceable. If they're informal arrangements, you may need to apply to the court or negotiate through mediation. Services Australia can also include certain expenses in a child support agreement."
       }
     ],
-    "howItWorks": "<p>Enter both parents&apos; incomes and all shared child-related expenses. The calculator totals the expenses and splits them according to your chosen method &mdash; proportional to income, straight 50-50, or a custom percentage. The result shows each parent&apos;s annual and monthly share for every expense category, plus the total.</p>",
+    "howItWorks": "<p>Enter both parents' incomes and all shared child-related expenses. The calculator totals the expenses and splits them according to your chosen method &mdash; proportional to income, straight 50-50, or a custom percentage. The result shows each parent's annual and monthly share for every expense category, plus the total.</p>",
     "affiliateContext": "general",
     "relatedSlugs": [
       "child-support-estimator",
@@ -15720,7 +15720,7 @@
     "faq": [
       {
         "q": "How does property settlement work in Australia?",
-        "a": "Australian family law uses a four-step process: (1) identify and value the total asset pool, (2) assess each party&apos;s financial contributions, (3) consider future needs like caring for children and earning capacity, and (4) check whether the result is just and equitable overall."
+        "a": "Australian family law uses a four-step process: (1) identify and value the total asset pool, (2) assess each party's financial contributions, (3) consider future needs like caring for children and earning capacity, and (4) check whether the result is just and equitable overall."
       },
       {
         "q": "Is super included in the asset pool?",
@@ -15728,7 +15728,7 @@
       },
       {
         "q": "What split percentage is typical?",
-        "a": "There&apos;s no fixed rule. Outcomes range widely depending on contributions, relationship length, children, and future needs. Common ranges are 55/45 to 70/30, but every case is different. The primary carer of young children often receives an adjustment in their favour."
+        "a": "There's no fixed rule. Outcomes range widely depending on contributions, relationship length, children, and future needs. Common ranges are 55/45 to 70/30, but every case is different. The primary carer of young children often receives an adjustment in their favour."
       },
       {
         "q": "Do I need a lawyer for property settlement?",
@@ -15818,7 +15818,7 @@
       },
       {
         "id": "children-setup",
-        "label": "Children&apos;s Bedrooms to Set Up",
+        "label": "Children's Bedrooms to Set Up",
         "type": "select",
         "options": [
           { "value": "0", "label": "0", "default": true },
@@ -15846,7 +15846,7 @@
       },
       {
         "q": "What are the court filing fees for divorce?",
-        "a": "The filing fee for a divorce application is $1,060 (2025-26). If you also need consent orders to formalise your property or parenting agreement, that&apos;s an additional $195. A reduced fee may apply if you have a Health Care Card or are in financial hardship."
+        "a": "The filing fee for a divorce application is $1,060 (2025-26). If you also need consent orders to formalise your property or parenting agreement, that's an additional $195. A reduced fee may apply if you have a Health Care Card or are in financial hardship."
       },
       {
         "q": "How much does mediation cost?",
@@ -15960,11 +15960,11 @@
     "faq": [
       {
         "q": "How much more does it cost to run two households?",
-        "a": "On average, running two separate households costs 30&ndash;50% more than a single combined household. The biggest driver is housing &mdash; rent or mortgage is typically the largest expense, and you&apos;re now paying it twice. Utilities, insurance, and groceries also increase, though not quite double."
+        "a": "On average, running two separate households costs 30&ndash;50% more than a single combined household. The biggest driver is housing &mdash; rent or mortgage is typically the largest expense, and you're now paying it twice. Utilities, insurance, and groceries also increase, though not quite double."
       },
       {
         "q": "What expenses can be shared after separation?",
-        "a": "Some costs like children&apos;s school fees, medical expenses, and extracurricular activities can be split between parents. Streaming subscriptions, family phone plans, and bulk grocery shopping can also be coordinated. Use our Shared Expenses Splitter to work out fair shares."
+        "a": "Some costs like children's school fees, medical expenses, and extracurricular activities can be split between parents. Streaming subscriptions, family phone plans, and bulk grocery shopping can also be coordinated. Use our Shared Expenses Splitter to work out fair shares."
       },
       {
         "q": "How do I close the budget gap?",
@@ -16013,22 +16013,22 @@
     "faq": [
       {
         "q": "What is the most common parenting arrangement in Australia?",
-        "a": "The most common arrangements are week-on/week-off (50/50) and every-other-weekend with midweek contact. The best arrangement depends on the children&apos;s ages, school logistics, parents&apos; work schedules, and the distance between homes."
+        "a": "The most common arrangements are week-on/week-off (50/50) and every-other-weekend with midweek contact. The best arrangement depends on the children's ages, school logistics, parents' work schedules, and the distance between homes."
       },
       {
         "q": "What is a 5-2-2-5 schedule?",
-        "a": "In a 5-2-2-5 arrangement, the child spends 5 nights with Parent 1, then 2 with Parent 2, then 2 with Parent 1, then 5 with Parent 2. It&apos;s a 50/50 split with shorter maximum stretches away from each parent compared to week-on/week-off."
+        "a": "In a 5-2-2-5 arrangement, the child spends 5 nights with Parent 1, then 2 with Parent 2, then 2 with Parent 1, then 5 with Parent 2. It's a 50/50 split with shorter maximum stretches away from each parent compared to week-on/week-off."
       },
       {
         "q": "How many changeovers is too many?",
-        "a": "There&apos;s no fixed rule, but frequent changeovers can be unsettling for younger children. Most family consultants suggest minimising mid-week transitions for children under 5. Older children and teenagers generally handle more changeovers without difficulty."
+        "a": "There's no fixed rule, but frequent changeovers can be unsettling for younger children. Most family consultants suggest minimising mid-week transitions for children under 5. Older children and teenagers generally handle more changeovers without difficulty."
       },
       {
         "q": "Does the schedule affect child support?",
         "a": "Yes. The number of nights per fortnight determines the care percentage band, which directly affects the child support calculation. A schedule change from 4 to 5 nights could move you into a different band and change the payment amount."
       }
     ],
-    "howItWorks": "<p>Select a parenting arrangement to see a detailed breakdown including the care percentage for each parent, the number of changeovers per fortnight, the longest consecutive stretch away from each parent, and the corresponding Services Australia care band. Compare different schedules to find the one that best suits your family&apos;s needs.</p>",
+    "howItWorks": "<p>Select a parenting arrangement to see a detailed breakdown including the care percentage for each parent, the number of changeovers per fortnight, the longest consecutive stretch away from each parent, and the corresponding Services Australia care band. Compare different schedules to find the one that best suits your family's needs.</p>",
     "affiliateContext": "general",
     "relatedSlugs": [
       "care-percentage-calculator",
@@ -16139,7 +16139,7 @@
     "faq": [
       {
         "q": "When can I apply for a change of assessment?",
-        "a": "You can apply for a change of assessment at any time if there&apos;s been a significant change in circumstances &mdash; such as a change in income, care arrangements, or the number of dependent children. You can also apply if you believe the formula assessment is unfair due to special circumstances."
+        "a": "You can apply for a change of assessment at any time if there's been a significant change in circumstances &mdash; such as a change in income, care arrangements, or the number of dependent children. You can also apply if you believe the formula assessment is unfair due to special circumstances."
       },
       {
         "q": "How long does a change of assessment take?",
@@ -16151,7 +16151,7 @@
       },
       {
         "q": "Can child support go up and down?",
-        "a": "Yes. Child support is recalculated whenever there&apos;s a change in either parent&apos;s income (usually when new tax returns are lodged), a change in care percentage, or a change in the number of children. It can increase or decrease depending on the circumstances."
+        "a": "Yes. Child support is recalculated whenever there's a change in either parent's income (usually when new tax returns are lodged), a change in care percentage, or a change in the number of children. It can increase or decrease depending on the circumstances."
       }
     ],
     "howItWorks": "<p>Enter your current child support scenario (incomes, number of children, ages, and care nights) and then your proposed new scenario. The calculator runs the Services Australia formula on both and shows a side-by-side comparison of the annual and fortnightly child support amounts, highlighting the dollar and percentage change so you can see exactly how the proposed change would affect your assessment.</p>",
