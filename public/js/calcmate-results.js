@@ -369,6 +369,10 @@
   // ============================================================
 
   document.addEventListener('DOMContentLoaded', function() {
+    // Calculators with async data (e.g. API-populated dropdowns) set this flag
+    // to handle their own URL param prefill + auto-calculate after data loads
+    if (window._handlesOwnUrlParams) return;
+
     if (prefillFromURL()) {
       // Auto-calculate after a short delay to ensure calculator JS is loaded
       setTimeout(function() {

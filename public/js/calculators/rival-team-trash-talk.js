@@ -1,6 +1,7 @@
 // Rival Team Trash Talk Generator
 // Data-driven roasts using real ladder stats
 
+window._handlesOwnUrlParams = true; // Tell calcmate-results.js we handle our own prefill
 var _ladderData2 = null;
 var _teamsPopulated2 = false;
 

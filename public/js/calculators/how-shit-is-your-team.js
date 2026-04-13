@@ -1,6 +1,7 @@
 // How Shit Is Your Team? Calculator
 // Pulls real NRL/AFL ladder data and delivers a brutally honest verdict
 
+window._handlesOwnUrlParams = true; // Tell calcmate-results.js we handle our own prefill
 let _ladderData = null;
 let _teamsPopulated = false;
 
