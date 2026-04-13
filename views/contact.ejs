@@ -16,82 +16,223 @@
 </script>
 <%- include('partials/header') %>
 
-<main class="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-8">
-  <div class="max-w-xl mx-auto bg-white rounded-xl shadow-sm border border-gray-100 p-8">
+<main class="flex-1 max-w-7xl mx-auto w-full px-5 sm:px-8 py-10 sm:py-16">
 
-    <h1 class="text-3xl font-bold text-navy mb-2">Get in Touch</h1>
-    <p class="text-sm text-gray-400 mb-8">Spotted a bug? Got a calculator idea? Just want to say g'day?</p>
-
-    <% if (typeof success !== 'undefined' && success) { %>
-      <div class="mb-8 p-4 rounded-xl bg-green-50 border border-green-200">
-        <div class="flex items-center gap-3">
-          <svg class="w-5 h-5 text-green-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-          <p class="text-sm text-green-800 font-medium">Message sent! I'll get back to you as soon as I can.</p>
+  <% if (typeof success !== 'undefined' && success) { %>
+    <!-- Success state — full-width celebration -->
+    <div class="max-w-lg mx-auto text-center py-12">
+      <div class="inline-flex items-center justify-center mb-8">
+        <div class="bg-white rounded-2xl cm-shadow-md border border-black/5 p-6 sm:p-8 w-72 sm:w-80">
+          <div class="bg-gray-900 rounded-xl p-4 mb-4">
+            <p class="text-right font-mono text-3xl sm:text-4xl text-[#BFA956] tracking-wider">1</p>
+            <p class="text-right font-mono text-xs text-gray-500 mt-1">MSG_SENT = TRUE</p>
+          </div>
+          <div class="grid grid-cols-4 gap-2">
+            <div class="bg-green-50 rounded-lg p-2.5 text-center text-sm font-medium text-green-600">S</div>
+            <div class="bg-green-50 rounded-lg p-2.5 text-center text-sm font-medium text-green-600">E</div>
+            <div class="bg-green-50 rounded-lg p-2.5 text-center text-sm font-medium text-green-600">N</div>
+            <div class="bg-green-50 rounded-lg p-2.5 text-center text-sm font-medium text-green-600">T</div>
+            <div class="col-span-4 bg-[#393F23] rounded-lg p-2.5 text-center text-sm font-bold text-white">NICE ONE</div>
+          </div>
         </div>
       </div>
-    <% } %>
+      <h1 class="text-2xl sm:text-3xl font-bold text-gray-900 cm-heading mb-3">Message received.</h1>
+      <p class="text-gray-500 mb-8 max-w-md mx-auto">I read every message personally and I'll get back to you as soon as I can. In the meantime, go calculate something.</p>
+      <a href="/" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold text-white transition-all duration-200 hover:opacity-90 active:scale-[0.98]" style="background-color: #393F23;">
+        Back to calculators
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+      </a>
+    </div>
+  <% } else { %>
 
-    <% if (typeof error !== 'undefined' && error) { %>
-      <div class="mb-8 p-4 rounded-xl bg-red-50 border border-red-200">
-        <div class="flex items-center gap-3">
-          <svg class="w-5 h-5 text-red-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-          <p class="text-sm text-red-800 font-medium"><%= error %></p>
+  <div class="lg:flex gap-12 xl:gap-16 items-start">
+
+    <!-- Left column — personality -->
+    <div class="lg:w-5/12 mb-10 lg:mb-0 lg:sticky lg:top-24">
+      <!-- Calculator visual -->
+      <div class="hidden sm:flex justify-center lg:justify-start mb-8">
+        <div class="bg-white rounded-2xl cm-shadow-md border border-black/5 p-5 w-64">
+          <div class="bg-gray-900 rounded-xl p-3 mb-3">
+            <p class="text-right font-mono text-2xl text-[#BFA956] tracking-wider">G'DAY</p>
+            <p class="text-right font-mono text-[10px] text-gray-500 mt-0.5">MODE: LISTENING</p>
+          </div>
+          <div class="grid grid-cols-4 gap-1.5">
+            <div class="bg-gray-100 rounded-lg p-2 text-center text-xs font-medium text-gray-400">C</div>
+            <div class="bg-gray-100 rounded-lg p-2 text-center text-xs font-medium text-gray-400">(</div>
+            <div class="bg-gray-100 rounded-lg p-2 text-center text-xs font-medium text-gray-400">)</div>
+            <div class="bg-amber-50 rounded-lg p-2 text-center text-xs font-medium text-amber-600">/</div>
+            <div class="bg-gray-50 rounded-lg p-2 text-center text-xs font-medium text-gray-500">H</div>
+            <div class="bg-gray-50 rounded-lg p-2 text-center text-xs font-medium text-gray-500">E</div>
+            <div class="bg-gray-50 rounded-lg p-2 text-center text-xs font-medium text-gray-500">L</div>
+            <div class="bg-gray-50 rounded-lg p-2 text-center text-xs font-medium text-gray-500">P</div>
+            <div class="col-span-2 bg-gray-50 rounded-lg p-2 text-center text-xs font-medium text-gray-500">IDEA</div>
+            <div class="bg-gray-50 rounded-lg p-2 text-center text-xs font-medium text-gray-500">?</div>
+            <div class="bg-amber-50 rounded-lg p-2 text-center text-xs font-medium text-amber-600">+</div>
+            <div class="col-span-3 bg-gray-50 rounded-lg p-2 text-center text-xs font-medium text-gray-500">BUG</div>
+            <div class="bg-[#393F23] rounded-lg p-2 text-center text-xs font-bold text-white">=</div>
+          </div>
         </div>
       </div>
-    <% } %>
 
-    <form method="POST" action="/contact" id="contact-form" class="space-y-5">
-      <div>
-        <label for="contact-name" class="block text-sm font-medium text-gray-700 mb-1.5">Name</label>
-        <input type="text" id="contact-name" name="name" required
-          class="w-full px-4 py-3 rounded-xl bg-gray-50 border border-black/10 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-black/10 transition-all duration-200"
-          placeholder="Your name"
-          value="<%= typeof formData !== 'undefined' ? (formData.name || '') : '' %>">
+      <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 cm-heading mb-4">Let's talk<br>numbers.</h1>
+      <p class="text-gray-500 text-base leading-relaxed mb-6">Whether you've spotted a bug, have an idea for a calculator, or just want to say g'day &mdash; I'd love to hear from you.</p>
+      <p class="text-gray-500 text-base leading-relaxed mb-8">My name's Ben. I built CalculatorMate from my kitchen table in Brisbane, and I personally read and reply to every single message.</p>
+
+      <!-- Quick info cards -->
+      <div class="space-y-3">
+        <div class="flex items-center gap-3 p-3 rounded-xl bg-white cm-shadow-xs border border-black/5">
+          <span class="text-lg">&#9889;</span>
+          <div>
+            <p class="text-sm font-medium text-gray-900">Usually reply within 24 hours</p>
+            <p class="text-xs text-gray-400">Faster if it's a bug &mdash; those keep me up at night</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-3 p-3 rounded-xl bg-white cm-shadow-xs border border-black/5">
+          <span class="text-lg">&#128161;</span>
+          <div>
+            <p class="text-sm font-medium text-gray-900">23 calculators started as user suggestions</p>
+            <p class="text-xs text-gray-400">Your idea might become the next one</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-3 p-3 rounded-xl bg-white cm-shadow-xs border border-black/5">
+          <span class="text-lg">&#127462;&#127482;</span>
+          <div>
+            <p class="text-sm font-medium text-gray-900">Brisbane, Queensland</p>
+            <p class="text-xs text-gray-400">AEST timezone &mdash; so mornings are best</p>
+          </div>
+        </div>
       </div>
+    </div>
 
-      <div>
-        <label for="contact-email" class="block text-sm font-medium text-gray-700 mb-1.5">Email</label>
-        <input type="email" id="contact-email" name="email" required
-          class="w-full px-4 py-3 rounded-xl bg-gray-50 border border-black/10 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-black/10 transition-all duration-200"
-          placeholder="you@example.com"
-          value="<%= typeof formData !== 'undefined' ? (formData.email || '') : '' %>">
+    <!-- Right column — the form -->
+    <div class="lg:w-7/12">
+      <div class="bg-white rounded-2xl cm-shadow-md border border-black/5 p-6 sm:p-8">
+
+        <% if (typeof error !== 'undefined' && error) { %>
+          <div class="mb-6 p-4 rounded-xl bg-red-50 border border-red-200">
+            <div class="flex items-center gap-3">
+              <svg class="w-5 h-5 text-red-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+              <p class="text-sm text-red-800 font-medium"><%= error %></p>
+            </div>
+          </div>
+        <% } %>
+
+        <!-- Topic selector — replaces boring dropdown -->
+        <div class="mb-6">
+          <p class="cm-gradient-text text-xs font-semibold uppercase tracking-widest mb-3">What's this about?</p>
+          <div class="flex flex-wrap gap-2">
+            <label class="contact-topic cursor-pointer">
+              <input type="radio" name="subject" value="general" class="sr-only" checked>
+              <span class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-medium border border-black/10 bg-gray-50 text-gray-600 transition-all duration-200 hover:border-black/20 hover:bg-white peer-checked:bg-[#393F23] peer-checked:text-white peer-checked:border-transparent">
+                &#128075; G'day
+              </span>
+            </label>
+            <label class="contact-topic cursor-pointer">
+              <input type="radio" name="subject" value="bug" class="sr-only">
+              <span class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-medium border border-black/10 bg-gray-50 text-gray-600 transition-all duration-200 hover:border-black/20 hover:bg-white">
+                &#128027; Bug report
+              </span>
+            </label>
+            <label class="contact-topic cursor-pointer">
+              <input type="radio" name="subject" value="suggestion" class="sr-only">
+              <span class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-medium border border-black/10 bg-gray-50 text-gray-600 transition-all duration-200 hover:border-black/20 hover:bg-white">
+                &#128161; Calculator idea
+              </span>
+            </label>
+            <label class="contact-topic cursor-pointer">
+              <input type="radio" name="subject" value="feedback" class="sr-only">
+              <span class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-medium border border-black/10 bg-gray-50 text-gray-600 transition-all duration-200 hover:border-black/20 hover:bg-white">
+                &#11088; Feedback
+              </span>
+            </label>
+            <label class="contact-topic cursor-pointer">
+              <input type="radio" name="subject" value="other" class="sr-only">
+              <span class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-medium border border-black/10 bg-gray-50 text-gray-600 transition-all duration-200 hover:border-black/20 hover:bg-white">
+                &#128172; Something else
+              </span>
+            </label>
+          </div>
+        </div>
+
+        <form method="POST" action="/contact" id="contact-form" class="space-y-5">
+          <!-- Hidden subject field updated by JS -->
+          <input type="hidden" name="subject" id="contact-subject-hidden" value="general">
+
+          <div class="grid sm:grid-cols-2 gap-5">
+            <div>
+              <label for="contact-name" class="block text-sm font-medium text-gray-700 mb-1.5">Name</label>
+              <input type="text" id="contact-name" name="name" required
+                class="w-full px-4 py-3 rounded-xl bg-gray-50 border border-black/10 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#393F23]/20 focus:border-[#393F23]/30 transition-all duration-200"
+                placeholder="Your name"
+                value="<%= typeof formData !== 'undefined' ? (formData.name || '') : '' %>">
+            </div>
+
+            <div>
+              <label for="contact-email" class="block text-sm font-medium text-gray-700 mb-1.5">Email</label>
+              <input type="email" id="contact-email" name="email" required
+                class="w-full px-4 py-3 rounded-xl bg-gray-50 border border-black/10 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#393F23]/20 focus:border-[#393F23]/30 transition-all duration-200"
+                placeholder="you@example.com"
+                value="<%= typeof formData !== 'undefined' ? (formData.email || '') : '' %>">
+            </div>
+          </div>
+
+          <div>
+            <label for="contact-message" class="block text-sm font-medium text-gray-700 mb-1.5">Message</label>
+            <textarea id="contact-message" name="message" rows="6" required
+              class="w-full px-4 py-3 rounded-xl bg-gray-50 border border-black/10 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#393F23]/20 focus:border-[#393F23]/30 transition-all duration-200 resize-y"
+              placeholder="Tell me what's on your mind..."><%= typeof formData !== 'undefined' ? (formData.message || '') : '' %></textarea>
+          </div>
+
+          <!-- Honeypot — hidden from humans, catches bots -->
+          <div style="position:absolute;left:-9999px;" aria-hidden="true">
+            <input type="text" name="website" tabindex="-1" autocomplete="off">
+          </div>
+
+          <div class="flex items-center justify-between gap-4 pt-1">
+            <p class="text-xs text-gray-400 hidden sm:block">I read every message personally. &mdash; Ben</p>
+            <button type="submit" id="contact-submit"
+              class="w-full sm:w-auto px-8 py-3.5 rounded-xl text-sm font-semibold text-white transition-all duration-200 hover:opacity-90 active:scale-[0.98] flex items-center justify-center gap-2"
+              style="background-color: #393F23;">
+              Send message
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+            </button>
+          </div>
+          <p class="text-xs text-gray-400 sm:hidden text-center">I read every message personally. &mdash; Ben</p>
+        </form>
+
       </div>
-
-      <div>
-        <label for="contact-subject" class="block text-sm font-medium text-gray-700 mb-1.5">What's this about?</label>
-        <select id="contact-subject" name="subject"
-          class="w-full px-4 py-3 rounded-xl bg-gray-50 border border-black/10 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-black/10 transition-all duration-200">
-          <option value="general">General enquiry</option>
-          <option value="bug">Bug report</option>
-          <option value="suggestion">Calculator suggestion</option>
-          <option value="feedback">Feedback</option>
-          <option value="other">Something else</option>
-        </select>
-      </div>
-
-      <div>
-        <label for="contact-message" class="block text-sm font-medium text-gray-700 mb-1.5">Message</label>
-        <textarea id="contact-message" name="message" rows="5" required
-          class="w-full px-4 py-3 rounded-xl bg-gray-50 border border-black/10 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-black/10 transition-all duration-200 resize-y"
-          placeholder="Tell me what's on your mind..."><%= typeof formData !== 'undefined' ? (formData.message || '') : '' %></textarea>
-      </div>
-
-      <!-- Honeypot — hidden from humans, catches bots -->
-      <div style="position:absolute;left:-9999px;" aria-hidden="true">
-        <input type="text" name="website" tabindex="-1" autocomplete="off">
-      </div>
-
-      <button type="submit" id="contact-submit"
-        class="w-full py-3.5 px-6 rounded-xl text-sm font-semibold text-white transition-all duration-200 hover:opacity-90 active:scale-[0.98]"
-        style="background-color: #393F23;">
-        Send Message
-      </button>
-
-      <p class="text-xs text-gray-400 text-center">I read every message personally. — Ben</p>
-    </form>
+    </div>
 
   </div>
+
+  <% } %>
+
 </main>
 
 <%- include('partials/footer') %>
+
+<!-- Contact topic selector -->
+<script>
+(function() {
+  var topics = document.querySelectorAll('.contact-topic input[type="radio"]');
+  var hidden = document.getElementById('contact-subject-hidden');
+  if (!topics.length || !hidden) return;
+  topics.forEach(function(radio) {
+    radio.addEventListener('change', function() {
+      hidden.value = this.value;
+      // Update visual state
+      document.querySelectorAll('.contact-topic span').forEach(function(s) {
+        s.classList.remove('bg-[#393F23]', 'text-white', 'border-transparent');
+        s.classList.add('bg-gray-50', 'text-gray-600', 'border-black/10');
+      });
+      this.nextElementSibling.classList.remove('bg-gray-50', 'text-gray-600', 'border-black/10');
+      this.nextElementSibling.classList.add('bg-[#393F23]', 'text-white', 'border-transparent');
+    });
+  });
+  // Set initial state
+  var checked = document.querySelector('.contact-topic input:checked');
+  if (checked) checked.dispatchEvent(new Event('change'));
+})();
+</script>
+
 <%- include('partials/tail') %>
