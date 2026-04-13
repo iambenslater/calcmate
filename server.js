@@ -183,6 +183,17 @@ app.get('/api/search', (req, res) => {
   res.json(results);
 });
 
+// Sports ladder data (for "How Shit Is Your Team?" calculator)
+app.get('/api/sports-ladders', (req, res) => {
+  const ladderFile = path.join(__dirname, 'data', 'sports-ladders.json');
+  try {
+    const data = JSON.parse(fs.readFileSync(ladderFile, 'utf8'));
+    res.json(data);
+  } catch (err) {
+    res.status(503).json({ error: 'Ladder data not available. Run scrape-ladders.js first.' });
+  }
+});
+
 // AI-powered natural language calculator search
 const AI_BUDGET_FILE = path.join(__dirname, 'data', 'ai-query-count.json');
 const AI_QUERY_LIMIT = 50000; // ~$50 at $0.001/query

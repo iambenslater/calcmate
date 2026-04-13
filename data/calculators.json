@@ -14684,5 +14684,678 @@
       "how-many-calculator",
       "lost-socks"
     ]
+  },
+  {
+    "slug": "how-shit-is-your-team",
+    "title": "How Shit Is Your Team?",
+    "category": "fun",
+    "description": "Find out exactly how shit your NRL or AFL team is — with real ladder data and a brutally honest verdict.",
+    "metaDescription": "How shit is your NRL or AFL team? Get a brutal, data-driven verdict based on real ladder standings. Share the result with your mates.",
+    "keywords": [
+      "how shit is your team",
+      "nrl ladder",
+      "afl ladder",
+      "team rating",
+      "footy calculator",
+      "nrl calculator",
+      "afl calculator",
+      "sports calculator",
+      "team roast"
+    ],
+    "affiliateContext": "general",
+    "inputs": [
+      {
+        "id": "sport",
+        "label": "Pick your code",
+        "type": "select",
+        "options": [
+          {
+            "value": "nrl",
+            "label": "NRL",
+            "default": true
+          },
+          {
+            "value": "afl",
+            "label": "AFL"
+          }
+        ]
+      },
+      {
+        "id": "team",
+        "label": "Pick your team",
+        "type": "select",
+        "options": [
+          {
+            "value": "",
+            "label": "Loading teams...",
+            "default": true
+          }
+        ]
+      }
+    ],
+    "howItWorks": "<p>We pull the latest NRL and AFL ladder data daily — actual wins, losses, points differential, winning streaks, and losing streaks. Then we feed it all into our proprietary Shit Rating Algorithm™ to calculate exactly how shit your team is on a scale of 0 to 100.</p><p>Zero means your team is genuinely terrifying. One hundred means they should be relegated to park footy. The truth hurts, but your mates deserve to know.</p>",
+    "faq": [
+      {
+        "q": "Is this based on real data?",
+        "a": "Yes. We scrape official NRL and AFL ladder standings daily. Your shit rating is calculated from actual ladder position, win/loss record, points differential, and current form streak. The roasts, however, are 100% editorial opinion."
+      },
+      {
+        "q": "How often is the data updated?",
+        "a": "Daily. The ladder data refreshes every morning, so your team's shit rating will change throughout the season as they win (unlikely) or lose (probable) games."
+      },
+      {
+        "q": "Can I share my result?",
+        "a": "Absolutely. That's the whole point. Use the share button to send your mate's team's shit rating directly to the group chat. Maximum carnage."
+      },
+      {
+        "q": "My team is rated too high — this is unfair!",
+        "a": "Denial is the first stage. The algorithm doesn't care about your feelings. It cares about wins, losses, and points differential. Take it up with your coach."
+      },
+      {
+        "q": "Will you add more sports?",
+        "a": "We're planning to add A-League, NBL, and eventually international leagues like the NBA, NFL, and Premier League. Stay tuned."
+      }
+    ],
+    "related": [
+      "love-calculator",
+      "what-are-the-odds",
+      "coffee-cost"
+    ]
+  },
+  {
+    "slug": "how-drunk-am-i",
+    "title": "How Drunk Am I?",
+    "category": "fun",
+    "description": "Had a few? Find out exactly where you sit on the scale from 'Sober King' to 'Talking to the Bins.'",
+    "metaDescription": "Fun drunk calculator. Enter your drinks, time, and weight to find out how drunk you are on a cheeky scale. For entertainment only!",
+    "keywords": [
+      "drunk calculator",
+      "how drunk am i",
+      "bac calculator",
+      "alcohol calculator",
+      "drinking calculator",
+      "blood alcohol",
+      "party calculator"
+    ],
+    "affiliateContext": "general",
+    "inputs": [
+      {
+        "id": "drinks",
+        "label": "How many standard drinks?",
+        "type": "number",
+        "default": 4,
+        "min": 0,
+        "max": 50,
+        "step": 1,
+        "help": "1 standard drink = 1 beer, 1 glass of wine, or 1 shot of spirits"
+      },
+      {
+        "id": "hours",
+        "label": "Over how many hours?",
+        "type": "number",
+        "default": 3,
+        "min": 0.5,
+        "max": 24,
+        "step": 0.5
+      },
+      {
+        "id": "weight",
+        "label": "Your weight (kg)",
+        "type": "number",
+        "default": 80,
+        "min": 40,
+        "max": 200,
+        "suffix": "kg"
+      },
+      {
+        "id": "gender",
+        "label": "Gender",
+        "type": "radio",
+        "options": [
+          {
+            "value": "male",
+            "label": "Male",
+            "default": true
+          },
+          {
+            "value": "female",
+            "label": "Female"
+          }
+        ]
+      },
+      {
+        "id": "food",
+        "label": "Have you eaten?",
+        "type": "radio",
+        "options": [
+          {
+            "value": "yes",
+            "label": "Yes — proper meal",
+            "default": true
+          },
+          {
+            "value": "some",
+            "label": "A few chips"
+          },
+          {
+            "value": "no",
+            "label": "Nah, empty stomach"
+          }
+        ]
+      }
+    ],
+    "howItWorks": "<p>We use a modified version of the Widmark formula (the actual science behind blood alcohol estimation) and then translate the result into a far more useful scale than boring decimal numbers. Because nobody at the pub says \"I'm at 0.08\" — they say \"I'm absolutely cooked.\"</p><p>Disclaimer: This is for entertainment only. Don't use this to decide whether you can drive. The answer is always: get an Uber.</p>",
+    "faq": [
+      {
+        "q": "Is this medically accurate?",
+        "a": "No. This is a fun calculator for entertainment purposes only. Actual blood alcohol levels depend on dozens of factors we can't measure. Never use this to make decisions about driving or safety."
+      },
+      {
+        "q": "What counts as a standard drink?",
+        "a": "In Australia, one standard drink contains 10g of alcohol. That's roughly one 285ml beer, one 100ml glass of wine, or one 30ml shot of spirits. Most pub pours are bigger than one standard drink."
+      },
+      {
+        "q": "Why does weight matter?",
+        "a": "Alcohol distributes through body water. More body mass means more dilution, so larger people generally process the same amount of alcohol with a lower BAC. Biology is unfair like that."
+      }
+    ],
+    "related": [
+      "beer-loss",
+      "coffee-cost",
+      "caffeine-calculator"
+    ]
+  },
+  {
+    "slug": "situationship-score",
+    "title": "Situationship Score",
+    "category": "fun",
+    "description": "Are you in a relationship or just a convenient option? Get the brutally honest verdict on your situationship.",
+    "metaDescription": "Situationship calculator — find out if you're dating or delusional. Answer a few questions and get a brutally honest score. Share with your mates.",
+    "keywords": [
+      "situationship calculator",
+      "situationship score",
+      "am i in a situationship",
+      "relationship calculator",
+      "dating calculator",
+      "are we dating"
+    ],
+    "affiliateContext": "general",
+    "inputs": [
+      {
+        "id": "texts",
+        "label": "Who texts first more often?",
+        "type": "radio",
+        "options": [
+          {
+            "value": "me",
+            "label": "Always me 😩"
+          },
+          {
+            "value": "equal",
+            "label": "About equal",
+            "default": true
+          },
+          {
+            "value": "them",
+            "label": "They do 😏"
+          }
+        ]
+      },
+      {
+        "id": "plans",
+        "label": "Do they make plans in advance?",
+        "type": "radio",
+        "options": [
+          {
+            "value": "never",
+            "label": "Never — it's always last minute"
+          },
+          {
+            "value": "sometimes",
+            "label": "Sometimes",
+            "default": true
+          },
+          {
+            "value": "always",
+            "label": "Yes — they plan dates ahead"
+          }
+        ]
+      },
+      {
+        "id": "friends",
+        "label": "Have you met their friends?",
+        "type": "radio",
+        "options": [
+          {
+            "value": "no",
+            "label": "Nope — I'm a secret"
+          },
+          {
+            "value": "once",
+            "label": "Once, briefly",
+            "default": true
+          },
+          {
+            "value": "yes",
+            "label": "Yes — I'm in the group chat"
+          }
+        ]
+      },
+      {
+        "id": "label",
+        "label": "Have you had \"the talk\" about what you are?",
+        "type": "radio",
+        "options": [
+          {
+            "value": "avoided",
+            "label": "They dodge the question"
+          },
+          {
+            "value": "vague",
+            "label": "It was vague — \"let's see where it goes\"",
+            "default": true
+          },
+          {
+            "value": "yes",
+            "label": "Yes — we're official"
+          }
+        ]
+      },
+      {
+        "id": "socials",
+        "label": "Are you on their social media?",
+        "type": "radio",
+        "options": [
+          {
+            "value": "hidden",
+            "label": "No trace of me anywhere"
+          },
+          {
+            "value": "stories",
+            "label": "Stories only (plausible deniability)",
+            "default": true
+          },
+          {
+            "value": "posted",
+            "label": "Full grid post — I'm claimed"
+          }
+        ]
+      },
+      {
+        "id": "weekends",
+        "label": "How often do you see each other on weekends?",
+        "type": "radio",
+        "options": [
+          {
+            "value": "rarely",
+            "label": "Only when they're bored"
+          },
+          {
+            "value": "sometimes",
+            "label": "One weekend night usually",
+            "default": true
+          },
+          {
+            "value": "always",
+            "label": "Most of the weekend"
+          }
+        ]
+      }
+    ],
+    "howItWorks": "<p>We take your answers and run them through our Situationship Severity Index™ — a highly scientific algorithm that definitely wasn't written at 2am after someone got left on read.</p><p>Each answer scores points on a scale from \"You're basically married\" to \"Bestie, run.\" The result is the truth your friends have been trying to tell you for months.</p>",
+    "faq": [
+      {
+        "q": "Is this serious relationship advice?",
+        "a": "No. This is entertainment. But if every answer made you wince, maybe show the results to your bestie and have a chat."
+      },
+      {
+        "q": "What if my score is bad?",
+        "a": "Then you're in a situationship. The first step is acceptance. The second step is sending this calculator to the person you're in it with and watching them panic."
+      },
+      {
+        "q": "Can I share my result?",
+        "a": "Absolutely. The share button is right there. Send it to the group chat and let the roasting commence."
+      }
+    ],
+    "related": [
+      "love-calculator",
+      "friendship-calculator",
+      "what-are-the-odds"
+    ]
+  },
+  {
+    "slug": "fan-loyalty-test",
+    "title": "Fan Loyalty Test",
+    "category": "fun",
+    "description": "Are you a die-hard supporter or a plastic fan who only shows up for grand finals? Take the test.",
+    "metaDescription": "Fan loyalty calculator — find out if you're a real supporter or a bandwagon jumper. Answer questions about your team fandom and get your loyalty score.",
+    "keywords": [
+      "fan loyalty test",
+      "fan loyalty calculator",
+      "real fan test",
+      "bandwagon fan",
+      "footy fan calculator",
+      "sports fan test"
+    ],
+    "affiliateContext": "general",
+    "inputs": [
+      {
+        "id": "years",
+        "label": "How long have you supported your team?",
+        "type": "select",
+        "options": [
+          {
+            "value": "1",
+            "label": "Less than a year (sus...)"
+          },
+          {
+            "value": "3",
+            "label": "1-3 years"
+          },
+          {
+            "value": "10",
+            "label": "3-10 years",
+            "default": true
+          },
+          {
+            "value": "20",
+            "label": "10-20 years"
+          },
+          {
+            "value": "99",
+            "label": "Since birth — it's genetic"
+          }
+        ]
+      },
+      {
+        "id": "games",
+        "label": "How many games do you watch per season?",
+        "type": "select",
+        "options": [
+          {
+            "value": "2",
+            "label": "Finals only (if they make it)"
+          },
+          {
+            "value": "8",
+            "label": "A handful — the big ones"
+          },
+          {
+            "value": "15",
+            "label": "Most of them",
+            "default": true
+          },
+          {
+            "value": "24",
+            "label": "Every single one — even the Thursday night dead rubbers"
+          }
+        ]
+      },
+      {
+        "id": "merch",
+        "label": "How much team merch do you own?",
+        "type": "radio",
+        "options": [
+          {
+            "value": "none",
+            "label": "None"
+          },
+          {
+            "value": "some",
+            "label": "A jersey or two",
+            "default": true
+          },
+          {
+            "value": "heaps",
+            "label": "Wardrobe is basically a team shop"
+          }
+        ]
+      },
+      {
+        "id": "bad-times",
+        "label": "Did you stick around during the bad years?",
+        "type": "radio",
+        "options": [
+          {
+            "value": "no",
+            "label": "I may have... explored other options"
+          },
+          {
+            "value": "quiet",
+            "label": "I stayed but went quiet",
+            "default": true
+          },
+          {
+            "value": "yes",
+            "label": "Suffered through every loss. Battle scars."
+          }
+        ]
+      },
+      {
+        "id": "tattoo",
+        "label": "Do you have a team tattoo?",
+        "type": "radio",
+        "options": [
+          {
+            "value": "no",
+            "label": "No — I'm sane",
+            "default": true
+          },
+          {
+            "value": "considering",
+            "label": "I've thought about it..."
+          },
+          {
+            "value": "yes",
+            "label": "Inked for life 🔥"
+          }
+        ]
+      },
+      {
+        "id": "cry",
+        "label": "Have you cried over a game result?",
+        "type": "radio",
+        "options": [
+          {
+            "value": "no",
+            "label": "Never — it's just a game"
+          },
+          {
+            "value": "almost",
+            "label": "Close... very close",
+            "default": true
+          },
+          {
+            "value": "yes",
+            "label": "Full tears. No shame."
+          }
+        ]
+      }
+    ],
+    "howItWorks": "<p>We measure your fandom across six dimensions of loyalty: tenure, attendance, financial commitment (merch), adversity resilience, permanent body art decisions, and emotional investment.</p><p>The result? A cold, hard loyalty percentage that determines whether you're a genuine supporter or just someone who owns a jersey they bought at Kmart.</p>",
+    "faq": [
+      {
+        "q": "What counts as a real fan?",
+        "a": "Someone who sticks around during the wooden spoon years, watches the Thursday night games, and can name the team's third-string halfback from 2019. This calculator is a simplified version of that."
+      },
+      {
+        "q": "My score is low but I am a real fan!",
+        "a": "That's exactly what a plastic fan would say. But seriously, this is just for fun — real fandom is in the heart, not the algorithm."
+      }
+    ],
+    "related": [
+      "how-shit-is-your-team",
+      "what-are-the-odds",
+      "love-calculator"
+    ]
+  },
+  {
+    "slug": "mate-ranking-roast",
+    "title": "Mate Ranking Roast",
+    "category": "fun",
+    "description": "Rank your mates on loyalty, bar tab dodging, and wingman ability. Then send them the results.",
+    "metaDescription": "Rank your mates calculator — rate your friends on loyalty, reliability, and more. Get savage scores and share the roast with your group chat.",
+    "keywords": [
+      "mate ranking",
+      "rank your mates",
+      "friend ranking",
+      "mate roast",
+      "friendship ranking calculator",
+      "group chat calculator"
+    ],
+    "affiliateContext": "general",
+    "inputs": [
+      {
+        "id": "mate-name",
+        "label": "Mate's name",
+        "type": "text",
+        "placeholder": "Enter their name"
+      },
+      {
+        "id": "reliability",
+        "label": "How reliable are they? (1-10)",
+        "type": "number",
+        "default": 5,
+        "min": 1,
+        "max": 10,
+        "help": "1 = flakes on everything, 10 = shows up early"
+      },
+      {
+        "id": "bar-tab",
+        "label": "Bar tab contribution (1-10)",
+        "type": "number",
+        "default": 5,
+        "min": 1,
+        "max": 10,
+        "help": "1 = phantom toilet break when it's their round, 10 = always shouts"
+      },
+      {
+        "id": "wingman",
+        "label": "Wingman/wingwoman ability (1-10)",
+        "type": "number",
+        "default": 5,
+        "min": 1,
+        "max": 10,
+        "help": "1 = actively sabotages you, 10 = absolute legend"
+      },
+      {
+        "id": "secrets",
+        "label": "Can they keep a secret? (1-10)",
+        "type": "number",
+        "default": 5,
+        "min": 1,
+        "max": 10,
+        "help": "1 = group chat snitch, 10 = vault"
+      },
+      {
+        "id": "banter",
+        "label": "Banter quality (1-10)",
+        "type": "number",
+        "default": 5,
+        "min": 1,
+        "max": 10,
+        "help": "1 = tries too hard, 10 = effortlessly hilarious"
+      },
+      {
+        "id": "crisis",
+        "label": "Would they help you move house? (1-10)",
+        "type": "number",
+        "default": 5,
+        "min": 1,
+        "max": 10,
+        "help": "1 = suddenly busy, 10 = shows up with a ute and snags"
+      }
+    ],
+    "howItWorks": "<p>Rate your mate across six critical friendship dimensions. Our algorithm weighs each factor, applies the Mate Multiplier™, and delivers a brutally honest friendship grade.</p><p>The best part? You can share the results directly to your group chat. Because nothing strengthens a friendship like a public roasting.</p>",
+    "faq": [
+      {
+        "q": "Should I send this to my mate?",
+        "a": "That's literally the point. Rate them, screenshot it, send it to the group chat. Watch the chaos unfold."
+      },
+      {
+        "q": "What if they rate me back?",
+        "a": "Then you both learn something. Probably that neither of you shouts enough at the pub."
+      }
+    ],
+    "related": [
+      "friendship-calculator",
+      "love-calculator",
+      "what-are-the-odds"
+    ]
+  },
+  {
+    "slug": "rival-team-trash-talk",
+    "title": "Rival Team Trash Talk Generator",
+    "category": "fun",
+    "description": "Pick your team and your rival. Get ammunition-grade trash talk to unleash in the group chat.",
+    "metaDescription": "Rival team trash talk generator — pick your NRL or AFL team and your rival to get savage, shareable roasts. Perfect for game day group chats.",
+    "keywords": [
+      "trash talk generator",
+      "footy trash talk",
+      "nrl trash talk",
+      "afl trash talk",
+      "rival roast",
+      "team roast generator",
+      "footy banter"
+    ],
+    "affiliateContext": "general",
+    "inputs": [
+      {
+        "id": "sport2",
+        "label": "Pick your code",
+        "type": "select",
+        "options": [
+          {
+            "value": "nrl",
+            "label": "NRL",
+            "default": true
+          },
+          {
+            "value": "afl",
+            "label": "AFL"
+          }
+        ]
+      },
+      {
+        "id": "my-team",
+        "label": "Your team",
+        "type": "select",
+        "options": [
+          {
+            "value": "",
+            "label": "Loading teams...",
+            "default": true
+          }
+        ]
+      },
+      {
+        "id": "rival-team",
+        "label": "Their team (the enemy)",
+        "type": "select",
+        "options": [
+          {
+            "value": "",
+            "label": "Loading teams...",
+            "default": true
+          }
+        ]
+      }
+    ],
+    "howItWorks": "<p>Select your team, select the enemy, and let the Trash Talk Engine™ do its thing. We pull real ladder data to make the roasts hit harder — because nothing stings like trash talk backed by actual statistics.</p><p>Warning: results may cause friendship damage, blocked numbers, and group chat meltdowns. Use responsibly (or don't).</p>",
+    "faq": [
+      {
+        "q": "Is this based on real data?",
+        "a": "Yes — we use current season ladder standings to fuel the roasts. If your rival's team is bottom of the ladder, the trash talk writes itself."
+      },
+      {
+        "q": "Can I share the roasts?",
+        "a": "That's the whole point. Copy, paste, send, sit back, and watch the group chat explode."
+      }
+    ],
+    "related": [
+      "how-shit-is-your-team",
+      "fan-loyalty-test",
+      "what-are-the-odds"
+    ]
   }
 ]
