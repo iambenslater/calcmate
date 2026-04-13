@@ -121,6 +121,22 @@
                     <input type="checkbox" id="input-<%= input.id %>" <%= input.default ? 'checked' : '' %> class="rounded text-gold focus:ring-gold">
                     <span class="text-sm"><%= input.checkLabel || '' %></span>
                   </label>
+                <% } else if (input.type === 'range') { %>
+                  <div class="flex items-center gap-4">
+                    <input type="range" id="input-<%= input.id %>"
+                      value="<%= typeof input.default !== 'undefined' ? input.default : (typeof input.min !== 'undefined' ? input.min : 0) %>"
+                      <% if (typeof input.min !== 'undefined') { %>min="<%= input.min %>"<% } %>
+                      <% if (typeof input.max !== 'undefined') { %>max="<%= input.max %>"<% } %>
+                      <% if (input.step) { %>step="<%= input.step %>"<% } %>
+                      class="flex-1 h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-gold"
+                      oninput="document.getElementById('range-val-<%= input.id %>').textContent=this.value"
+                    >
+                    <span id="range-val-<%= input.id %>" class="min-w-[3rem] text-center text-lg font-bold text-navy bg-gray-100 rounded-lg px-3 py-1"><%= typeof input.default !== 'undefined' ? input.default : (typeof input.min !== 'undefined' ? input.min : 0) %></span>
+                  </div>
+                  <div class="flex justify-between text-xs text-gray-400 mt-1">
+                    <span><%= typeof input.min !== 'undefined' ? input.min : 0 %></span>
+                    <span><%= typeof input.max !== 'undefined' ? input.max : 100 %></span>
+                  </div>
                 <% } else if (input.type === 'date') { %>
                   <input type="date" id="input-<%= input.id %>" value="<%= input.default || '' %>" class="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gold focus:border-gold transition">
                 <% } else { %>
