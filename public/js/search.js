@@ -100,5 +100,6 @@
   setupSearch('search-input', 'search-results');
   setupSearch('search-input-mobile', 'search-results-mobile');
   setupSearch('hero-search', 'hero-search-results');
+  setupSearch('search-input-404', 'search-results-404');
 
 })();
