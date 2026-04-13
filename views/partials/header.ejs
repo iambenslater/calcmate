@@ -14,12 +14,20 @@
         <div class="relative group">
           <button class="px-3.5 py-2 rounded-lg text-sm text-gray-600 hover:text-gray-900 hover:bg-black/5 transition-all duration-200 font-medium flex items-center gap-1">
             Categories
-            <svg class="w-3.5 h-3.5 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            <svg class="w-3.5 h-3.5 opacity-50 group-hover:rotate-180 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
           </button>
-          <div class="absolute right-0 top-full mt-1 w-64 bg-white/95 backdrop-blur-xl rounded-2xl cm-shadow-lg hidden group-hover:block z-50 border border-black/5 py-2">
-            <% Object.entries(categoryMeta).forEach(([key, meta]) => { %>
-              <a href="/<%= key %>" class="block px-4 py-2 hover:bg-black/5 transition text-sm text-gray-600 hover:text-gray-900"><span class="mr-2"><%= meta.icon %></span><%= meta.name %></a>
-            <% }) %>
+          <!-- Invisible bridge to prevent hover gap -->
+          <div class="absolute right-0 top-full pt-1 hidden group-hover:block z-50">
+            <div class="w-[42rem] bg-white/95 backdrop-blur-xl rounded-2xl cm-shadow-lg border border-black/5 p-4">
+              <div class="grid grid-cols-3 gap-1">
+                <% Object.entries(categoryMeta).forEach(([key, meta]) => { %>
+                  <a href="/<%= key %>" class="flex items-center gap-2.5 px-3 py-2.5 rounded-xl hover:bg-black/5 transition-all duration-200 text-sm text-gray-600 hover:text-gray-900">
+                    <span class="text-base"><%= meta.icon %></span>
+                    <span class="font-medium"><%= meta.name %></span>
+                  </a>
+                <% }) %>
+              </div>
+            </div>
           </div>
         </div>
       </nav>
