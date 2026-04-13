@@ -199,12 +199,22 @@ const { Resvg } = require('@resvg/resvg-js');
 const OG_CACHE_DIR = path.join(__dirname, 'data', 'og-cache');
 if (!fs.existsSync(OG_CACHE_DIR)) fs.mkdirSync(OG_CACHE_DIR, { recursive: true });
 
-function generateOgSvg(title, description, categoryIcon, categoryName) {
+function generateOgSvg(title, description, categoryName) {
   // Escape XML entities
   const esc = s => (s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-  // Truncate description to ~120 chars
-  let desc = description || '';
-  if (desc.length > 120) desc = desc.substring(0, 117) + '...';
+  // Word-wrap description into 2 lines at ~65 chars
+  let desc1 = '', desc2 = '';
+  const dWords = (description || '').split(' ');
+  for (const w of dWords) {
+    if (!desc2 && (desc1 + ' ' + w).trim().length <= 65) {
+      desc1 = (desc1 + ' ' + w).trim();
+    } else if ((desc2 + ' ' + w).trim().length <= 65) {
+      desc2 = (desc2 + ' ' + w).trim();
+    }
+  }
+  if (!desc2 && desc1.length > 68) desc1 = desc1.substring(0, 65) + '...';
+  if (desc2.length > 68) desc2 = desc2.substring(0, 65) + '...';
+
   // Word-wrap title at ~28 chars per line (max 2 lines)
   const words = title.split(' ');
   let line1 = '', line2 = '';
@@ -216,7 +226,8 @@ function generateOgSvg(title, description, categoryIcon, categoryName) {
     }
   }
   if (line2.length > 32) line2 = line2.substring(0, 29) + '...';
-  const titleY = line2 ? 260 : 280;
+  const titleY = line2 ? 230 : 260;
+  const descY = line2 ? titleY + 140 : titleY + 90;
 
   return `<svg width="1200" height="630" xmlns="http://www.w3.org/2000/svg">
   <defs>
@@ -229,13 +240,14 @@ function generateOgSvg(title, description, categoryIcon, categoryName) {
   <rect x="0" y="540" width="1200" height="90" fill="#FFB800"/>
   <rect x="0" y="536" width="1200" height="8" fill="#FFB800" opacity="0.6"/>
   <!-- Category badge -->
-  <rect x="80" y="80" rx="24" ry="24" width="${esc(categoryName).length * 14 + 80}" height="48" fill="rgba(255,184,0,0.15)"/>
-  <text x="108" y="112" font-family="Inter, system-ui, sans-serif" font-size="24" fill="#FFB800" font-weight="600">${esc(categoryIcon)}  ${esc(categoryName)}</text>
+  <rect x="80" y="80" rx="24" ry="24" width="${esc(categoryName).length * 16 + 48}" height="48" fill="rgba(255,184,0,0.15)"/>
+  <text x="104" y="112" font-family="Inter, system-ui, sans-serif" font-size="22" fill="#FFB800" font-weight="600">${esc(categoryName)}</text>
   <!-- Title -->
-  <text x="80" y="${titleY}" font-family="Inter, system-ui, sans-serif" font-size="56" fill="white" font-weight="800">${esc(line1)}</text>
-  ${line2 ? `<text x="80" y="${titleY + 66}" font-family="Inter, system-ui, sans-serif" font-size="56" fill="white" font-weight="800">${esc(line2)}</text>` : ''}
+  <text x="80" y="${titleY}" font-family="Inter, system-ui, sans-serif" font-size="58" fill="white" font-weight="800">${esc(line1)}</text>
+  ${line2 ? `<text x="80" y="${titleY + 70}" font-family="Inter, system-ui, sans-serif" font-size="58" fill="white" font-weight="800">${esc(line2)}</text>` : ''}
   <!-- Description -->
-  <text x="80" y="${line2 ? titleY + 130 : titleY + 80}" font-family="Inter, system-ui, sans-serif" font-size="24" fill="rgba(255,255,255,0.7)" font-weight="400">${esc(desc)}</text>
+  <text x="80" y="${descY}" font-family="Inter, system-ui, sans-serif" font-size="24" fill="rgba(255,255,255,0.6)" font-weight="400">${esc(desc1)}</text>
+  ${desc2 ? `<text x="80" y="${descY + 32}" font-family="Inter, system-ui, sans-serif" font-size="24" fill="rgba(255,255,255,0.6)" font-weight="400">${esc(desc2)}</text>` : ''}
   <!-- Footer branding -->
   <text x="80" y="585" font-family="Inter, system-ui, sans-serif" font-size="28" font-weight="700"><tspan fill="#00205B">Calculator</tspan>  <tspan fill="#00205B" font-weight="800">Mate</tspan></text>
   <text x="1120" y="585" font-family="Inter, system-ui, sans-serif" font-size="20" fill="rgba(0,32,91,0.6)" text-anchor="end">calculatormate.com.au</text>
@@ -257,7 +269,7 @@ app.get('/og/:category/:slug.png', (req, res) => {
 
   try {
     const catMeta = categoryMeta[calc.category] || { name: 'Calculator', icon: '🧮' };
-    const svg = generateOgSvg(calc.title, calc.metaDescription || calc.description, catMeta.icon, catMeta.name);
+    const svg = generateOgSvg(calc.title, calc.metaDescription || calc.description, catMeta.name);
     const resvg = new Resvg(svg, {
       fitTo: { mode: 'width', value: 1200 },
       font: { loadSystemFonts: true }
