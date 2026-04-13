@@ -5,7 +5,6 @@ const fs = require('fs');
 const compression = require('compression');
 const helmet = require('helmet');
 const geoip = require('geoip-lite');
-const nodemailer = require('nodemailer');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -673,32 +672,36 @@ app.post('/contact', async (req, res) => {
   const subjectLine = `[CalcMate] ${subjectLabels[subject] || 'Contact'} from ${name}`;
 
   try {
-    const transporter = nodemailer.createTransport({
-      host: 'smtp.gmail.com',
-      port: 465,
-      secure: true,
-      auth: {
-        user: process.env.GMAIL_USER,
-        pass: process.env.GMAIL_APP_PASSWORD
-      }
+    const sgRes = await fetch('https://api.sendgrid.com/v3/mail/send', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${process.env.SENDGRID_API_KEY}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        personalizations: [{ to: [{ email: 'ben@benslater.me', name: 'Ben Slater' }] }],
+        from: { email: 'noreply@calculatormate.com.au', name: 'CalculatorMate' },
+        reply_to: { email, name },
+        subject: subjectLine,
+        content: [
+          { type: 'text/plain', value: `From: ${name} <${email}>\nSubject: ${subjectLabels[subject] || 'Other'}\n\n${message}` },
+          { type: 'text/html', value: `<div style="font-family:sans-serif;max-width:600px;margin:0 auto;">
+            <p style="color:#666;font-size:12px;margin-bottom:16px;">New message via calculatormate.com.au/contact</p>
+            <table style="width:100%;border-collapse:collapse;margin-bottom:16px;">
+              <tr><td style="padding:8px 12px;background:#f9f9f6;font-weight:600;width:100px;vertical-align:top;">From</td><td style="padding:8px 12px;">${name.replace(/</g, '&lt;').replace(/>/g, '&gt;')} &lt;${email}&gt;</td></tr>
+              <tr><td style="padding:8px 12px;background:#f9f9f6;font-weight:600;vertical-align:top;">Type</td><td style="padding:8px 12px;">${subjectLabels[subject] || 'Other'}</td></tr>
+            </table>
+            <div style="padding:16px;background:#f9f9f6;border-radius:8px;white-space:pre-wrap;font-size:14px;line-height:1.6;">${message.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</div>
+            <p style="color:#999;font-size:11px;margin-top:16px;">Reply directly to this email to respond to ${name.replace(/</g, '&lt;').replace(/>/g, '&gt;')}.</p>
+          </div>` }
+        ]
+      })
     });
 
-    await transporter.sendMail({
-      from: `"CalculatorMate" <${process.env.GMAIL_USER}>`,
-      replyTo: `"${name}" <${email}>`,
-      to: 'ben@benslater.me',
-      subject: subjectLine,
-      text: `From: ${name} <${email}>\nSubject: ${subjectLabels[subject] || 'Other'}\n\n${message}`,
-      html: `<div style="font-family:sans-serif;max-width:600px;margin:0 auto;">
-        <p style="color:#666;font-size:12px;margin-bottom:16px;">New message via calculatormate.com.au/contact</p>
-        <table style="width:100%;border-collapse:collapse;margin-bottom:16px;">
-          <tr><td style="padding:8px 12px;background:#f9f9f6;font-weight:600;width:100px;vertical-align:top;">From</td><td style="padding:8px 12px;">${name} &lt;${email}&gt;</td></tr>
-          <tr><td style="padding:8px 12px;background:#f9f9f6;font-weight:600;vertical-align:top;">Type</td><td style="padding:8px 12px;">${subjectLabels[subject] || 'Other'}</td></tr>
-        </table>
-        <div style="padding:16px;background:#f9f9f6;border-radius:8px;white-space:pre-wrap;font-size:14px;line-height:1.6;">${message.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</div>
-        <p style="color:#999;font-size:11px;margin-top:16px;">Reply directly to this email to respond to ${name}.</p>
-      </div>`
-    });
+    if (!sgRes.ok) {
+      const errText = await sgRes.text();
+      throw new Error(`SendGrid ${sgRes.status}: ${errText}`);
+    }
 
     res.render('contact', { ...pageData, success: true });
   } catch (err) {
