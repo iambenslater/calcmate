@@ -18,12 +18,6 @@
 .article-content blockquote { border-left: 3px solid #BFA956 !important; padding-left: 1rem !important; margin: 1rem 0 !important; color: #6b7280 !important; font-style: italic !important; }
 .article-content h2:first-child { margin-top: 0 !important; }
 
-/* Serif body text for editorial feel */
-.article-content p,
-.article-content li {
-  font-family: 'Source Serif 4', Georgia, serif !important;
-}
-
 /* Heading top-border — editorial hierarchy */
 .article-content h2 {
   padding-top: 1.5rem !important;
