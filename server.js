@@ -680,7 +680,7 @@ app.post('/contact', async (req, res) => {
       },
       body: JSON.stringify({
         personalizations: [{ to: [{ email: 'ben@benslater.me', name: 'Ben Slater' }] }],
-        from: { email: 'noreply@calculatormate.com.au', name: 'CalculatorMate' },
+        from: { email: 'ben@benslater.me', name: 'CalculatorMate' },
         reply_to: { email, name },
         subject: subjectLine,
         content: [
