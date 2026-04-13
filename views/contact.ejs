@@ -117,46 +117,20 @@
           </div>
         <% } %>
 
-        <!-- Topic selector — replaces boring dropdown -->
-        <div class="mb-6">
-          <p class="cm-gradient-text text-xs font-semibold uppercase tracking-widest mb-3">What's this about?</p>
-          <div class="flex flex-wrap gap-2">
-            <label class="contact-topic cursor-pointer">
-              <input type="radio" name="subject" value="general" class="sr-only" checked>
-              <span class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-medium border border-black/10 bg-gray-50 text-gray-600 transition-all duration-200 hover:border-black/20 hover:bg-white peer-checked:bg-[#393F23] peer-checked:text-white peer-checked:border-transparent">
-                &#128075; G'day
-              </span>
-            </label>
-            <label class="contact-topic cursor-pointer">
-              <input type="radio" name="subject" value="bug" class="sr-only">
-              <span class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-medium border border-black/10 bg-gray-50 text-gray-600 transition-all duration-200 hover:border-black/20 hover:bg-white">
-                &#128027; Bug report
-              </span>
-            </label>
-            <label class="contact-topic cursor-pointer">
-              <input type="radio" name="subject" value="suggestion" class="sr-only">
-              <span class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-medium border border-black/10 bg-gray-50 text-gray-600 transition-all duration-200 hover:border-black/20 hover:bg-white">
-                &#128161; Calculator idea
-              </span>
-            </label>
-            <label class="contact-topic cursor-pointer">
-              <input type="radio" name="subject" value="feedback" class="sr-only">
-              <span class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-medium border border-black/10 bg-gray-50 text-gray-600 transition-all duration-200 hover:border-black/20 hover:bg-white">
-                &#11088; Feedback
-              </span>
-            </label>
-            <label class="contact-topic cursor-pointer">
-              <input type="radio" name="subject" value="other" class="sr-only">
-              <span class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-medium border border-black/10 bg-gray-50 text-gray-600 transition-all duration-200 hover:border-black/20 hover:bg-white">
-                &#128172; Something else
-              </span>
-            </label>
-          </div>
-        </div>
-
         <form method="POST" action="/contact" id="contact-form" class="space-y-5">
-          <!-- Hidden subject field updated by JS -->
-          <input type="hidden" name="subject" id="contact-subject-hidden" value="general">
+
+          <!-- Topic selector — replaces boring dropdown -->
+          <div>
+            <p class="cm-gradient-text text-xs font-semibold uppercase tracking-widest mb-3">What's this about?</p>
+            <div class="flex flex-wrap gap-2" id="contact-topics">
+              <button type="button" data-topic="general" class="contact-topic active inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-medium border transition-all duration-200 cursor-pointer">&#128075; G'day</button>
+              <button type="button" data-topic="bug" class="contact-topic inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-medium border transition-all duration-200 cursor-pointer">&#128027; Bug report</button>
+              <button type="button" data-topic="suggestion" class="contact-topic inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-medium border transition-all duration-200 cursor-pointer">&#128161; Calculator idea</button>
+              <button type="button" data-topic="feedback" class="contact-topic inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-medium border transition-all duration-200 cursor-pointer">&#11088; Feedback</button>
+              <button type="button" data-topic="other" class="contact-topic inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-medium border transition-all duration-200 cursor-pointer">&#128172; Something else</button>
+            </div>
+            <input type="hidden" name="subject" id="contact-subject-hidden" value="general">
+          </div>
 
           <div class="grid sm:grid-cols-2 gap-5">
             <div>
@@ -212,26 +186,23 @@
 <%- include('partials/footer') %>
 
 <!-- Contact topic selector -->
+<style>
+  .contact-topic { border-color: rgba(0,0,0,0.1); background: rgb(249,250,251); color: rgb(75,85,99); }
+  .contact-topic:hover { border-color: rgba(0,0,0,0.2); background: white; }
+  .contact-topic.active { background: #393F23; color: white; border-color: transparent; }
+</style>
 <script>
 (function() {
-  var topics = document.querySelectorAll('.contact-topic input[type="radio"]');
+  var btns = document.querySelectorAll('.contact-topic');
   var hidden = document.getElementById('contact-subject-hidden');
-  if (!topics.length || !hidden) return;
-  topics.forEach(function(radio) {
-    radio.addEventListener('change', function() {
-      hidden.value = this.value;
-      // Update visual state
-      document.querySelectorAll('.contact-topic span').forEach(function(s) {
-        s.classList.remove('bg-[#393F23]', 'text-white', 'border-transparent');
-        s.classList.add('bg-gray-50', 'text-gray-600', 'border-black/10');
-      });
-      this.nextElementSibling.classList.remove('bg-gray-50', 'text-gray-600', 'border-black/10');
-      this.nextElementSibling.classList.add('bg-[#393F23]', 'text-white', 'border-transparent');
+  if (!btns.length || !hidden) return;
+  btns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      btns.forEach(function(b) { b.classList.remove('active'); });
+      this.classList.add('active');
+      hidden.value = this.dataset.topic;
     });
   });
-  // Set initial state
-  var checked = document.querySelector('.contact-topic input:checked');
-  if (checked) checked.dispatchEvent(new Event('change'));
 })();
 </script>
 
