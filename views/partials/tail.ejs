@@ -1,3 +1,22 @@
   <script src="/js/search.js?v=20260412e"></script>
+  <script>
+  /* Reveal ad slots only when AdSense fills them */
+  (function() {
+    var observer = new MutationObserver(function(mutations) {
+      mutations.forEach(function(m) {
+        if (m.type === 'attributes' && m.attributeName === 'data-ad-status') {
+          var ins = m.target;
+          var wrapper = ins.closest('.ad-slot');
+          if (wrapper && ins.getAttribute('data-ad-status') === 'filled') {
+            wrapper.classList.add('ad-filled');
+          }
+        }
+      });
+    });
+    document.querySelectorAll('ins.adsbygoogle').forEach(function(ins) {
+      observer.observe(ins, { attributes: true, attributeFilter: ['data-ad-status'] });
+    });
+  })();
+  </script>
 </body>
 </html>

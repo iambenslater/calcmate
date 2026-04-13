@@ -308,6 +308,18 @@
 details summary { list-style: none; }
 details summary::-webkit-details-marker { display: none; }
 
+/* Hide empty ad slots until filled — keeps ins in DOM for Google */
+.ad-slot {
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transition: max-height 0.4s ease-out, opacity 0.4s ease-out;
+}
+.ad-slot.ad-filled {
+  max-height: 600px;
+  opacity: 1;
+}
+
 /* Print styles */
 @media print {
   header, footer, aside, .ad-slot, #search-input, #search-input-mobile { display: none !important; }
