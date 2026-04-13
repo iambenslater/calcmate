@@ -29,7 +29,7 @@
     "itemListElement": [
       { "@type": "ListItem", "position": 1, "name": "Home", "item": "<%- siteUrl %>" },
       { "@type": "ListItem", "position": 2, "name": "Calculators For...", "item": "<%- siteUrl %>/for" },
-      { "@type": "ListItem", "position": 3, "name": "<%- (audience.title || '').replace(/"/g, '\\"') %>" }
+      { "@type": "ListItem", "position": 3, "name": "<%- (audience.title || '').replace(/"/g, '\\"') %>", "item": "<%- siteUrl %>/for/<%- audience.slug %>" }
     ]
   }
 }

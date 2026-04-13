@@ -26,8 +26,9 @@
   "image": "<%- siteUrl %>/images/og-default.png",
   "datePublished": "<%- article.datePublished || '2026-04-12' %>",
   "dateModified": "<%- article.dateModified || article.datePublished || '2026-04-12' %>",
-  "publisher": { "@type": "Organization", "name": "CalculatorMate", "url": "<%- siteUrl %>" },
-  "author": { "@type": "Person", "name": "Ben Slater", "url": "<%- siteUrl %>/about" }
+  "publisher": { "@type": "Organization", "@id": "<%- siteUrl %>/#organization", "name": "CalculatorMate", "url": "<%- siteUrl %>", "logo": { "@type": "ImageObject", "url": "<%- siteUrl %>/favicon.svg", "width": 32, "height": 32 } },
+  "author": { "@type": "Person", "name": "Ben Slater", "url": "<%- siteUrl %>/about" },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "<%- siteUrl %>/articles/<%- article.slug %>" }
 }
 </script>
 <script type="application/ld+json">

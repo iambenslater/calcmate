@@ -1,11 +1,121 @@
-<%- include('partials/head') %>
-<%- include('partials/header') %>
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <meta name="theme-color" content="#393F23">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/tailwind.css?v=20260413c">
+  <link rel="stylesheet" href="/css/style.css?v=20260413c">
+</head>
+<body class="bg-[#FAFAF6] font-sans text-gray-800 min-h-screen flex flex-col">
 
-<main class="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-16 text-center">
-  <h1 class="text-6xl font-bold text-navy mb-4">404</h1>
-  <p class="text-xl text-gray-600 mb-8">That calculator doesn't exist yet, mate.</p>
-  <a href="/" class="inline-block px-6 py-3 bg-gold text-navy font-bold rounded-lg hover:bg-yellow-400 transition">Back to Home</a>
+<header class="bg-white/95 backdrop-blur-xl border-b border-black/5 sticky top-0 z-50">
+  <div class="max-w-6xl mx-auto px-5 sm:px-8">
+    <div class="flex items-center justify-between h-16">
+      <a href="/" class="flex items-center gap-2.5 text-lg font-bold text-gray-900 hover:opacity-70 transition-opacity">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" class="w-7 h-7"><rect width="32" height="32" rx="6" fill="#393F23"/><rect x="5" y="5" width="22" height="22" rx="3" fill="#BFA956"/><rect x="8" y="8" width="16" height="5" rx="1" fill="#393F23" opacity="0.9"/><rect x="8" y="15" width="4" height="4" rx="0.5" fill="#393F23" opacity="0.7"/><rect x="14" y="15" width="4" height="4" rx="0.5" fill="#393F23" opacity="0.7"/><rect x="20" y="15" width="4" height="4" rx="0.5" fill="#393F23" opacity="0.7"/><rect x="8" y="21" width="4" height="4" rx="0.5" fill="#393F23" opacity="0.7"/><rect x="14" y="21" width="4" height="4" rx="0.5" fill="#393F23" opacity="0.7"/><rect x="20" y="21" width="4" height="4" rx="0.5" fill="#BFA956" stroke="#393F23" stroke-width="0.5"/><text x="24" y="24.5" font-size="4" font-weight="bold" fill="#393F23" text-anchor="middle" font-family="sans-serif">=</text></svg>
+        <span>Calculator<span style="color: #BFA956">Mate</span></span>
+      </a>
+      <a href="/" class="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">Back to Home</a>
+    </div>
+  </div>
+</header>
+
+<main class="flex-1 flex items-center justify-center px-5 sm:px-8 py-16">
+  <div class="text-center max-w-lg">
+    <!-- Calculator display showing ERROR -->
+    <div class="inline-flex items-center justify-center mb-8">
+      <div class="bg-white rounded-2xl cm-shadow-md border border-black/5 p-6 sm:p-8 w-72 sm:w-80">
+        <div class="bg-gray-900 rounded-xl p-4 mb-4">
+          <p class="text-right font-mono text-3xl sm:text-4xl text-[#BFA956] tracking-wider">404</p>
+          <p class="text-right font-mono text-xs text-gray-500 mt-1">ERR: PAGE_NOT_FOUND</p>
+        </div>
+        <div class="grid grid-cols-4 gap-2">
+          <div class="bg-gray-100 rounded-lg p-2.5 text-center text-sm font-medium text-gray-400">C</div>
+          <div class="bg-gray-100 rounded-lg p-2.5 text-center text-sm font-medium text-gray-400">(</div>
+          <div class="bg-gray-100 rounded-lg p-2.5 text-center text-sm font-medium text-gray-400">)</div>
+          <div class="bg-amber-50 rounded-lg p-2.5 text-center text-sm font-medium text-amber-600">/</div>
+          <div class="bg-gray-50 rounded-lg p-2.5 text-center text-sm font-medium text-gray-500">4</div>
+          <div class="bg-gray-50 rounded-lg p-2.5 text-center text-sm font-medium text-gray-500">0</div>
+          <div class="bg-gray-50 rounded-lg p-2.5 text-center text-sm font-medium text-gray-500">4</div>
+          <div class="bg-amber-50 rounded-lg p-2.5 text-center text-sm font-medium text-amber-600">x</div>
+          <div class="bg-gray-50 rounded-lg p-2.5 text-center text-sm font-medium text-gray-500">?</div>
+          <div class="bg-gray-50 rounded-lg p-2.5 text-center text-sm font-medium text-gray-500">!</div>
+          <div class="bg-gray-50 rounded-lg p-2.5 text-center text-sm font-medium text-gray-500">%</div>
+          <div class="bg-amber-50 rounded-lg p-2.5 text-center text-sm font-medium text-amber-600">-</div>
+          <div class="col-span-2 bg-gray-50 rounded-lg p-2.5 text-center text-sm font-medium text-gray-500">OOPS</div>
+          <div class="bg-gray-50 rounded-lg p-2.5 text-center text-sm font-medium text-gray-500">.</div>
+          <div class="bg-[#393F23] rounded-lg p-2.5 text-center text-sm font-bold text-white">=</div>
+        </div>
+      </div>
+    </div>
+
+    <h1 class="text-2xl sm:text-3xl font-bold text-gray-900 cm-heading mb-3">That doesn't add up.</h1>
+    <p class="text-gray-500 mb-8 max-w-md mx-auto">We've crunched the numbers and this page definitely equals zero. But there are 172 calculators that actually work — and they're pretty great.</p>
+
+    <!-- Slippery entry points -->
+    <div class="space-y-3 mb-10">
+      <a href="/" class="block w-full max-w-xs mx-auto px-6 py-3 bg-gray-900 text-white font-semibold rounded-xl hover:bg-gray-800 transition-all duration-200 hover:-translate-y-0.5">
+        Take me home
+      </a>
+      <a href="/finance/take-home-pay" class="block w-full max-w-xs mx-auto px-6 py-3 bg-white border border-black/10 text-gray-900 font-medium rounded-xl hover:border-black/20 transition-all duration-200 hover:-translate-y-0.5 cm-shadow-xs">
+        Calculate my take-home pay
+      </a>
+    </div>
+
+    <!-- Popular calculators as bait -->
+    <div class="text-left max-w-sm mx-auto">
+      <p class="cm-gradient-text text-xs font-semibold uppercase tracking-widest mb-3">While you're here</p>
+      <div class="space-y-2">
+        <a href="/property/mortgage-repayment" class="group flex items-center gap-3 p-3 rounded-xl hover:bg-white hover:cm-shadow-xs transition-all duration-200">
+          <span class="text-lg">🏠</span>
+          <div>
+            <p class="text-sm font-medium text-gray-900 group-hover:text-gray-600 transition-colors">Mortgage Repayment</p>
+            <p class="text-xs text-gray-400">See what your home loan really costs</p>
+          </div>
+        </a>
+        <a href="/health/bmi" class="group flex items-center gap-3 p-3 rounded-xl hover:bg-white hover:cm-shadow-xs transition-all duration-200">
+          <span class="text-lg">❤️</span>
+          <div>
+            <p class="text-sm font-medium text-gray-900 group-hover:text-gray-600 transition-colors">BMI Calculator</p>
+            <p class="text-xs text-gray-400">Quick health check, no judgement</p>
+          </div>
+        </a>
+        <a href="/conversions/gst-calculator" class="group flex items-center gap-3 p-3 rounded-xl hover:bg-white hover:cm-shadow-xs transition-all duration-200">
+          <span class="text-lg">🔄</span>
+          <div>
+            <p class="text-sm font-medium text-gray-900 group-hover:text-gray-600 transition-colors">GST Calculator</p>
+            <p class="text-xs text-gray-400">Add or remove GST in two seconds</p>
+          </div>
+        </a>
+        <a href="/super/super-balance-projection" class="group flex items-center gap-3 p-3 rounded-xl hover:bg-white hover:cm-shadow-xs transition-all duration-200">
+          <span class="text-lg">🏦</span>
+          <div>
+            <p class="text-sm font-medium text-gray-900 group-hover:text-gray-600 transition-colors">Super Balance Projection</p>
+            <p class="text-xs text-gray-400">Will you have enough to retire?</p>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <p class="text-xs text-gray-400 mt-10">Error 404 — The page you requested doesn't exist or has been moved.</p>
+  </div>
 </main>
 
-<%- include('partials/footer') %>
-<%- include('partials/tail') %>
+<footer class="bg-gray-900 text-white/70">
+  <div class="max-w-6xl mx-auto px-5 sm:px-8 py-8">
+    <div class="flex items-center justify-between">
+      <p class="text-sm text-white/40">&copy; <%= new Date().getFullYear() %> CalculatorMate Australia</p>
+      <a href="/" class="text-sm text-white/50 hover:text-white transition-colors">calculatormate.com.au</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

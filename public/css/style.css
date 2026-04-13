@@ -309,14 +309,17 @@ details summary { list-style: none; }
 details summary::-webkit-details-marker { display: none; }
 
 /* Hide empty ad slots until filled — keeps ins in DOM for Google */
+/* min-height reserves space to prevent CLS when ads load */
 .ad-slot {
   overflow: hidden;
   max-height: 0;
   opacity: 0;
   transition: max-height 0.4s ease-out, opacity 0.4s ease-out;
+  min-height: 0;
 }
 .ad-slot.ad-filled {
   max-height: 600px;
+  min-height: 100px;
   opacity: 1;
 }
 

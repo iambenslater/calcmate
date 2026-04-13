@@ -66,13 +66,17 @@ app.use(helmet({
       styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
       fontSrc: ["'self'", "https://fonts.gstatic.com"],
       imgSrc: ["'self'", "data:", "https:", "https://www.google-analytics.com", "https://www.googletagmanager.com", "https://m.media-amazon.com"],
-      connectSrc: ["'self'", "https:", "https://www.google-analytics.com", "https://analytics.google.com"]
+      connectSrc: ["'self'", "https:", "https://www.google-analytics.com", "https://analytics.google.com"],
+      frameSrc: ["'self'", "https://googleads.g.doubleclick.net", "https://tpc.googlesyndication.com", "https://www.googletagmanager.com", "https://ep2.adtrafficquality.google"]
     }
   },
   referrerPolicy: { policy: 'strict-origin-when-cross-origin' },
   strictTransportSecurity: { maxAge: 31536000, includeSubDomains: true }
 }));
-app.use(express.static(path.join(__dirname, 'public'), { maxAge: process.env.NODE_ENV === 'production' ? '7d' : '0' }));
+app.use(express.static(path.join(__dirname, 'public'), {
+  maxAge: process.env.NODE_ENV === 'production' ? '365d' : '0',
+  immutable: process.env.NODE_ENV === 'production'
+}));
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
@@ -163,7 +167,7 @@ app.get('/', (req, res) => {
     ['take-home-pay', 'mortgage-repayment', 'bmi', 'gst-calculator', 'stamp-duty-all-states',
      'compound-interest', 'percentage', 'fuel-cost', 'days-between-dates', 'calorie-intake'].includes(c.slug)
   );
-  res.render('home', { popular, title: 'CalculatorMate Australia — Free Online Calculators', metaDescription: 'Free Australian calculators for tax, mortgage, health, and more. 100+ calculators built for Australians with current ATO rates and state-specific data.' });
+  res.render('home', { popular, title: 'CalculatorMate Australia — Free Online Calculators', metaDescription: 'Free Australian calculators for tax, mortgage, health, and more. 172 calculators built for Australians with current ATO rates and state-specific data.' });
 });
 
 // Search API
@@ -439,6 +443,7 @@ app.get('/sitemap.xml', (req, res) => {
     const lastmod = article.dateModified || article.datePublished || today;
     xml += `  <url><loc>${baseUrl}/articles/${article.slug}</loc><lastmod>${lastmod}</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>\n`;
   });
+  xml += `  <url><loc>${baseUrl}/articles</loc><lastmod>${today}</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>\n`;
   xml += `  <url><loc>${baseUrl}/about</loc><lastmod>${today}</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>\n`;
   xml += `  <url><loc>${baseUrl}/for</loc><lastmod>${today}</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>\n`;
   audiences.forEach(a => {
@@ -452,7 +457,53 @@ app.get('/sitemap.xml', (req, res) => {
 // Robots.txt
 app.get('/robots.txt', (req, res) => {
   res.type('text/plain');
-  res.send(`User-agent: *\nAllow: /\nSitemap: ${res.locals.siteUrl}/sitemap.xml\n\n# AI crawlers\nUser-agent: GPTBot\nAllow: /\nUser-agent: ChatGPT-User\nAllow: /\nUser-agent: Claude-Web\nAllow: /\nUser-agent: Anthropic-AI\nAllow: /\nUser-agent: Perplexity-User\nAllow: /\nUser-agent: PerplexityBot\nAllow: /\nUser-agent: Google-Extended\nAllow: /\nUser-agent: CCBot\nAllow: /\nUser-agent: cohere-ai\nAllow: /\n`);
+  res.send(`User-agent: *\nAllow: /\nSitemap: ${res.locals.siteUrl}/sitemap.xml\n\n# AI crawlers\nUser-agent: GPTBot\nAllow: /\nUser-agent: ChatGPT-User\nAllow: /\nUser-agent: OAI-SearchBot\nAllow: /\nUser-agent: Claude-Web\nAllow: /\nUser-agent: Anthropic-AI\nAllow: /\nUser-agent: Perplexity-User\nAllow: /\nUser-agent: PerplexityBot\nAllow: /\nUser-agent: Google-Extended\nAllow: /\nUser-agent: CCBot\nAllow: /\nUser-agent: cohere-ai\nAllow: /\n`);
+});
+
+// llms.txt — AI-readable site summary
+app.get('/llms.txt', (req, res) => {
+  const baseUrl = res.locals.siteUrl;
+  const catList = Object.entries(categoryMeta).map(([key, meta]) => `- ${meta.name} (${meta.icon}): ${baseUrl}/${key}`).join('\n');
+  const topCalcs = [
+    'finance/take-home-pay', 'property/mortgage-repayment', 'health/bmi',
+    'conversions/gst-calculator', 'conversions/percentage', 'property/stamp-duty',
+    'finance/income-tax', 'super/super-balance-projection', 'business/leave-entitlements',
+    'car/fuel-cost', 'property/borrowing-power', 'finance/tax-return-estimator'
+  ].map(s => `- ${baseUrl}/${s}`).join('\n');
+  res.type('text/plain');
+  res.send(`# CalculatorMate
+> 172 free online calculators built for Australians
+
+## About
+CalculatorMate is a free Australian calculator website covering tax, mortgage, health, business, superannuation, investment, construction, and lifestyle calculations. All calculators use current ATO rates, state-specific data, and Australian workplace law. Calculations run entirely in-browser — no user data is collected or transmitted.
+
+## Data Sources
+- Australian Taxation Office (ATO) — income tax brackets, Medicare levy, HELP repayment thresholds
+- Fair Work Ombudsman — leave entitlements, minimum wage, redundancy pay
+- State Revenue Offices — stamp duty rates (NSW, VIC, QLD, WA, SA, TAS, ACT, NT)
+- Services Australia — child support formulas, care percentage calculations
+- Reserve Bank of Australia — interest rate data
+
+## Update Frequency
+Tax rates and government thresholds are verified at the start of each Australian financial year (1 July) and updated within 48 hours of any mid-year changes. Calculator logic is regression-tested against known-correct government examples.
+
+## Categories
+${catList}
+
+## Most-Used Calculators
+${topCalcs}
+
+## Articles & Guides
+- ${baseUrl}/articles — ${articles.length} educational articles on Australian finance, tax, property, and health topics
+
+## Contact
+- Website: ${baseUrl}
+- About: ${baseUrl}/about
+- Author: Ben Slater (Brisbane, QLD)
+
+## Licensing
+Content may be cited with attribution to CalculatorMate (${baseUrl}). Calculator results are estimates only and should not be used as financial, tax, or medical advice.
+`);
 });
 
 // Articles

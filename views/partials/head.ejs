@@ -12,7 +12,16 @@
   <meta property="og:type" content="<%= (typeof calc !== 'undefined' || typeof article !== 'undefined') ? 'article' : 'website' %>">
   <meta property="og:url" content="<%= siteUrl %><%= currentPath === '/' ? '' : currentPath %>">
   <meta property="og:site_name" content="CalculatorMate Australia">
-  <% const ogImage = (typeof calc !== 'undefined' && calc) ? `${siteUrl}/og/${calc.category}/${calc.slug}.png` : `${siteUrl}/images/og-default.png`; %>
+  <%
+    let ogImage;
+    if (typeof article !== 'undefined' && article && article.slug) {
+      ogImage = `${siteUrl}/images/articles/${article.slug}.webp`;
+    } else if (typeof calc !== 'undefined' && calc && calc.category && calc.slug) {
+      ogImage = `${siteUrl}/og/${calc.category}/${calc.slug}.png`;
+    } else {
+      ogImage = `${siteUrl}/images/og-default.png`;
+    }
+  %>
   <meta property="og:image" content="<%= ogImage %>">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
@@ -26,9 +35,10 @@
   <meta name="theme-color" content="#393F23">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://m.media-amazon.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/css/tailwind.css?v=20260413b">
-  <link rel="stylesheet" href="/css/style.css?v=20260413b">
+  <link rel="stylesheet" href="/css/tailwind.css?v=20260413c">
+  <link rel="stylesheet" href="/css/style.css?v=20260413c">
   <script src="/js/affiliate-tracking.js" defer></script>
   <!-- Google AdSense -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8414007005923504" crossorigin="anonymous"></script>

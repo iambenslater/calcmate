@@ -1,23 +1,13 @@
 <nav aria-label="Breadcrumb" class="mb-4">
-  <ol class="flex items-center gap-2 text-sm text-gray-500" itemscope itemtype="https://schema.org/BreadcrumbList">
-    <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-      <a href="/" itemprop="item" class="hover:text-navy transition"><span itemprop="name">Home</span></a>
-      <meta itemprop="position" content="1">
-    </li>
+  <ol class="flex items-center gap-2 text-sm text-gray-500">
+    <li><a href="/" class="hover:text-gray-900 transition-colors duration-200">Home</a></li>
     <% if (typeof category !== 'undefined') { %>
       <li class="text-gray-300">/</li>
-      <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-        <a href="/<%= category %>" itemprop="item" class="hover:text-navy transition"><span itemprop="name"><%= categoryName %></span></a>
-        <meta itemprop="position" content="2">
-      </li>
+      <li><a href="/<%= category %>" class="hover:text-gray-900 transition-colors duration-200"><%= categoryName %></a></li>
     <% } %>
     <% if (typeof calc !== 'undefined') { %>
       <li class="text-gray-300">/</li>
-      <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-        <span itemprop="name" class="text-gray-800 font-medium"><%= calc.title %></span>
-        <link itemprop="item" href="<%= siteUrl %>/<%= calc.category %>/<%= calc.slug %>">
-        <meta itemprop="position" content="3">
-      </li>
+      <li class="text-gray-700 font-medium"><%= calc.title %></li>
     <% } %>
   </ol>
 </nav>
