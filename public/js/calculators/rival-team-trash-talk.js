@@ -10,8 +10,22 @@ var _teamsPopulated2 = false;
     .then(function(r) { return r.json(); })
     .then(function(data) {
       _ladderData2 = data;
+      // Check URL params for shared links
+      var params = new URLSearchParams(window.location.search);
       var sportEl = document.getElementById('input-sport2');
+      var paramSport = params.get('sport2');
+      if (paramSport && sportEl) sportEl.value = paramSport;
       if (sportEl && sportEl.value) populateTeams2(sportEl.value);
+      // If team params exist, set them and auto-calculate
+      var paramMyTeam = params.get('my-team');
+      var paramRivalTeam = params.get('rival-team');
+      if (paramMyTeam || paramRivalTeam) {
+        var myTeamEl = document.getElementById('input-my-team');
+        var rivalTeamEl = document.getElementById('input-rival-team');
+        if (paramMyTeam && myTeamEl) myTeamEl.value = paramMyTeam;
+        if (paramRivalTeam && rivalTeamEl) rivalTeamEl.value = paramRivalTeam;
+        calculate();
+      }
     })
     .catch(function() {});
 

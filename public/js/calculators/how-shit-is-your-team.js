@@ -10,9 +10,19 @@ let _teamsPopulated = false;
     .then(r => r.json())
     .then(data => {
       _ladderData = data;
-      // If sport is already selected, populate teams
+      // Check URL params for shared links
+      const params = new URLSearchParams(window.location.search);
       const sportEl = document.getElementById('input-sport');
+      const paramSport = params.get('sport');
+      if (paramSport && sportEl) sportEl.value = paramSport;
+      // Populate teams for current sport
       if (sportEl && sportEl.value) populateTeams(sportEl.value);
+      // If team param exists, set it and auto-calculate
+      const paramTeam = params.get('team');
+      if (paramTeam) {
+        const teamEl = document.getElementById('input-team');
+        if (teamEl) { teamEl.value = paramTeam; calculate(); }
+      }
     })
     .catch(() => {});
 
@@ -198,15 +208,6 @@ function buildResultHTML(team, result, sport, totalTeams) {
   html += '<div style="background:' + tier.colour + '10;border-left:4px solid ' + tier.colour + ';border-radius:8px;padding:1rem;margin-bottom:1rem;">';
   html += '<p style="font-size:0.9375rem;color:#374151;margin:0;line-height:1.6;">' + tier.roast + '</p>';
   html += '</div>';
-
-  // Breakdown
-  html += '<details style="margin-bottom:0.5rem;"><summary style="cursor:pointer;font-size:0.8125rem;color:#9ca3af;">How we calculated your shit rating</summary>';
-  html += '<div style="font-size:0.8125rem;color:#6b7280;margin-top:0.5rem;">';
-  html += '<div>Ladder position: +' + result.positionScore + ' shit points</div>';
-  html += '<div>Win rate: +' + result.winScore + ' shit points</div>';
-  html += '<div>Points differential: +' + result.diffScore + ' shit points</div>';
-  html += '<div>Current form: ' + (result.formScore >= 0 ? '+' : '') + result.formScore + ' shit points</div>';
-  html += '</div></details>';
 
   // Data freshness
   html += '<div style="font-size:0.6875rem;color:#d1d5db;text-align:center;margin-top:0.5rem;">Ladder data updated: ' + new Date(_ladderData.updated).toLocaleDateString('en-AU') + '</div>';
