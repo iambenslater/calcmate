@@ -31,6 +31,20 @@
         <p class="text-gray-600"><%= categoryDescription %></p>
       </div>
 
+      <% if (category === 'separation') { %>
+      <div class="bg-blue-50 border border-blue-200 rounded-xl p-5 mb-8">
+        <h2 class="font-semibold text-navy mb-2">📋 Official Government Resources</h2>
+        <p class="text-sm text-gray-600 mb-3">These calculators provide estimates only. For official assessments, contact:</p>
+        <div class="grid sm:grid-cols-2 gap-2 text-sm">
+          <a href="https://www.servicesaustralia.gov.au/child-support" target="_blank" rel="noopener" class="flex items-center gap-2 text-blue-700 hover:underline">🏛️ Services Australia — Child Support</a>
+          <a href="https://www.familyrelationships.gov.au" target="_blank" rel="noopener" class="flex items-center gap-2 text-blue-700 hover:underline">👨‍👩‍👧 Family Relationships Online</a>
+          <a href="https://www.fcfcoa.gov.au" target="_blank" rel="noopener" class="flex items-center gap-2 text-blue-700 hover:underline">⚖️ Federal Circuit & Family Court</a>
+          <a href="https://www.legalaid.nsw.gov.au" target="_blank" rel="noopener" class="flex items-center gap-2 text-blue-700 hover:underline">📞 Legal Aid (find your state)</a>
+        </div>
+        <p class="text-xs text-gray-500 mt-3">Free call: Family Relationship Advice Line <strong>1800 050 321</strong></p>
+      </div>
+      <% } %>
+
       <div class="grid sm:grid-cols-2 gap-4">
         <% calcs.forEach((c, idx) => { %>
           <a href="/<%= c.category %>/<%= c.slug %>" class="group bg-white rounded-xl p-5 shadow-sm hover:shadow-md border border-gray-100 hover:border-gold/50 transition">
@@ -50,6 +64,21 @@
           <% } %>
         <% }) %>
       </div>
+
+      <% if (catArticles && catArticles.length) { %>
+      <section class="mt-10">
+        <h2 class="text-2xl font-bold text-navy mb-4">📖 Articles & Guides</h2>
+        <div class="grid sm:grid-cols-2 gap-4">
+          <% catArticles.forEach(a => { %>
+            <a href="/articles/<%= a.slug %>" class="group bg-white rounded-xl p-5 shadow-sm hover:shadow-md border border-gray-100 hover:border-gold/50 transition">
+              <h3 class="font-semibold text-sm text-navy group-hover:text-gold transition mb-2"><%= a.title %></h3>
+              <p class="text-xs text-gray-500 line-clamp-2"><%= a.excerpt %></p>
+              <span class="text-xs text-gold font-medium mt-2 inline-block"><%= a.readTime %> · Read more →</span>
+            </a>
+          <% }) %>
+        </div>
+      </section>
+      <% } %>
 
       <!-- Editorial pick after calculator listing -->
       <div class="mt-8"><%- include('partials/ad-editorial-pick', { calc: { affiliateContext: calcs[0] ? calcs[0].affiliateContext : 'general' } }) %></div>

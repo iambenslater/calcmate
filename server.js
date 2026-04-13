@@ -602,12 +602,15 @@ app.get('/:category', (req, res) => {
   const cat = req.params.category;
   const meta = categoryMeta[cat];
   if (!meta || !calcsByCategory[cat]) return res.status(404).render('404', { title: 'Page Not Found | CalculatorMate' });
+  // Find articles matching this category (case-insensitive match)
+  const catArticles = articles.filter(a => (a.category || '').toLowerCase() === cat.toLowerCase());
   res.render('category', {
     category: cat,
     categoryName: meta.name,
     categoryIcon: meta.icon,
     categoryDescription: meta.description,
     calcs: calcsByCategory[cat],
+    catArticles,
     title: `${meta.name} Calculators | CalculatorMate Australia`,
     metaDescription: meta.description
   });
