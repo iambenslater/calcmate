@@ -21,20 +21,8 @@
   <% if (typeof success !== 'undefined' && success) { %>
     <!-- Success state — full-width celebration -->
     <div class="max-w-lg mx-auto text-center py-12">
-      <div class="inline-flex items-center justify-center mb-8">
-        <div class="bg-white rounded-2xl cm-shadow-md border border-black/5 p-6 sm:p-8 w-72 sm:w-80">
-          <div class="bg-gray-900 rounded-xl p-4 mb-4">
-            <p class="text-right font-mono text-3xl sm:text-4xl text-[#BFA956] tracking-wider">1</p>
-            <p class="text-right font-mono text-xs text-gray-500 mt-1">MSG_SENT = TRUE</p>
-          </div>
-          <div class="grid grid-cols-4 gap-2">
-            <div class="bg-green-50 rounded-lg p-2.5 text-center text-sm font-medium text-green-600">S</div>
-            <div class="bg-green-50 rounded-lg p-2.5 text-center text-sm font-medium text-green-600">E</div>
-            <div class="bg-green-50 rounded-lg p-2.5 text-center text-sm font-medium text-green-600">N</div>
-            <div class="bg-green-50 rounded-lg p-2.5 text-center text-sm font-medium text-green-600">T</div>
-            <div class="col-span-4 bg-[#393F23] rounded-lg p-2.5 text-center text-sm font-bold text-white">NICE ONE</div>
-          </div>
-        </div>
+      <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-green-50 mb-6">
+        <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
       </div>
       <h1 class="text-2xl sm:text-3xl font-bold text-gray-900 cm-heading mb-3">Message received.</h1>
       <p class="text-gray-500 mb-8 max-w-md mx-auto">I read every message personally and I'll get back to you as soon as I can. In the meantime, go calculate something.</p>
