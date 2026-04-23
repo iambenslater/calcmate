@@ -6,7 +6,8 @@
   <title><%= title %></title>
   <meta name="description" content="<%= typeof metaDescription !== 'undefined' ? metaDescription : 'Free Australian calculators for tax, mortgage, health, and more.' %>">
   <link rel="canonical" href="<%= siteUrl %><%= currentPath === '/' ? '' : currentPath %>">
-  <meta name="robots" content="index, follow">
+  <% const isFunCalc = typeof calc !== 'undefined' && calc && calc.category === 'fun'; %>
+  <meta name="robots" content="<%= isFunCalc ? 'noindex, nofollow' : 'index, follow' %>">
   <meta property="og:title" content="<%= title %>">
   <meta property="og:description" content="<%= typeof metaDescription !== 'undefined' ? metaDescription : '' %>">
   <meta property="og:type" content="<%= (typeof calc !== 'undefined' || typeof article !== 'undefined') ? 'article' : 'website' %>">

@@ -3,10 +3,9 @@
   "configurations": [
     {
       "name": "calcmate-dev",
-      "runtimeExecutable": "node",
-      "runtimeArgs": ["server.js"],
-      "port": 3000,
-      "cwd": "/Users/benslater/Library/CloudStorage/GoogleDrive-ben@benslater.me/My Drive/bOS/Root/Projects/CalcMate"
+      "runtimeExecutable": "echo",
+      "runtimeArgs": ["server already running"],
+      "port": 3001
     }
   ]
 }

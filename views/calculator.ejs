@@ -207,6 +207,34 @@
       <!-- Ad: interstitial before FAQ -->
       <%- include('partials/affiliate-inline') %>
 
+      <!-- In-depth guide (long-form supporting content) -->
+      <% if (calc.guide) { %>
+        <div class="cm-card p-6 sm:p-8 mb-8">
+          <div class="article-content">
+            <% if (calc.guide.workedExample) { %>
+              <h2>A worked example</h2>
+              <%- calc.guide.workedExample %>
+            <% } %>
+            <% if (calc.guide.stateNotes) { %>
+              <h2>State-by-state differences</h2>
+              <%- calc.guide.stateNotes %>
+            <% } %>
+            <% if (calc.guide.commonMistakes) { %>
+              <h2>Common mistakes people make</h2>
+              <%- calc.guide.commonMistakes %>
+            <% } %>
+            <% if (calc.guide.limitations) { %>
+              <h2>What this calculator doesn't account for</h2>
+              <%- calc.guide.limitations %>
+            <% } %>
+            <% if (calc.guide.edgeCases) { %>
+              <h2>Edge cases and nuances</h2>
+              <%- calc.guide.edgeCases %>
+            <% } %>
+          </div>
+        </div>
+      <% } %>
+
       <!-- FAQ -->
       <% if (calc.faq && calc.faq.length) { %>
         <div class="cm-card p-6 mb-8">

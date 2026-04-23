@@ -439,6 +439,8 @@ app.get('/sitemap.xml', (req, res) => {
     xml += `  <url><loc>${baseUrl}/${cat}</loc><lastmod>${today}</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>\n`;
   });
   calculators.forEach(calc => {
+    // Exclude fun calculators from sitemap — AdSense low-value content policy
+    if (calc.category === 'fun') return;
     xml += `  <url><loc>${baseUrl}/${calc.category}/${calc.slug}</loc><lastmod>${today}</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>\n`;
   });
   articles.forEach(article => {
@@ -718,6 +720,7 @@ app.get('/llms.txt', (req, res) => {
   txt += `## About\nCalculatorMate provides free, accurate calculators using current ATO rates, state-specific stamp duty, Medicare levy thresholds, and Australian workplace law. All calculations run client-side in the browser.\n\n`;
   txt += '## Calculators\n';
   Object.entries(categoryMeta).forEach(([key, meta]) => {
+    if (key === 'fun') return; // exclude fun calcs from llms.txt
     const calcs = calcsByCategory[key] || [];
     txt += `\n### ${meta.name}\n`;
     calcs.forEach(c => {
