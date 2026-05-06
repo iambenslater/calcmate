@@ -169,7 +169,7 @@ app.get('/', (req, res) => {
     ['take-home-pay', 'mortgage-repayment', 'bmi', 'gst-calculator', 'stamp-duty-all-states',
      'compound-interest', 'percentage', 'fuel-cost', 'days-between-dates', 'calorie-intake'].includes(c.slug)
   );
-  res.render('home', { popular, title: 'CalculatorMate Australia — Free Online Calculators', metaDescription: 'Free Australian calculators for tax, mortgage, health, and more. 172 calculators built for Australians with current ATO rates and state-specific data.' });
+  res.render('home', { popular, title: 'CalculatorMate Australia — Free Online Calculators', metaDescription: 'Free Australian calculators for tax, mortgage, health, and more. 173 calculators built for Australians with current ATO rates and state-specific data.' });
 });
 
 // Search API
@@ -477,7 +477,7 @@ app.get('/llms.txt', (req, res) => {
   ].map(s => `- ${baseUrl}/${s}`).join('\n');
   res.type('text/plain');
   res.send(`# CalculatorMate
-> 172 free online calculators built for Australians
+> 173 free online calculators built for Australians
 
 ## About
 CalculatorMate is a free Australian calculator website covering tax, mortgage, health, business, superannuation, investment, construction, and lifestyle calculations. All calculators use current ATO rates, state-specific data, and Australian workplace law. Calculations run entirely in-browser — no user data is collected or transmitted.
@@ -716,7 +716,7 @@ app.post('/contact', async (req, res) => {
 app.get('/llms.txt', (req, res) => {
   const baseUrl = res.locals.siteUrl;
   let txt = '# CalculatorMate Australia\n';
-  txt += '> 172 free online calculators built for Australians — tax, mortgage, health, business, and more.\n\n';
+  txt += '> 173 free online calculators built for Australians — tax, mortgage, health, business, and more.\n\n';
   txt += `## About\nCalculatorMate provides free, accurate calculators using current ATO rates, state-specific stamp duty, Medicare levy thresholds, and Australian workplace law. All calculations run client-side in the browser.\n\n`;
   txt += '## Calculators\n';
   Object.entries(categoryMeta).forEach(([key, meta]) => {

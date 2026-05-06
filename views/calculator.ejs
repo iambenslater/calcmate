@@ -335,6 +335,23 @@
             data-full-width-responsive="true"></ins>
           <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
         </div>
+        <%
+          // BusyBack cross-promotion: only show on calculators where the audience
+          // (tradies, sole traders, small service businesses) genuinely overlaps.
+          // Whole `trade` category qualifies (literal tradie calcs). Curated list
+          // for other categories. NEVER on health/fitness/fun/lifestyle.
+          const busybackRelevantSlugs = new Set([
+            'missed-call-cost', 'hourly-rate', 'business-viability', 'fuel-tax-credit',
+            'gst-calculator', 'borrowing-power', 'mortgage-repayment',
+            'income-tax', 'tax-return-estimator', 'tax-withheld',
+            'overtime-pay', 'leave-calculator', 'notice-period', 'redundancy-pay',
+            'long-service-leave'
+          ]);
+          const showBusyBack = calc.category === 'trade' || busybackRelevantSlugs.has(calc.slug);
+        %>
+        <% if (showBusyBack && calc.slug !== 'missed-call-cost') { %>
+          <%- include('partials/ad-busyback-tradies') %>
+        <% } %>
         <!-- Share -->
         <%- include('partials/share') %>
         <!-- Category nav -->

@@ -5983,6 +5983,106 @@
     }
   },
   {
+    "slug": "missed-call-cost",
+    "title": "Missed Call Cost Calculator",
+    "category": "business",
+    "description": "Calculate how much your business loses every year to missed calls. Built for sole traders and small service businesses.",
+    "metaDescription": "Find out exactly how much your business loses each year when calls go to voicemail. Free 30-second calculator for Australian tradies, sole traders, and small businesses.",
+    "keywords": [
+      "missed call cost calculator",
+      "missed calls business",
+      "lost revenue calculator",
+      "voicemail cost",
+      "tradie missed calls",
+      "small business phone"
+    ],
+    "inputs": [
+      {
+        "id": "callsPerWeek",
+        "label": "Calls per week",
+        "type": "number",
+        "default": 40,
+        "prefix": "",
+        "suffix": "calls",
+        "min": 1,
+        "max": 500,
+        "step": 1,
+        "help": "Across mobile + business line. If you're not sure, 30–60 is typical for a sole-trade business."
+      },
+      {
+        "id": "missRate",
+        "label": "% of calls you miss",
+        "type": "number",
+        "default": 30,
+        "prefix": "",
+        "suffix": "%",
+        "min": 1,
+        "max": 90,
+        "step": 1,
+        "help": "Industry studies put this between 25% and 50% for tradies and small service businesses."
+      },
+      {
+        "id": "noCallbackRate",
+        "label": "% of missed callers who don't try again",
+        "type": "number",
+        "default": 60,
+        "prefix": "",
+        "suffix": "%",
+        "min": 10,
+        "max": 95,
+        "step": 1,
+        "help": "Most callers ring the next number on the list. 60% is the conservative middle estimate."
+      },
+      {
+        "id": "winRate",
+        "label": "% of leads that turn into a paying job",
+        "type": "number",
+        "default": 40,
+        "prefix": "",
+        "suffix": "%",
+        "min": 5,
+        "max": 100,
+        "step": 1,
+        "help": "If you're solo, this is usually 30–50%. If you're picky about which jobs you take, it's lower."
+      },
+      {
+        "id": "jobValue",
+        "label": "Average job value",
+        "type": "number",
+        "default": 450,
+        "prefix": "$",
+        "suffix": "",
+        "min": 50,
+        "max": 50000,
+        "step": 50,
+        "help": "Average across small repairs, installs, and bigger jobs over a year."
+      }
+    ],
+    "howItWorks": "<p>The calculator multiplies <strong>weekly calls × miss rate × no-callback rate × win rate × average job value × 52 weeks</strong>. That's the revenue that walked because nobody picked up the phone.</p><p>It's a back-of-the-envelope number — your actual loss is probably worse, because emergency callouts (which cost more than average) are the calls most likely to be missed and most likely to walk straight to the next tradie on the list.</p>",
+    "faq": [
+      {
+        "q": "Where do these percentages come from?",
+        "a": "The defaults are pulled from public industry research on small-business call handling: studies by Marchex, Hibu, and several AU tradie-software vendors put missed-call rates for sole traders between 25% and 50%, and put the share of missed callers who do not try again at roughly 50–70%. Win rates of 30–50% for solo operators are typical in trade-business benchmarking. Plug in your own numbers if you have them — they'll always be more accurate than the defaults."
+      },
+      {
+        "q": "Does this work for businesses other than tradies?",
+        "a": "Yes — it works for any service business that books work over the phone: cleaners, photographers, mobile mechanics, mortgage brokers, real estate agents, dog walkers, mobile dog-grooming, you name it. The maths is the same. Just plug in your typical job value."
+      },
+      {
+        "q": "Is the answer the calculator gives me really what I'm losing?",
+        "a": "It's a rough estimate, not gospel. The number assumes the missed calls are a random sample of all your calls — but in reality, missed calls skew toward emergencies and after-hours, where customers are MORE likely to pay quickly and value the job more. So if anything, the figure is conservative."
+      },
+      {
+        "q": "What can I do about missed calls?",
+        "a": "Three options. Hire a part-time admin (~$1,500/month minimum). Use a human answering service ($99–$500/month). Or use an AI answering service (~$5/month plus per-call fee). The calculator's results screen links to <a href=\"https://busyback.com.au?utm_source=calcmate&utm_medium=calc-cta\" rel=\"related\">BusyBack</a>, the cheapest option in the third category — built for Australian tradies."
+      },
+      {
+        "q": "Do calls really go to a competitor that fast?",
+        "a": "Yes. Industry research consistently shows callers move on within minutes if they don't get a human or a useful response. For emergency or time-sensitive jobs (burst pipe, no power, urgent quote), the second-call rate to a competitor is over 80%. For non-urgent inquiries, it's still around 50%."
+      }
+    ]
+  },
+  {
     "slug": "hourly-rate",
     "title": "Hourly Rate Calculator",
     "category": "business",
