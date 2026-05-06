@@ -352,21 +352,32 @@
           <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
         </div>
         <%
-          // BusyBack cross-promotion: only show on calculators where the audience
-          // (tradies, sole traders, small service businesses) genuinely overlaps.
-          // Whole `trade` category qualifies (literal tradie calcs). Curated list
-          // for other categories. NEVER on health/fitness/fun/lifestyle.
+          // Sister-venture cross-promotion. Two distinct widgets target two
+          // distinct audiences:
+          //  - BusyBack ($5/mo, sole traders on the tools) → shown on
+          //    sole-trader-y calculators + the whole `trade` category
+          //  - CallSorted ($149+/mo, established trade businesses with a
+          //    team) → shown on employer-side calculators (redundancy,
+          //    long service leave, notice period, overtime, leave entitlements,
+          //    business viability)
+          // Mutually exclusive — at most one widget per page so the sidebar
+          // doesn't feel spammy.
           const busybackRelevantSlugs = new Set([
-            'missed-call-cost', 'hourly-rate', 'business-viability', 'fuel-tax-credit',
+            'missed-call-cost', 'hourly-rate', 'fuel-tax-credit',
             'gst-calculator', 'borrowing-power', 'mortgage-repayment',
-            'income-tax', 'tax-return-estimator', 'tax-withheld',
-            'overtime-pay', 'leave-calculator', 'notice-period', 'redundancy-pay',
-            'long-service-leave'
+            'income-tax', 'tax-return-estimator', 'tax-withheld'
           ]);
-          const showBusyBack = calc.category === 'trade' || busybackRelevantSlugs.has(calc.slug);
+          const callsortedRelevantSlugs = new Set([
+            'business-viability', 'redundancy-pay', 'long-service-leave',
+            'notice-period', 'overtime-pay', 'leave-calculator'
+          ]);
+          const showCallSorted = callsortedRelevantSlugs.has(calc.slug);
+          const showBusyBack = !showCallSorted && (calc.category === 'trade' || busybackRelevantSlugs.has(calc.slug));
         %>
         <% if (showBusyBack) { %>
           <%- include('partials/ad-busyback-tradies') %>
+        <% } else if (showCallSorted) { %>
+          <%- include('partials/ad-callsorted-business') %>
         <% } %>
         <!-- Share -->
         <%- include('partials/share') %>
