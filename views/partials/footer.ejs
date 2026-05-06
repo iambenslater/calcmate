@@ -49,7 +49,11 @@
     <div class="border-t border-white/10 mt-10 pt-8">
       <div class="text-sm text-white/40 space-y-2">
         <p>&copy; <%= new Date().getFullYear() %> CalculatorMate Australia. All rights reserved.</p>
-        <p class="text-xs leading-relaxed">Built by the team behind <a href="https://busyback.com.au" rel="related" class="text-white/60 hover:text-white">BusyBack</a> (AI phone answering for sole traders, from $5/mo) and <a href="https://callsorted.com.au" rel="related" class="text-white/60 hover:text-white">CallSorted</a> (AI phone line for established trade businesses).</p>
+        <% if (typeof calc !== 'undefined' && calc.slug === 'missed-call-cost') { %>
+          <p class="text-xs leading-relaxed">Built by the team behind <a href="https://busyback.com.au" rel="related" class="text-white/60 hover:text-white">BusyBack</a> — AI phone answering for Australian tradies and sole traders. From $5/month.</p>
+        <% } else { %>
+          <p class="text-xs leading-relaxed">Built by the team behind <a href="https://busyback.com.au" rel="related" class="text-white/60 hover:text-white">BusyBack</a> (AI phone answering for sole traders, from $5/mo) and <a href="https://callsorted.com.au" rel="related" class="text-white/60 hover:text-white">CallSorted</a> (AI phone line for established trade businesses).</p>
+        <% } %>
         <p class="text-xs leading-relaxed">Disclaimer: Calculators provide estimates only and should not be used as financial, tax, or medical advice. Always consult a qualified professional. Australian tax rates based on ATO published rates for the current financial year. CalculatorMate is a participant in the Amazon Services LLC Associates Program.</p>
       </div>
     </div>
