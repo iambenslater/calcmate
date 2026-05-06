@@ -5988,6 +5988,14 @@
     "category": "business",
     "description": "Calculate how much your business loses every year to missed calls. Built for sole traders and small service businesses.",
     "metaDescription": "Find out exactly how much your business loses each year when calls go to voicemail. Free 30-second calculator for Australian tradies, sole traders, and small businesses.",
+    "editorialCTA": {
+      "eyebrow": "From the team",
+      "heading": "BusyBack — AI phone answering for Aussie tradies",
+      "body": "Built by the same team. Real AI voice picks up your missed calls, captures the job, texts you the details. From <strong style=\"color:#22c55e\">$5/month + 95¢ per call</strong>. No contracts.",
+      "buttonText": "See how it works",
+      "url": "https://busyback.com.au?utm_source=calcmate&utm_medium=editorial-cta&utm_campaign=missed-call-cost",
+      "rel": "related"
+    },
     "keywords": [
       "missed call cost calculator",
       "missed calls business",
