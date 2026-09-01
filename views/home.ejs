@@ -7,7 +7,7 @@
   "@id": "<%- siteUrl %>/#organization",
   "name": "CalculatorMate",
   "url": "<%- siteUrl %>",
-  "description": "172 free online calculators built for Australians. Tax, mortgage, health, business calculators with current ATO rates and state-specific data.",
+  "description": "<%= calculatorCount %> free online calculators built for Australians. Tax, mortgage, health, business calculators with current ATO rates and state-specific data.",
   "logo": { "@type": "ImageObject", "url": "<%- siteUrl %>/favicon.svg", "width": 112, "height": 112 },
   "areaServed": { "@type": "Country", "name": "Australia" }
 }
@@ -95,9 +95,9 @@
 
     <div class="max-w-4xl mx-auto px-5 sm:px-8 text-center relative">
       <h1 class="text-4xl sm:text-[2.75rem] md:text-5xl font-bold text-gray-900 mb-6 cm-heading">
-        130+ Free Calculators<br>Built for <span class="cm-gradient-text">Australia</span>
+        <%= calculatorCount %> Free Calculators<br>Built for <span class="cm-gradient-text">Australia</span>
       </h1>
-      <p class="text-lg md:text-xl text-gray-500 max-w-xl mx-auto mb-10 leading-relaxed">Tax, mortgage, health, super — 172 free calculators with current ATO rates and state-specific data.</p>
+      <p class="text-lg md:text-xl text-gray-500 max-w-xl mx-auto mb-10 leading-relaxed">Tax, mortgage, health, super — <%= calculatorCount %> free calculators with current ATO rates and state-specific data.</p>
 
       <!-- Hero search -->
       <div class="max-w-xl mx-auto relative">
@@ -152,7 +152,7 @@
     <div class="max-w-4xl mx-auto px-5 sm:px-8">
       <div class="flex flex-wrap justify-center gap-6 md:gap-12 text-center">
         <div class="flex items-center gap-1.5">
-          <span class="text-sm font-bold text-gray-900">172</span>
+          <span class="text-sm font-bold text-gray-900"><%= calculatorCount %></span>
           <span class="text-xs text-gray-500">calculators</span>
         </div>
         <div class="flex items-center gap-1.5">
@@ -298,7 +298,7 @@
     <div class="max-w-6xl mx-auto px-5 sm:px-8">
       <div class="text-center mb-8">
         <p class="cm-gradient-text text-xs font-semibold uppercase tracking-widest mb-3">Complete directory</p>
-        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 cm-heading">All 172 calculators</h2>
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 cm-heading">All <%= calculatorCount %> calculators</h2>
       </div>
       <div class="cm-card p-8 md:p-12">
         <% Object.entries(categoryMeta).forEach(([key, meta], catIdx) => { %>
