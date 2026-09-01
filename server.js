@@ -139,6 +139,9 @@ const amazonGeoConfig = {
 // Make data available to all templates
 app.use((req, res, next) => {
   res.locals.calculators = calculators;
+  // Derived so the headline number can never drift out of step with the data again.
+  // Previously hardcoded as 172 (and 130+ in one place) while the real count was 146.
+  res.locals.calculatorCount = calculators.length;
   res.locals.calcsByCategory = calcsByCategory;
   res.locals.categoryMeta = categoryMeta;
   res.locals.articles = articles;
